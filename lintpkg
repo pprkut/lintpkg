@@ -1,0 +1,140 @@
+#!/bin/sh
+# Copyright 1994, 1998, 2000  Patrick Volkerding, Concord, CA, USA
+# Copyright 2001, 2003  Slackware Linux, Inc., Concord, CA, USA
+# Copyright 2007, 2009, 2011  Patrick Volkerding, Sebeka, MN, USA
+# Copyright 2014  Heinz Wiesinger, Amsterdam, The Netherlands
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is
+# permitted provided that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+#  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+#  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO
+#  EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+#  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+#  OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+#  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+#  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+#  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+# Return a package name that has been stripped of the dirname portion
+# and any of the valid extensions (only):
+pkgbase() {
+  PKGEXT=$(echo $1 | rev | cut -f 1 -d . | rev)
+  case $PKGEXT in
+  'tgz' )
+    PKGRETURN=$(basename $1 .tgz)
+    ;;
+  'tbz' )
+    PKGRETURN=$(basename $1 .tbz)
+    ;;
+  'tlz' )
+    PKGRETURN=$(basename $1 .tlz)
+    ;;
+  'txz' )
+    PKGRETURN=$(basename $1 .txz)
+    ;;
+  *)
+    PKGRETURN=$(basename $1)
+    ;;
+  esac
+  echo $PKGRETURN
+}
+
+package_element() {
+  STRING=$(pkgbase $1)
+  ELEMENT=$2
+  # Check for old style package name with one segment:
+  if [ "$(echo $STRING | cut -f 1 -d -)" = "$(echo $STRING | cut -f 2 -d -)" ]; then
+    if [ "$ELEMENT" = "name" ]; then
+      echo $STRING
+    else
+      echo ""
+    fi
+  else # has more than one dash delimited segment
+    # Count number of segments:
+    INDEX=1
+    while [ ! "$(echo $STRING | cut -f $INDEX -d -)" = "" ]; do
+      INDEX=$(expr $INDEX + 1)
+    done
+    INDEX=$(expr $INDEX - 1) # don't include the null value
+    # If we don't have four segments, return the old-style (or out of spec) package name:
+    if [ "$INDEX" = "2" -o "$INDEX" = "3" ]; then
+      if [ "$ELEMENT" = "name" ]; then
+        echo $STRING
+      else
+        echo ""
+      fi
+    else # we have four or more segments, so we'll consider this a new-style name:
+      if [ "$ELEMENT" = "name" ]; then
+        NAME=$(expr $INDEX - 3)
+        NAME="$(echo $STRING | cut -f 1-$NAME -d -)"
+        echo $NAME
+      elif [ "$ELEMENT" = "version" ]; then
+        VER=$(expr $INDEX - 2)
+        VER="$(echo $STRING | cut -f $VER -d -)"
+        echo $VER
+      elif [ "$ELEMENT" = "arch" ]; then
+        ARCH=$(expr $INDEX - 1)
+        ARCH="$(echo $STRING | cut -f $ARCH -d -)"
+        echo $ARCH
+      else
+        BUILD="$(echo $STRING | cut -f $INDEX -d -)"
+        echo $BUILD
+      fi
+    fi
+  fi
+}
+
+TAR=tar-1.13
+$TAR --help 1> /dev/null 2> /dev/null
+if [ ! $? = 0 ]; then
+  TAR=tar
+fi
+if [ ! "`LC_MESSAGES=C $TAR --version`" = "tar (GNU tar) 1.13
+
+Copyright (C) 1988, 92,93,94,95,96,97,98, 1999 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+Written by John Gilmore and Jay Fenlason." ]; then
+  echo "WARNING: pkgtools are unstable with tar > 1.13."
+  echo "         You should provide a \"tar-1.13\" in your \$PATH."
+  sleep 5
+fi
+
+WORKING_DIR=$(mktemp -d -t lintpkg.XXXXXX)
+
+if [ -z "$WORKING_DIR" ]; then
+  echo "Couldn't create temporary directory"
+  exit 1
+fi
+
+PACKAGE=$1
+
+if ! [ -e "$PACKAGE" ]; then
+  echo "Package not found!"
+  exit 2
+fi
+
+PKG_NAME=$(package_element $PACKAGE name)
+PKG_VERSION=$(package_element $PACKAGE version)
+PKG_ARCH=$(package_element $PACKAGE arch)
+PKG_BUILD=$(package_element $PACKAGE build)
+PKG_EXTENSION=$(echo $PACKAGE | rev | cut -f 1 -d . | rev)
+
+echo "Linting $PACKAGE"
+echo
+
+echo "Name: $PKG_NAME"
+echo "Version: $PKG_VERSION"
+echo "Architecture: $PKG_ARCH"
+echo "Build: $PKG_BUILD"
+echo "Extension: $PKG_EXTENSION"
+
+rm -rf $WORKING_DIR
