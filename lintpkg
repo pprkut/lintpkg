@@ -247,6 +247,7 @@ for PACKAGE in $*; do
     for check in $(ls $CHECKS); do
       source "$CHECKS/$check"; check
       unset -f check
+      unset -f info
     done
 
   cd $CWD
