@@ -94,15 +94,24 @@ package_element() {
 log_error() {
   ERRORS=$(expr $ERRORS + 1)
   echo "$PKG_FULLNAME: E: $1 $2"
+  if [ "$INFO" = "yes" ]; then
+    info "$1"
+  fi
 }
 
 log_warning() {
   WARNINGS=$(expr $WARNINGS + 1)
   echo "$PKG_FULLNAME: W: $1 $2"
+  if [ "$INFO" = "yes" ]; then
+    info "$1"
+  fi
 }
 
 log_notice() {
   echo "$PKG_FULLNAME: I: $1 $2"
+  if [ "$INFO" = "yes" ]; then
+    info "$1"
+  fi
 }
 
 TAR=tar-1.13
@@ -121,6 +130,17 @@ Written by John Gilmore and Jay Fenlason." ]; then
   echo "         You should provide a \"tar-1.13\" in your \$PATH."
   sleep 5
 fi
+
+INFO="no"
+
+while [ 0 ]; do
+  if [ "$1" = "-i" -o "$1" = "--info" ]; then
+    INFO="yes"
+    shift 1
+  else
+    break
+  fi
+done
 
 WORKING_DIR=$(mktemp -d -t lintpkg.XXXXXX)
 APPLICATION_DIR=$(dirname $(realpath $0))
