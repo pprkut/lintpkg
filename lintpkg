@@ -114,6 +114,13 @@ log_notice() {
   fi
 }
 
+info() {
+  if [ "$1" = "external-compression-utility-missing" ]; then
+    echo "The necessary compression utility for uncompressing the package is missing."
+    echo
+  fi
+}
+
 TAR=tar-1.13
 $TAR --help 1> /dev/null 2> /dev/null
 if [ ! $? = 0 ]; then
@@ -207,7 +214,7 @@ for PACKAGE in $*; do
 
   # Test presence of external compression utility:
   if ! $packagecompression --help 1> /dev/null 2> /dev/null ; then
-    log_notice "external-compression-utility-missing: $packagecompression"
+    log_notice "external-compression-utility-missing" "$packagecompression"
     continue
   fi
 
