@@ -130,6 +130,26 @@ info() {
   fi
 }
 
+usage() {
+ cat << EOF
+Usage: lintpkg [options] <package_filename>
+
+Lintpkg is used to verify a .t{gz,bz,lz,xz} package against a set of common
+   rules and guidelines for Slackware packaging.
+
+   lintpkg slackware-package-1.0.0-i486-1.tgz (or .tbz, .tlz, .txz)
+
+options:      -i --info (Display explanations for reported messages.)
+
+EOF
+}
+
+# usage(), exit if called with no arguments:
+if [ $# = 0 ]; then
+  usage;
+  exit
+fi
+
 TAR=tar-1.13
 $TAR --help 1> /dev/null 2> /dev/null
 if [ ! $? = 0 ]; then
