@@ -131,51 +131,6 @@ if [ -z "$WORKING_DIR" ]; then
   exit 1
 fi
 
-PACKAGE=$1
-
-if ! [ -e "$PACKAGE" ]; then
-  echo "Package not found!"
-  exit 2
-fi
-
-PKG_NAME=$(package_element $PACKAGE name)
-PKG_VERSION=$(package_element $PACKAGE version)
-PKG_ARCH=$(package_element $PACKAGE arch)
-PKG_BUILD=$(package_element $PACKAGE build)
-PKG_EXTENSION=$(echo $PACKAGE | rev | cut -f 1 -d . | rev)
-PKG_FULLNAME=$(pkgbase $PACKAGE)
-
-echo "Linting $PACKAGE"
-echo
-
-echo "Name: $PKG_NAME"
-echo "Version: $PKG_VERSION"
-echo "Architecture: $PKG_ARCH"
-echo "Build: $PKG_BUILD"
-echo "Extension: $PKG_EXTENSION"
-
-# Determine compressor utility:
-case $PKG_EXTENSION in
-  'tgz' )
-    packagecompression=gzip
-    ;;
-  'tbz' )
-    packagecompression=bzip2
-    ;;
-  'tlz' )
-    packagecompression=lzma
-    ;;
-  'txz' )
-    packagecompression=xz
-    ;;
-esac
-
-# Test presence of external compression utility:
-if ! $packagecompression --help 1> /dev/null 2> /dev/null ; then
-  echo "Cannot lint $PACKAGE:  external compression utility $packagecompression missing"
-  exit 3
-fi
-
 if [ -e "/usr/share/pkgtools/lintpkg" ]; then
   CHECKS="/usr/share/pkgtools/lintpkg"
 elif [ -e "$APPLICATION_DIR/checks" ]; then
@@ -187,21 +142,72 @@ fi
 
 ERRORS=0
 WARNINGS=0
+PACKAGES=0
 
-cd $WORKING_DIR
+for PACKAGE in $*; do
 
-  ( umask 000 ; cat $PACKAGE | $packagecompression -dc | $TAR xf - 2> /dev/null )
+  if ! [ -e "$PACKAGE" ]; then
+    echo "Package not found!"
+    exit 2
+  fi
 
-  tree .
+  PKG_NAME=$(package_element $PACKAGE name)
+  PKG_VERSION=$(package_element $PACKAGE version)
+  PKG_ARCH=$(package_element $PACKAGE arch)
+  PKG_BUILD=$(package_element $PACKAGE build)
+  PKG_EXTENSION=$(echo $PACKAGE | rev | cut -f 1 -d . | rev)
+  PKG_FULLNAME=$(pkgbase $PACKAGE)
 
-  for check in $(ls $CHECKS); do
-    echo "executing check $check"
-    source "$CHECKS/$check"; check
-    unset -f check
-  done
+  PACKAGES=$(expr $PACKAGES + 1)
 
-  echo "1 packages checked; $ERRORS errors and $WARNINGS warnings."
+  echo "Linting $PACKAGE"
+  echo
 
-cd $CWD
+  echo "Name: $PKG_NAME"
+  echo "Version: $PKG_VERSION"
+  echo "Architecture: $PKG_ARCH"
+  echo "Build: $PKG_BUILD"
+  echo "Extension: $PKG_EXTENSION"
+
+  # Determine compressor utility:
+  case $PKG_EXTENSION in
+    'tgz' )
+      packagecompression=gzip
+      ;;
+    'tbz' )
+      packagecompression=bzip2
+      ;;
+    'tlz' )
+      packagecompression=lzma
+      ;;
+    'txz' )
+      packagecompression=xz
+      ;;
+  esac
+
+  # Test presence of external compression utility:
+  if ! $packagecompression --help 1> /dev/null 2> /dev/null ; then
+    log_notice "external-compression-utility-missing: $packagecompression"
+    continue
+  fi
+
+  cd $WORKING_DIR
+
+    ( umask 000 ; cat $PACKAGE | $packagecompression -dc | $TAR xf - 2> /dev/null )
+
+    tree .
+
+    for check in $(ls $CHECKS); do
+      echo "executing check $check"
+      source "$CHECKS/$check"; check
+      unset -f check
+    done
+
+  cd $CWD
+
+  rm -rf "$WORKING_DIR/"*
+done
+
+echo "$PACKAGES packages checked; $ERRORS errors and $WARNINGS warnings."
 
 rm -rf $WORKING_DIR
