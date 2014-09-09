@@ -91,6 +91,20 @@ package_element() {
   fi
 }
 
+log_error() {
+  ERRORS=$(expr $ERRORS + 1)
+  echo "$PKG_FULLNAME: E: $1 $2"
+}
+
+log_warning() {
+  WARNINGS=$(expr $WARNINGS + 1)
+  echo "$PKG_FULLNAME: W: $1 $2"
+}
+
+log_notice() {
+  echo "$PKG_FULLNAME: I: $1 $2"
+}
+
 TAR=tar-1.13
 $TAR --help 1> /dev/null 2> /dev/null
 if [ ! $? = 0 ]; then
@@ -129,6 +143,7 @@ PKG_VERSION=$(package_element $PACKAGE version)
 PKG_ARCH=$(package_element $PACKAGE arch)
 PKG_BUILD=$(package_element $PACKAGE build)
 PKG_EXTENSION=$(echo $PACKAGE | rev | cut -f 1 -d . | rev)
+PKG_FULLNAME=$(pkgbase $PACKAGE)
 
 echo "Linting $PACKAGE"
 echo
@@ -162,7 +177,7 @@ if ! $packagecompression --help 1> /dev/null 2> /dev/null ; then
 fi
 
 if [ -e "/usr/share/pkgtools/lintpkg" ]; then
-  CHECKS="/usr/share/pkgtools/lintpkg/"
+  CHECKS="/usr/share/pkgtools/lintpkg"
 elif [ -e "$APPLICATION_DIR/checks" ]; then
   CHECKS="$APPLICATION_DIR/checks"
 else
@@ -170,11 +185,22 @@ else
   exit 4
 fi
 
+ERRORS=0
+WARNINGS=0
+
 cd $WORKING_DIR
 
   ( umask 000 ; cat $PACKAGE | $packagecompression -dc | $TAR xf - 2> /dev/null )
 
   tree .
+
+  for check in $(ls $CHECKS); do
+    echo "executing check $check"
+    source "$CHECKS/$check"; check
+    unset -f check
+  done
+
+  echo "1 packages checked; $ERRORS errors and $WARNINGS warnings."
 
 cd $CWD
 
