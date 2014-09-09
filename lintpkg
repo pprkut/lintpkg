@@ -187,15 +187,6 @@ for PACKAGE in $*; do
 
   PACKAGES=$(expr $PACKAGES + 1)
 
-  echo "Linting $PACKAGE"
-  echo
-
-  echo "Name: $PKG_NAME"
-  echo "Version: $PKG_VERSION"
-  echo "Architecture: $PKG_ARCH"
-  echo "Build: $PKG_BUILD"
-  echo "Extension: $PKG_EXTENSION"
-
   # Determine compressor utility:
   case $PKG_EXTENSION in
     'tgz' )
@@ -222,10 +213,7 @@ for PACKAGE in $*; do
 
     ( umask 000 ; cat $PACKAGE | $packagecompression -dc | $TAR xf - 2> /dev/null )
 
-    tree .
-
     for check in $(ls $CHECKS); do
-      echo "executing check $check"
       source "$CHECKS/$check"; check
       unset -f check
     done
