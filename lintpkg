@@ -92,16 +92,24 @@ package_element() {
 }
 
 log_error() {
-  ERRORS=$(expr $ERRORS + 1)
+  if ! [ "$PKG_FULLNAME" = "(none)" ]; then
+    ERRORS=$(expr $ERRORS + 1)
+  fi
+
   echo "$PKG_FULLNAME: E: $1 $2"
+
   if [ "$INFO" = "yes" ]; then
     info "$1"
   fi
 }
 
 log_warning() {
-  WARNINGS=$(expr $WARNINGS + 1)
+  if ! [ "$PKG_FULLNAME" = "(none)" ]; then
+    WARNINGS=$(expr $WARNINGS + 1)
+  fi
+
   echo "$PKG_FULLNAME: W: $1 $2"
+
   if [ "$INFO" = "yes" ]; then
     info "$1"
   fi
@@ -109,6 +117,7 @@ log_warning() {
 
 log_notice() {
   echo "$PKG_FULLNAME: I: $1 $2"
+
   if [ "$INFO" = "yes" ]; then
     info "$1"
   fi
@@ -164,7 +173,7 @@ elif [ -e "$APPLICATION_DIR/checks" ]; then
   CHECKS="$APPLICATION_DIR/checks"
 else
   echo "No lint checks found!"
-  exit 4
+  exit 1
 fi
 
 ERRORS=0
@@ -173,9 +182,11 @@ PACKAGES=0
 
 for PACKAGE in $*; do
 
+  PKG_FULLNAME="(none)"
+
   if ! [ -e "$PACKAGE" ]; then
-    echo "Package not found!"
-    exit 2
+    log_error "No package found with name $PACKAGE"
+    continue
   fi
 
   PKG_NAME=$(package_element $PACKAGE name)
@@ -226,3 +237,9 @@ done
 echo "$PACKAGES packages checked; $ERRORS errors and $WARNINGS warnings."
 
 rm -rf $WORKING_DIR
+
+if [ $ERRORS -gt 0 -o $WARNINGS -gt 0 ]; then
+  exit 64
+else
+  exit 0
+fi
