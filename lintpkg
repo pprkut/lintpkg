@@ -109,6 +109,7 @@ Written by John Gilmore and Jay Fenlason." ]; then
 fi
 
 WORKING_DIR=$(mktemp -d -t lintpkg.XXXXXX)
+CWD=$(pwd)
 
 if [ -z "$WORKING_DIR" ]; then
   echo "Couldn't create temporary directory"
@@ -136,5 +137,35 @@ echo "Version: $PKG_VERSION"
 echo "Architecture: $PKG_ARCH"
 echo "Build: $PKG_BUILD"
 echo "Extension: $PKG_EXTENSION"
+
+# Determine compressor utility:
+case $PKG_EXTENSION in
+  'tgz' )
+    packagecompression=gzip
+    ;;
+  'tbz' )
+    packagecompression=bzip2
+    ;;
+  'tlz' )
+    packagecompression=lzma
+    ;;
+  'txz' )
+    packagecompression=xz
+    ;;
+esac
+
+# Test presence of external compression utility:
+if ! $packagecompression --help 1> /dev/null 2> /dev/null ; then
+  echo "Cannot lint $PACKAGE:  external compression utility $packagecompression missing"
+  exit 3
+fi
+
+cd $WORKING_DIR
+
+  ( umask 000 ; cat $PACKAGE | $packagecompression -dc | $TAR xf - 2> /dev/null )
+
+  tree .
+
+cd $CWD
 
 rm -rf $WORKING_DIR
