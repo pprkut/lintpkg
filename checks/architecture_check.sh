@@ -28,7 +28,19 @@ check() {
         type=$(file $file | grep "ELF 64-bit")
         if ! [ -z "$type" ]; then
           file=$(echo $file | sed "s|^$WORKING_DIR||")
-          log_error "library-in-wrong-libdir" "$file"
+          log_error "binary-in-wrong-architecture-specific-path" "$file"
+        fi
+      done
+    fi
+  fi
+
+  if [ "$PKG_ARCH" = "i486" -o "$PKG_ARCH" = "i686" ]; then
+    if [ -d "$WORKING_DIR/usr/lib64" ]; then
+      for file in $(find $WORKING_DIR/usr/lib64 ! -type d); do
+        type=$(file $file | grep "ELF 32-bit")
+        if ! [ -z "$type" ]; then
+          file=$(echo $file | sed "s|^$WORKING_DIR||")
+          log_error "binary-in-wrong-architecture-specific-path" "$file"
         fi
       done
     fi
@@ -36,10 +48,10 @@ check() {
 }
 
 info() {
-  if [ "$1" = "strange-permission" ]; then
-    echo -n "A file that you listed to include in your package has strange "
-    echo -n "permissions. Usually, a file should have 0644 permissions and "
-    echo "directories should have 0755 permissions."
+  if [ "$1" = "binary-in-wrong-architecture-specific-path" ]; then
+    echo -n "There is a binary in the wrong architecture specific path. /usr/lib "
+    echo -n "should not contain 64-bit binaries, /usr/lib64 should not contain "
+    echo "32-bit binaries."
     echo
   fi
 }
