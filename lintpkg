@@ -124,9 +124,23 @@ log_notice() {
 }
 
 info() {
+  local_info $*
+}
+
+local_info() {
   if [ "$1" = "external-compression-utility-missing" ]; then
     echo "The necessary compression utility for uncompressing the package is missing."
     echo
+  fi
+}
+
+provides() {
+  if ! [ -z "$(info $1)" ]; then
+    echo "yes"
+  elif ! [ -z "$(local_info $1)" ]; then
+    echo "yes"
+  else
+    echo "no"
   fi
 }
 
@@ -140,8 +154,41 @@ Lintpkg is used to verify a .t{gz,bz,lz,xz} package against a set of common
    lintpkg slackware-package-1.0.0-i486-1.tgz (or .tbz, .tlz, .txz)
 
 options:      -i --info (Display explanations for reported messages.)
-
+              -I --explain <messageid> (Display explanations for the specified
+                                       message identifiers and exit. Multiple
+                                       identifiers can be specified by separating
+                                       them with commas.)
 EOF
+}
+
+show_info() {
+  stack=$(echo $1 | tr , '\n' | sort)
+
+  for id in $stack; do
+    for check in $(ls $CHECKS); do
+      source "$CHECKS/$check"
+      left=""
+
+      if [ "$(provides $id)" = "yes" ]; then
+        echo "$id:"
+        info $id
+        local_info $id;
+      else
+        left="$id"
+      fi
+
+      unset -f check
+      unset -f info
+
+      if [ -z "$left" ]; then
+        break
+      fi
+    done
+
+    if ! [ -z "$left" ]; then
+      echo "$id:"
+    fi
+  done
 }
 
 # usage(), exit if called with no arguments:
@@ -167,10 +214,27 @@ Written by John Gilmore and Jay Fenlason." ]; then
   sleep 5
 fi
 
+APPLICATION_DIR=$(dirname $(realpath $0))
+CWD=$(pwd)
+
 INFO="no"
+CHECKS=""
+
+if [ -e "/usr/share/pkgtools/lintpkg" ]; then
+  CHECKS="/usr/share/pkgtools/lintpkg"
+elif [ -e "$APPLICATION_DIR/checks" ]; then
+  CHECKS="$APPLICATION_DIR/checks"
+fi
 
 while [ 0 ]; do
-  if [ "$1" = "-i" -o "$1" = "--info" ]; then
+  if [ "$1" = "-I" -o "$1" = "--explain" ]; then
+    if [ "$2" = "" ]; then
+      usage
+      exit
+    fi
+    show_info $2
+    exit 0
+  elif [ "$1" = "-i" -o "$1" = "--info" ]; then
     INFO="yes"
     shift 1
   else
@@ -179,19 +243,13 @@ while [ 0 ]; do
 done
 
 WORKING_DIR=$(mktemp -d -t lintpkg.XXXXXX)
-APPLICATION_DIR=$(dirname $(realpath $0))
-CWD=$(pwd)
 
 if [ -z "$WORKING_DIR" ]; then
   echo "Couldn't create temporary directory"
   exit 1
 fi
 
-if [ -e "/usr/share/pkgtools/lintpkg" ]; then
-  CHECKS="/usr/share/pkgtools/lintpkg"
-elif [ -e "$APPLICATION_DIR/checks" ]; then
-  CHECKS="$APPLICATION_DIR/checks"
-else
+if [ -z "$CHECKS" ]; then
   echo "No lint checks found!"
   exit 1
 fi
