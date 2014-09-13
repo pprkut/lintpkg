@@ -158,6 +158,9 @@ options:      -i --info (Display explanations for reported messages.)
                                        message identifiers and exit. Multiple
                                        identifiers can be specified by separating
                                        them with commas.)
+              -c --check <name> (Run only the specified check. This option may be
+                                given multiple times to specify multiple checks
+                                to run.)
 EOF
 }
 
@@ -191,6 +194,27 @@ show_info() {
   done
 }
 
+perform() {
+  if [ -z "$1" ]; then
+    LIST="$(ls $CHECKS)"
+  else
+    LIST="$1"
+  fi
+
+  for check in $LIST; do
+    if [ -e "$CHECKS/$check.sh" ]; then
+      check="$check.sh"
+    fi
+
+    source "$CHECKS/$check"
+    check
+
+    unset -f check
+    unset -f info
+  done
+
+}
+
 # usage(), exit if called with no arguments:
 if [ $# = 0 ]; then
   usage;
@@ -219,6 +243,7 @@ CWD=$(pwd)
 
 INFO="no"
 CHECKS=""
+LIST=""
 
 if [ -e "/usr/share/pkgtools/lintpkg" ]; then
   CHECKS="/usr/share/pkgtools/lintpkg"
@@ -228,7 +253,7 @@ fi
 
 while [ 0 ]; do
   if [ "$1" = "-I" -o "$1" = "--explain" ]; then
-    if [ "$2" = "" ]; then
+    if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
       usage
       exit
     fi
@@ -237,6 +262,14 @@ while [ 0 ]; do
   elif [ "$1" = "-i" -o "$1" = "--info" ]; then
     INFO="yes"
     shift 1
+  elif [ "$1" = "-c" -o "$1" = "--check" ]; then
+    if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
+      usage
+      exit
+    fi
+
+    LIST="$LIST $2";
+    shift 2
   else
     break
   fi
@@ -302,11 +335,7 @@ for PACKAGE in $*; do
 
     ( umask 000 ; cat $PACKAGE | $packagecompression -dc | $TAR xf - 2> /dev/null )
 
-    for check in $(ls $CHECKS); do
-      source "$CHECKS/$check"; check
-      unset -f check
-      unset -f info
-    done
+    perform "$LIST"
 
   cd $CWD
 
