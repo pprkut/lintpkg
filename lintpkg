@@ -161,6 +161,7 @@ options:      -i --info (Display explanations for reported messages.)
               -c --check <name> (Run only the specified check. This option may be
                                 given multiple times to specify multiple checks
                                 to run.)
+              -C --checkdir <path> (Specify path to load checks from.)
 EOF
 }
 
@@ -269,6 +270,19 @@ while [ 0 ]; do
     fi
 
     LIST="$LIST $2";
+    shift 2
+  elif [ "$1" = "-C" -o "$1" = "--checkdir" ]; then
+    if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
+      usage
+      exit
+    fi
+
+    if ! [ -e "$2" ]; then
+      CHECKS=""
+    else
+      CHECKS="$(realpath "$2")"
+    fi
+
     shift 2
   else
     break
