@@ -162,6 +162,7 @@ options:      -i --info (Display explanations for reported messages.)
                                 given multiple times to specify multiple checks
                                 to run.)
               -C --checkdir <path> (Specify path to load checks from.)
+              -E --extractdir <path> (Base directory for extracted temporary files.)
 EOF
 }
 
@@ -240,6 +241,7 @@ Written by John Gilmore and Jay Fenlason." ]; then
 fi
 
 APPLICATION_DIR=$(dirname $(realpath $0))
+WORKING_DIR=""
 CWD=$(pwd)
 
 INFO="no"
@@ -278,9 +280,24 @@ while [ 0 ]; do
     fi
 
     if ! [ -e "$2" ]; then
+      echo "Directory does not exist: $2"
       CHECKS=""
     else
       CHECKS="$(realpath "$2")"
+    fi
+
+    shift 2
+  elif [ "$1" = "-E" -o "$1" = "--extractdir" ]; then
+    if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
+      usage
+      exit
+    fi
+
+    if [ -e "$2" ]; then
+      WORKING_DIR="$(realpath "$2")"
+    else
+      echo "Directory does not exist: $2"
+      exit
     fi
 
     shift 2
@@ -289,7 +306,11 @@ while [ 0 ]; do
   fi
 done
 
-WORKING_DIR=$(mktemp -d -t lintpkg.XXXXXX)
+if [ -z "$WORKING_DIR" ]; then
+  WORKING_DIR=$(mktemp -d -t lintpkg.XXXXXX)
+else
+  WORKING_DIR=$(mktemp -d -p "$WORKING_DIR" -t lintpkg.XXXXXX)
+fi
 
 if [ -z "$WORKING_DIR" ]; then
   echo "Couldn't create temporary directory"
