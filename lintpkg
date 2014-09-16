@@ -162,6 +162,7 @@ options:      -i --info (Display explanations for reported messages.)
                                 given multiple times to specify multiple checks
                                 to run.)
               -C --checkdir <path> (Specify path to load checks from.)
+              -h --help (Display summary of command line options and exit.)
               -E --extractdir <path> (Base directory for extracted temporary files.)
 EOF
 }
@@ -265,6 +266,9 @@ while [ 0 ]; do
   elif [ "$1" = "-i" -o "$1" = "--info" ]; then
     INFO="yes"
     shift 1
+  elif [ "$1" = "-h" -o "$1" = "--help" ]; then
+    usage
+    exit
   elif [ "$1" = "-c" -o "$1" = "--check" ]; then
     if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
       usage
