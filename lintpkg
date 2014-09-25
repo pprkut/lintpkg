@@ -243,7 +243,7 @@ This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 Written by John Gilmore and Jay Fenlason." ]; then
-  echo "WARNING: pkgtools are unstable with tar > 1.13."
+  echo "WARNING: lintpkg is unstable with tar > 1.13."
   echo "         You should provide a \"tar-1.13\" in your \$PATH."
   sleep 5
 fi
@@ -256,8 +256,8 @@ INFO="no"
 CHECKS=""
 LIST=""
 
-if [ -e "/usr/share/pkgtools/lintpkg" ]; then
-  CHECKS="/usr/share/pkgtools/lintpkg"
+if [ -e "/usr/share/lintpkg" ]; then
+  CHECKS="/usr/share/lintpkg"
 elif [ -e "$APPLICATION_DIR/checks" ]; then
   CHECKS="$APPLICATION_DIR/checks"
 fi
