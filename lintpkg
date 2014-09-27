@@ -94,7 +94,7 @@ package_element() {
 }
 
 clean_filename() {
-  if [ -e "$1" ]; then
+  if [ -e "$1" -o -L "$1" ]; then
     EXTRAINFO=$(echo $1 | sed "s|^$WORKING_DIR||")
     EXTRAINFO=$(echo $EXTRAINFO | sed "s|\/\/|\/|g")
   else
