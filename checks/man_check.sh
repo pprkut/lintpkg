@@ -31,8 +31,8 @@ check() {
     fi
   done
 
-  for i in $(find "$WORKING_DIR" -type d -name "man"); do
-    for manpage in $(find "$i" -type f ! -name "*.gz"); do
+  find "$WORKING_DIR" -type d -name "man" | while read i; do
+    find "$i" -type f ! -name "*.gz" | while read manpage; do
       file=$(echo $manpage | sed "s|^$WORKING_DIR||")
       log_warning "uncompressed-man-page" "$file"
     done

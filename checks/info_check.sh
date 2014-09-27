@@ -31,8 +31,8 @@ check() {
     fi
   done
 
-  for i in $(find "$WORKING_DIR" -type d -name "info"); do
-    for infopage in $(find "$i" -type f ! -name "*.gz" ! -name "*.png"); do
+  find "$WORKING_DIR" -type d -name "info" | while read i; do
+    find "$i" -type f ! -name "*.gz" ! -name "*.png" | while read infopage; do
       file=$(echo $infopage | sed "s|^$WORKING_DIR||")
       log_warning "uncompressed-info-page" "$file"
     done

@@ -24,7 +24,7 @@
 check() {
   # Check permissions under /usr
   if [ -d "$WORKING_DIR/usr" ]; then
-    for file in $(find $WORKING_DIR/usr); do
+    find "$WORKING_DIR/usr" | while read file; do
       if [ -d "$file" ]; then
         permission=$(stat -c "%a" "$file")
 

@@ -27,7 +27,7 @@ check() {
   for i in $DIRECTORIES; do
     if [ -e "$WORKING_DIR/$i" ]; then
       normalized=$(echo $i | tr / -)
-      for item in $(find $WORKING_DIR/$i -mindepth 1); do
+      find "$WORKING_DIR/$i" -mindepth 1 | while read item; do
         file=$(echo $item | sed "s|^$WORKING_DIR/||")
         log_error "dir-or-file-in$normalized" "$file"
       done
