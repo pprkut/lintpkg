@@ -25,9 +25,9 @@ check() {
   # Check permissions under /usr
   if [ -d "$WORKING_DIR/usr" ]; then
     for file in $(find $WORKING_DIR/usr); do
-      permission=$(stat -c "%a" "$file")
-
       if [ -d "$file" ]; then
+        permission=$(stat -c "%a" "$file")
+
         if ! [ "$permission" = "755" ]; then
             log_warning "strange-permission" "$file $permission"
         fi
