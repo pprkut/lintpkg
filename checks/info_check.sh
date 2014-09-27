@@ -33,8 +33,7 @@ check() {
 
   find "$WORKING_DIR" -type d -name "info" | while read i; do
     find "$i" -type f ! -name "*.gz" ! -name "*.png" | while read infopage; do
-      file=$(echo $infopage | sed "s|^$WORKING_DIR||")
-      log_warning "uncompressed-info-page" "$file"
+      log_warning "uncompressed-info-page" "$infopage"
     done
   done
 

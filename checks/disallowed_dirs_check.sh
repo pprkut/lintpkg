@@ -28,8 +28,7 @@ check() {
     if [ -e "$WORKING_DIR/$i" ]; then
       normalized=$(echo $i | tr / -)
       find "$WORKING_DIR/$i" -mindepth 1 | while read item; do
-        file=$(echo $item | sed "s|^$WORKING_DIR/||")
-        log_error "dir-or-file-in$normalized" "$file"
+        log_error "dir-or-file-in$normalized" "$item"
       done
     fi
   done

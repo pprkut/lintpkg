@@ -93,12 +93,27 @@ package_element() {
   fi
 }
 
+clean_filename() {
+  if [ -e "$1" ]; then
+    EXTRAINFO=$(echo $1 | sed "s|^$WORKING_DIR||")
+    EXTRAINFO=$(echo $EXTRAINFO | sed "s|\/\/|\/|g")
+  else
+    EXTRAINFO="$1"
+  fi
+
+  echo $EXTRAINFO
+}
+
 log_error() {
   if ! [ "$PKG_FULLNAME" = "(none)" ]; then
     ERRORS=$(expr $ERRORS + 1)
   fi
 
-  echo "$PKG_FULLNAME: E: $1 $2"
+  echo -n "$PKG_FULLNAME: E:"
+  for i in "$@"; do
+    echo -n " $(clean_filename "$i")"
+  done
+  echo ""
 
   if [ "$INFO" = "yes" ]; then
     info "$1"
@@ -110,7 +125,11 @@ log_warning() {
     WARNINGS=$(expr $WARNINGS + 1)
   fi
 
-  echo "$PKG_FULLNAME: W: $1 $2"
+  echo -n "$PKG_FULLNAME: W:"
+  for i in "$@"; do
+    echo -n " $(clean_filename "$i")"
+  done
+  echo ""
 
   if [ "$INFO" = "yes" ]; then
     info "$1"
@@ -118,7 +137,11 @@ log_warning() {
 }
 
 log_notice() {
-  echo "$PKG_FULLNAME: I: $1 $2"
+  echo -n "$PKG_FULLNAME: I:"
+  for i in "$@"; do
+    echo -n " $(clean_filename "$i")"
+  done
+  echo ""
 
   if [ "$INFO" = "yes" ]; then
     info "$1"

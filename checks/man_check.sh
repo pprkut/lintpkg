@@ -33,8 +33,7 @@ check() {
 
   find "$WORKING_DIR" -type d -name "man" | while read i; do
     find "$i" -type f ! -name "*.gz" | while read manpage; do
-      file=$(echo $manpage | sed "s|^$WORKING_DIR||")
-      log_warning "uncompressed-man-page" "$file"
+      log_warning "uncompressed-man-page" "$manpage"
     done
   done
 
