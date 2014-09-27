@@ -66,8 +66,10 @@ the package. All necessary information is available in global variables:
 - $PKG_EXTENSION - This is the compression format used by the package
 
 Additionally there are several functions one can use for reporting issues. All of
-these take two arguments, where the first is the messageid of the issue, and the
-second is additional optional information, most commonly the offending file.
+these take variable arguments, where the first is the messageid of the issue, and
+any further argument is additional optional information. Most commonly the first
+additional argument (so the second argument over all) would be the name of the
+offending file.
 
 - log_error() logs an issue as an error.
 - log_warning() logs an issue as a warning.
