@@ -31,12 +31,11 @@ check() {
     fi
   done
 
-  find "$WORKING_DIR" -type d -name "info" | while read i; do
-    find "$i" -type f ! -name "*.gz" ! -name "*.png" | while read infopage; do
+  while read i && ! [ -z "$i" ]; do
+    while read infopage && ! [ -z "$infopage" ]; do
       log_warning "uncompressed-info-page" "$infopage"
-    done
-  done
-
+    done <<< "$(find "$i" -type f ! -name "*.gz" ! -name "*.png")"
+  done <<< "$(find "$WORKING_DIR" -type d -name "info")"
 }
 
 info() {

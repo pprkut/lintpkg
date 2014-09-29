@@ -24,23 +24,23 @@
 check() {
   if [ "$PKG_ARCH" = "x86_64" ]; then
     if [ -d "$WORKING_DIR/usr/lib" ]; then
-      find "$WORKING_DIR/usr/lib" ! -type d | while read file; do
+      while read file && ! [ -z "$file" ]; do
         type=$(file "$file" | grep "ELF 64-bit")
         if ! [ -z "$type" ]; then
           log_error "binary-in-wrong-architecture-specific-path" "$file"
         fi
-      done
+      done <<< "$(find "$WORKING_DIR/usr/lib" ! -type d)"
     fi
   fi
 
   if [ "$PKG_ARCH" = "i486" -o "$PKG_ARCH" = "i686" ]; then
     if [ -d "$WORKING_DIR/usr/lib64" ]; then
-      find "$WORKING_DIR/usr/lib64" ! -type d | while read file; do
+      while read file && ! [ -z "$file" ]; do
         type=$(file "$file" | grep "ELF 32-bit")
         if ! [ -z "$type" ]; then
           log_error "binary-in-wrong-architecture-specific-path" "$file"
         fi
-      done
+      done <<< "$(find "$WORKING_DIR/usr/lib64" ! -type d)"
     fi
   fi
 }

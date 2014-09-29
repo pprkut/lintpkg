@@ -24,7 +24,7 @@
 check() {
   # Check permissions under /usr
   if [ -d "$WORKING_DIR/usr" ]; then
-    find "$WORKING_DIR/usr" | while read file; do
+    while read file && ! [ -z "$file" ]; do
       if [ -d "$file" ]; then
         permission=$(stat -c "%a" "$file")
 
@@ -32,7 +32,7 @@ check() {
             log_warning "strange-permission" "$file" "$permission"
         fi
       fi
-    done
+    done <<< "$(find "$WORKING_DIR/usr")"
   fi
 
   # Check permissions under /etc

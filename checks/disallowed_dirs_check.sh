@@ -27,9 +27,9 @@ check() {
   for i in $DIRECTORIES; do
     if [ -e "$WORKING_DIR/$i" ]; then
       normalized=$(echo $i | tr / -)
-      find "$WORKING_DIR/$i" -mindepth 1 | while read item; do
+      while read item && ! [ -z "$item" ]; do
         log_error "dir-or-file-in$normalized" "$item"
-      done
+      done <<< "$(find "$WORKING_DIR/$i" -mindepth 1)"
     fi
   done
 
