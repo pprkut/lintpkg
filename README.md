@@ -64,6 +64,11 @@ the package. All necessary information is available in global variables:
 - $PKG_ARCH      - This is the architecture the package was built for
 - $PKG_BUILD     - This is the build number of the package
 - $PKG_EXTENSION - This is the compression format used by the package
+- $PKG_LISTING   - This contains a list of all files and folders contained in the
+                   package
+- $PKG_DETAILED_LISTING - This contains a list of all files and folders contained
+                          in the package, including ownership and permission
+                          information
 
 Additionally there are several functions one can use for reporting issues. All of
 these take variable arguments, where the first is the messageid of the issue, and

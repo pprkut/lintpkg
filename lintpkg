@@ -403,6 +403,9 @@ for PACKAGE in $*; do
     continue
   fi
 
+  PKG_LISTING=$(cat $PACKAGE | $packagecompression -dc | $TAR ts)
+  PKG_DETAILED_LISTING=$(cat $PACKAGE | $packagecompression -dc | $TAR tvs)
+
   cd $WORKING_DIR
 
     ( umask 000 ; cat $PACKAGE | $packagecompression -dc | $TAR xf - 2> /dev/null )
