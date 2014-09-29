@@ -105,6 +105,12 @@ clean_filename() {
 }
 
 log_error() {
+  for i in $IGNORE; do
+    if [ -n "$1" -a "$i" = "$1" ]; then
+      return
+    fi
+  done
+
   if ! [ "$PKG_FULLNAME" = "(none)" ]; then
     ERRORS=$(expr $ERRORS + 1)
   fi
@@ -121,6 +127,12 @@ log_error() {
 }
 
 log_warning() {
+  for i in $IGNORE; do
+    if [ -n "$1" -a "$i" = "$1" ]; then
+      return
+    fi
+  done
+
   if ! [ "$PKG_FULLNAME" = "(none)" ]; then
     WARNINGS=$(expr $WARNINGS + 1)
   fi
@@ -137,6 +149,12 @@ log_warning() {
 }
 
 log_notice() {
+  for i in $IGNORE; do
+    if [ -n "$1" -a "$i" = "$1" ]; then
+      return
+    fi
+  done
+
   echo -n "$PKG_FULLNAME: I:"
   for i in "$@"; do
     echo -n " $(clean_filename "$i")"
@@ -190,6 +208,10 @@ options:      -i --info (Display explanations for reported messages.)
               -h --help (Display summary of command line options and exit.)
               -E --extractdir <path> (Base directory for extracted temporary files.)
               -V --version (Display version information and exit.)
+              -x --exclude <messageid> (Don't show/count errors for the specified
+                                       message identifiers. Multiple identifiers
+                                       can be specified by separating them with
+                                       commas.)
 EOF
 }
 
@@ -278,6 +300,7 @@ CWD=$(pwd)
 INFO="no"
 CHECKS=""
 LIST=""
+IGNORE=""
 
 if [ -e "/usr/share/lintpkg" ]; then
   CHECKS="/usr/share/lintpkg"
@@ -337,6 +360,14 @@ while [ 0 ]; do
       exit
     fi
 
+    shift 2
+  elif [ "$1" = "-x" -o "$1" = "--exclude" ]; then
+    if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
+      usage
+      exit
+    fi
+
+    IGNORE=$(echo $2 | tr , '\n')
     shift 2
   else
     break
