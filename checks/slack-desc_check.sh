@@ -1,5 +1,6 @@
 #!/bin/sh
 # Copyright 2014  Heinz Wiesinger, Amsterdam, The Netherlands
+# Copyright 2014  David Spencer, Baildon, West Yorkshire, U.K.
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -37,10 +38,9 @@ check() {
     # The traditional number is exactly 11, but recent installpkg allows <= 13
     desclinecountmin=3
     desclinecountmax=13
-    if [ "$desclinecount" -lt $desclinecountmin ]; then
-      log_error "slack-desc-too-few-description-lines" "$desclinecount"
-    elif [ "$desclinecount" -gt $desclinecountmax ]; then
-      log_error "slack-desc-too-many-description-lines" "$desclinecount"
+    if [ "$desclinecount" -lt $desclinecountmin ] || \
+       [ "$desclinecount" -gt $desclinecountmax ]; then
+      log_error "slack-desc-invalid-number-of-lines" "$desclinecount"
     fi
 
     # Check the description lines are not too long
@@ -49,29 +49,14 @@ check() {
       log_error "slack-desc-description-lines-too-long"
     fi
 
-    # Check the first line of description is good for installpkg --terse
-    # (todo)
-
-    # Check the handy ruler
+    # Check the handy ruler. If not present, that's ok.
     hr='|-----handy-ruler------------------------------------------------------|'
-    hrcount=$(grep "|-.*-|" "$slackdescpath" | wc -l)
-    if [ "$hrcount" = 1 ] ; then
-      if [ $(grep "^ *${hr}\$" "$slackdescpath" | sed "s/|.*|//" | wc -c) -eq $(( ${#descprefix} + 1 )) ]; then
-        : # it's perfect!
-      elif grep -q "^ *${hr}\$" "$slackdescpath" ; then
-        log_warning "slack-desc-handy-ruler-misaligned"
-      else
+    if [ $(grep "^ *${hr}\$" "$slackdescpath" | sed "s/|.*|//" | wc -c) -eq $(( ${#descprefix} + 1 )) ]; then
+      : # it's perfect!
+    elif grep -q "^ *${hr}\$" "$slackdescpath" ; then
+      log_warning "slack-desc-handy-ruler-misaligned"
+    elif grep -q "|-.*-|" "$slackdescpath" ; then
         log_warning "slack-desc-handy-ruler-broken"
-      fi
-    elif [ "$hrcount" = 0 ]; then
-      log_warning "slack-desc-handy-ruler-missing"
-    else
-      log_warning "slack-desc-multiple-handy-rulers"
-    fi
-
-    # check for excessive blank lines
-    if [ $(grep "^ *\$" "$slackdescpath" | wc -l) -gt 1 ]; then
-      log_warning "slack-desc-excessive-blank-lines"
     fi
 
     # check there's no other junk
@@ -94,11 +79,9 @@ info() {
     echo -n "The package name in the slack-desc file is not the same as the "
     echo "actual package name."
     echo
-  elif [ "$1" = "slack-desc-too-few-description-lines" ]; then
-    echo "There are too few description lines in the slack-desc file."
-    echo
-  elif [ "$1" = "slack-desc-too-many-description-lines" ]; then
-    echo "There are too many description lines in the slack-desc file."
+  elif [ "$1" = "slack-desc-invalid-number-of-lines" ]; then
+    echo -n "The slack-desc file has the wrong number of lines of description. "
+    echo "There should normally be 11 lines."
     echo
   elif [ "$1" = "slack-desc-description-lines-too-long" ]; then
     echo -n "At least one of the description lines in the slack-desc file "
@@ -111,15 +94,6 @@ info() {
   elif [ "$1" = "slack-desc-handy-ruler-broken" ]; then
     echo -n "The handy-ruler in the slack-desc file is broken "
     echo "(e.g., too long or too short)."
-    echo
-  elif [ "$1" = "slack-desc-handy-ruler-missing" ]; then
-    echo "The slack-desc file does not contain a handy-ruler."
-    echo
-  elif [ "$1" = "slack-desc-multiple-handy-rulers" ]; then
-    echo "There are multiple-handy-rulers in the slack-desc file."
-    echo
-  elif [ "$1" = "slack-desc-excessive-blank-lines" ]; then
-    echo "The slack-desc file contains excessive blank lines."
     echo
   elif [ "$1" = "slack-desc-unrecognised-text" ]; then
     echo "The slack-desc file contains some unrecognisable text."
