@@ -1,0 +1,8 @@
+strange-owner-or-group ./ nobody/nogroup
+strange-owner-or-group lib64/ root/bin
+strange-owner-or-group sbin/ bin/nogroup
+strange-owner-or-group bin/ bin/bin
+strange-owner-or-group lib/modules/3.10.17/modules.devname nobody/nogroup
+strange-owner-or-group usr/doc/lintpkg-ownership-bad-0.0/README 1000/users
+strange-owner-or-group usr/bin/ root/bin
+strange-owner-or-group usr/bin/nnstats news/news
