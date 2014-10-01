@@ -1,0 +1,3 @@
+package-contains-symlink /usr/bin/gratuitous-recursive-symlink
+package-contains-symlink /usr/man/man1/unxz.1.gz
+package-contains-symlink /usr/man/man1/xzcmp.1.gz
