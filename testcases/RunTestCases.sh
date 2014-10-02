@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Make test cases for lintpkg
+# Make and then run the test cases for lintpkg
 
 # Copyright 2014 David Spencer, Baildon, West Yorkshire, U.K.
 # All rights reserved.
@@ -65,6 +65,26 @@ for CASEDIR in $(ls -d $CWD/*-bad $CWD/*-good); do
       /sbin/makepkg -l n -c n $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
     )
   fi
+done
+
+# Now run lintpkg on the built test cases:
+
+for check in ../checks/*_check.sh; do
+  CHKNAM=$(basename $check _check.sh)
+  # Put actual and expected output into these files:
+  ACTUAL=$OUTPUT/$PRGNAM-$CHKNAM-actual
+  EXPECTED=$OUTPUT/$PRGNAM-$CHKNAM-expected
+  # There may be zero or more testcases for each check, but usually there will
+  # be two: -good and -bad
+  for TESTPKG in $(ls $OUTPUT/$PRGNAM-$CHKNAM-*.t?z 2>/dev/null); do
+    sh ../lintpkg -c ${CHKNAM}_check $TESTPKG 2>&1 | grep -v ' checked; ' | cut -f 3- -d" " | sort > $ACTUAL
+    tar xf $TESTPKG -O --wildcards usr/doc/*/expected | sort > $EXPECTED
+    if cmp -s $ACTUAL $EXPECTED; then
+      echo $(basename $TESTPKG) pass
+    else
+      echo $(basename $TESTPKG) FAIL
+    fi
+  done
 done
 
 # Finished!
