@@ -36,7 +36,7 @@ if [ -z "$ARCH" ]; then
 fi
 
 CWD=$(pwd)
-TMP=${TMP:-/tmp/SBo}
+TMP=${TMP:-/tmp}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
@@ -47,14 +47,18 @@ rm -f ${OUTPUT}/$PRGNAM-*.t?z
 
 # Build special cases first:
 
-# ownership-bad: git can't track ownership, so we need to store its tree in a tarball
-( PKGNAM=${PRGNAM}-ownership-bad
-  rm -rf /tmp/package-$PKGNAM
-  mkdir -p /tmp/package-$PKGNAM
-  cd /tmp/package-$PKGNAM
-  tar xf $CWD/ownership-bad/_ownership-bad.tar.gz
-  /sbin/makepkg -l n -c n $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
-)
+# ownership-bad, permissions-bad:
+# git can't track ownership and permissions, so we need to store the payload in a tarball
+for test in ownership-bad ; do
+  ( PKGNAM=${PRGNAM}-${test}
+    rm -rf $TMP/package-$PKGNAM
+    cp -a $CWD/${test} $TMP/package-$PKGNAM
+    cd $TMP/package-$PKGNAM
+    tar xf _${test}.tar.gz
+    rm _${test}.tar.gz
+    /sbin/makepkg -l n -c n $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
+  )
+done
 
 # tar113-bad: don't use makepkg :O
 ( PKGNAM=${PRGNAM}-tar113-bad
