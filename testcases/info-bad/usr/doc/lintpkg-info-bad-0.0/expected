@@ -1,0 +1,10 @@
+incorrect-info-dir /usr/share/info
+incorrect-info-dir /usr/local/info
+incorrect-info-dir /usr/local/share/info
+uncompressed-info-page /usr/local/share/info/dir
+uncompressed-info-page /usr/local/info/which.info
+uncompressed-info-page /usr/info/jed.3in
+uncompressed-info-page /usr/info/dir
+uncompressed-info-page /usr/info/jed.1in
+uncompressed-info-page /usr/info/jed.info
+uncompressed-info-page /usr/info/jed.2in
