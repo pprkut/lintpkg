@@ -47,13 +47,26 @@ rm -f ${OUTPUT}/$PRGNAM-*.t?z
 
 # Build special cases first:
 
-# ownership-bad: git can't track ownership, so we need a tarball
+# ownership-bad: git can't track ownership, so we need to store its tree in a tarball
 ( PKGNAM=${PRGNAM}-ownership-bad
   rm -rf /tmp/package-$PKGNAM
   mkdir -p /tmp/package-$PKGNAM
   cd /tmp/package-$PKGNAM
   tar xf $CWD/ownership-bad/_ownership-bad.tar.gz
   /sbin/makepkg -l n -c n $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
+)
+
+# tar113-bad: don't use makepkg :O
+( PKGNAM=${PRGNAM}-tar113-bad
+  cd $CWD/tar113-bad
+  case ${PKGTYPE:-tgz} in
+    'tgz' )  packagecompression=gzip ;;
+    'tbz' )  packagecompression=bzip2 ;;
+    'tlz' )  packagecompression=lzma ;;
+    'txz' )  packagecompression=xz ;;
+        * )  packagecompression=cat ;;
+  esac
+  tar cvf - . | $packagecompression > $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
 )
 
 # Now build all the others:
@@ -78,7 +91,7 @@ for check in ../checks/*_check.sh; do
   # be two: -good and -bad
   for TESTPKG in $(ls $OUTPUT/$PRGNAM-$CHKNAM-*.t?z 2>/dev/null); do
     sh ../lintpkg -c ${CHKNAM}_check $TESTPKG 2>&1 | grep -v ' checked; ' | cut -f 3- -d" " | sort > $ACTUAL
-    tar xf $TESTPKG -O --wildcards usr/doc/*/expected | sort > $EXPECTED
+    tar xf $TESTPKG -O --wildcards */doc/lintpkg-*/expected | sort > $EXPECTED
     if cmp -s $ACTUAL $EXPECTED; then
       echo $(basename $TESTPKG) pass
     else
