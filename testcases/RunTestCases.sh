@@ -49,7 +49,7 @@ rm -f ${OUTPUT}/$PRGNAM-*.t?z
 
 # ownership-bad, permissions-bad:
 # git can't track ownership and permissions, so we need to store the payload in a tarball
-for test in ownership-bad ; do
+for test in ownership-bad permissions-bad ; do
   ( PKGNAM=${PRGNAM}-${test}
     rm -rf $TMP/package-$PKGNAM
     cp -a $CWD/${test} $TMP/package-$PKGNAM
