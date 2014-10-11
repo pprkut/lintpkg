@@ -1,0 +1,64 @@
+# a series
+aaa_base:dir-or-file-in-mnt
+aaa_base:dir-or-file-in-usr-local
+aaa_base:dir-or-file-in-var-lock
+aaa_base:incorrect-info-dir
+aaa_base:incorrect-man-dir
+cups:strange-permission
+dbus:strange-owner-or-group
+etc:dir-or-file-in-tmp
+floppy:strange-owner-or-group
+glibc-solibs:unstripped-binary
+grub:unstripped-binary
+kernel-modules:unstripped-binary
+kernel-modules-smp:unstripped-binary
+slocate:strange-owner-or-group
+utempter:strange-owner-or-group
+util-linux:strange-owner-or-group
+# ap series
+at:strange-owner-or-group
+mariadb:dir-or-file-in-var-run
+sudo:strange-permission
+# d series
+clisp:unstripped-binary
+gcc:unstripped-binary
+gcc-go:unstripped-binary
+perl:dir-or-file-in-usr-local
+python:unstripped-binary
+# e series
+emacs:strange-owner-or-group
+# f series (none)
+# k series
+kernel-source:unstripped-binary
+# kde series
+kde-runtime:strange-owner-or-group
+# kdei series (none)
+# l series
+ConsoleKit:dir-or-file-in-var-run
+glibc:unstripped-binary
+gnu-efi:unstripped-binary
+polkit:strange-permission
+vte:strange-owner-or-group
+# n series
+iptraf-ng:dir-or-file-in-var-run
+nn:strange-owner-or-group
+openvpn:strange-permission
+procmail:strange-owner-or-group
+proftpd:dir-or-file-in-home
+samba:dir-or-file-in-var-run
+samba:strange-permission
+sendmail:strange-owner-or-group
+slrn:strange-owner-or-group
+stunnel:dir-or-file-in-var-run
+uucp:strange-owner-or-group
+vsftpd:dir-or-file-in-home
+# t series (none)
+# tcl series (none)
+# x series
+xf86-video-rendition:unstripped-binary
+# xap series
+sane:dir-or-file-in-var-lock
+xlockmore:strange-owner-or-group
+xscreensaver:strange-owner-or-group
+# xfce series (none)
+# y series (none)
