@@ -85,7 +85,7 @@ info() {
     echo -n "should not contain 64-bit binaries, /usr/lib64 should not contain "
     echo "32-bit binaries."
     echo
-  elif [ "$1" = "package-has-invalid-arch" ]; then
+  elif [ "$1" = "package-has-unrecognised-arch" ]; then
     echo "The ARCH field of the package name is not a recognised arch."
     echo
   fi
