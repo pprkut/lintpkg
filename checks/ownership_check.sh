@@ -23,8 +23,26 @@
 # Verify that object owners and groups within a package are sane.
 
 check() {
+  USER_WHITELIST="root daemon uucp"
+
   while read tperms owngrp size date time objname && ! [ -z "$tperms" ]; do
-    log_error "strange-owner-or-group" "$objname" "$owngrp"
+    OWNER=$(echo "$owngrp" | cut -d "/" -f 1)
+    DIRECTORY=$(dirname "$objname")
+    if [ "$DIRECTORT" = "/usr/bin" -o "$DIRECTORY" = "/usr/sbin" ]; then
+      INCORRECT="yes"
+      for user in $USER_WHITELIST; do
+        if [ "$user" = "$OWNER" ]; then
+          INCORRECT="no"
+        fi
+      done
+
+      if [ "$INCORRECT" = "yes" ]; then
+        log_error "strange-owner-or-group" "$objname" "$owngrp"
+      fi
+
+    elif ! [ "$OWNER" = "root" ]; then
+      log_error "strange-owner-or-group" "$objname" "$owngrp"
+    fi
   done <<< "$(echo "$PKG_DETAILED_LISTING" | \
                 awk '$6~/^(bin\/|lib\/|lib64\/|sbin\/|usr\/|\.\/$)/' | \
                 grep -v ' root/root ')"
