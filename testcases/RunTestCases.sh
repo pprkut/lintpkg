@@ -45,24 +45,33 @@ set -e
 # Remove any existing testcase packages:
 rm -f ${OUTPUT}/$PRGNAM-*.t?z
 
+echo ""
+echo "Creating testcase packages..."
+
 # Build special cases first:
 
 # ownership-bad, permissions-bad:
 # git can't track ownership and permissions, so we need to store the payload in a tarball
-for test in ownership-bad permissions-bad ; do
-  ( PKGNAM=${PRGNAM}-${test}
+for CASENAM in ownership-bad permissions-bad ; do
+  ( PKGNAM=${PRGNAM}-${CASENAM}
     rm -rf $TMP/package-$PKGNAM
-    cp -a $CWD/${test} $TMP/package-$PKGNAM
+    cp -a $CWD/${CASENAM} $TMP/package-$PKGNAM
     cd $TMP/package-$PKGNAM
-    tar xf _${test}.tar.gz
-    rm _${test}.tar.gz
-    /sbin/makepkg -l n -c n $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
+    tar xf _${CASENAM}.tar.gz
+    rm _${CASENAM}.tar.gz
+    /sbin/makepkg -l n -c n $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz} >/dev/null 2>&1
+    if [ $? = 0 ]; then
+      echo "Slackware package $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz} created."
+    else
+      echo "Error: Failed to create package for testcase $CASENAM"
+    fi
   )
 done
 
 # tar113-bad: don't use makepkg :O
-( PKGNAM=${PRGNAM}-tar113-bad
-  cd $CWD/tar113-bad
+( CASENAM=tar113-bad
+  PKGNAM=${PRGNAM}-${CASENAM}
+  cd $CWD/${CASENAM}
   case ${PKGTYPE:-tgz} in
     'tgz' )  packagecompression=gzip ;;
     'tbz' )  packagecompression=bzip2 ;;
@@ -70,21 +79,34 @@ done
     'txz' )  packagecompression=xz ;;
         * )  packagecompression=cat ;;
   esac
-  tar cvf - . | $packagecompression > $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
+  tar cf - . | $packagecompression > $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
+  if [ $? = 0 ]; then
+    echo "Slackware package $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz} created."
+  else
+    echo "Error: Failed to create package for testcase $CASENAM"
+  fi
 )
 
 # Now build all the others:
-for CASEDIR in $(ls -d $CWD/*-bad $CWD/*-good); do
+for CASEDIR in $(ls -d $CWD/*-bad* $CWD/*-good*); do
   CASENAM=$(basename ${CASEDIR})
   PKGNAM=${PRGNAM}-${CASENAM}
   if [ ! -e ${OUTPUT}/$PKGNAM-$VERSION-$ARCH-$BUILD$TAG.* ]; then
     ( cd ${CASENAM}
-      /sbin/makepkg -l n -c n $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
+      /sbin/makepkg -l n -c n $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz} >/dev/null 2>&1
+      if [ $? = 0 ]; then
+        echo "Slackware package $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz} created."
+      else
+        echo "Error: Failed to create package for testcase $CASENAM"
+      fi
     )
   fi
 done
 
 # Now run lintpkg on the built test cases:
+
+echo ""
+echo "Running testcases..."
 
 for check in ../checks/*_check.sh; do
   CHKNAM=$(basename $check _check.sh)
