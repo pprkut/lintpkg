@@ -28,7 +28,7 @@ check() {
   while read tperms owngrp size date time objname && ! [ -z "$tperms" ]; do
     OWNER=$(echo "$owngrp" | cut -d "/" -f 1)
     DIRECTORY=$(dirname "$objname")
-    if [ "$DIRECTORT" = "/usr/bin" -o "$DIRECTORY" = "/usr/sbin" ]; then
+    if [ "$DIRECTORY" = "/usr/bin" -o "$DIRECTORY" = "/usr/sbin" ]; then
       INCORRECT="yes"
       for user in $USER_WHITELIST; do
         if [ "$user" = "$OWNER" ]; then
