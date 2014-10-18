@@ -1,1 +1,2 @@
-missing-icon-cache-update hicolor
+lintpkg-testcase-icon-bad-0.0-x86_64-1_lintpkg: E: missing-icon-cache-update hicolor
+1 packages checked; 1 errors and 0 warnings.

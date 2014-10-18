@@ -1,515 +1,516 @@
-strange-permission /usr/share/lintpkg 500
-strange-permission /usr/share/lintpkg/baddirs 1777
-strange-permission /usr/share/lintpkg/baddirs/perm-317 317
-strange-permission /usr/share/lintpkg/baddirs/perm-564 564
-strange-permission /usr/share/lintpkg/baddirs/perm-012 12
-strange-permission /usr/share/lintpkg/baddirs/perm-300 300
-strange-permission /usr/share/lintpkg/baddirs/perm-667 667
-strange-permission /usr/share/lintpkg/baddirs/perm-643 643
-strange-permission /usr/share/lintpkg/baddirs/perm-611 611
-strange-permission /usr/share/lintpkg/baddirs/perm-305 305
-strange-permission /usr/share/lintpkg/baddirs/perm-567 567
-strange-permission /usr/share/lintpkg/baddirs/perm-211 211
-strange-permission /usr/share/lintpkg/baddirs/perm-043 43
-strange-permission /usr/share/lintpkg/baddirs/perm-463 463
-strange-permission /usr/share/lintpkg/baddirs/perm-132 132
-strange-permission /usr/share/lintpkg/baddirs/perm-476 476
-strange-permission /usr/share/lintpkg/baddirs/perm-565 565
-strange-permission /usr/share/lintpkg/baddirs/perm-023 23
-strange-permission /usr/share/lintpkg/baddirs/perm-062 62
-strange-permission /usr/share/lintpkg/baddirs/perm-371 371
-strange-permission /usr/share/lintpkg/baddirs/perm-517 517
-strange-permission /usr/share/lintpkg/baddirs/perm-507 507
-strange-permission /usr/share/lintpkg/baddirs/perm-741 741
-strange-permission /usr/share/lintpkg/baddirs/perm-473 473
-strange-permission /usr/share/lintpkg/baddirs/perm-505 505
-strange-permission /usr/share/lintpkg/baddirs/perm-134 134
-strange-permission /usr/share/lintpkg/baddirs/perm-466 466
-strange-permission /usr/share/lintpkg/baddirs/perm-325 325
-strange-permission /usr/share/lintpkg/baddirs/perm-553 553
-strange-permission /usr/share/lintpkg/baddirs/perm-274 274
-strange-permission /usr/share/lintpkg/baddirs/perm-324 324
-strange-permission /usr/share/lintpkg/baddirs/perm-423 423
-strange-permission /usr/share/lintpkg/baddirs/perm-502 502
-strange-permission /usr/share/lintpkg/baddirs/perm-652 652
-strange-permission /usr/share/lintpkg/baddirs/perm-656 656
-strange-permission /usr/share/lintpkg/baddirs/perm-205 205
-strange-permission /usr/share/lintpkg/baddirs/perm-374 374
-strange-permission /usr/share/lintpkg/baddirs/perm-560 560
-strange-permission /usr/share/lintpkg/baddirs/perm-724 724
-strange-permission /usr/share/lintpkg/baddirs/perm-015 15
-strange-permission /usr/share/lintpkg/baddirs/perm-363 363
-strange-permission /usr/share/lintpkg/baddirs/perm-757 757
-strange-permission /usr/share/lintpkg/baddirs/perm-265 265
-strange-permission /usr/share/lintpkg/baddirs/perm-141 141
-strange-permission /usr/share/lintpkg/baddirs/perm-112 112
-strange-permission /usr/share/lintpkg/baddirs/perm-641 641
-strange-permission /usr/share/lintpkg/baddirs/perm-030 30
-strange-permission /usr/share/lintpkg/baddirs/perm-376 376
-strange-permission /usr/share/lintpkg/baddirs/perm-047 47
-strange-permission /usr/share/lintpkg/baddirs/perm-207 207
-strange-permission /usr/share/lintpkg/baddirs/perm-004 4
-strange-permission /usr/share/lintpkg/baddirs/perm-147 147
-strange-permission /usr/share/lintpkg/baddirs/perm-477 477
-strange-permission /usr/share/lintpkg/baddirs/perm-640 640
-strange-permission /usr/share/lintpkg/baddirs/perm-125 125
-strange-permission /usr/share/lintpkg/baddirs/perm-425 425
-strange-permission /usr/share/lintpkg/baddirs/perm-426 426
-strange-permission /usr/share/lintpkg/baddirs/perm-706 706
-strange-permission /usr/share/lintpkg/baddirs/perm-320 320
-strange-permission /usr/share/lintpkg/baddirs/perm-762 762
-strange-permission /usr/share/lintpkg/baddirs/perm-013 13
-strange-permission /usr/share/lintpkg/baddirs/perm-110 110
-strange-permission /usr/share/lintpkg/baddirs/perm-434 434
-strange-permission /usr/share/lintpkg/baddirs/perm-144 144
-strange-permission /usr/share/lintpkg/baddirs/perm-562 562
-strange-permission /usr/share/lintpkg/baddirs/perm-105 105
-strange-permission /usr/share/lintpkg/baddirs/perm-761 761
-strange-permission /usr/share/lintpkg/baddirs/perm-035 35
-strange-permission /usr/share/lintpkg/baddirs/perm-312 312
-strange-permission /usr/share/lintpkg/baddirs/perm-765 765
-strange-permission /usr/share/lintpkg/baddirs/perm-242 242
-strange-permission /usr/share/lintpkg/baddirs/perm-767 767
-strange-permission /usr/share/lintpkg/baddirs/perm-727 727
-strange-permission /usr/share/lintpkg/baddirs/perm-075 75
-strange-permission /usr/share/lintpkg/baddirs/perm-457 457
-strange-permission /usr/share/lintpkg/baddirs/perm-456 456
-strange-permission /usr/share/lintpkg/baddirs/perm-114 114
-strange-permission /usr/share/lintpkg/baddirs/perm-437 437
-strange-permission /usr/share/lintpkg/baddirs/perm-703 703
-strange-permission /usr/share/lintpkg/baddirs/perm-220 220
-strange-permission /usr/share/lintpkg/baddirs/perm-367 367
-strange-permission /usr/share/lintpkg/baddirs/perm-070 70
-strange-permission /usr/share/lintpkg/baddirs/perm-266 266
-strange-permission /usr/share/lintpkg/baddirs/perm-660 660
-strange-permission /usr/share/lintpkg/baddirs/perm-561 561
-strange-permission /usr/share/lintpkg/baddirs/perm-130 130
-strange-permission /usr/share/lintpkg/baddirs/perm-255 255
-strange-permission /usr/share/lintpkg/baddirs/perm-171 171
-strange-permission /usr/share/lintpkg/baddirs/perm-204 204
-strange-permission /usr/share/lintpkg/baddirs/perm-766 766
-strange-permission /usr/share/lintpkg/baddirs/perm-412 412
-strange-permission /usr/share/lintpkg/baddirs/perm-027 27
-strange-permission /usr/share/lintpkg/baddirs/perm-636 636
-strange-permission /usr/share/lintpkg/baddirs/perm-404 404
-strange-permission /usr/share/lintpkg/baddirs/perm-160 160
-strange-permission /usr/share/lintpkg/baddirs/perm-427 427
-strange-permission /usr/share/lintpkg/baddirs/perm-530 530
-strange-permission /usr/share/lintpkg/baddirs/perm-202 202
-strange-permission /usr/share/lintpkg/baddirs/perm-526 526
-strange-permission /usr/share/lintpkg/baddirs/perm-464 464
-strange-permission /usr/share/lintpkg/baddirs/perm-040 40
-strange-permission /usr/share/lintpkg/baddirs/perm-501 501
-strange-permission /usr/share/lintpkg/baddirs/perm-626 626
-strange-permission /usr/share/lintpkg/baddirs/perm-751 751
-strange-permission /usr/share/lintpkg/baddirs/perm-506 506
-strange-permission /usr/share/lintpkg/baddirs/perm-156 156
-strange-permission /usr/share/lintpkg/baddirs/perm-210 210
-strange-permission /usr/share/lintpkg/baddirs/perm-016 16
-strange-permission /usr/share/lintpkg/baddirs/perm-115 115
-strange-permission /usr/share/lintpkg/baddirs/perm-546 546
-strange-permission /usr/share/lintpkg/baddirs/perm-771 771
-strange-permission /usr/share/lintpkg/baddirs/perm-650 650
-strange-permission /usr/share/lintpkg/baddirs/perm-307 307
-strange-permission /usr/share/lintpkg/baddirs/perm-467 467
-strange-permission /usr/share/lintpkg/baddirs/perm-515 515
-strange-permission /usr/share/lintpkg/baddirs/perm-504 504
-strange-permission /usr/share/lintpkg/baddirs/perm-231 231
-strange-permission /usr/share/lintpkg/baddirs/perm-537 537
-strange-permission /usr/share/lintpkg/baddirs/perm-451 451
-strange-permission /usr/share/lintpkg/baddirs/perm-055 55
-strange-permission /usr/share/lintpkg/baddirs/perm-053 53
-strange-permission /usr/share/lintpkg/baddirs/perm-264 264
-strange-permission /usr/share/lintpkg/baddirs/perm-262 262
-strange-permission /usr/share/lintpkg/baddirs/perm-607 607
-strange-permission /usr/share/lintpkg/baddirs/perm-547 547
-strange-permission /usr/share/lintpkg/baddirs/perm-540 540
-strange-permission /usr/share/lintpkg/baddirs/perm-614 614
-strange-permission /usr/share/lintpkg/baddirs/perm-306 306
-strange-permission /usr/share/lintpkg/baddirs/perm-536 536
-strange-permission /usr/share/lintpkg/baddirs/perm-164 164
-strange-permission /usr/share/lintpkg/baddirs/perm-365 365
-strange-permission /usr/share/lintpkg/baddirs/perm-022 22
-strange-permission /usr/share/lintpkg/baddirs/perm-577 577
-strange-permission /usr/share/lintpkg/baddirs/perm-535 535
-strange-permission /usr/share/lintpkg/baddirs/perm-527 527
-strange-permission /usr/share/lintpkg/baddirs/perm-046 46
-strange-permission /usr/share/lintpkg/baddirs/perm-707 707
-strange-permission /usr/share/lintpkg/baddirs/perm-617 617
-strange-permission /usr/share/lintpkg/baddirs/perm-355 355
-strange-permission /usr/share/lintpkg/baddirs/perm-116 116
-strange-permission /usr/share/lintpkg/baddirs/perm-732 732
-strange-permission /usr/share/lintpkg/baddirs/perm-763 763
-strange-permission /usr/share/lintpkg/baddirs/perm-557 557
-strange-permission /usr/share/lintpkg/baddirs/perm-246 246
-strange-permission /usr/share/lintpkg/baddirs/perm-453 453
-strange-permission /usr/share/lintpkg/baddirs/perm-670 670
-strange-permission /usr/share/lintpkg/baddirs/perm-163 163
-strange-permission /usr/share/lintpkg/baddirs/perm-261 261
-strange-permission /usr/share/lintpkg/baddirs/perm-665 665
-strange-permission /usr/share/lintpkg/baddirs/perm-172 172
-strange-permission /usr/share/lintpkg/baddirs/perm-410 410
-strange-permission /usr/share/lintpkg/baddirs/perm-000 0
-strange-permission /usr/share/lintpkg/baddirs/perm-634 634
-strange-permission /usr/share/lintpkg/baddirs/perm-311 311
-strange-permission /usr/share/lintpkg/baddirs/perm-100 100
-strange-permission /usr/share/lintpkg/baddirs/perm-417 417
-strange-permission /usr/share/lintpkg/baddirs/perm-243 243
-strange-permission /usr/share/lintpkg/baddirs/perm-545 545
-strange-permission /usr/share/lintpkg/baddirs/perm-216 216
-strange-permission /usr/share/lintpkg/baddirs/perm-713 713
-strange-permission /usr/share/lintpkg/baddirs/perm-733 733
-strange-permission /usr/share/lintpkg/baddirs/perm-615 615
-strange-permission /usr/share/lintpkg/baddirs/perm-002 2
-strange-permission /usr/share/lintpkg/baddirs/perm-347 347
-strange-permission /usr/share/lintpkg/baddirs/perm-330 330
-strange-permission /usr/share/lintpkg/baddirs/perm-740 740
-strange-permission /usr/share/lintpkg/baddirs/perm-276 276
-strange-permission /usr/share/lintpkg/baddirs/perm-715 715
-strange-permission /usr/share/lintpkg/baddirs/perm-447 447
-strange-permission /usr/share/lintpkg/baddirs/perm-443 443
-strange-permission /usr/share/lintpkg/baddirs/perm-673 673
-strange-permission /usr/share/lintpkg/baddirs/perm-661 661
-strange-permission /usr/share/lintpkg/baddirs/perm-721 721
-strange-permission /usr/share/lintpkg/baddirs/perm-334 334
-strange-permission /usr/share/lintpkg/baddirs/perm-003 3
-strange-permission /usr/share/lintpkg/baddirs/perm-514 514
-strange-permission /usr/share/lintpkg/baddirs/perm-037 37
-strange-permission /usr/share/lintpkg/baddirs/perm-153 153
-strange-permission /usr/share/lintpkg/baddirs/perm-433 433
-strange-permission /usr/share/lintpkg/baddirs/perm-227 227
-strange-permission /usr/share/lintpkg/baddirs/perm-531 531
-strange-permission /usr/share/lintpkg/baddirs/perm-554 554
-strange-permission /usr/share/lintpkg/baddirs/perm-603 603
-strange-permission /usr/share/lintpkg/baddirs/perm-206 206
-strange-permission /usr/share/lintpkg/baddirs/perm-131 131
-strange-permission /usr/share/lintpkg/baddirs/perm-450 450
-strange-permission /usr/share/lintpkg/baddirs/perm-722 722
-strange-permission /usr/share/lintpkg/baddirs/perm-271 271
-strange-permission /usr/share/lintpkg/baddirs/perm-074 74
-strange-permission /usr/share/lintpkg/baddirs/perm-036 36
-strange-permission /usr/share/lintpkg/baddirs/perm-057 57
-strange-permission /usr/share/lintpkg/baddirs/perm-315 315
-strange-permission /usr/share/lintpkg/baddirs/perm-544 544
-strange-permission /usr/share/lintpkg/baddirs/perm-352 352
-strange-permission /usr/share/lintpkg/baddirs/perm-414 414
-strange-permission /usr/share/lintpkg/baddirs/perm-121 121
-strange-permission /usr/share/lintpkg/baddirs/perm-322 322
-strange-permission /usr/share/lintpkg/baddirs/perm-430 430
-strange-permission /usr/share/lintpkg/baddirs/perm-240 240
-strange-permission /usr/share/lintpkg/baddirs/perm-725 725
-strange-permission /usr/share/lintpkg/baddirs/perm-314 314
-strange-permission /usr/share/lintpkg/baddirs/perm-113 113
-strange-permission /usr/share/lintpkg/baddirs/perm-101 101
-strange-permission /usr/share/lintpkg/baddirs/perm-353 353
-strange-permission /usr/share/lintpkg/baddirs/perm-666 666
-strange-permission /usr/share/lintpkg/baddirs/perm-575 575
-strange-permission /usr/share/lintpkg/baddirs/perm-346 346
-strange-permission /usr/share/lintpkg/baddirs/perm-263 263
-strange-permission /usr/share/lintpkg/baddirs/perm-061 61
-strange-permission /usr/share/lintpkg/baddirs/perm-620 620
-strange-permission /usr/share/lintpkg/baddirs/perm-364 364
-strange-permission /usr/share/lintpkg/baddirs/perm-064 64
-strange-permission /usr/share/lintpkg/baddirs/perm-436 436
-strange-permission /usr/share/lintpkg/baddirs/perm-574 574
-strange-permission /usr/share/lintpkg/baddirs/perm-610 610
-strange-permission /usr/share/lintpkg/baddirs/perm-460 460
-strange-permission /usr/share/lintpkg/baddirs/perm-576 576
-strange-permission /usr/share/lintpkg/baddirs/perm-375 375
-strange-permission /usr/share/lintpkg/baddirs/perm-730 730
-strange-permission /usr/share/lintpkg/baddirs/perm-256 256
-strange-permission /usr/share/lintpkg/baddirs/perm-333 333
-strange-permission /usr/share/lintpkg/baddirs/perm-625 625
-strange-permission /usr/share/lintpkg/baddirs/perm-217 217
-strange-permission /usr/share/lintpkg/baddirs/perm-671 671
-strange-permission /usr/share/lintpkg/baddirs/perm-007 7
-strange-permission /usr/share/lintpkg/baddirs/perm-674 674
-strange-permission /usr/share/lintpkg/baddirs/perm-377 377
-strange-permission /usr/share/lintpkg/baddirs/perm-215 215
-strange-permission /usr/share/lintpkg/baddirs/perm-104 104
-strange-permission /usr/share/lintpkg/baddirs/perm-272 272
-strange-permission /usr/share/lintpkg/baddirs/perm-747 747
-strange-permission /usr/share/lintpkg/baddirs/perm-072 72
-strange-permission /usr/share/lintpkg/baddirs/perm-402 402
-strange-permission /usr/share/lintpkg/baddirs/perm-472 472
-strange-permission /usr/share/lintpkg/baddirs/perm-573 573
-strange-permission /usr/share/lintpkg/baddirs/perm-550 550
-strange-permission /usr/share/lintpkg/baddirs/perm-510 510
-strange-permission /usr/share/lintpkg/baddirs/perm-444 444
-strange-permission /usr/share/lintpkg/baddirs/perm-226 226
-strange-permission /usr/share/lintpkg/baddirs/perm-103 103
-strange-permission /usr/share/lintpkg/baddirs/perm-224 224
-strange-permission /usr/share/lintpkg/baddirs/perm-247 247
-strange-permission /usr/share/lintpkg/baddirs/perm-251 251
-strange-permission /usr/share/lintpkg/baddirs/perm-631 631
-strange-permission /usr/share/lintpkg/baddirs/perm-137 137
-strange-permission /usr/share/lintpkg/baddirs/perm-413 413
-strange-permission /usr/share/lintpkg/baddirs/perm-006 6
-strange-permission /usr/share/lintpkg/baddirs/perm-106 106
-strange-permission /usr/share/lintpkg/baddirs/perm-645 645
-strange-permission /usr/share/lintpkg/baddirs/perm-345 345
-strange-permission /usr/share/lintpkg/baddirs/perm-445 445
-strange-permission /usr/share/lintpkg/baddirs/perm-310 310
-strange-permission /usr/share/lintpkg/baddirs/perm-541 541
-strange-permission /usr/share/lintpkg/baddirs/perm-356 356
-strange-permission /usr/share/lintpkg/baddirs/perm-500 500
-strange-permission /usr/share/lintpkg/baddirs/perm-350 350
-strange-permission /usr/share/lintpkg/baddirs/perm-203 203
-strange-permission /usr/share/lintpkg/baddirs/perm-525 525
-strange-permission /usr/share/lintpkg/baddirs/perm-056 56
-strange-permission /usr/share/lintpkg/baddirs/perm-723 723
-strange-permission /usr/share/lintpkg/baddirs/perm-622 622
-strange-permission /usr/share/lintpkg/baddirs/perm-326 326
-strange-permission /usr/share/lintpkg/baddirs/perm-223 223
-strange-permission /usr/share/lintpkg/baddirs/perm-511 511
-strange-permission /usr/share/lintpkg/baddirs/perm-646 646
-strange-permission /usr/share/lintpkg/baddirs/perm-005 5
-strange-permission /usr/share/lintpkg/baddirs/perm-253 253
-strange-permission /usr/share/lintpkg/baddirs/perm-770 770
-strange-permission /usr/share/lintpkg/baddirs/perm-664 664
-strange-permission /usr/share/lintpkg/baddirs/perm-711 711
-strange-permission /usr/share/lintpkg/baddirs/perm-174 174
-strange-permission /usr/share/lintpkg/baddirs/perm-340 340
-strange-permission /usr/share/lintpkg/baddirs/perm-441 441
-strange-permission /usr/share/lintpkg/baddirs/perm-552 552
-strange-permission /usr/share/lintpkg/baddirs/perm-736 736
-strange-permission /usr/share/lintpkg/baddirs/perm-516 516
-strange-permission /usr/share/lintpkg/baddirs/perm-362 362
-strange-permission /usr/share/lintpkg/baddirs/perm-612 612
-strange-permission /usr/share/lintpkg/baddirs/perm-327 327
-strange-permission /usr/share/lintpkg/baddirs/perm-572 572
-strange-permission /usr/share/lintpkg/baddirs/perm-654 654
-strange-permission /usr/share/lintpkg/baddirs/perm-304 304
-strange-permission /usr/share/lintpkg/baddirs/perm-301 301
-strange-permission /usr/share/lintpkg/baddirs/perm-052 52
-strange-permission /usr/share/lintpkg/baddirs/perm-200 200
-strange-permission /usr/share/lintpkg/baddirs/perm-632 632
-strange-permission /usr/share/lintpkg/baddirs/perm-647 647
-strange-permission /usr/share/lintpkg/baddirs/perm-250 250
-strange-permission /usr/share/lintpkg/baddirs/perm-754 754
-strange-permission /usr/share/lintpkg/baddirs/perm-063 63
-strange-permission /usr/share/lintpkg/baddirs/perm-165 165
-strange-permission /usr/share/lintpkg/baddirs/perm-050 50
-strange-permission /usr/share/lintpkg/baddirs/perm-522 522
-strange-permission /usr/share/lintpkg/baddirs/perm-624 624
-strange-permission /usr/share/lintpkg/baddirs/perm-123 123
-strange-permission /usr/share/lintpkg/baddirs/perm-532 532
-strange-permission /usr/share/lintpkg/baddirs/perm-351 351
-strange-permission /usr/share/lintpkg/baddirs/perm-343 343
-strange-permission /usr/share/lintpkg/baddirs/perm-570 570
-strange-permission /usr/share/lintpkg/baddirs/perm-335 335
-strange-permission /usr/share/lintpkg/baddirs/perm-563 563
-strange-permission /usr/share/lintpkg/baddirs/perm-777 777
-strange-permission /usr/share/lintpkg/baddirs/perm-637 637
-strange-permission /usr/share/lintpkg/baddirs/perm-775 775
-strange-permission /usr/share/lintpkg/baddirs/perm-166 166
-strange-permission /usr/share/lintpkg/baddirs/perm-025 25
-strange-permission /usr/share/lintpkg/baddirs/perm-213 213
-strange-permission /usr/share/lintpkg/baddirs/perm-714 714
-strange-permission /usr/share/lintpkg/baddirs/perm-452 452
-strange-permission /usr/share/lintpkg/baddirs/perm-267 267
-strange-permission /usr/share/lintpkg/baddirs/perm-556 556
-strange-permission /usr/share/lintpkg/baddirs/perm-415 415
-strange-permission /usr/share/lintpkg/baddirs/perm-435 435
-strange-permission /usr/share/lintpkg/baddirs/perm-461 461
-strange-permission /usr/share/lintpkg/baddirs/perm-521 521
-strange-permission /usr/share/lintpkg/baddirs/perm-361 361
-strange-permission /usr/share/lintpkg/baddirs/perm-232 232
-strange-permission /usr/share/lintpkg/baddirs/perm-600 600
-strange-permission /usr/share/lintpkg/baddirs/perm-704 704
-strange-permission /usr/share/lintpkg/baddirs/perm-073 73
-strange-permission /usr/share/lintpkg/baddirs/perm-245 245
-strange-permission /usr/share/lintpkg/baddirs/perm-405 405
-strange-permission /usr/share/lintpkg/baddirs/perm-111 111
-strange-permission /usr/share/lintpkg/baddirs/perm-470 470
-strange-permission /usr/share/lintpkg/baddirs/perm-513 513
-strange-permission /usr/share/lintpkg/baddirs/perm-342 342
-strange-permission /usr/share/lintpkg/baddirs/perm-034 34
-strange-permission /usr/share/lintpkg/baddirs/perm-432 432
-strange-permission /usr/share/lintpkg/baddirs/perm-720 720
-strange-permission /usr/share/lintpkg/baddirs/perm-241 241
-strange-permission /usr/share/lintpkg/baddirs/perm-756 756
-strange-permission /usr/share/lintpkg/baddirs/perm-257 257
-strange-permission /usr/share/lintpkg/baddirs/perm-717 717
-strange-permission /usr/share/lintpkg/baddirs/perm-331 331
-strange-permission /usr/share/lintpkg/baddirs/perm-571 571
-strange-permission /usr/share/lintpkg/baddirs/perm-354 354
-strange-permission /usr/share/lintpkg/baddirs/perm-602 602
-strange-permission /usr/share/lintpkg/baddirs/perm-676 676
-strange-permission /usr/share/lintpkg/baddirs/perm-424 424
-strange-permission /usr/share/lintpkg/baddirs/perm-275 275
-strange-permission /usr/share/lintpkg/baddirs/perm-663 663
-strange-permission /usr/share/lintpkg/baddirs/perm-175 175
-strange-permission /usr/share/lintpkg/baddirs/perm-543 543
-strange-permission /usr/share/lintpkg/baddirs/perm-302 302
-strange-permission /usr/share/lintpkg/baddirs/perm-357 357
-strange-permission /usr/share/lintpkg/baddirs/perm-225 225
-strange-permission /usr/share/lintpkg/baddirs/perm-321 321
-strange-permission /usr/share/lintpkg/baddirs/perm-151 151
-strange-permission /usr/share/lintpkg/baddirs/perm-020 20
-strange-permission /usr/share/lintpkg/baddirs/perm-014 14
-strange-permission /usr/share/lintpkg/baddirs/perm-621 621
-strange-permission /usr/share/lintpkg/baddirs/perm-774 774
-strange-permission /usr/share/lintpkg/baddirs/perm-142 142
-strange-permission /usr/share/lintpkg/baddirs/perm-270 270
-strange-permission /usr/share/lintpkg/baddirs/perm-337 337
-strange-permission /usr/share/lintpkg/baddirs/perm-760 760
-strange-permission /usr/share/lintpkg/baddirs/perm-406 406
-strange-permission /usr/share/lintpkg/baddirs/perm-420 420
-strange-permission /usr/share/lintpkg/baddirs/perm-344 344
-strange-permission /usr/share/lintpkg/baddirs/perm-635 635
-strange-permission /usr/share/lintpkg/baddirs/perm-140 140
-strange-permission /usr/share/lintpkg/baddirs/perm-066 66
-strange-permission /usr/share/lintpkg/baddirs/perm-606 606
-strange-permission /usr/share/lintpkg/baddirs/perm-662 662
-strange-permission /usr/share/lintpkg/baddirs/perm-471 471
-strange-permission /usr/share/lintpkg/baddirs/perm-753 753
-strange-permission /usr/share/lintpkg/baddirs/perm-400 400
-strange-permission /usr/share/lintpkg/baddirs/perm-672 672
-strange-permission /usr/share/lintpkg/baddirs/perm-523 523
-strange-permission /usr/share/lintpkg/baddirs/perm-411 411
-strange-permission /usr/share/lintpkg/baddirs/perm-143 143
-strange-permission /usr/share/lintpkg/baddirs/perm-051 51
-strange-permission /usr/share/lintpkg/baddirs/perm-254 254
-strange-permission /usr/share/lintpkg/baddirs/perm-316 316
-strange-permission /usr/share/lintpkg/baddirs/perm-065 65
-strange-permission /usr/share/lintpkg/baddirs/perm-633 633
-strange-permission /usr/share/lintpkg/baddirs/perm-136 136
-strange-permission /usr/share/lintpkg/baddirs/perm-700 700
-strange-permission /usr/share/lintpkg/baddirs/perm-462 462
-strange-permission /usr/share/lintpkg/baddirs/perm-440 440
-strange-permission /usr/share/lintpkg/baddirs/perm-776 776
-strange-permission /usr/share/lintpkg/baddirs/perm-233 233
-strange-permission /usr/share/lintpkg/baddirs/perm-303 303
-strange-permission /usr/share/lintpkg/baddirs/perm-041 41
-strange-permission /usr/share/lintpkg/baddirs/perm-416 416
-strange-permission /usr/share/lintpkg/baddirs/perm-176 176
-strange-permission /usr/share/lintpkg/baddirs/perm-161 161
-strange-permission /usr/share/lintpkg/baddirs/perm-421 421
-strange-permission /usr/share/lintpkg/baddirs/perm-173 173
-strange-permission /usr/share/lintpkg/baddirs/perm-712 712
-strange-permission /usr/share/lintpkg/baddirs/perm-604 604
-strange-permission /usr/share/lintpkg/baddirs/perm-627 627
-strange-permission /usr/share/lintpkg/baddirs/perm-127 127
-strange-permission /usr/share/lintpkg/baddirs/perm-651 651
-strange-permission /usr/share/lintpkg/baddirs/perm-260 260
-strange-permission /usr/share/lintpkg/baddirs/perm-524 524
-strange-permission /usr/share/lintpkg/baddirs/perm-735 735
-strange-permission /usr/share/lintpkg/baddirs/perm-613 613
-strange-permission /usr/share/lintpkg/baddirs/perm-011 11
-strange-permission /usr/share/lintpkg/baddirs/perm-336 336
-strange-permission /usr/share/lintpkg/baddirs/perm-244 244
-strange-permission /usr/share/lintpkg/baddirs/perm-644 644
-strange-permission /usr/share/lintpkg/baddirs/perm-366 366
-strange-permission /usr/share/lintpkg/baddirs/perm-177 177
-strange-permission /usr/share/lintpkg/baddirs/perm-677 677
-strange-permission /usr/share/lintpkg/baddirs/perm-054 54
-strange-permission /usr/share/lintpkg/baddirs/perm-542 542
-strange-permission /usr/share/lintpkg/baddirs/perm-076 76
-strange-permission /usr/share/lintpkg/baddirs/perm-150 150
-strange-permission /usr/share/lintpkg/baddirs/perm-126 126
-strange-permission /usr/share/lintpkg/baddirs/perm-370 370
-strange-permission /usr/share/lintpkg/baddirs/perm-555 555
-strange-permission /usr/share/lintpkg/baddirs/perm-360 360
-strange-permission /usr/share/lintpkg/baddirs/perm-475 475
-strange-permission /usr/share/lintpkg/baddirs/perm-045 45
-strange-permission /usr/share/lintpkg/baddirs/perm-764 764
-strange-permission /usr/share/lintpkg/baddirs/perm-534 534
-strange-permission /usr/share/lintpkg/baddirs/perm-716 716
-strange-permission /usr/share/lintpkg/baddirs/perm-630 630
-strange-permission /usr/share/lintpkg/baddirs/perm-060 60
-strange-permission /usr/share/lintpkg/baddirs/perm-446 446
-strange-permission /usr/share/lintpkg/baddirs/perm-746 746
-strange-permission /usr/share/lintpkg/baddirs/perm-010 10
-strange-permission /usr/share/lintpkg/baddirs/perm-431 431
-strange-permission /usr/share/lintpkg/baddirs/perm-642 642
-strange-permission /usr/share/lintpkg/baddirs/perm-117 117
-strange-permission /usr/share/lintpkg/baddirs/perm-503 503
-strange-permission /usr/share/lintpkg/baddirs/perm-167 167
-strange-permission /usr/share/lintpkg/baddirs/perm-657 657
-strange-permission /usr/share/lintpkg/baddirs/perm-403 403
-strange-permission /usr/share/lintpkg/baddirs/perm-071 71
-strange-permission /usr/share/lintpkg/baddirs/perm-726 726
-strange-permission /usr/share/lintpkg/baddirs/perm-332 332
-strange-permission /usr/share/lintpkg/baddirs/perm-042 42
-strange-permission /usr/share/lintpkg/baddirs/perm-017 17
-strange-permission /usr/share/lintpkg/baddirs/perm-734 734
-strange-permission /usr/share/lintpkg/baddirs/perm-341 341
-strange-permission /usr/share/lintpkg/baddirs/perm-044 44
-strange-permission /usr/share/lintpkg/baddirs/perm-313 313
-strange-permission /usr/share/lintpkg/baddirs/perm-745 745
-strange-permission /usr/share/lintpkg/baddirs/perm-675 675
-strange-permission /usr/share/lintpkg/baddirs/perm-146 146
-strange-permission /usr/share/lintpkg/baddirs/perm-750 750
-strange-permission /usr/share/lintpkg/baddirs/perm-162 162
-strange-permission /usr/share/lintpkg/baddirs/perm-623 623
-strange-permission /usr/share/lintpkg/baddirs/perm-744 744
-strange-permission /usr/share/lintpkg/baddirs/perm-742 742
-strange-permission /usr/share/lintpkg/baddirs/perm-234 234
-strange-permission /usr/share/lintpkg/baddirs/perm-601 601
-strange-permission /usr/share/lintpkg/baddirs/perm-323 323
-strange-permission /usr/share/lintpkg/baddirs/perm-273 273
-strange-permission /usr/share/lintpkg/baddirs/perm-170 170
-strange-permission /usr/share/lintpkg/baddirs/perm-032 32
-strange-permission /usr/share/lintpkg/baddirs/perm-120 120
-strange-permission /usr/share/lintpkg/baddirs/perm-221 221
-strange-permission /usr/share/lintpkg/baddirs/perm-067 67
-strange-permission /usr/share/lintpkg/baddirs/perm-236 236
-strange-permission /usr/share/lintpkg/baddirs/perm-737 737
-strange-permission /usr/share/lintpkg/baddirs/perm-124 124
-strange-permission /usr/share/lintpkg/baddirs/perm-705 705
-strange-permission /usr/share/lintpkg/baddirs/perm-772 772
-strange-permission /usr/share/lintpkg/baddirs/perm-222 222
-strange-permission /usr/share/lintpkg/baddirs/perm-701 701
-strange-permission /usr/share/lintpkg/baddirs/perm-731 731
-strange-permission /usr/share/lintpkg/baddirs/perm-122 122
-strange-permission /usr/share/lintpkg/baddirs/perm-455 455
-strange-permission /usr/share/lintpkg/baddirs/perm-442 442
-strange-permission /usr/share/lintpkg/baddirs/perm-465 465
-strange-permission /usr/share/lintpkg/baddirs/perm-752 752
-strange-permission /usr/share/lintpkg/baddirs/perm-454 454
-strange-permission /usr/share/lintpkg/baddirs/perm-422 422
-strange-permission /usr/share/lintpkg/baddirs/perm-107 107
-strange-permission /usr/share/lintpkg/baddirs/perm-152 152
-strange-permission /usr/share/lintpkg/baddirs/perm-401 401
-strange-permission /usr/share/lintpkg/baddirs/perm-277 277
-strange-permission /usr/share/lintpkg/baddirs/perm-135 135
-strange-permission /usr/share/lintpkg/baddirs/perm-605 605
-strange-permission /usr/share/lintpkg/baddirs/perm-133 133
-strange-permission /usr/share/lintpkg/baddirs/perm-512 512
-strange-permission /usr/share/lintpkg/baddirs/perm-201 201
-strange-permission /usr/share/lintpkg/baddirs/perm-230 230
-strange-permission /usr/share/lintpkg/baddirs/perm-021 21
-strange-permission /usr/share/lintpkg/baddirs/perm-033 33
-strange-permission /usr/share/lintpkg/baddirs/perm-024 24
-strange-permission /usr/share/lintpkg/baddirs/perm-743 743
-strange-permission /usr/share/lintpkg/baddirs/perm-026 26
-strange-permission /usr/share/lintpkg/baddirs/perm-001 1
-strange-permission /usr/share/lintpkg/baddirs/perm-031 31
-strange-permission /usr/share/lintpkg/baddirs/perm-212 212
-strange-permission /usr/share/lintpkg/baddirs/perm-551 551
-strange-permission /usr/share/lintpkg/baddirs/perm-702 702
-strange-permission /usr/share/lintpkg/baddirs/perm-710 710
-strange-permission /usr/share/lintpkg/baddirs/perm-566 566
-strange-permission /usr/share/lintpkg/baddirs/perm-655 655
-strange-permission /usr/share/lintpkg/baddirs/perm-474 474
-strange-permission /usr/share/lintpkg/baddirs/perm-154 154
-strange-permission /usr/share/lintpkg/baddirs/perm-155 155
-strange-permission /usr/share/lintpkg/baddirs/perm-407 407
-strange-permission /usr/share/lintpkg/baddirs/perm-533 533
-strange-permission /usr/share/lintpkg/baddirs/perm-773 773
-strange-permission /usr/share/lintpkg/baddirs/perm-145 145
-strange-permission /usr/share/lintpkg/baddirs/perm-520 520
-strange-permission /usr/share/lintpkg/baddirs/perm-077 77
-strange-permission /usr/share/lintpkg/baddirs/perm-157 157
-strange-permission /usr/share/lintpkg/baddirs/perm-214 214
-strange-permission /usr/share/lintpkg/baddirs/perm-653 653
-strange-permission /usr/share/lintpkg/baddirs/perm-372 372
-strange-permission /usr/share/lintpkg/baddirs/perm-235 235
-strange-permission /usr/share/lintpkg/baddirs/perm-102 102
-strange-permission /usr/share/lintpkg/baddirs/perm-252 252
-strange-permission /usr/share/lintpkg/baddirs/perm-373 373
-strange-permission /usr/share/lintpkg/baddirs/perm-237 237
-strange-permission /usr/share/lintpkg/baddirs/perm-616 616
-strange-permission /usr/share/lintpkg/badfiles 2775
-strange-permission /etc 700
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg 500
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs 1777
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-317 317
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-564 564
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-012 12
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-300 300
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-667 667
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-643 643
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-611 611
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-305 305
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-567 567
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-211 211
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-043 43
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-463 463
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-132 132
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-476 476
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-565 565
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-023 23
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-062 62
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-371 371
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-517 517
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-507 507
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-741 741
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-473 473
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-505 505
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-134 134
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-466 466
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-325 325
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-553 553
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-274 274
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-324 324
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-423 423
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-502 502
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-652 652
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-656 656
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-205 205
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-374 374
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-560 560
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-724 724
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-015 15
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-363 363
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-757 757
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-265 265
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-141 141
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-112 112
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-641 641
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-030 30
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-376 376
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-047 47
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-207 207
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-004 4
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-147 147
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-477 477
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-640 640
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-125 125
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-425 425
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-426 426
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-706 706
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-320 320
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-762 762
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-013 13
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-110 110
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-434 434
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-144 144
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-562 562
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-105 105
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-761 761
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-035 35
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-312 312
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-765 765
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-242 242
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-767 767
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-727 727
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-075 75
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-457 457
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-456 456
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-114 114
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-437 437
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-703 703
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-220 220
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-367 367
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-070 70
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-266 266
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-660 660
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-561 561
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-130 130
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-255 255
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-171 171
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-204 204
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-766 766
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-412 412
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-027 27
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-636 636
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-404 404
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-160 160
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-427 427
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-530 530
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-202 202
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-526 526
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-464 464
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-040 40
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-501 501
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-626 626
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-751 751
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-506 506
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-156 156
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-210 210
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-016 16
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-115 115
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-546 546
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-771 771
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-650 650
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-307 307
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-467 467
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-515 515
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-504 504
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-231 231
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-537 537
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-451 451
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-055 55
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-053 53
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-264 264
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-262 262
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-607 607
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-547 547
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-540 540
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-614 614
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-306 306
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-536 536
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-164 164
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-365 365
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-022 22
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-577 577
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-535 535
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-527 527
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-046 46
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-707 707
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-617 617
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-355 355
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-116 116
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-732 732
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-763 763
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-557 557
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-246 246
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-453 453
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-670 670
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-163 163
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-261 261
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-665 665
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-172 172
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-410 410
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-000 0
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-634 634
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-311 311
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-100 100
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-417 417
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-243 243
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-545 545
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-216 216
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-713 713
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-733 733
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-615 615
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-002 2
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-347 347
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-330 330
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-740 740
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-276 276
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-715 715
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-447 447
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-443 443
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-673 673
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-661 661
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-721 721
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-334 334
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-003 3
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-514 514
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-037 37
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-153 153
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-433 433
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-227 227
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-531 531
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-554 554
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-603 603
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-206 206
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-131 131
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-450 450
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-722 722
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-271 271
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-074 74
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-036 36
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-057 57
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-315 315
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-544 544
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-352 352
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-414 414
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-121 121
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-322 322
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-430 430
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-240 240
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-725 725
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-314 314
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-113 113
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-101 101
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-353 353
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-666 666
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-575 575
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-346 346
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-263 263
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-061 61
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-620 620
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-364 364
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-064 64
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-436 436
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-574 574
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-610 610
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-460 460
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-576 576
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-375 375
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-730 730
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-256 256
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-333 333
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-625 625
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-217 217
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-671 671
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-007 7
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-674 674
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-377 377
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-215 215
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-104 104
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-272 272
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-747 747
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-072 72
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-402 402
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-472 472
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-573 573
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-550 550
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-510 510
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-444 444
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-226 226
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-103 103
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-224 224
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-247 247
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-251 251
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-631 631
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-137 137
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-413 413
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-006 6
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-106 106
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-645 645
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-345 345
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-445 445
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-310 310
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-541 541
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-356 356
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-500 500
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-350 350
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-203 203
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-525 525
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-056 56
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-723 723
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-622 622
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-326 326
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-223 223
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-511 511
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-646 646
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-005 5
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-253 253
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-770 770
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-664 664
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-711 711
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-174 174
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-340 340
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-441 441
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-552 552
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-736 736
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-516 516
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-362 362
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-612 612
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-327 327
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-572 572
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-654 654
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-304 304
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-301 301
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-052 52
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-200 200
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-632 632
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-647 647
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-250 250
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-754 754
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-063 63
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-165 165
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-050 50
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-522 522
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-624 624
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-123 123
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-532 532
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-351 351
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-343 343
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-570 570
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-335 335
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-563 563
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-777 777
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-637 637
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-775 775
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-166 166
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-025 25
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-213 213
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-714 714
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-452 452
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-267 267
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-556 556
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-415 415
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-435 435
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-461 461
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-521 521
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-361 361
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-232 232
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-600 600
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-704 704
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-073 73
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-245 245
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-405 405
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-111 111
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-470 470
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-513 513
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-342 342
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-034 34
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-432 432
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-720 720
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-241 241
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-756 756
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-257 257
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-717 717
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-331 331
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-571 571
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-354 354
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-602 602
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-676 676
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-424 424
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-275 275
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-663 663
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-175 175
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-543 543
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-302 302
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-357 357
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-225 225
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-321 321
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-151 151
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-020 20
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-014 14
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-621 621
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-774 774
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-142 142
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-270 270
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-337 337
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-760 760
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-406 406
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-420 420
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-344 344
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-635 635
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-140 140
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-066 66
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-606 606
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-662 662
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-471 471
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-753 753
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-400 400
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-672 672
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-523 523
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-411 411
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-143 143
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-051 51
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-254 254
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-316 316
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-065 65
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-633 633
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-136 136
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-700 700
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-462 462
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-440 440
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-776 776
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-233 233
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-303 303
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-041 41
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-416 416
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-176 176
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-161 161
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-421 421
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-173 173
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-712 712
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-604 604
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-627 627
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-127 127
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-651 651
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-260 260
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-524 524
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-735 735
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-613 613
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-011 11
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-336 336
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-244 244
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-644 644
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-366 366
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-177 177
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-677 677
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-054 54
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-542 542
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-076 76
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-150 150
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-126 126
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-370 370
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-555 555
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-360 360
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-475 475
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-045 45
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-764 764
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-534 534
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-716 716
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-630 630
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-060 60
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-446 446
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-746 746
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-010 10
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-431 431
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-642 642
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-117 117
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-503 503
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-167 167
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-657 657
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-403 403
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-071 71
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-726 726
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-332 332
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-042 42
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-017 17
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-734 734
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-341 341
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-044 44
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-313 313
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-745 745
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-675 675
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-146 146
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-750 750
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-162 162
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-623 623
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-744 744
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-742 742
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-234 234
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-601 601
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-323 323
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-273 273
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-170 170
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-032 32
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-120 120
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-221 221
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-067 67
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-236 236
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-737 737
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-124 124
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-705 705
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-772 772
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-222 222
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-701 701
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-731 731
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-122 122
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-455 455
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-442 442
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-465 465
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-752 752
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-454 454
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-422 422
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-107 107
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-152 152
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-401 401
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-277 277
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-135 135
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-605 605
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-133 133
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-512 512
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-201 201
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-230 230
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-021 21
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-033 33
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-024 24
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-743 743
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-026 26
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-001 1
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-031 31
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-212 212
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-551 551
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-702 702
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-710 710
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-566 566
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-655 655
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-474 474
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-154 154
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-155 155
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-407 407
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-533 533
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-773 773
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-145 145
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-520 520
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-077 77
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-157 157
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-214 214
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-653 653
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-372 372
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-235 235
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-102 102
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-252 252
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-373 373
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-237 237
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/baddirs/perm-616 616
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission /usr/share/lintpkg/badfiles 2775
+lintpkg-testcase-permissions-bad-0.0-x86_64-1_lintpkg: W: strange-permission  700
+1 packages checked; 0 errors and 515 warnings.

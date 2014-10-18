@@ -1,10 +1,11 @@
-incorrect-info-dir /usr/share/info
-incorrect-info-dir /usr/local/info
-incorrect-info-dir /usr/local/share/info
-uncompressed-info-page /usr/local/share/info/dir
-uncompressed-info-page /usr/local/info/which.info
-uncompressed-info-page /usr/info/jed.3in
-uncompressed-info-page /usr/info/dir
-uncompressed-info-page /usr/info/jed.1in
-uncompressed-info-page /usr/info/jed.info
-uncompressed-info-page /usr/info/jed.2in
+lintpkg-testcase-info-bad-0.0-x86_64-1_lintpkg: E: incorrect-info-dir /usr/share/info
+lintpkg-testcase-info-bad-0.0-x86_64-1_lintpkg: E: incorrect-info-dir /usr/local/info
+lintpkg-testcase-info-bad-0.0-x86_64-1_lintpkg: E: incorrect-info-dir /usr/local/share/info
+lintpkg-testcase-info-bad-0.0-x86_64-1_lintpkg: W: uncompressed-info-page /usr/local/share/info/dir
+lintpkg-testcase-info-bad-0.0-x86_64-1_lintpkg: W: uncompressed-info-page /usr/local/info/which.info
+lintpkg-testcase-info-bad-0.0-x86_64-1_lintpkg: W: uncompressed-info-page /usr/info/jed.3in
+lintpkg-testcase-info-bad-0.0-x86_64-1_lintpkg: W: uncompressed-info-page /usr/info/dir
+lintpkg-testcase-info-bad-0.0-x86_64-1_lintpkg: W: uncompressed-info-page /usr/info/jed.1in
+lintpkg-testcase-info-bad-0.0-x86_64-1_lintpkg: W: uncompressed-info-page /usr/info/jed.info
+lintpkg-testcase-info-bad-0.0-x86_64-1_lintpkg: W: uncompressed-info-page /usr/info/jed.2in
+1 packages checked; 3 errors and 7 warnings.

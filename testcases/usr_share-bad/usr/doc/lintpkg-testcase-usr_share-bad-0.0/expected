@@ -1,1 +1,2 @@
-binary-in-usr-share /usr/share/lintpkg/pppoe
+lintpkg-testcase-usr_share-bad-0.0-x86_64-1_lintpkg: E: binary-in-usr-share /usr/share/lintpkg/pppoe
+1 packages checked; 1 errors and 0 warnings.

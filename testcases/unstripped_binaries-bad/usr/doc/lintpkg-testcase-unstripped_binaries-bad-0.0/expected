@@ -1,1 +1,2 @@
-unstripped-binary /usr/bin/jhead
+lintpkg-testcase-unstripped_binaries-bad-0.0-x86_64-1_lintpkg: W: unstripped-binary /usr/bin/jhead
+1 packages checked; 0 errors and 1 warnings.

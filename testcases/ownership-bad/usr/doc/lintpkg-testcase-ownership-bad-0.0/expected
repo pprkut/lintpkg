@@ -1,8 +1,9 @@
-strange-owner-or-group ./ nobody/nogroup
-strange-owner-or-group lib/ 1000/users
-strange-owner-or-group lib64/ root/bin
-strange-owner-or-group usr/bin/ root/bin
-strange-owner-or-group usr/bin/nnstats news/news
-strange-owner-or-group bin/ bin/bin
-strange-owner-or-group sbin/ bin/nogroup
-strange-owner-or-group lib/modules/3.10.17/modules.devname nobody/nogroup
+lintpkg-testcase-ownership-bad-0.0-x86_64-1_lintpkg: E: strange-owner-or-group ./ nobody/nogroup
+lintpkg-testcase-ownership-bad-0.0-x86_64-1_lintpkg: E: strange-owner-or-group lib64/ root/bin
+lintpkg-testcase-ownership-bad-0.0-x86_64-1_lintpkg: E: strange-owner-or-group usr/bin/ root/bin
+lintpkg-testcase-ownership-bad-0.0-x86_64-1_lintpkg: E: strange-owner-or-group usr/bin/nnstats news/news
+lintpkg-testcase-ownership-bad-0.0-x86_64-1_lintpkg: E: strange-owner-or-group bin/ bin/bin
+lintpkg-testcase-ownership-bad-0.0-x86_64-1_lintpkg: E: strange-owner-or-group sbin/ bin/nogroup
+lintpkg-testcase-ownership-bad-0.0-x86_64-1_lintpkg: E: strange-owner-or-group lib/ 1000/users
+lintpkg-testcase-ownership-bad-0.0-x86_64-1_lintpkg: E: strange-owner-or-group lib/modules/3.10.17/modules.devname nobody/nogroup
+1 packages checked; 8 errors and 0 warnings.

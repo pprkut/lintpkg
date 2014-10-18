@@ -1,0 +1,17 @@
+To run all the testcases,
+  # sh ./RunTestCases.sh
+
+This will make a lot of small packages in $OUTPUT (default /tmp) and then run
+lintpkg on each of the small packages.  The results for each package are
+compared with the contents of usr/doc/<package>-0.0/expected which is stored
+inside the package.  If the results are different from the contents of the
+'expected' file, this is considered to be a failure.
+
+If a testcase fails, it will look like this:
+  FAIL lintpkg-testcase-man-bad-0.0-x86_64-1_lintpkg.txz
+
+To find out why it failed, run the check manually, e.g.
+  # lintpkg -c man_check.sh /tmp/lintpkg-testcase-man-bad-0.0-x86_64-1_lintpkg.txz
+
+and compare the output with the contents of the file
+  man-bad/usr/doc/lintpkg-testcase-man-bad-0.0/expected

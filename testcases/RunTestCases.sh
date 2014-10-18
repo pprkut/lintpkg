@@ -110,19 +110,21 @@ echo "Running testcases..."
 
 for check in ../checks/*_check.sh; do
   CHKNAM=$(basename $check _check.sh)
-  # Put actual and expected output into these files:
-  ACTUAL=$OUTPUT/$PRGNAM-$CHKNAM-actual
-  EXPECTED=$OUTPUT/$PRGNAM-$CHKNAM-expected
   # There may be zero or more testcases for each check, but usually there will
   # be two: -good and -bad
   for TESTPKG in $(ls $OUTPUT/$PRGNAM-$CHKNAM-*.t?z 2>/dev/null); do
-    sh ../lintpkg -c ${CHKNAM}_check $TESTPKG 2>&1 | grep -v ' checked; ' | cut -f 3- -d" " | sort > $ACTUAL
-    tar xf $TESTPKG -O --wildcards */doc/lintpkg-*/expected | sort > $EXPECTED
+    CASENAM=$(basename $TESTPKG | rev | cut -f4- -d- | rev)
+    # Put actual and expected output into these files:
+    ACTUAL=$OUTPUT/$CASENAM-actual
+    EXPECTED=$OUTPUT/$CASENAM-expected
+    sh ../lintpkg -c ${CHKNAM}_check $TESTPKG >$ACTUAL 2>&1 || true
+    tar xf $TESTPKG -O --wildcards */doc/$CASENAM-*/expected >$EXPECTED || true
     if cmp -s $ACTUAL $EXPECTED; then
-      echo $(basename $TESTPKG) pass
+      echo pass $(basename $TESTPKG)
     else
-      echo $(basename $TESTPKG) FAIL
+      echo FAIL $(basename $TESTPKG)
     fi
+    [ -z "$DEBUG" ] && rm $ACTUAL $EXPECTED
   done
 done
 
