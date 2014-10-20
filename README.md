@@ -42,6 +42,7 @@ Currently lintpkg ships with a small set of checks:
 - Package created with tar-1.13 (tar113_check)
 - Unstripped binaries (unstripped_binaries_check)
 - Binaries under /usr/share (usr_share_check)
+- Valid libtool archives (shared_libraries_check)
 
 More checks and comments on existing ones welcome :)
 
