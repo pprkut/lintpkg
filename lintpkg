@@ -377,7 +377,7 @@ done
 if [ -z "$WORKING_DIR" ]; then
   WORKING_DIR=$(mktemp -d -t lintpkg.XXXXXX)
 else
-  WORKING_DIR=$(mktemp -d -p "$WORKING_DIR" -t lintpkg.XXXXXX)
+  WORKING_DIR=$(mktemp -d -p "$WORKING_DIR" -t lintpkg.XXXXXX 2> /dev/null)
 fi
 
 if [ -z "$WORKING_DIR" ]; then
