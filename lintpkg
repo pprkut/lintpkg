@@ -385,7 +385,7 @@ if [ -z "$WORKING_DIR" ]; then
   exit 1
 fi
 
-if [ -z "$CHECKS" ]; then
+if [ -z "$CHECKS" -o -z "$(ls -1 $CHECKS)" ]; then
   echo "No lint checks found!"
   exit 1
 fi
