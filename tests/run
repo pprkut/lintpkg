@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+set -e
+
+exec bats ${CI:+--tap} $(dirname ${BASH_SOURCE[0]})/testsuites/*/
