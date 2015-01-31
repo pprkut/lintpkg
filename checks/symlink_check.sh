@@ -23,7 +23,7 @@
 # Verify that there are no symlinks in the package.
 
 check() {
-  find "$WORKING_DIR" -type l | while read symlink; do
+  find "$WORKING_DIR" -type l | sort | while read symlink; do
     log_warning "package-contains-symlink" "$symlink"
   done
 }
