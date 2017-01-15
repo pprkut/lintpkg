@@ -1,0 +1,4 @@
+lintpkg-testcase-symlink-bad-0.0-x86_64-1_lintpkg: W: package-contains-symlink /usr/bin/gratuitous-recursive-symlink
+lintpkg-testcase-symlink-bad-0.0-x86_64-1_lintpkg: W: package-contains-symlink /usr/man/man1/unxz.1.gz
+lintpkg-testcase-symlink-bad-0.0-x86_64-1_lintpkg: W: package-contains-symlink /usr/man/man1/xzcmp.1.gz
+1 packages checked; 0 errors and 3 warnings.

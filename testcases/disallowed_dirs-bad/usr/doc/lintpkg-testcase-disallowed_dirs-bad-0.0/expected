@@ -1,0 +1,11 @@
+lintpkg-testcase-disallowed_dirs-bad-0.0-x86_64-1_lintpkg: E: dir-or-file-in-home /home/disallowed
+lintpkg-testcase-disallowed_dirs-bad-0.0-x86_64-1_lintpkg: E: dir-or-file-in-mnt /mnt/disallowed
+lintpkg-testcase-disallowed_dirs-bad-0.0-x86_64-1_lintpkg: E: dir-or-file-in-mnt /mnt/disallowed/disallowed
+lintpkg-testcase-disallowed_dirs-bad-0.0-x86_64-1_lintpkg: E: dir-or-file-in-tmp /tmp/disallowed
+lintpkg-testcase-disallowed_dirs-bad-0.0-x86_64-1_lintpkg: E: dir-or-file-in-usr-local /usr/local/disallowed
+lintpkg-testcase-disallowed_dirs-bad-0.0-x86_64-1_lintpkg: E: dir-or-file-in-usr-tmp /usr/tmp/disallowed
+lintpkg-testcase-disallowed_dirs-bad-0.0-x86_64-1_lintpkg: E: dir-or-file-in-var-local /var/local/disallowed
+lintpkg-testcase-disallowed_dirs-bad-0.0-x86_64-1_lintpkg: E: dir-or-file-in-var-lock /var/lock/disallowed
+lintpkg-testcase-disallowed_dirs-bad-0.0-x86_64-1_lintpkg: E: dir-or-file-in-var-run /var/run/disallowed
+lintpkg-testcase-disallowed_dirs-bad-0.0-x86_64-1_lintpkg: E: dir-or-file-in-var-tmp /var/tmp/disallowed
+1 packages checked; 10 errors and 0 warnings.

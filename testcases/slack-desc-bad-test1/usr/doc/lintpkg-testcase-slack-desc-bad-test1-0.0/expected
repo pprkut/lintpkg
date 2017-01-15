@@ -1,0 +1,5 @@
+lintpkg-testcase-slack-desc-bad-test1-0.0-x86_64-1_lintpkg: E: slack-desc-description-wrong-packagename lintpkg-testcase-slack-desc-NotGood-test1
+lintpkg-testcase-slack-desc-bad-test1-0.0-x86_64-1_lintpkg: E: slack-desc-invalid-number-of-lines 14
+lintpkg-testcase-slack-desc-bad-test1-0.0-x86_64-1_lintpkg: E: slack-desc-description-lines-too-long
+lintpkg-testcase-slack-desc-bad-test1-0.0-x86_64-1_lintpkg: E: slack-desc-unrecognised-text
+1 packages checked; 4 errors and 0 warnings.

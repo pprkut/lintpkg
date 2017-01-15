@@ -1,0 +1,3 @@
+lintpkg-testcase-man-bad-0.0-x86_64-1_lintpkg: E: incorrect-man-dir /usr/share/man
+lintpkg-testcase-man-bad-0.0-x86_64-1_lintpkg: W: uncompressed-man-page /usr/man/man1/cat.1
+1 packages checked; 1 errors and 1 warnings.
