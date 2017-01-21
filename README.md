@@ -36,7 +36,7 @@ Currently lintpkg ships with a small set of checks:
 - Correct path for and compression of man pages (man_check)
 - Correct folder permissions under /usr and /etc (permissions_check)
 - Correct formatting of the slack-desc file (slack-desc_check)
-- Existance of an /install directory within the package (install-dir_check)
+- Existence of an /install directory within the package (install-dir_check)
 - Correct ownership of system directories (ownership_check)
 - Leftover symlinks in the package, not handled by doinst.sh (symlink_check)
 - Package created with tar-1.13 (tar113_check)
