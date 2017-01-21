@@ -439,6 +439,10 @@ for PACKAGE in $*; do
 
   cd $WORKING_DIR
 
+    if ! [ -e "$PACKAGE" ]; then
+      PACKAGE="$CWD/$PACKAGE"
+    fi
+
     ( umask 000 ; cat $PACKAGE | $packagecompression -dc | $TAR xf - 2> /dev/null )
 
     perform "$LIST"
