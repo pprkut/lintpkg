@@ -197,7 +197,7 @@ load ../../helpers/makepkg
 
   run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_detailed_listing_check "$PKG"
 
-  [[ "${lines[0]}" =~ "drwx------ $USER/$GROUP  0 "[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}":"[0-9]{2}" ./" ]]
+  [[ "${lines[0]}" =~ "drwxr-xr-x $USER/$GROUP  0 "[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}":"[0-9]{2}" ./" ]]
   [[ "${lines[1]}" =~ "drwxr-xr-x $USER/$GROUP  0 "[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}":"[0-9]{2}" usr/" ]]
   [[ "${lines[2]}" =~ "drwxr-xr-x $USER/$GROUP  0 "[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}":"[0-9]{2}" usr/bin/" ]]
   [[ "${lines[3]}" =~ "-rwxr-xr-x $USER/$GROUP  0 "[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}":"[0-9]{2}" usr/bin/foo" ]]
