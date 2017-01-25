@@ -31,11 +31,23 @@ check() {
     fi
   done
 
-  while read i && ! [ -z "$i" ]; do
-    while read infopage && ! [ -z "$infopage" ]; do
-      log_warning "uncompressed-info-page" "$infopage"
-    done <<< "$(find "$i" -type f ! -name "*.gz" ! -name "*.png")"
-  done <<< "$(find "$WORKING_DIR" -type d -name "info")"
+  while read infopage && ! [ -z "$infopage" ]; do
+    log_warning "uncompressed-info-page" "$infopage"
+  done <<< "$(echo $PACKAGE_LISTING | grep -E '/info/.*\.info(-[0-9]+)?$')"
+
+  if [ -f $WORKING_DIR/usr/info/dir ]; then
+    log_error "found-info-dir-file" "/usr/info/dir"
+  fi
+
+  if [ -d $WORKING_DIR/usr/info ]; then
+    if [ -e $WORKING_DIR/install/doinst.sh ]; then
+      if ! [ $(grep install-info $WORKING_DIR/install/doinst.sh | wc -l) -ge "2" ]; then
+        log_error "missing-install-info"
+      fi
+    else
+      log_error "missing-install-info"
+    fi
+  fi
 }
 
 info() {
@@ -44,6 +56,13 @@ info() {
     echo
   elif [ "$1" = "uncompressed-info-page" ]; then
     echo "Info-pages should be gzip-compressed"
+    echo
+  elif [ "$1" = "found-info-dir-file" ]; then
+    echo "The Info pages' \"dir\" file should not be included in the package."
+    echo
+  elif [ "$1" = "missing-install-info" ]; then
+    echo -n "Whenever installing new Info pages in /usr/info, install-info"
+    echo "should be run in doinst.sh."
     echo
   fi
 }

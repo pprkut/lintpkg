@@ -106,7 +106,7 @@ clean_filename() {
 
 log_error() {
   for i in $IGNORE; do
-    if [ -n "$1" -a "$i" = "$1" ]; then
+    if [ -n "$1" -a "$i" = "$1" ] || [ "$i" = "$PKG_NAME" ] || [ "$i" = "${PKG_NAME}:$1" ]; then
       return
     fi
   done
@@ -128,7 +128,7 @@ log_error() {
 
 log_warning() {
   for i in $IGNORE; do
-    if [ -n "$1" -a "$i" = "$1" ]; then
+    if [ -n "$1" -a "$i" = "$1" ] || [ "$i" = "$PKG_NAME" ] || [ "$i" = "${PKG_NAME}:$1" ]; then
       return
     fi
   done
@@ -150,7 +150,7 @@ log_warning() {
 
 log_notice() {
   for i in $IGNORE; do
-    if [ -n "$1" -a "$i" = "$1" ]; then
+    if [ -n "$1" -a "$i" = "$1" ] || [ "$i" = "$PKG_NAME" ] || [ "$i" = "${PKG_NAME}:$1" ]; then
       return
     fi
   done
@@ -173,6 +173,15 @@ info() {
 local_info() {
   if [ "$1" = "external-compression-utility-missing" ]; then
     echo "The necessary compression utility for uncompressing the package is missing."
+    echo
+  elif [ "$1" = "package-has-wrong-compression-type" ]; then
+    echo "The package is compressed with the wrong compression utility."
+    echo
+  elif [ "$1" = "package-is-uncompressed-tar" ]; then
+    echo "The package is really an uncompressed tar archive."
+    echo
+  elif [ "$1" = "file-is-not-tar" ]; then
+    echo "The file is not a valid compressed tar archive."
     echo
   fi
 }
@@ -208,10 +217,12 @@ options:      -i --info (Display explanations for reported messages.)
               -h --help (Display summary of command line options and exit.)
               -E --extractdir <path> (Base directory for extracted temporary files.)
               -V --version (Display version information and exit.)
-              -x --exclude <messageid> (Don't show/count errors for the specified
-                                       message identifiers. Multiple identifiers
-                                       can be specified by separating them with
-                                       commas.)
+              -x --exclude [<pkgname>:]<messageid> (Don't show/count errors for the
+                                       specified package names and message identifiers.
+                                       Multiple identifiers can be specified by
+                                       separating them with commas.)
+              -X --exclude-from <path> (Don't show/count errors for the package names
+                                       and message identifiers specified in <path>.)
 EOF
 }
 
@@ -369,6 +380,14 @@ while [ 0 ]; do
 
     IGNORE=$(echo $2 | tr , '\n')
     shift 2
+  elif [ "$1" = "-X" -o "$1" = "--exclude-from" ]; then
+    if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
+      usage
+      exit
+    fi
+
+    IGNORE=$(sed -e 's/#.*//' -e 's/^ *//' -e 's/ *$//' $2 | tr , '\n')
+    shift 2
   else
     break
   fi
@@ -413,18 +432,38 @@ for PACKAGE in $*; do
   PACKAGES=$(expr $PACKAGES + 1)
 
   # Determine compressor utility:
-  case $PKG_EXTENSION in
-    'tgz' )
+  filetype=$(file -b "$PACKAGE")
+  case $filetype in
+    'gzip compressed data'* )
       packagecompression=gzip
+      if [ "$PKG_EXTENSION" != 'tgz' ]; then
+        log_error "package-has-wrong-compression-type" "$filetype"
+      fi
       ;;
-    'tbz' )
+    'bzip2 compressed data'* )
       packagecompression=bzip2
+      if [ "$PKG_EXTENSION" != 'tbz' ]; then
+        log_error "package-has-wrong-compression-type" "$filetype"
+      fi
       ;;
-    'tlz' )
+    'LZMA compressed data'* )
       packagecompression=lzma
+      if [ "$PKG_EXTENSION" != 'tlz' ]; then
+        log_error "package-has-wrong-compression-type" "$filetype"
+      fi
       ;;
-    'txz' )
+    'XZ compressed data'* )
       packagecompression=xz
+      if [ "$PKG_EXTENSION" != 'txz' ]; then
+        log_error "package-has-wrong-compression-type" "$filetype"
+      fi
+      ;;
+    'POSIX tar archive'* )
+      log_error "package-is-uncompressed-tar"
+      ;;
+    *)
+      log_error "file-is-not-tar" "$filetype"
+      continue
       ;;
   esac
 
