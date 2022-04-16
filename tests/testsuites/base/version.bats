@@ -9,11 +9,11 @@
 @test "-V prints version" {
   run lintpkg -V
 
-  [ $output == "lintpkg version 0.9.0" ]
+  [[ $output == "lintpkg version 0.9.0" ]]
 }
 
 @test "--version prints version" {
   run lintpkg --version
 
-  [ $output == "lintpkg version 0.9.0" ]
+  [[ $output == "lintpkg version 0.9.0" ]]
 }
