@@ -22,27 +22,61 @@
 # Verify that the package content is correct in relation to its architecture.
 
 check() {
-  if [ "$PKG_ARCH" = "x86_64" ]; then
-    if [ -d "$WORKING_DIR/usr/lib" ]; then
-      while read file && ! [ -z "$file" ]; do
-        type=$(file "$file" | grep "ELF 64-bit")
-        if ! [ -z "$type" ]; then
-          log_error "binary-in-wrong-architecture-specific-path" "$file"
-        fi
-      done <<< "$(find "$WORKING_DIR/usr/lib" ! -type d)"
-    fi
-  fi
 
-  if [ "$PKG_ARCH" = "i486" -o "$PKG_ARCH" = "i686" ]; then
-    if [ -d "$WORKING_DIR/usr/lib64" ]; then
-      while read file && ! [ -z "$file" ]; do
-        type=$(file "$file" | grep "ELF 32-bit")
-        if ! [ -z "$type" ]; then
-          log_error "binary-in-wrong-architecture-specific-path" "$file"
-        fi
-      done <<< "$(find "$WORKING_DIR/usr/lib64" ! -type d)"
-    fi
-  fi
+  case "$PKG_ARCH" in
+
+    x86_64 )
+      if [ -d "$WORKING_DIR/usr/lib" ]; then
+        while read file && ! [ -z "$file" ]; do
+          type=$(file "$file" | grep "ELF 64-bit")
+          if ! [ -z "$type" ]; then
+            log_error "binary-in-wrong-architecture-specific-path" "$file"
+          fi
+        done <<< "$(find "$WORKING_DIR/usr/lib" ! -type d)"
+      fi
+      ;;
+
+    i[3456]86 )
+      if [ -d "$WORKING_DIR/usr/lib64" ]; then
+        while read file && ! [ -z "$file" ]; do
+          type=$(file "$file" | grep "ELF 32-bit")
+          if ! [ -z "$type" ]; then
+            log_error "binary-in-wrong-architecture-specific-path" "$file"
+          fi
+        done <<< "$(find "$WORKING_DIR/usr/lib64" ! -type d)"
+      fi
+      ;;
+
+    arm64* )
+      # arm64 doesn't exist yet, this is a placeholder to document that
+      # the entry for arm* below is 32-bit only.
+      : ;;
+
+    arm* )
+      if [ -d "$WORKING_DIR/usr/lib64" ]; then
+        while read file && ! [ -z "$file" ]; do
+          type=$(file "$file" | grep "ELF 32-bit")
+          if ! [ -z "$type" ]; then
+            log_error "binary-in-wrong-architecture-specific-path" "$file"
+          fi
+        done <<< "$(find "$WORKING_DIR/usr/lib64" ! -type d)"
+      fi
+      ;;
+
+    noarch | fw )
+      # todo: check there's nothing arch-specific
+      : ;;
+
+    '' )
+      # null string returned by package_element => can't check
+      : ;;
+
+    * )
+      log_error "package-has-unrecognised-arch" "$PKG_ARCH"
+      ;;
+
+  esac
+
 }
 
 info() {
@@ -50,6 +84,9 @@ info() {
     echo -n "There is a binary in the wrong architecture specific path. /usr/lib "
     echo -n "should not contain 64-bit binaries, /usr/lib64 should not contain "
     echo "32-bit binaries."
+    echo
+  elif [ "$1" = "package-has-unrecognised-arch" ]; then
+    echo "The ARCH field of the package name is not a recognised arch."
     echo
   fi
 }

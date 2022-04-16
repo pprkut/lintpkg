@@ -34,8 +34,8 @@ check() {
   while read i && ! [ -z "$i" ]; do
     while read manpage && ! [ -z "$manpage" ]; do
       log_warning "uncompressed-man-page" "$manpage"
-    done <<< "$(find "$i" -type f ! -name "*.gz")"
-  done <<< "$(find "$WORKING_DIR" -type d -name "man")"
+    done <<< "$(find "$i" -type f ! -name "*.*.gz")"
+  done <<< "$(find "$WORKING_DIR" -type d \( -path "*/man/man?*" -o -path "*/man/*/man?*" \))"
 }
 
 info() {
