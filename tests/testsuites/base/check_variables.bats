@@ -174,11 +174,11 @@ load ../../helpers/makepkg
   run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_listing_check "$PKG"
 
   [ "${lines[0]}" == "./" ]
-  [ "${lines[1]}" == "usr/" ]
-  [ "${lines[2]}" == "usr/bin/" ]
-  [ "${lines[3]}" == "usr/bin/foo" ]
-  [ "${lines[4]}" == "install/" ]
-  [ "${lines[5]}" == "install/slack-desc" ]
+  [ "${lines[1]}" == "install/" ]
+  [ "${lines[2]}" == "install/slack-desc" ]
+  [ "${lines[3]}" == "usr/" ]
+  [ "${lines[4]}" == "usr/bin/" ]
+  [ "${lines[5]}" == "usr/bin/foo" ]
 
   rm -f "$PKG"
   rm -rf "$BASE"
@@ -197,12 +197,12 @@ load ../../helpers/makepkg
 
   run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_detailed_listing_check "$PKG"
 
-  [[ "${lines[0]}" =~ "drwxr-xr-x $USER/$GROUP  0 "[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}":"[0-9]{2}" ./" ]]
-  [[ "${lines[1]}" =~ "drwxr-xr-x $USER/$GROUP  0 "[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}":"[0-9]{2}" usr/" ]]
-  [[ "${lines[2]}" =~ "drwxr-xr-x $USER/$GROUP  0 "[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}":"[0-9]{2}" usr/bin/" ]]
-  [[ "${lines[3]}" =~ "-rwxr-xr-x $USER/$GROUP  0 "[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}":"[0-9]{2}" usr/bin/foo" ]]
-  [[ "${lines[4]}" =~ "drwxr-xr-x $USER/$GROUP  0 "[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}":"[0-9]{2}" install/" ]]
-  [[ "${lines[5]}" =~ "-rw-r--r-- $USER/$GROUP 141 "[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}":"[0-9]{2}" install/slack-desc" ]]
+  [[ "${lines[0]}" =~ "drwxr-xr-x $USER/$GROUP"[[:blank:]]+"0 "[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}":"[0-9]{2}" ./" ]]
+  [[ "${lines[1]}" =~ "drwxr-xr-x $USER/$GROUP"[[:blank:]]+"0 "[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}":"[0-9]{2}" install/" ]]
+  [[ "${lines[2]}" =~ "-rw-r--r-- $USER/$GROUP"[[:blank:]]+"141 "[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}":"[0-9]{2}" install/slack-desc" ]]
+  [[ "${lines[3]}" =~ "drwxr-xr-x $USER/$GROUP"[[:blank:]]+"0 "[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}":"[0-9]{2}" usr/" ]]
+  [[ "${lines[4]}" =~ "drwxr-xr-x $USER/$GROUP"[[:blank:]]+"0 "[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}":"[0-9]{2}" usr/bin/" ]]
+  [[ "${lines[5]}" =~ "-rwxr-xr-x $USER/$GROUP"[[:blank:]]+"0 "[0-9]{4}-[0-9]{2}-[0-9]{2}" "[0-9]{2}":"[0-9]{2}" usr/bin/foo" ]]
 
   rm -f "$PKG"
   rm -rf "$BASE"
