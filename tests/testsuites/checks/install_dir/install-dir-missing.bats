@@ -2,9 +2,9 @@
 
 TESTSUITE="install_dir"
 
-load ../../helpers/locations
-load ../../helpers/makepkg
-load ../../helpers/mock-loggers
+load ../../../helpers/locations
+load ../../../helpers/makepkg
+load ../../../helpers/mock-loggers
 
 setup() {
   . "$LIVE_CHECKS/install_dir_check.sh"

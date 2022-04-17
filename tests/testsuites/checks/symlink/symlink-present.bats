@@ -2,9 +2,9 @@
 
 TESTSUITE="symlink"
 
-load ../../helpers/locations
-load ../../helpers/makepkg
-load ../../helpers/mock-loggers
+load ../../../helpers/locations
+load ../../../helpers/makepkg
+load ../../../helpers/mock-loggers
 
 setup() {
   . "$LIVE_CHECKS/symlink_check.sh"

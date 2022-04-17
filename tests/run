@@ -1,4 +1,4 @@
 #!/usr/bin/bash
 set -e
 
-exec bats ${CI:+--tap} $(dirname ${BASH_SOURCE[0]})/testsuites/*/
+exec bats ${CI:+--tap} -r $(dirname ${BASH_SOURCE[0]})/testsuites/
