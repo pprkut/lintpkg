@@ -1,5 +1,7 @@
 #!/usr/bin/env bats
 
+TESTSUITE="disallowed_dirs"
+
 load ../../helpers/locations
 load ../../helpers/makepkg
 load ../../helpers/mock-loggers
@@ -8,7 +10,7 @@ setup() {
   . "$LIVE_CHECKS/disallowed_dirs_check.sh"
 }
 
-@test "disallowed_dirs_check logs no error when there is no disallowed directory present" {
+@test "[$TESTSUITE] Check logs no error when there is no disallowed directory present" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

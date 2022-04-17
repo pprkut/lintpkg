@@ -1,9 +1,11 @@
 #!/usr/bin/env bats
 
+TESTSUITE="base"
+
 load ../../helpers/locations
 load ../../helpers/makepkg
 
-@test "calling lintpkg with relative path to package" {
+@test "[$TESTSUITE] Calling lintpkg with relative path to package" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

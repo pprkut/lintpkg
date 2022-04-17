@@ -1,5 +1,7 @@
 #!/usr/bin/env bats
 
+TESTSUITE="disallowed_dirs"
+
 load ../../helpers/locations
 load ../../helpers/makepkg
 load ../../helpers/mock-loggers
@@ -8,7 +10,7 @@ setup() {
   . "$LIVE_CHECKS/disallowed_dirs_check.sh"
 }
 
-@test "disallowed_dirs_check logs error when package contains files under /home" {
+@test "[$TESTSUITE] Check logs error when package contains files under /home" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -29,7 +31,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "disallowed_dirs_check logs error when package contains files under /mnt" {
+@test "[$TESTSUITE] Check logs error when package contains files under /mnt" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -50,7 +52,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "disallowed_dirs_check logs error when package contains files under /tmp" {
+@test "[$TESTSUITE] Check logs error when package contains files under /tmp" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -71,7 +73,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "disallowed_dirs_check logs error when package contains files under /usr/local" {
+@test "[$TESTSUITE] Check logs error when package contains files under /usr/local" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -92,7 +94,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "disallowed_dirs_check logs error when package contains files under /usr/tmp" {
+@test "[$TESTSUITE] Check logs error when package contains files under /usr/tmp" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -113,7 +115,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "disallowed_dirs_check logs error when package contains files under /var/local" {
+@test "[$TESTSUITE] Check logs error when package contains files under /var/local" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -134,7 +136,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "disallowed_dirs_check logs error when package contains files under /var/lock" {
+@test "[$TESTSUITE] Check logs error when package contains files under /var/lock" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -155,7 +157,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "disallowed_dirs_check logs error when package contains files under /var/run" {
+@test "[$TESTSUITE] Check logs error when package contains files under /var/run" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -176,7 +178,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "disallowed_dirs_check logs error when package contains files under /var/tmp" {
+@test "[$TESTSUITE] Check logs error when package contains files under /var/tmp" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

@@ -1,5 +1,7 @@
 #!/usr/bin/env bats
 
+TESTSUITE="slack_desc"
+
 load ../../helpers/locations
 load ../../helpers/makepkg
 load ../../helpers/mock-loggers
@@ -8,7 +10,7 @@ setup() {
   . "$LIVE_CHECKS/slack_desc_check.sh"
 }
 
-@test "slack_desc_check logs no error when slack-desc file is valid" {
+@test "[$TESTSUITE] Check logs no error when slack-desc file is valid" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -25,7 +27,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "slack_desc_check logs no error when slack-desc file has maximum allowed lines" {
+@test "[$TESTSUITE] Check logs no error when slack-desc file has maximum allowed lines" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -44,7 +46,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "slack_desc_check logs no error when slack-desc file has minimum allowed lines" {
+@test "[$TESTSUITE] Check logs no error when slack-desc file has minimum allowed lines" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -63,7 +65,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "slack_desc_check logs no error when slack-desc file has handy-ruler" {
+@test "[$TESTSUITE] Check logs no error when slack-desc file has handy-ruler" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -82,7 +84,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "slack_desc_check logs no error when slack-desc file has handy-ruler and comments" {
+@test "[$TESTSUITE] Check logs no error when slack-desc file has handy-ruler and comments" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

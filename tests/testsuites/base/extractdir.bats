@@ -1,27 +1,29 @@
 #!/usr/bin/env bats
 
+TESTSUITE="base"
+
 load ../../helpers/locations
 load ../../helpers/makepkg
 
-@test "setting extraction directory to non-existant path exits with 0" {
+@test "[$TESTSUITE] Setting extraction directory to non-existant path exits with 0" {
   run lintpkg -E "$TEST_CHECKS/non_existant"
 
   [ $status -eq 0 ]
 }
 
-@test "-E with non-existant directory prints error" {
+@test "[$TESTSUITE] -E with non-existant directory prints error" {
   run lintpkg -E "$TEST_CHECKS/non_existant"
 
   [ "${lines[0]}" == "Directory does not exist: $TEST_CHECKS/non_existant" ]
 }
 
-@test "--extractdir with non-existant directory prints error" {
+@test "[$TESTSUITE] --extractdir with non-existant directory prints error" {
   run lintpkg --extractdir "$TEST_CHECKS/non_existant"
 
   [ "${lines[0]}" == "Directory does not exist: $TEST_CHECKS/non_existant" ]
 }
 
-@test "setting extraction directory to non-writeable path exits with 1" {
+@test "[$TESTSUITE] Setting extraction directory to non-writeable path exits with 1" {
   mkdir -p /tmp/lintpkg_test_not_writeable
   chmod -w /tmp/lintpkg_test_not_writeable
 
@@ -32,7 +34,7 @@ load ../../helpers/makepkg
   rmdir /tmp/lintpkg_test_not_writeable
 }
 
-@test "-E with non-writeable directory prints error" {
+@test "[$TESTSUITE] -E with non-writeable directory prints error" {
   mkdir -p /tmp/lintpkg_test_not_writeable
   chmod -w /tmp/lintpkg_test_not_writeable
 
@@ -43,7 +45,7 @@ load ../../helpers/makepkg
   rmdir /tmp/lintpkg_test_not_writeable
 }
 
-@test "--extractdir with non-writeable directory prints error" {
+@test "[$TESTSUITE] --extractdir with non-writeable directory prints error" {
   mkdir -p /tmp/lintpkg_test_not_writeable
   chmod -w /tmp/lintpkg_test_not_writeable
 
@@ -54,7 +56,7 @@ load ../../helpers/makepkg
   rmdir /tmp/lintpkg_test_not_writeable
 }
 
-@test "lintpkg extracts package inside extraction directory" {
+@test "[$TESTSUITE] Lintpkg extracts package inside extraction directory" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

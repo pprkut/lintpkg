@@ -1,9 +1,11 @@
 #!/usr/bin/env bats
 
+TESTSUITE="base"
+
 load ../../helpers/locations
 load ../../helpers/makepkg
 
-@test "logging warning without info" {
+@test "[$TESTSUITE] Logging warning without info" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -20,7 +22,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "logging warning with info" {
+@test "[$TESTSUITE] Logging warning with info" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -38,7 +40,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "logging warning for path with whitespaces without info" {
+@test "[$TESTSUITE] Logging warning for path with whitespaces without info" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -55,7 +57,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "logging warning for path with whitespaces with info" {
+@test "[$TESTSUITE] Logging warning for path with whitespaces with info" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -73,7 +75,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "logging warning ignored with -x does not print message" {
+@test "[$TESTSUITE] Logging warning ignored with -x does not print message" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -89,7 +91,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "logging warning ignored with --exclude does not print message" {
+@test "[$TESTSUITE] Logging warning ignored with --exclude does not print message" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -105,7 +107,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "logging warning ignored with -x does not print info message" {
+@test "[$TESTSUITE] Logging warning ignored with -x does not print info message" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -121,7 +123,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "logging warning ignored with --exclude does not print info message" {
+@test "[$TESTSUITE] Logging warning ignored with --exclude does not print info message" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -137,7 +139,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "logging warning removes working directory prefix from path" {
+@test "[$TESTSUITE] Logging warning removes working directory prefix from path" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

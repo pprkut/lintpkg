@@ -1,9 +1,11 @@
 #!/usr/bin/env bats
 
+TESTSUITE="base"
+
 load ../../helpers/locations
 load ../../helpers/makepkg
 
-@test "logging notice without info" {
+@test "[$TESTSUITE] Logging notice without info" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -20,7 +22,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "logging notice with info" {
+@test "[$TESTSUITE] Logging notice with info" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -38,7 +40,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "logging notice for path with whitespaces without info" {
+@test "[$TESTSUITE] Logging notice for path with whitespaces without info" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -55,7 +57,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "logging notice for path with whitespaces with info" {
+@test "[$TESTSUITE] Logging notice for path with whitespaces with info" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -73,7 +75,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "logging notice ignored with -x does not print message" {
+@test "[$TESTSUITE] Logging notice ignored with -x does not print message" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -89,7 +91,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "logging notice ignored with --exclude does not print message" {
+@test "[$TESTSUITE] Logging notice ignored with --exclude does not print message" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -105,7 +107,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "logging notice ignored with -x does not print info message" {
+@test "[$TESTSUITE] Logging notice ignored with -x does not print info message" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -121,7 +123,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "logging notice ignored with --exclude does not print info message" {
+@test "[$TESTSUITE] Logging notice ignored with --exclude does not print info message" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -137,7 +139,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "logging notice removes working directory prefix from path" {
+@test "[$TESTSUITE] Logging notice removes working directory prefix from path" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -153,4 +155,3 @@ load ../../helpers/makepkg
   rm -f "$PKG"
   rm -rf "$BASE"
 }
-

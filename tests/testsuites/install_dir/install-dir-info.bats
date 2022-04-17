@@ -1,5 +1,7 @@
 #!/usr/bin/env bats
 
+TESTSUITE="install_dir"
+
 load ../../helpers/locations
 load ../../helpers/makepkg
 load ../../helpers/mock-loggers
@@ -8,7 +10,7 @@ setup() {
   . "$LIVE_CHECKS/install_dir_check.sh"
 }
 
-@test "show explanation for no-install-dir error" {
+@test "[$TESTSUITE] Show explanation for no-install-dir error" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

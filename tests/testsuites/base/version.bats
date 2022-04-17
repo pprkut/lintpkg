@@ -1,18 +1,20 @@
 #!/usr/bin/env bats
 
-@test "printing version returns success" {
+TESTSUITE="base"
+
+@test "[$TESTSUITE] Printing version returns success" {
   run lintpkg -V
 
   [ $status -eq 0 ]
 }
 
-@test "-V prints version" {
+@test "[$TESTSUITE] -V prints version" {
   run lintpkg -V
 
   [[ $output == "lintpkg version 0.9.0" ]]
 }
 
-@test "--version prints version" {
+@test "[$TESTSUITE] --version prints version" {
   run lintpkg --version
 
   [[ $output == "lintpkg version 0.9.0" ]]

@@ -1,9 +1,11 @@
 #!/usr/bin/env bats
 
+TESTSUITE="base"
+
 load ../../helpers/locations
 load ../../helpers/makepkg
 
-@test "counting errors/warnings properly for single package" {
+@test "[$TESTSUITE] Counting errors/warnings properly for single package" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -19,7 +21,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "counting errors/warnings properly for multiple packages" {
+@test "[$TESTSUITE] Counting errors/warnings properly for multiple packages" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

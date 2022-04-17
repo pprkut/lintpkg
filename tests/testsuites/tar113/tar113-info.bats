@@ -1,5 +1,7 @@
 #!/usr/bin/env bats
 
+TESTSUITE="tar113"
+
 load ../../helpers/locations
 load ../../helpers/makepkg
 load ../../helpers/mock-loggers
@@ -8,7 +10,7 @@ setup() {
   . "$LIVE_CHECKS/tar113_check.sh"
 }
 
-@test "show explanation for package-not-tar-113 error" {
+@test "[$TESTSUITE] Show explanation for package-not-tar-113 error" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
