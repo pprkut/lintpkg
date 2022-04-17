@@ -2,7 +2,7 @@
 
 load ../../helpers/locations
 load ../../helpers/makepkg
-load ../../helpers/mock_loggers
+load ../../helpers/mock-loggers
 
 setup() {
   . "$LIVE_CHECKS/disallowed_dirs_check.sh"

@@ -2,13 +2,13 @@
 
 load ../../helpers/locations
 load ../../helpers/makepkg
-load ../../helpers/mock_loggers
+load ../../helpers/mock-loggers
 
 setup() {
   . "$LIVE_CHECKS/tar113_check.sh"
 }
 
-@test "tar113_check logs error when package was not created with tar-1.13" {
+@test "tar113_check logs no error when package was created with tar-1.13" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -16,12 +16,11 @@ setup() {
   create_empty_package $BASE
 
   WORKING_DIR=$BASE
-  PKG_LISTING=$(create_tar_listing $BASE new)
+  PKG_LISTING=$(create_tar_listing $BASE)
 
   run check
 
-  [ "${lines[0]}" == "error package-not-tar-113" ]
-  [ -z "${lines[1]}" ]
+  [ -z "${lines[0]}" ]
 
   rm -rf "$BASE"
 }

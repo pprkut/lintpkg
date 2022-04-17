@@ -2,13 +2,13 @@
 
 load ../../helpers/locations
 load ../../helpers/makepkg
-load ../../helpers/mock_loggers
+load ../../helpers/mock-loggers
 
 setup() {
-  . "$LIVE_CHECKS/disallowed_dirs_check.sh"
+  . "$LIVE_CHECKS/install_dir_check.sh"
 }
 
-@test "disallowed_dirs_check logs no error when there is no disallowed directory present" {
+@test "install_dir_check logs no error when install dir is present" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -23,3 +23,4 @@ setup() {
 
   rm -rf "$BASE"
 }
+
