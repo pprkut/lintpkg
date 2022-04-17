@@ -5,7 +5,7 @@ load ../../helpers/makepkg
 load ../../helpers/mock_loggers
 
 setup() {
-  . "$LIVE_CHECKS/install-dir_check.sh"
+  . "$LIVE_CHECKS/install_dir_check.sh"
 }
 
 @test "show explanation for no-install-dir error" {

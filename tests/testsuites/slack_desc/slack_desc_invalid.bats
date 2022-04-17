@@ -5,10 +5,10 @@ load ../../helpers/makepkg
 load ../../helpers/mock_loggers
 
 setup() {
-  . "$LIVE_CHECKS/slack-desc_check.sh"
+  . "$LIVE_CHECKS/slack_desc_check.sh"
 }
 
-@test "slack-desc_check logs error when slack-desc file is missing" {
+@test "slack_desc_check logs error when slack-desc file is missing" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -28,7 +28,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "slack-desc_check logs error when slack-desc has wrong package name" {
+@test "slack_desc_check logs error when slack-desc has wrong package name" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -46,7 +46,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "slack-desc_check logs error when slack-desc does not have enough lines" {
+@test "slack_desc_check logs error when slack-desc does not have enough lines" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -66,7 +66,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "slack-desc_check logs error when slack-desc has too many lines" {
+@test "slack_desc_check logs error when slack-desc has too many lines" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -86,7 +86,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "slack-desc_check logs error when slack-desc has description lines that are too long" {
+@test "slack_desc_check logs error when slack-desc has description lines that are too long" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -106,7 +106,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "slack-desc_check logs warning when slack-desc has a misaligned handy-ruler" {
+@test "slack_desc_check logs warning when slack-desc has a misaligned handy-ruler" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -126,7 +126,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "slack-desc_check logs warning when handy-ruler in slack-desc is too short" {
+@test "slack_desc_check logs warning when handy-ruler in slack-desc is too short" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -146,7 +146,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "slack-desc_check logs warning when handy-ruler in slack-desc is too long" {
+@test "slack_desc_check logs warning when handy-ruler in slack-desc is too long" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -166,7 +166,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "slack-desc_check logs error when slack-desc contains unrecognized text" {
+@test "slack_desc_check logs error when slack-desc contains unrecognized text" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

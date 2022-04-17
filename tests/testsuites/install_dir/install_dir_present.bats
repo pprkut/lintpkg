@@ -5,10 +5,10 @@ load ../../helpers/makepkg
 load ../../helpers/mock_loggers
 
 setup() {
-  . "$LIVE_CHECKS/install-dir_check.sh"
+  . "$LIVE_CHECKS/install_dir_check.sh"
 }
 
-@test "install-dir_check logs no error when install dir is present" {
+@test "install_dir_check logs no error when install dir is present" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

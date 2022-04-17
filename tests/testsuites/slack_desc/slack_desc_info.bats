@@ -5,7 +5,7 @@ load ../../helpers/makepkg
 load ../../helpers/mock_loggers
 
 setup() {
-  . "$LIVE_CHECKS/slack-desc_check.sh"
+  . "$LIVE_CHECKS/slack_desc_check.sh"
 }
 
 @test "show explanation for slack-desc-not-found error" {
