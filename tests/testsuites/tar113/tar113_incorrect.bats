@@ -8,7 +8,7 @@ setup() {
   . "$LIVE_CHECKS/tar113_check.sh"
 }
 
-@test "tar113_check logs no error when package was created with tar-1.13" {
+@test "tar113_check logs error when package was not created with tar-1.13" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
