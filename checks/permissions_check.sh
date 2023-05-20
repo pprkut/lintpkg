@@ -39,7 +39,7 @@ check() {
   if [ -d "$WORKING_DIR/etc" ]; then
     permission=$(stat -c "%a" "$WORKING_DIR/etc")
     if ! [ "$permission" = "755" ]; then
-      log_warning "strange-permission" "$file" "$permission"
+      log_warning "strange-permission" "$WORKING_DIR/etc" "$permission"
     fi
   fi
 }
