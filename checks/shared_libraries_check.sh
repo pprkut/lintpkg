@@ -33,7 +33,7 @@ check() {
 
 info() {
   if [ "$1" = "invalid-libtool-archive" ]; then
-    echo "An invalid libtool archive (.la) file will likely result in linking"
+    echo -n "An invalid libtool archive (.la) file will likely result in linking "
     echo "errors for applications that try to use it."
     echo
   fi
