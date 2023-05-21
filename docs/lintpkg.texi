@@ -1,0 +1,250 @@
+\input texinfo   @c -*-texinfo-*-
+@c %**start of header
+@setfilename lintpkg.info
+@settitle lintpkg
+@c %**end of header
+
+@setchapternewpage odd
+
+@defcodeindex op
+
+@ifinfo
+lintpkg info page
+
+Copyright @copyright{} 2023 Heinz Wiesinger, Amsterdam, The Netherlands
+@end ifinfo
+
+@titlepage
+@sp 10
+@center @titlefont{lintpkg}
+
+@c The following two commands start the copyright page.
+@page
+@vskip 0pt plus 1filll
+Copyright @copyright{} 2023 Heinz Wiesinger, Amsterdam, The Netherlands
+@end titlepage
+
+@node    Top,       About,         (dir),    (dir)
+@comment node-name, next,          previous, up
+
+@menu
+* About::          Introduction to lintpkg
+* Invocation::     Commandline arguments
+* Exit status::    Exit status
+* Checks::         Available checks
+* Writing checks:: Writing checks
+* Index::          Index
+@end menu
+
+@node    About,         Invocation,    Top,      Top
+@comment node-name,     next,          previous, up
+@chapter About
+@cindex Introduction to lintpkg
+
+@command{lintpkg} is a tool for checking common errors in slackware packages. It can be
+used for example to test downloaded packages for common packaging mistakes, or
+to check a package you created yourself for things you might have missed. By
+default all available checks are performed, but specific checks can be performed
+using command line parameters.
+
+@command{lintpkg} is heavily based on @url{http://sourceforge.net/projects/rpmlint/, rpmlint}
+and tries to keep compatibility to it where possible in order to make integration
+into CI systems that already support rpmlint simple. It does however also try
+to keep close to the other pkgtools of slackware.
+
+@node    Invocation,    Exit status,   About,    Top
+@comment node-name,     next,          previous, up
+@chapter Invocation
+@cindex Commandline arguments
+
+The full format for invoking @command{lintpkg} is:
+
+@example
+lintpkg OPTIONS... [PACKAGE_FILENAME...]
+@end example
+
+@command{lintpkg} may be invoked with the following command-line options:
+
+@table @option
+@item -V
+@itemx --version
+@opindex @option{-V}
+@opindex @option{--version}
+@cindex Version, printing
+Print out the version of @command{lintpkg} that is being run,
+then exit.
+
+@item -h
+@itemx --help
+@opindex @option{-h}
+@opindex @option{--help}
+@cindex Usage summary, printing
+Print a usage message briefly summarizing these command-line options
+and the bug-reporting address,
+then exit.
+
+@item -c @var{check_name}
+@itemx --check @var{check_name}
+@opindex @option{-c}
+@opindex @option{--check}
+@cindex Check, choosing
+Run only the specified check. This option may be
+given multiple times to specify multiple checks
+to run.
+
+@item -C @var{check_dir}
+@itemx --checkdir @var{check_dir}
+@opindex @option{-C}
+@opindex @option{--checkdir}
+@cindex Check directory, setting
+Specify path to load checks from. By default, @command{lintpkg} will look for
+checks in one of two locations:
+@itemize @bullet
+@item /usr/share/lintpkg as global location
+@item a 'checks' directory within the same directory as the @command{lintpkg} script
+@end itemize
+
+@item -E @var{extract_dir}
+@itemx --extractdir @var{extract_dir}
+@opindex @option{-E}
+@opindex @option{--extractdir}
+@cindex Extraction directory, setting
+Base directory for extracted temporary files.
+
+@item -i
+@itemx --info
+@opindex @option{-i}
+@opindex @option{--info}
+@cindex Show info, printing
+Display explanations for reported messages.
+
+@item -I @var{messageid}
+@itemx --explain @var{messageid}
+@opindex @option{-I}
+@opindex @option{--explain}
+@cindex Show explanations, printing
+Display explanations for the specified
+message identifiers and exit. Multiple
+identifiers can be specified by separating
+them with commas.
+
+@item -x @var{messageid}
+@itemx --exclude @var{messageid}
+@opindex @option{-x}
+@opindex @option{--exclude}
+@cindex Exclude check, setting
+Don't show/count errors for the specified
+message identifiers. Multiple identifiers
+can be specified by separating them with
+commas.
+
+@end table
+
+@node    Exit status,   Checks,         Invocation, Top
+@comment node-name,     next,           previous,   up
+@chapter Exit status
+@cindex Exit status
+
+An exit status of zero indicates success, and a nonzero value
+indicates failure. @command{lintpkg} returns the following exit status
+error values:
+
+@table @asis
+@item 0
+Successful completion.
+
+@item 1
+Unspecified error.
+
+@item 64
+One or more error/warning messages are printed.
+@end table
+
+@node    Checks,        Writing checks, Exit status, Top
+@comment node-name,     next,           previous,    up
+@chapter Checks
+@cindex Available checks
+
+Currently @command{lintpkg} ships with a small set of checks:
+
+@itemize @bullet
+@item Binaries in wrong architecture paths (architecture_check)
+@item Directories that should not be used for packages (disallowed_dirs_check)
+@item Icon theme cache update in doinst.sh (icon_check)
+@item Correct path for and compression of info pages (info_check)
+@item Correct path for and compression of man pages (man_check)
+@item Correct folder permissions under /usr and /etc (permissions_check)
+@item Correct formatting of the slack-desc file (slack_desc_check)
+@item Existence of an /install directory within the package (install_dir_check)
+@item Correct ownership of system directories (ownership_check)
+@item Leftover symlinks in the package, not handled by doinst.sh (symlink_check)
+@item Package created with tar-1.13 (tar113_check)
+@item Unstripped binaries (unstripped_binaries_check)
+@item Binaries under /usr/share (usr_share_check)
+@item Valid libtool archives (shared_libraries_check)
+@end itemize
+
+@node    Writing checks, Index,         Checks,   Top
+@comment node-name,      next,          previous, up
+@chapter Writing checks
+@cindex Writing checks
+
+Writing checks is intentionally kept rather simple. A check needs to provide
+two functions:
+
+@table @asis
+@item check()
+The check() function performs the actual tests that should be performed on
+the package. All necessary information is available in global variables:
+
+@table @asis
+@item $WORKING_DIR
+This is the location of the uncompressed package content
+@item $PKG_FULLNAME
+This is the full name of the package, sans the file extension
+@item $PKG_NAME
+This is the name of the package
+@item $PKG_VERSION
+This is the version of the package
+@item $PKG_ARCH
+This is the architecture the package was built for
+@item $PKG_BUILD
+This is the build number of the package
+@item $PKG_EXTENSION
+This is the compression format used by the package
+@item $PKG_LISTING
+This contains a list of all files and folders contained in the
+package
+@item $PKG_DETAILED_LISTING
+This contains a list of all files and folders contained
+in the package, including ownership and permission
+information
+@end table
+
+Additionally there are several functions one can use for reporting issues. All of
+these take variable arguments, where the first is the messageid of the issue, and
+any further argument is additional optional information. Most commonly the first
+additional argument (so the second argument over all) would be the name of the
+offending file.
+
+@itemize @bullet
+@item log_error() logs an issue as an error.
+@item log_warning() logs an issue as a warning.
+@item log_notice() logs an issue as a notice.
+@end itemize
+
+@item info()
+The info() function is used for providing detailed information on the issues that
+the check() function can raise. It's only argument is the messageid of an issue.
+
+@end table
+
+
+@node    Index,            ,  Writing checks, Top
+@comment node-name,    next,  previous,       up
+@unnumbered Index
+
+@printindex cp
+
+@contents
+@bye

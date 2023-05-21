@@ -1,0 +1,95 @@
+.\" Manpage for lintpkg.
+.TH man 1 "23 May 2023" "0.9.0" "lintpkg man page"
+
+.SH NAME
+lintpkg \- Slackware package linter
+
+.SH SYNOPSIS
+lintpkg OPTIONS... [PACKAGE_FILENAME...]
+
+.SH DESCRIPTION
+.B lintpkg
+is a tool for checking common errors in slackware packages. It can be
+used for example to test downloaded packages for common packaging mistakes, or
+to check a package you created yourself for things you might have missed. By
+default all available checks are performed, but specific checks can be performed
+using command line parameters.
+
+.B lintpkg
+is heavily based on
+.B rpmlint
+(http://sourceforge.net/projects/rpmlint/)
+and tries to keep compatibility to it where possible in order to make integration
+into CI systems that already support rpmlint simple. It does however also try
+to keep close to the other pkgtools of slackware.
+
+.SH OPTIONS
+.HP
+\fB\-c\fR check_name, \fB\-\-check\fR=check_name
+.IP
+Run only the specified check. This option may be
+given multiple times to specify multiple checks
+to run.
+
+.HP
+\fB\-C\fR check_dir, \fB\-\-checkdir\fR=check_dir
+.IP
+Specify path to load checks from.
+
+.HP
+\fB\-E\fR extract_dir, \fB\-\-extractdir\fR=extract_dir
+.IP
+Base directory for extracted temporary files.
+
+.HP
+\fB\-i\fR, \fB\-\-info\fR
+.IP
+Display explanations for reported messages.
+
+.HP
+\fB\-I\fR messageid, \fB\-\-explain\fR=messageid
+.IP
+Display explanations for the specified
+message identifiers and exit. Multiple
+identifiers can be specified by separating
+them with commas.
+
+.HP
+\fB\-x\fR messageid, \fB\-\-exclude\fR=messageid
+.IP
+Don't show/count errors for the specified
+message identifiers. Multiple identifiers
+can be specified by separating them with
+commas.
+
+.HP
+\fB\-h\fR, \fB\-\-help\fR
+.IP
+Print a usage message briefly summarizing these command-line options
+and the bug-reporting address,
+then exit.
+
+.HP
+\fB\-V\fR, \fB\-\-version\fR
+.IP
+Print out the version of
+.B lintpkg
+that is being run, then exit.
+.PP
+
+.SH "SEE ALSO"
+The full documentation for
+.B lintpkg
+is maintained as a Texinfo manual.  If the
+.B info
+and
+.B lintpkg
+programs are properly installed at your site, the command
+.IP
+.B info lintpkg
+.PP
+should give you access to the complete manual.
+.SH BUGS
+https://github.com/pprkut/lintpkg/issues
+.SH AUTHOR
+Heinz Wiesinger (pprkut@slackware.com)
