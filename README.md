@@ -8,7 +8,7 @@ to check a package you created yourself for things you might have missed. By
 default all available checks are performed, but specific checks can be performed
 using command line parameters.
 
-lintpkg is heavily based on [rpmlint](http://sourceforge.net/projects/rpmlint/)
+lintpkg is heavily based on [rpmlint](https://github.com/rpm-software-management/rpmlint)
 and tries to keep compatibility to it where possible in order to make integration
 into CI systems that already support rpmlint simple. It does however also try
 to keep close to the other pkgtools of slackware.
