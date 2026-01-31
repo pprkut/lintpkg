@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="permissions"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/permissions_check.sh"
 }
 
-@test "[$TESTSUITE] Check logs no warning when correct permissions for /etc" {
+@test "Check logs no warning when correct permissions for /etc" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -29,7 +30,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no warning when correct permissions for /usr" {
+@test "Check logs no warning when correct permissions for /usr" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -47,7 +48,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no warning when correct permissions for directory under /usr" {
+@test "Check logs no warning when correct permissions for directory under /usr" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

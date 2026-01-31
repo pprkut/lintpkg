@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="icon"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/icon_check.sh"
 }
 
-@test "[$TESTSUITE] Check logs error when doinst.sh is missing" {
+@test "Check logs error when doinst.sh is missing" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -29,7 +30,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when doinst.sh has unconditional update for hicolor icon cache" {
+@test "Check logs error when doinst.sh has unconditional update for hicolor icon cache" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

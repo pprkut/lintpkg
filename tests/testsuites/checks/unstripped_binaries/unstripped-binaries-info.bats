@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="unstripped_binaries"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/unstripped_binaries_check.sh"
 }
 
-@test "[$TESTSUITE] Show explanation for unstripped-binary" {
+@test "Show explanation for unstripped-binary" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

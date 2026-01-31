@@ -1,11 +1,12 @@
 #!/usr/bin/env bats
 
-TESTSUITE="base"
-
 load ../../helpers/locations
+load ../../helpers/main
 load ../../helpers/makepkg
 
-@test "[$TESTSUITE] Logging error without info" {
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
+
+@test "Logging error without info" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -22,7 +23,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Logging error with info" {
+@test "Logging error with info" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -40,7 +41,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Logging error for path with whitespaces without info" {
+@test "Logging error for path with whitespaces without info" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -57,7 +58,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Logging error for path with whitespaces with info" {
+@test "Logging error for path with whitespaces with info" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -75,7 +76,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Logging error ignored with -x does not print message" {
+@test "Logging error ignored with -x does not print message" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -91,7 +92,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Logging error ignored with --exclude does not print message" {
+@test "Logging error ignored with --exclude does not print message" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -107,7 +108,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Logging error ignored with -x does not print info message" {
+@test "Logging error ignored with -x does not print info message" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -123,7 +124,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Logging error ignored with --exclude does not print info message" {
+@test "Logging error ignored with --exclude does not print info message" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -139,7 +140,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Logging error removes working directory prefix from path" {
+@test "Logging error removes working directory prefix from path" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

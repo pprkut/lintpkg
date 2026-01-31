@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="icon"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/icon_check.sh"
 }
 
-@test "[$TESTSUITE] Show explanation for missing-icon-cache-update error" {
+@test "Show explanation for missing-icon-cache-update error" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

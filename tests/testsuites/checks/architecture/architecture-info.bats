@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="architecture"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/architecture_check.sh"
 }
 
-@test "[$TESTSUITE] Show explanation for binary-in-wrong-architecture-specific-path" {
+@test "Show explanation for binary-in-wrong-architecture-specific-path" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="man"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/man_check.sh"
 }
 
-@test "[$TESTSUITE] Show explanation for incorrect-man-dir error" {
+@test "Show explanation for incorrect-man-dir error" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -26,7 +27,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Show explanation for uncompressed-man-page warning" {
+@test "Show explanation for uncompressed-man-page warning" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

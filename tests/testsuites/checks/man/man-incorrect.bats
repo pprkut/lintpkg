@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="man"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/man_check.sh"
 }
 
-@test "[$TESTSUITE] Check logs error when man page in /usr/share/man" {
+@test "Check logs error when man page in /usr/share/man" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -31,7 +32,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when man page in /usr/local/man" {
+@test "Check logs error when man page in /usr/local/man" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -52,7 +53,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when man page in /usr/local/share/man" {
+@test "Check logs error when man page in /usr/local/share/man" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -73,7 +74,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when uncompressed man page in /usr/man" {
+@test "Check logs warning when uncompressed man page in /usr/man" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -93,7 +94,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when uncompressed man page in /usr/share/man" {
+@test "Check logs warning when uncompressed man page in /usr/share/man" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -114,7 +115,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when uncompressed man page in /usr/local/man" {
+@test "Check logs warning when uncompressed man page in /usr/local/man" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -135,7 +136,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when uncompressed man page in /usr/local/share/man" {
+@test "Check logs warning when uncompressed man page in /usr/local/share/man" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

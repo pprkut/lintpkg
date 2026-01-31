@@ -1,26 +1,28 @@
 #!/usr/bin/env bats
 
-TESTSUITE="base"
+load ../../helpers/main
 
-@test "[$TESTSUITE] Printing usage returns success" {
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
+
+@test "Printing usage returns success" {
   run lintpkg -h
 
   [ $status -eq 0 ]
 }
 
-@test "[$TESTSUITE] -h prints usage" {
+@test "-h prints usage" {
   run lintpkg -h
 
   [ "${lines[0]}" == "Usage: lintpkg [options] <package_filename>" ]
 }
 
-@test "[$TESTSUITE] --help prints usage" {
+@test "--help prints usage" {
   run lintpkg --help
 
   [ "${lines[0]}" == "Usage: lintpkg [options] <package_filename>" ]
 }
 
-@test "[$TESTSUITE] Calling lintpkg with no argument prints usage" {
+@test "Calling lintpkg with no argument prints usage" {
   run lintpkg
 
   [ "${lines[0]}" == "Usage: lintpkg [options] <package_filename>" ]

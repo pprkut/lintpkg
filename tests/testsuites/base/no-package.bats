@@ -1,11 +1,12 @@
 #!/usr/bin/env bats
 
-TESTSUITE="base"
-
 load ../../helpers/locations
+load ../../helpers/main
 load ../../helpers/makepkg
 
-@test "[$TESTSUITE] Calling lintpkg with non-existing package prints error" {
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
+
+@test "Calling lintpkg with non-existing package prints error" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -22,7 +23,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Calling lintpkg with one non-existing package skips package" {
+@test "Calling lintpkg with one non-existing package skips package" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

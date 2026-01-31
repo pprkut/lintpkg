@@ -1,11 +1,12 @@
 #!/usr/bin/env bats
 
-TESTSUITE="base"
-
 load ../../helpers/locations
+load ../../helpers/main
 load ../../helpers/makepkg
 
-@test "[$TESTSUITE] Logging warning without info" {
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
+
+@test "Logging warning without info" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -22,7 +23,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Logging warning with info" {
+@test "Logging warning with info" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -40,7 +41,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Logging warning for path with whitespaces without info" {
+@test "Logging warning for path with whitespaces without info" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -57,7 +58,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Logging warning for path with whitespaces with info" {
+@test "Logging warning for path with whitespaces with info" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -75,7 +76,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Logging warning ignored with -x does not print message" {
+@test "Logging warning ignored with -x does not print message" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -91,7 +92,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Logging warning ignored with --exclude does not print message" {
+@test "Logging warning ignored with --exclude does not print message" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -107,7 +108,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Logging warning ignored with -x does not print info message" {
+@test "Logging warning ignored with -x does not print info message" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -123,7 +124,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Logging warning ignored with --exclude does not print info message" {
+@test "Logging warning ignored with --exclude does not print info message" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -139,7 +140,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Logging warning removes working directory prefix from path" {
+@test "Logging warning removes working directory prefix from path" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

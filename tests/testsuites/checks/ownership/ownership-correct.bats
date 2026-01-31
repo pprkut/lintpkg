@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="ownership"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/ownership_check.sh"
 }
 
-@test "[$TESTSUITE] Check logs no error when correct owner and group for /bin" {
+@test "Check logs no error when correct owner and group for /bin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -30,7 +31,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no error when correct owner and group for file in /bin" {
+@test "Check logs no error when correct owner and group for file in /bin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -50,7 +51,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no error when correct owner and group for /lib" {
+@test "Check logs no error when correct owner and group for /lib" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -70,7 +71,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no error when correct owner and group for file in /lib" {
+@test "Check logs no error when correct owner and group for file in /lib" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -90,7 +91,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no error when correct owner and group for /lib64" {
+@test "Check logs no error when correct owner and group for /lib64" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -110,7 +111,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no error when correct owner and group for file in /lib64" {
+@test "Check logs no error when correct owner and group for file in /lib64" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -130,7 +131,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no error when correct owner and group for /sbin" {
+@test "Check logs no error when correct owner and group for /sbin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -150,7 +151,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no error when correct owner and group for file in /sbin" {
+@test "Check logs no error when correct owner and group for file in /sbin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -170,7 +171,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no error when correct owner and group for /usr" {
+@test "Check logs no error when correct owner and group for /usr" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -188,7 +189,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no error when correct owner and group for file in /usr" {
+@test "Check logs no error when correct owner and group for file in /usr" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -205,7 +206,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no error when correct owner and group for /" {
+@test "Check logs no error when correct owner and group for /" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -223,7 +224,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no error when owner is whitelisted (daemon) for file in /usr/bin" {
+@test "Check logs no error when owner is whitelisted (daemon) for file in /usr/bin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -240,7 +241,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no error when owner is whitelisted (uucp) for file in /usr/bin" {
+@test "Check logs no error when owner is whitelisted (uucp) for file in /usr/bin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -257,7 +258,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no error when owner is whitelisted (daemon) for file in /usr/sbin" {
+@test "Check logs no error when owner is whitelisted (daemon) for file in /usr/sbin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -275,7 +276,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no error when owner is whitelisted (uucp) for file in /usr/sbin" {
+@test "Check logs no error when owner is whitelisted (uucp) for file in /usr/sbin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

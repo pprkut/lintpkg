@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="shared_libraries"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/shared_libraries_check.sh"
 }
 
-@test "[$TESTSUITE] Show explanation for invalid-libtool-archive error" {
+@test "Show explanation for invalid-libtool-archive error" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

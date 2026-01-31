@@ -1,11 +1,12 @@
 #!/usr/bin/env bats
 
-TESTSUITE="base"
-
 load ../../helpers/locations
+load ../../helpers/main
 load ../../helpers/makepkg
 
-@test "[$TESTSUITE] Counting errors/warnings properly for single package" {
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
+
+@test "Counting errors/warnings properly for single package" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -21,7 +22,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Counting errors/warnings properly for multiple packages" {
+@test "Counting errors/warnings properly for multiple packages" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

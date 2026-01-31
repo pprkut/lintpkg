@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="symlink"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/symlink_check.sh"
 }
 
-@test "[$TESTSUITE] Check logs warning when a single symlink is present" {
+@test "Check logs warning when a single symlink is present" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -29,7 +30,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when multiple symlinks are present" {
+@test "Check logs warning when multiple symlinks are present" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -50,7 +51,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when a single symlink with spaces in its name is present" {
+@test "Check logs warning when a single symlink with spaces in its name is present" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -69,7 +70,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when multiple symlinks with spaces in their name are present" {
+@test "Check logs warning when multiple symlinks with spaces in their name are present" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

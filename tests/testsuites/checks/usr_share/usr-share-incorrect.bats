@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="usr_share"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/usr_share_check.sh"
 }
 
-@test "[$TESTSUITE] Check logs error when binary in /usr/share" {
+@test "Check logs error when binary in /usr/share" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -30,7 +31,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when shared library in /usr/share" {
+@test "Check logs error when shared library in /usr/share" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -50,7 +51,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when static library in /usr/share" {
+@test "Check logs error when static library in /usr/share" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

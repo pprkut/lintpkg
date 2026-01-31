@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="disallowed_dirs"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/disallowed_dirs_check.sh"
 }
 
-@test "[$TESTSUITE] Check logs error when package contains files under /home" {
+@test "Check logs error when package contains files under /home" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -31,7 +32,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when package contains files under /mnt" {
+@test "Check logs error when package contains files under /mnt" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -52,7 +53,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when package contains files under /tmp" {
+@test "Check logs error when package contains files under /tmp" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -73,7 +74,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when package contains files under /usr/local" {
+@test "Check logs error when package contains files under /usr/local" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -94,7 +95,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when package contains files under /usr/tmp" {
+@test "Check logs error when package contains files under /usr/tmp" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -115,7 +116,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when package contains files under /var/local" {
+@test "Check logs error when package contains files under /var/local" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -136,7 +137,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when package contains files under /var/lock" {
+@test "Check logs error when package contains files under /var/lock" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -157,7 +158,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when package contains files under /var/run" {
+@test "Check logs error when package contains files under /var/run" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -178,7 +179,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when package contains files under /var/tmp" {
+@test "Check logs error when package contains files under /var/tmp" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

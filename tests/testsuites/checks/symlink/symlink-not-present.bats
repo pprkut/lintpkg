@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="symlink"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/symlink_check.sh"
 }
 
-@test "[$TESTSUITE] Check logs no warning when there is no symlink present" {
+@test "Check logs no warning when there is no symlink present" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

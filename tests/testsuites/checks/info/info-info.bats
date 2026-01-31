@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="info"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/info_check.sh"
 }
 
-@test "[$TESTSUITE] Show explanation for incorrect-info-dir error" {
+@test "Show explanation for incorrect-info-dir error" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -26,7 +27,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Show explanation for uncompressed-info-page warning" {
+@test "Show explanation for uncompressed-info-page warning" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

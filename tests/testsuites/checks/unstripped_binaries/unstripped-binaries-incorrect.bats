@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="unstripped_binaries"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/unstripped_binaries_check.sh"
 }
 
-@test "[$TESTSUITE] Check logs warning when unstripped x86 64-bit binary in /bin" {
+@test "Check logs warning when unstripped x86 64-bit binary in /bin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -30,7 +31,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when unstripped x86 64-bit binary in /sbin" {
+@test "Check logs warning when unstripped x86 64-bit binary in /sbin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -50,7 +51,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when unstripped x86 64-bit library in /lib64" {
+@test "Check logs warning when unstripped x86 64-bit library in /lib64" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -70,7 +71,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when unstripped x86 64-bit binary in /usr/bin" {
+@test "Check logs warning when unstripped x86 64-bit binary in /usr/bin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -90,7 +91,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when unstripped x86 64-bit binary in /usr/sbin" {
+@test "Check logs warning when unstripped x86 64-bit binary in /usr/sbin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -110,7 +111,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when unstripped x86 64-bit library in /usr/lib64" {
+@test "Check logs warning when unstripped x86 64-bit library in /usr/lib64" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -130,7 +131,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when unstripped x86 32-bit binary in /bin" {
+@test "Check logs warning when unstripped x86 32-bit binary in /bin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -150,7 +151,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when unstripped x86 32-bit binary in /sbin" {
+@test "Check logs warning when unstripped x86 32-bit binary in /sbin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -170,7 +171,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when unstripped x86 32-bit library in /lib" {
+@test "Check logs warning when unstripped x86 32-bit library in /lib" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -190,7 +191,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when unstripped x86 32-bit binary in /usr/bin" {
+@test "Check logs warning when unstripped x86 32-bit binary in /usr/bin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -210,7 +211,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when unstripped x86 32-bit binary in /usr/sbin" {
+@test "Check logs warning when unstripped x86 32-bit binary in /usr/sbin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -230,7 +231,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs warning when unstripped x86 32-bit library in /usr/lib" {
+@test "Check logs warning when unstripped x86 32-bit library in /usr/lib" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="slack_desc"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/slack_desc_check.sh"
 }
 
-@test "[$TESTSUITE] Show explanation for slack-desc-not-found error" {
+@test "Show explanation for slack-desc-not-found error" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -26,7 +27,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Show explanation for slack-desc-description-wrong-packagename error" {
+@test "Show explanation for slack-desc-description-wrong-packagename error" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -42,7 +43,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Show explanation for slack-desc-invalid-number-of-lines error" {
+@test "Show explanation for slack-desc-invalid-number-of-lines error" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -58,7 +59,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Show explanation for slack-desc-description-lines-too-long" {
+@test "Show explanation for slack-desc-description-lines-too-long" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -74,7 +75,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Show explanation for slack-desc-handy-ruler-misaligned" {
+@test "Show explanation for slack-desc-handy-ruler-misaligned" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -90,7 +91,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Show explanation for slack-desc-handy-ruler-broken" {
+@test "Show explanation for slack-desc-handy-ruler-broken" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -106,7 +107,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Show explanation for slack-desc-unrecognised-text" {
+@test "Show explanation for slack-desc-unrecognised-text" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="shared_libraries"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/shared_libraries_check.sh"
 }
 
-@test "[$TESTSUITE] Check logs error when libtool archive without header" {
+@test "Check logs error when libtool archive without header" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

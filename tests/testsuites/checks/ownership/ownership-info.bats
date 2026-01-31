@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="ownership"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/ownership_check.sh"
 }
 
-@test "[$TESTSUITE] Show explanation for strange-owner-or-group error" {
+@test "Show explanation for strange-owner-or-group error" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

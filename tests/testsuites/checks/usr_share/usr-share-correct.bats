@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="usr_share"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/usr_share_check.sh"
 }
 
-@test "[$TESTSUITE] Check logs no error when no binary in /usr/share" {
+@test "Check logs no error when no binary in /usr/share" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

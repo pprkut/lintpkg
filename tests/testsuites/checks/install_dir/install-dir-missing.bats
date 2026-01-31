@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="install_dir"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/install_dir_check.sh"
 }
 
-@test "[$TESTSUITE] Check logs error when install dir is missing" {
+@test "Check logs error when install dir is missing" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

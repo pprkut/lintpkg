@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="man"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/man_check.sh"
 }
 
-@test "[$TESTSUITE] Check logs no error when correct directory and compressed" {
+@test "Check logs no error when correct directory and compressed" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

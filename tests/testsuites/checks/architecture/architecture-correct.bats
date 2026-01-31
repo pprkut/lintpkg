@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="architecture"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/architecture_check.sh"
 }
 
-@test "[$TESTSUITE] Check logs no error when x86 64-bit library in /usr/lib64" {
+@test "Check logs no error when x86 64-bit library in /usr/lib64" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -30,7 +31,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no error when x86 32-bit library in /usr/lib for i486 package" {
+@test "Check logs no error when x86 32-bit library in /usr/lib for i486 package" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -50,7 +51,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no error when x86 32-bit library in /usr/lib for i686 package" {
+@test "Check logs no error when x86 32-bit library in /usr/lib for i686 package" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

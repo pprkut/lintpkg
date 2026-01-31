@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="info"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/info_check.sh"
 }
 
-@test "[$TESTSUITE] Check logs no error when correct directory and compressed" {
+@test "Check logs no error when correct directory and compressed" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -30,7 +31,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs no warning for png in correct directory" {
+@test "Check logs no warning for png in correct directory" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

@@ -1,16 +1,17 @@
 #!/usr/bin/env bats
 
-TESTSUITE="ownership"
-
 load ../../../helpers/locations
+load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
+
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
   . "$LIVE_CHECKS/ownership_check.sh"
 }
 
-@test "[$TESTSUITE] Check logs error when incorrect owner for /bin" {
+@test "Check logs error when incorrect owner for /bin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -31,7 +32,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when incorrect owner for file in /bin" {
+@test "Check logs error when incorrect owner for file in /bin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -52,7 +53,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when incorrect owner for /lib" {
+@test "Check logs error when incorrect owner for /lib" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -73,7 +74,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when incorrect owner for file in /lib" {
+@test "Check logs error when incorrect owner for file in /lib" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -94,7 +95,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when incorrect owner for /lib64" {
+@test "Check logs error when incorrect owner for /lib64" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -115,7 +116,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when incorrect owner for file in /lib64" {
+@test "Check logs error when incorrect owner for file in /lib64" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -136,7 +137,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when incorrect owner for /sbin" {
+@test "Check logs error when incorrect owner for /sbin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -157,7 +158,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when incorrect owner for file in /sbin" {
+@test "Check logs error when incorrect owner for file in /sbin" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -178,7 +179,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when incorrect owner for /usr" {
+@test "Check logs error when incorrect owner for /usr" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -197,7 +198,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when incorrect owner for file in /usr" {
+@test "Check logs error when incorrect owner for file in /usr" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -215,7 +216,7 @@ setup() {
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Check logs error when incorrect owner for /" {
+@test "Check logs error when incorrect owner for /" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]

@@ -1,11 +1,12 @@
 #!/usr/bin/env bats
 
-TESTSUITE="base"
-
 load ../../helpers/locations
+load ../../helpers/main
 load ../../helpers/makepkg
 
-@test "[$TESTSUITE] Checks have proper full package name" {
+BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
+
+@test "Checks have proper full package name" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -21,7 +22,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Checks have proper simple package name" {
+@test "Checks have proper simple package name" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -37,7 +38,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Checks have proper package name with dash" {
+@test "Checks have proper package name with dash" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -53,7 +54,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Checks have proper package name when version has dash" {
+@test "Checks have proper package name when version has dash" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -69,7 +70,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Checks have proper simple package version" {
+@test "Checks have proper simple package version" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -85,7 +86,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Checks have proper package version when name has dash" {
+@test "Checks have proper package version when name has dash" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -101,7 +102,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Checks have proper package version when version has dash" {
+@test "Checks have proper package version when version has dash" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -117,7 +118,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Checks have proper package architecture" {
+@test "Checks have proper package architecture" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -133,7 +134,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Checks have proper package build number" {
+@test "Checks have proper package build number" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -149,7 +150,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Checks have proper package extension" {
+@test "Checks have proper package extension" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -165,7 +166,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Checks have proper simple package listing" {
+@test "Checks have proper simple package listing" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -186,7 +187,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Checks have proper detailed package listing" {
+@test "Checks have proper detailed package listing" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -210,7 +211,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Checks have default working directory" {
+@test "Checks have default working directory" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -226,7 +227,7 @@ load ../../helpers/makepkg
   rm -rf "$BASE"
 }
 
-@test "[$TESTSUITE] Checks have working directory specified with -E" {
+@test "Checks have working directory specified with -E" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
@@ -245,7 +246,7 @@ load ../../helpers/makepkg
   rm -rf /tmp/lintpkg_test
 }
 
-@test "[$TESTSUITE] Checks have working directory specified with --extractdir" {
+@test "Checks have working directory specified with --extractdir" {
   BASE=$(create_tmp_dir)
 
   ! [ -z "$BASE" ]
