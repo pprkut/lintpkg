@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs error when package was not created with tar-1.13" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -23,8 +24,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error package-not-tar-113" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error package-not-tar-113"
 
   rm -rf "$BASE"
 }

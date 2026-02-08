@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs error when x86 64-bit library in /usr/lib" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -26,8 +27,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error binary-in-wrong-architecture-specific-path $BASE/usr/lib/libhello-x86_64-stripped.so" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error binary-in-wrong-architecture-specific-path $BASE/usr/lib/libhello-x86_64-stripped.so"
 
   rm -rf "$BASE"
 }
@@ -35,7 +35,7 @@ setup() {
 @test "Check logs error when x86 32-bit library in /usr/lib64 for i486 package" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -47,8 +47,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error binary-in-wrong-architecture-specific-path $BASE/usr/lib64/libhello-x86-stripped.so" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error binary-in-wrong-architecture-specific-path $BASE/usr/lib64/libhello-x86-stripped.so"
 
   rm -rf "$BASE"
 }
@@ -56,7 +55,7 @@ setup() {
 @test "Check logs error when x86 32-bit library in /usr/lib64 for i686 package" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -68,8 +67,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error binary-in-wrong-architecture-specific-path $BASE/usr/lib64/libhello-x86-stripped.so" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error binary-in-wrong-architecture-specific-path $BASE/usr/lib64/libhello-x86-stripped.so"
 
   rm -rf "$BASE"
 }

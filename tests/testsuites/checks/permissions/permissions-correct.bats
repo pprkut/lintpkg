@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs no warning when correct permissions for /etc" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -25,7 +26,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -33,7 +34,7 @@ setup() {
 @test "Check logs no warning when correct permissions for /usr" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -43,7 +44,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -51,7 +52,7 @@ setup() {
 @test "Check logs no warning when correct permissions for directory under /usr" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -61,7 +62,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }

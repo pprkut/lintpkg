@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../helpers/assertions
 load ../../helpers/locations
 load ../../helpers/main
 load ../../helpers/makepkg
@@ -9,7 +10,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 @test "Calling lintpkg with relative path to package" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
   PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
@@ -19,7 +20,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
     run lintpkg -C "$TEST_CHECKS/logging" "$PKG"
   cd -
 
-  [ "${lines[9]}" == "1 packages checked; 3 errors and 3 warnings." ]
+  assert_line "1 packages checked; 3 errors and 3 warnings."
 
   rm -f "$PKG"
   rm -rf "$BASE"

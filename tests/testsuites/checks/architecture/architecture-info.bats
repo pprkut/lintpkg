@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Show explanation for binary-in-wrong-architecture-specific-path" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -22,7 +23,7 @@ setup() {
 
   run info "binary-in-wrong-architecture-specific-path"
 
-  [ "${lines[0]}" == "There is a binary in the wrong architecture specific path. /usr/lib should not contain 64-bit binaries, /usr/lib64 should not contain 32-bit binaries." ]
+  assert_output "There is a binary in the wrong architecture specific path. /usr/lib should not contain 64-bit binaries, /usr/lib64 should not contain 32-bit binaries."
 
   rm -rf "$BASE"
 }

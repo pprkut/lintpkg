@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs error when man page in /usr/share/man" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -26,8 +27,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error incorrect-man-dir /usr/share/man" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error incorrect-man-dir /usr/share/man"
 
   rm -rf "$BASE"
 }
@@ -35,7 +35,7 @@ setup() {
 @test "Check logs error when man page in /usr/local/man" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -47,8 +47,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error incorrect-man-dir /usr/local/man" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error incorrect-man-dir /usr/local/man"
 
   rm -rf "$BASE"
 }
@@ -56,7 +55,7 @@ setup() {
 @test "Check logs error when man page in /usr/local/share/man" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -68,8 +67,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error incorrect-man-dir /usr/local/share/man" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error incorrect-man-dir /usr/local/share/man"
 
   rm -rf "$BASE"
 }
@@ -77,7 +75,7 @@ setup() {
 @test "Check logs warning when uncompressed man page in /usr/man" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -88,8 +86,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning uncompressed-man-page $BASE/usr/man/man1/lintpkg.1" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning uncompressed-man-page $BASE/usr/man/man1/lintpkg.1"
 
   rm -rf "$BASE"
 }
@@ -97,7 +94,7 @@ setup() {
 @test "Check logs warning when uncompressed man page in /usr/share/man" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -108,9 +105,11 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error incorrect-man-dir /usr/share/man" ]
-  [ "${lines[1]}" == "warning uncompressed-man-page $BASE/usr/share/man/man1/lintpkg.1" ]
-  [ -z "${lines[2]}" ]
+  EXPECTED=""
+  EXPECTED+="error incorrect-man-dir /usr/share/man"$'\n'
+  EXPECTED+="warning uncompressed-man-page $BASE/usr/share/man/man1/lintpkg.1"
+
+  assert_output "$EXPECTED"
 
   rm -rf "$BASE"
 }
@@ -118,7 +117,7 @@ setup() {
 @test "Check logs warning when uncompressed man page in /usr/local/man" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -129,9 +128,11 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error incorrect-man-dir /usr/local/man" ]
-  [ "${lines[1]}" == "warning uncompressed-man-page $BASE/usr/local/man/man1/lintpkg.1" ]
-  [ -z "${lines[2]}" ]
+  EXPECTED=""
+  EXPECTED+="error incorrect-man-dir /usr/local/man"$'\n'
+  EXPECTED+="warning uncompressed-man-page $BASE/usr/local/man/man1/lintpkg.1"
+
+  assert_output "$EXPECTED"
 
   rm -rf "$BASE"
 }
@@ -139,7 +140,7 @@ setup() {
 @test "Check logs warning when uncompressed man page in /usr/local/share/man" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -150,9 +151,11 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error incorrect-man-dir /usr/local/share/man" ]
-  [ "${lines[1]}" == "warning uncompressed-man-page $BASE/usr/local/share/man/man1/lintpkg.1" ]
-  [ -z "${lines[2]}" ]
+  EXPECTED=""
+  EXPECTED+="error incorrect-man-dir /usr/local/share/man"$'\n'
+  EXPECTED+="warning uncompressed-man-page $BASE/usr/local/share/man/man1/lintpkg.1"
+
+  assert_output "$EXPECTED"
 
   rm -rf "$BASE"
 }

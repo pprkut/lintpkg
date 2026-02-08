@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Show explanation for incorrect-info-dir error" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -22,7 +23,7 @@ setup() {
 
   run info "incorrect-info-dir"
 
-  [ "${lines[0]}" == "Info-pages should be put under /usr/info" ]
+  assert_output "Info-pages should be put under /usr/info"
 
   rm -rf "$BASE"
 }
@@ -30,7 +31,7 @@ setup() {
 @test "Show explanation for uncompressed-info-page warning" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -38,7 +39,7 @@ setup() {
 
   run info "uncompressed-info-page"
 
-  [ "${lines[0]}" == "Info-pages should be gzip-compressed" ]
+  assert_output "Info-pages should be gzip-compressed"
 
   rm -rf "$BASE"
 }

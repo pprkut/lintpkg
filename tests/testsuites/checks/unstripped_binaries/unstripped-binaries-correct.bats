@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs no warning when stripped x86 64-bit binary in /bin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -25,7 +26,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -33,7 +34,7 @@ setup() {
 @test "Check logs no warning when stripped x86 64-bit binary in /sbin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -44,7 +45,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -52,7 +53,7 @@ setup() {
 @test "Check logs no warning when stripped x86 64-bit library in /lib64" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -63,7 +64,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -71,7 +72,7 @@ setup() {
 @test "Check logs no warning when stripped x86 64-bit binary in /usr/bin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -82,7 +83,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -90,7 +91,7 @@ setup() {
 @test "Check logs no warning when stripped x86 64-bit binary in /usr/sbin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -101,7 +102,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -109,7 +110,7 @@ setup() {
 @test "Check logs no warning when stripped x86 64-bit library in /usr/lib64" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -120,7 +121,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -128,7 +129,7 @@ setup() {
 @test "Check logs no warning when stripped x86 32-bit binary in /bin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -139,7 +140,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -147,7 +148,7 @@ setup() {
 @test "Check logs no warning when stripped x86 32-bit binary in /sbin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -158,7 +159,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -166,7 +167,7 @@ setup() {
 @test "Check logs no warning when stripped x86 32-bit library in /lib" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -177,7 +178,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -185,7 +186,7 @@ setup() {
 @test "Check logs no warning when stripped x86 32-bit binary in /usr/bin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -196,7 +197,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -204,7 +205,7 @@ setup() {
 @test "Check logs no warning when stripped x86 32-bit binary in /usr/sbin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -215,7 +216,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -223,7 +224,7 @@ setup() {
 @test "Check logs no warning when stripped x86 32-bit library in /usr/lib" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -234,7 +235,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }

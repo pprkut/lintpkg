@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Show explanation for package-contains-symlink error" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -22,7 +23,7 @@ setup() {
 
   run info "package-contains-symlink"
 
-  [ "${lines[0]}" == "Symbolic link found. These should normally be removed by makepkg." ]
+  assert_output "Symbolic link found. These should normally be removed by makepkg."
 
   rm -rf "$BASE"
 }

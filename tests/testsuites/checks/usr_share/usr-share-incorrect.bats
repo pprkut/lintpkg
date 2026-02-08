@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs error when binary in /usr/share" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -25,8 +26,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error binary-in-usr-share $BASE/usr/share/test/hello-x86_64-stripped" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error binary-in-usr-share $BASE/usr/share/test/hello-x86_64-stripped"
 
   rm -rf "$BASE"
 }
@@ -34,7 +34,7 @@ setup() {
 @test "Check logs error when shared library in /usr/share" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -45,8 +45,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error binary-in-usr-share $BASE/usr/share/test/libhello-x86_64-stripped.so" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error binary-in-usr-share $BASE/usr/share/test/libhello-x86_64-stripped.so"
 
   rm -rf "$BASE"
 }
@@ -54,7 +53,7 @@ setup() {
 @test "Check logs error when static library in /usr/share" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -65,8 +64,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error binary-in-usr-share $BASE/usr/share/test/libhello-x86_64-stripped.a" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error binary-in-usr-share $BASE/usr/share/test/libhello-x86_64-stripped.a"
 
   rm -rf "$BASE"
 }

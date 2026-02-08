@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Show explanation for incorrect-man-dir error" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -22,7 +23,7 @@ setup() {
 
   run info "incorrect-man-dir"
 
-  [ "${lines[0]}" == "Man-pages should be put under /usr/man" ]
+  assert_output "Man-pages should be put under /usr/man"
 
   rm -rf "$BASE"
 }
@@ -30,7 +31,7 @@ setup() {
 @test "Show explanation for uncompressed-man-page warning" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -38,7 +39,7 @@ setup() {
 
   run info "uncompressed-man-page"
 
-  [ "${lines[0]}" == "Man-pages should be gzip-compressed" ]
+  assert_output "Man-pages should be gzip-compressed"
 
   rm -rf "$BASE"
 }

@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Show explanation for unstripped-binary" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -22,7 +23,7 @@ setup() {
 
   run info "unstripped-binary"
 
-  [ "${lines[0]}" == "ELF binaries and shared libraries are normally stripped, on Slackware." ]
+  assert_output "ELF binaries and shared libraries are normally stripped, on Slackware."
 
   rm -rf "$BASE"
 }

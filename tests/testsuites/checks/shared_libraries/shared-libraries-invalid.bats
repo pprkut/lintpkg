@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs error when libtool archive without header" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -26,8 +27,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error invalid-libtool-archive $BASE/usr/lib/app/private/foo.la" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error invalid-libtool-archive $BASE/usr/lib/app/private/foo.la"
 
   rm -rf "$BASE"
 }

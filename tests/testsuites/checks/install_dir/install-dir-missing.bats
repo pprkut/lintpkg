@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs error when install dir is missing" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   mkdir -p $BASE/usr/bin
   touch $BASE/usr/bin/foo
@@ -24,8 +25,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error no-install-dir" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error no-install-dir"
 
   rm -rf "$BASE"
 }

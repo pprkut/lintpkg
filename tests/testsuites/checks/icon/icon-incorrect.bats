@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs error when doinst.sh is missing" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -24,8 +25,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error missing-icon-cache-update hicolor" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error missing-icon-cache-update hicolor"
 
   rm -rf "$BASE"
 }
@@ -33,7 +33,7 @@ setup() {
 @test "Check logs error when doinst.sh has unconditional update for hicolor icon cache" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -44,8 +44,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error missing-icon-cache-update hicolor" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error missing-icon-cache-update hicolor"
 
   rm -rf "$BASE"
 }

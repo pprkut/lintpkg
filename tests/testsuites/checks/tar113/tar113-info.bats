@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Show explanation for package-not-tar-113 error" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -22,7 +23,7 @@ setup() {
 
   run info "package-not-tar-113"
 
-  [ "${lines[0]}" == "The package does not have tar-1.13 format member names. It was not created with makepkg." ]
+  assert_output "The package does not have tar-1.13 format member names. It was not created with makepkg."
 
   rm -rf "$BASE"
 }

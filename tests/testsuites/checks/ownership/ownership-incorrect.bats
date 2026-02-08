@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs error when incorrect owner for /bin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
   rm -rf $BASE/usr
@@ -26,8 +27,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error strange-owner-or-group bin/ slacker/root" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error strange-owner-or-group bin/ slacker/root"
 
   rm -rf "$BASE"
 }
@@ -35,7 +35,7 @@ setup() {
 @test "Check logs error when incorrect owner for file in /bin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -47,8 +47,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error strange-owner-or-group bin/baz slacker/root" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error strange-owner-or-group bin/baz slacker/root"
 
   rm -rf "$BASE"
 }
@@ -56,7 +55,7 @@ setup() {
 @test "Check logs error when incorrect owner for /lib" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
   rm -rf $BASE/lib
@@ -68,8 +67,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error strange-owner-or-group lib/ slacker/root" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error strange-owner-or-group lib/ slacker/root"
 
   rm -rf "$BASE"
 }
@@ -77,7 +75,7 @@ setup() {
 @test "Check logs error when incorrect owner for file in /lib" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -89,8 +87,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error strange-owner-or-group lib/baz slacker/root" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error strange-owner-or-group lib/baz slacker/root"
 
   rm -rf "$BASE"
 }
@@ -98,7 +95,7 @@ setup() {
 @test "Check logs error when incorrect owner for /lib64" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
   rm -rf $BASE/lib64
@@ -110,8 +107,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error strange-owner-or-group lib64/ slacker/root" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error strange-owner-or-group lib64/ slacker/root"
 
   rm -rf "$BASE"
 }
@@ -119,7 +115,7 @@ setup() {
 @test "Check logs error when incorrect owner for file in /lib64" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -131,8 +127,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error strange-owner-or-group lib64/baz slacker/root" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error strange-owner-or-group lib64/baz slacker/root"
 
   rm -rf "$BASE"
 }
@@ -140,7 +135,7 @@ setup() {
 @test "Check logs error when incorrect owner for /sbin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
   rm -rf $BASE/usr
@@ -152,8 +147,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error strange-owner-or-group sbin/ slacker/root" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error strange-owner-or-group sbin/ slacker/root"
 
   rm -rf "$BASE"
 }
@@ -161,7 +155,7 @@ setup() {
 @test "Check logs error when incorrect owner for file in /sbin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -173,8 +167,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error strange-owner-or-group sbin/baz slacker/root" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error strange-owner-or-group sbin/baz slacker/root"
 
   rm -rf "$BASE"
 }
@@ -182,7 +175,7 @@ setup() {
 @test "Check logs error when incorrect owner for /usr" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
   rm -rf $BASE/usr/bin
@@ -192,8 +185,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error strange-owner-or-group usr/ slacker/root" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error strange-owner-or-group usr/ slacker/root"
 
   rm -rf "$BASE"
 }
@@ -201,7 +193,7 @@ setup() {
 @test "Check logs error when incorrect owner for file in /usr" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -210,8 +202,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error strange-owner-or-group usr/bin/foo slacker/root" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error strange-owner-or-group usr/bin/foo slacker/root"
 
   rm -rf "$BASE"
 }
@@ -219,7 +210,7 @@ setup() {
 @test "Check logs error when incorrect owner for /" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
   rm -rf $BASE/usr
@@ -229,8 +220,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error strange-owner-or-group ./ slacker/root" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error strange-owner-or-group ./ slacker/root"
 
   rm -rf "$BASE"
 }

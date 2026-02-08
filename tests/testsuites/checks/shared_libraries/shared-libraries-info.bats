@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Show explanation for invalid-libtool-archive error" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -22,7 +23,7 @@ setup() {
 
   run info "invalid-libtool-archive"
 
-  [ "${lines[0]}" == "An invalid libtool archive (.la) file will likely result in linking errors for applications that try to use it." ]
+  assert_output "An invalid libtool archive (.la) file will likely result in linking errors for applications that try to use it."
 
   rm -rf "$BASE"
 }

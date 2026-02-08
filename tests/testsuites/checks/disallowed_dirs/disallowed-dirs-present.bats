@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs error when package contains files under /home" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -25,9 +26,11 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error dir-or-file-in-home $BASE//home/user" ]
-  [ "${lines[1]}" == "error dir-or-file-in-home $BASE//home/user/foo" ]
-  [ -z "${lines[2]}" ]
+  EXPECTED=""
+  EXPECTED+="error dir-or-file-in-home $BASE//home/user"$'\n'
+  EXPECTED+="error dir-or-file-in-home $BASE//home/user/foo"
+
+  assert_output "$EXPECTED"
 
   rm -rf "$BASE"
 }
@@ -35,7 +38,7 @@ setup() {
 @test "Check logs error when package contains files under /mnt" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -46,9 +49,11 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error dir-or-file-in-mnt $BASE//mnt/hd" ]
-  [ "${lines[1]}" == "error dir-or-file-in-mnt $BASE//mnt/hd/foo" ]
-  [ -z "${lines[2]}" ]
+  EXPECTED=""
+  EXPECTED+="error dir-or-file-in-mnt $BASE//mnt/hd"$'\n'
+  EXPECTED+="error dir-or-file-in-mnt $BASE//mnt/hd/foo"
+
+  assert_output "$EXPECTED"
 
   rm -rf "$BASE"
 }
@@ -56,7 +61,7 @@ setup() {
 @test "Check logs error when package contains files under /tmp" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -67,9 +72,11 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error dir-or-file-in-tmp $BASE//tmp/foo" ]
-  [ "${lines[1]}" == "error dir-or-file-in-tmp $BASE//tmp/foo/bar" ]
-  [ -z "${lines[2]}" ]
+  EXPECTED=""
+  EXPECTED+="error dir-or-file-in-tmp $BASE//tmp/foo"$'\n'
+  EXPECTED+="error dir-or-file-in-tmp $BASE//tmp/foo/bar"
+
+  assert_output "$EXPECTED"
 
   rm -rf "$BASE"
 }
@@ -77,7 +84,7 @@ setup() {
 @test "Check logs error when package contains files under /usr/local" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -88,9 +95,11 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error dir-or-file-in-usr-local $BASE//usr/local/bin" ]
-  [ "${lines[1]}" == "error dir-or-file-in-usr-local $BASE//usr/local/bin/foo" ]
-  [ -z "${lines[2]}" ]
+  EXPECTED=""
+  EXPECTED+="error dir-or-file-in-usr-local $BASE//usr/local/bin"$'\n'
+  EXPECTED+="error dir-or-file-in-usr-local $BASE//usr/local/bin/foo"
+
+  assert_output "$EXPECTED"
 
   rm -rf "$BASE"
 }
@@ -98,7 +107,7 @@ setup() {
 @test "Check logs error when package contains files under /usr/tmp" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -109,9 +118,11 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error dir-or-file-in-usr-tmp $BASE//usr/tmp/foo" ]
-  [ "${lines[1]}" == "error dir-or-file-in-usr-tmp $BASE//usr/tmp/foo/bar" ]
-  [ -z "${lines[2]}" ]
+  EXPECTED=""
+  EXPECTED+="error dir-or-file-in-usr-tmp $BASE//usr/tmp/foo"$'\n'
+  EXPECTED+="error dir-or-file-in-usr-tmp $BASE//usr/tmp/foo/bar"
+
+  assert_output "$EXPECTED"
 
   rm -rf "$BASE"
 }
@@ -119,7 +130,7 @@ setup() {
 @test "Check logs error when package contains files under /var/local" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -130,9 +141,11 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error dir-or-file-in-var-local $BASE//var/local/bar" ]
-  [ "${lines[1]}" == "error dir-or-file-in-var-local $BASE//var/local/bar/foo" ]
-  [ -z "${lines[2]}" ]
+  EXPECTED=""
+  EXPECTED+="error dir-or-file-in-var-local $BASE//var/local/bar"$'\n'
+  EXPECTED+="error dir-or-file-in-var-local $BASE//var/local/bar/foo"
+
+  assert_output "$EXPECTED"
 
   rm -rf "$BASE"
 }
@@ -140,7 +153,7 @@ setup() {
 @test "Check logs error when package contains files under /var/lock" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -151,9 +164,11 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error dir-or-file-in-var-lock $BASE//var/lock/bar" ]
-  [ "${lines[1]}" == "error dir-or-file-in-var-lock $BASE//var/lock/bar/foo" ]
-  [ -z "${lines[2]}" ]
+  EXPECTED=""
+  EXPECTED+="error dir-or-file-in-var-lock $BASE//var/lock/bar"$'\n'
+  EXPECTED+="error dir-or-file-in-var-lock $BASE//var/lock/bar/foo"
+
+  assert_output "$EXPECTED"
 
   rm -rf "$BASE"
 }
@@ -161,7 +176,7 @@ setup() {
 @test "Check logs error when package contains files under /var/run" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -172,9 +187,11 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error dir-or-file-in-var-run $BASE//var/run/bar" ]
-  [ "${lines[1]}" == "error dir-or-file-in-var-run $BASE//var/run/bar/foo" ]
-  [ -z "${lines[2]}" ]
+  EXPECTED=""
+  EXPECTED+="error dir-or-file-in-var-run $BASE//var/run/bar"$'\n'
+  EXPECTED+="error dir-or-file-in-var-run $BASE//var/run/bar/foo"
+
+  assert_output "$EXPECTED"
 
   rm -rf "$BASE"
 }
@@ -182,7 +199,7 @@ setup() {
 @test "Check logs error when package contains files under /var/tmp" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -193,9 +210,11 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error dir-or-file-in-var-tmp $BASE//var/tmp/bar" ]
-  [ "${lines[1]}" == "error dir-or-file-in-var-tmp $BASE//var/tmp/bar/foo" ]
-  [ -z "${lines[2]}" ]
+  EXPECTED=""
+  EXPECTED+="error dir-or-file-in-var-tmp $BASE//var/tmp/bar"$'\n'
+  EXPECTED+="error dir-or-file-in-var-tmp $BASE//var/tmp/bar/foo"
+
+  assert_output "$EXPECTED"
 
   rm -rf "$BASE"
 }

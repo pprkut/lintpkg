@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Show explanation for strange-permission warning" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -22,7 +23,7 @@ setup() {
 
   run info "strange-permission"
 
-  [ "${lines[0]}" == "A file that you listed to include in your package has strange permissions. Usually, a file should have 0644 permissions and directories should have 0755 permissions." ]
+  assert_output "A file that you listed to include in your package has strange permissions. Usually, a file should have 0644 permissions and directories should have 0755 permissions."
 
   rm -rf "$BASE"
 }

@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs error when slack-desc file is missing" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -25,8 +26,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error slack-desc-not-found" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error slack-desc-not-found"
 
   rm -rf "$BASE"
 }
@@ -34,7 +34,7 @@ setup() {
 @test "Check logs error when slack-desc has wrong package name" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -43,8 +43,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error slack-desc-description-wrong-packagename LINTPKG_TEST" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error slack-desc-description-wrong-packagename LINTPKG_TEST"
 
   rm -rf "$BASE"
 }
@@ -52,7 +51,7 @@ setup() {
 @test "Check logs error when slack-desc does not have enough lines" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -63,8 +62,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error slack-desc-invalid-number-of-lines 2" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error slack-desc-invalid-number-of-lines 2"
 
   rm -rf "$BASE"
 }
@@ -72,7 +70,7 @@ setup() {
 @test "Check logs error when slack-desc has too many lines" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -83,8 +81,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error slack-desc-invalid-number-of-lines 14" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error slack-desc-invalid-number-of-lines 14"
 
   rm -rf "$BASE"
 }
@@ -92,7 +89,7 @@ setup() {
 @test "Check logs error when slack-desc has description lines that are too long" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -103,8 +100,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error slack-desc-description-lines-too-long" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error slack-desc-description-lines-too-long"
 
   rm -rf "$BASE"
 }
@@ -112,7 +108,7 @@ setup() {
 @test "Check logs warning when slack-desc has a misaligned handy-ruler" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -123,8 +119,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning slack-desc-handy-ruler-misaligned" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning slack-desc-handy-ruler-misaligned"
 
   rm -rf "$BASE"
 }
@@ -132,7 +127,7 @@ setup() {
 @test "Check logs warning when handy-ruler in slack-desc is too short" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -143,8 +138,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning slack-desc-handy-ruler-broken" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning slack-desc-handy-ruler-broken"
 
   rm -rf "$BASE"
 }
@@ -152,7 +146,7 @@ setup() {
 @test "Check logs warning when handy-ruler in slack-desc is too long" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -163,8 +157,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning slack-desc-handy-ruler-broken" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning slack-desc-handy-ruler-broken"
 
   rm -rf "$BASE"
 }
@@ -172,7 +165,7 @@ setup() {
 @test "Check logs error when slack-desc contains unrecognized text" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -183,8 +176,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error slack-desc-unrecognised-text" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error slack-desc-unrecognised-text"
 
   rm -rf "$BASE"
 }

@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs warning when a single symlink is present" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -24,8 +25,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning package-contains-symlink $BASE/usr/bin/foo2" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning package-contains-symlink $BASE/usr/bin/foo2"
 
   rm -rf "$BASE"
 }
@@ -33,7 +33,7 @@ setup() {
 @test "Check logs warning when multiple symlinks are present" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -44,9 +44,11 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning package-contains-symlink $BASE/usr/bin/foo2" ]
-  [ "${lines[1]}" == "warning package-contains-symlink $BASE/usr/bin/foo3" ]
-  [ -z "${lines[2]}" ]
+  EXPECTED=""
+  EXPECTED+="warning package-contains-symlink $BASE/usr/bin/foo2"$'\n'
+  EXPECTED+="warning package-contains-symlink $BASE/usr/bin/foo3"
+
+  assert_output "$EXPECTED"
 
   rm -rf "$BASE"
 }
@@ -54,7 +56,7 @@ setup() {
 @test "Check logs warning when a single symlink with spaces in its name is present" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -64,8 +66,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning package-contains-symlink $BASE/usr/bin/foo 2" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning package-contains-symlink $BASE/usr/bin/foo 2"
 
   rm -rf "$BASE"
 }
@@ -73,7 +74,7 @@ setup() {
 @test "Check logs warning when multiple symlinks with spaces in their name are present" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -84,9 +85,11 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning package-contains-symlink $BASE/usr/bin/foo 2" ]
-  [ "${lines[1]}" == "warning package-contains-symlink $BASE/usr/bin/foo 3" ]
-  [ -z "${lines[2]}" ]
+  EXPECTED=""
+  EXPECTED+="warning package-contains-symlink $BASE/usr/bin/foo 2"$'\n'
+  EXPECTED+="warning package-contains-symlink $BASE/usr/bin/foo 3"
+
+  assert_output "$EXPECTED"
 
   rm -rf "$BASE"
 }

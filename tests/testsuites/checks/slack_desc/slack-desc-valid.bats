@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs no error when slack-desc file is valid" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -23,7 +24,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -31,7 +32,7 @@ setup() {
 @test "Check logs no error when slack-desc file has maximum allowed lines" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -42,7 +43,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -50,7 +51,7 @@ setup() {
 @test "Check logs no error when slack-desc file has minimum allowed lines" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -61,7 +62,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -69,7 +70,7 @@ setup() {
 @test "Check logs no error when slack-desc file has handy-ruler" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -80,7 +81,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -88,7 +89,7 @@ setup() {
 @test "Check logs no error when slack-desc file has handy-ruler and comments" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -99,7 +100,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }

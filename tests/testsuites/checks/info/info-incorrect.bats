@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs error when info page in /usr/share/info" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -26,8 +27,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error incorrect-info-dir /usr/share/info" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error incorrect-info-dir /usr/share/info"
 
   rm -rf "$BASE"
 }
@@ -35,7 +35,7 @@ setup() {
 @test "Check logs error when info page in /usr/local/info" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -47,8 +47,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error incorrect-info-dir /usr/local/info" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error incorrect-info-dir /usr/local/info"
 
   rm -rf "$BASE"
 }
@@ -56,7 +55,7 @@ setup() {
 @test "Check logs error when info page in /usr/local/share/info" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -68,8 +67,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error incorrect-info-dir /usr/local/share/info" ]
-  [ -z "${lines[1]}" ]
+  assert_output "error incorrect-info-dir /usr/local/share/info"
 
   rm -rf "$BASE"
 }
@@ -77,7 +75,7 @@ setup() {
 @test "Check logs warning when uncompressed info page in /usr/info" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -88,8 +86,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning uncompressed-info-page $BASE/usr/info/lintpkg.info" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning uncompressed-info-page $BASE/usr/info/lintpkg.info"
 
   rm -rf "$BASE"
 }
@@ -97,7 +94,7 @@ setup() {
 @test "Check logs warning when uncompressed info page in /usr/share/info" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -108,9 +105,11 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error incorrect-info-dir /usr/share/info" ]
-  [ "${lines[1]}" == "warning uncompressed-info-page $BASE/usr/share/info/lintpkg.info" ]
-  [ -z "${lines[2]}" ]
+  EXPECTED=""
+  EXPECTED+="error incorrect-info-dir /usr/share/info"$'\n'
+  EXPECTED+="warning uncompressed-info-page $BASE/usr/share/info/lintpkg.info"
+
+  assert_output "$EXPECTED"
 
   rm -rf "$BASE"
 }
@@ -118,7 +117,7 @@ setup() {
 @test "Check logs warning when uncompressed info page in /usr/local/info" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -129,9 +128,11 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error incorrect-info-dir /usr/local/info" ]
-  [ "${lines[1]}" == "warning uncompressed-info-page $BASE/usr/local/info/lintpkg.info" ]
-  [ -z "${lines[2]}" ]
+  EXPECTED=""
+  EXPECTED+="error incorrect-info-dir /usr/local/info"$'\n'
+  EXPECTED+="warning uncompressed-info-page $BASE/usr/local/info/lintpkg.info"
+
+  assert_output "$EXPECTED"
 
   rm -rf "$BASE"
 }
@@ -139,7 +140,7 @@ setup() {
 @test "Check logs warning when uncompressed info page in /usr/local/share/info" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -150,9 +151,11 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "error incorrect-info-dir /usr/local/share/info" ]
-  [ "${lines[1]}" == "warning uncompressed-info-page $BASE/usr/local/share/info/lintpkg.info" ]
-  [ -z "${lines[2]}" ]
+  EXPECTED=""
+  EXPECTED+="error incorrect-info-dir /usr/local/share/info"$'\n'
+  EXPECTED+="warning uncompressed-info-page $BASE/usr/local/share/info/lintpkg.info"
+
+  assert_output "$EXPECTED"
 
   rm -rf "$BASE"
 }

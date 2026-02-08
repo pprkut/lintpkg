@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs no error when x86 64-bit library in /usr/lib64" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -26,7 +27,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -34,7 +35,7 @@ setup() {
 @test "Check logs no error when x86 32-bit library in /usr/lib for i486 package" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -46,7 +47,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -54,7 +55,7 @@ setup() {
 @test "Check logs no error when x86 32-bit library in /usr/lib for i686 package" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -66,7 +67,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }

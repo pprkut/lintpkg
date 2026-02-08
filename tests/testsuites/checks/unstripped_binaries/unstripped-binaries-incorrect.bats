@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs warning when unstripped x86 64-bit binary in /bin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -25,8 +26,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning unstripped-binary $BASE/bin/hello-x86_64-unstripped" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning unstripped-binary $BASE/bin/hello-x86_64-unstripped"
 
   rm -rf "$BASE"
 }
@@ -34,7 +34,7 @@ setup() {
 @test "Check logs warning when unstripped x86 64-bit binary in /sbin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -45,8 +45,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning unstripped-binary $BASE/sbin/hello-x86_64-unstripped" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning unstripped-binary $BASE/sbin/hello-x86_64-unstripped"
 
   rm -rf "$BASE"
 }
@@ -54,7 +53,7 @@ setup() {
 @test "Check logs warning when unstripped x86 64-bit library in /lib64" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -65,8 +64,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning unstripped-binary $BASE/lib64/libhello-x86_64-unstripped.so" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning unstripped-binary $BASE/lib64/libhello-x86_64-unstripped.so"
 
   rm -rf "$BASE"
 }
@@ -74,7 +72,7 @@ setup() {
 @test "Check logs warning when unstripped x86 64-bit binary in /usr/bin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -85,8 +83,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning unstripped-binary $BASE/usr/bin/hello-x86_64-unstripped" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning unstripped-binary $BASE/usr/bin/hello-x86_64-unstripped"
 
   rm -rf "$BASE"
 }
@@ -94,7 +91,7 @@ setup() {
 @test "Check logs warning when unstripped x86 64-bit binary in /usr/sbin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -105,8 +102,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning unstripped-binary $BASE/usr/sbin/hello-x86_64-unstripped" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning unstripped-binary $BASE/usr/sbin/hello-x86_64-unstripped"
 
   rm -rf "$BASE"
 }
@@ -114,7 +110,7 @@ setup() {
 @test "Check logs warning when unstripped x86 64-bit library in /usr/lib64" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -125,8 +121,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning unstripped-binary $BASE/usr/lib64/libhello-x86_64-unstripped.so" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning unstripped-binary $BASE/usr/lib64/libhello-x86_64-unstripped.so"
 
   rm -rf "$BASE"
 }
@@ -134,7 +129,7 @@ setup() {
 @test "Check logs warning when unstripped x86 32-bit binary in /bin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -145,8 +140,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning unstripped-binary $BASE/bin/hello-x86-unstripped" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning unstripped-binary $BASE/bin/hello-x86-unstripped"
 
   rm -rf "$BASE"
 }
@@ -154,7 +148,7 @@ setup() {
 @test "Check logs warning when unstripped x86 32-bit binary in /sbin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -165,8 +159,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning unstripped-binary $BASE/sbin/hello-x86-unstripped" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning unstripped-binary $BASE/sbin/hello-x86-unstripped"
 
   rm -rf "$BASE"
 }
@@ -174,7 +167,7 @@ setup() {
 @test "Check logs warning when unstripped x86 32-bit library in /lib" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -185,8 +178,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning unstripped-binary $BASE/lib/libhello-x86-unstripped.so" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning unstripped-binary $BASE/lib/libhello-x86-unstripped.so"
 
   rm -rf "$BASE"
 }
@@ -194,7 +186,7 @@ setup() {
 @test "Check logs warning when unstripped x86 32-bit binary in /usr/bin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -205,8 +197,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning unstripped-binary $BASE/usr/bin/hello-x86-unstripped" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning unstripped-binary $BASE/usr/bin/hello-x86-unstripped"
 
   rm -rf "$BASE"
 }
@@ -214,7 +205,7 @@ setup() {
 @test "Check logs warning when unstripped x86 32-bit binary in /usr/sbin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -225,8 +216,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning unstripped-binary $BASE/usr/sbin/hello-x86-unstripped" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning unstripped-binary $BASE/usr/sbin/hello-x86-unstripped"
 
   rm -rf "$BASE"
 }
@@ -234,7 +224,7 @@ setup() {
 @test "Check logs warning when unstripped x86 32-bit library in /usr/lib" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -245,8 +235,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning unstripped-binary $BASE/usr/lib/libhello-x86-unstripped.so" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning unstripped-binary $BASE/usr/lib/libhello-x86-unstripped.so"
 
   rm -rf "$BASE"
 }

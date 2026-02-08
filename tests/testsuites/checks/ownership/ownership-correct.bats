@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs no error when correct owner and group for /bin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
   rm -rf $BASE/usr
@@ -26,7 +27,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -34,7 +35,7 @@ setup() {
 @test "Check logs no error when correct owner and group for file in /bin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -46,7 +47,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -54,7 +55,7 @@ setup() {
 @test "Check logs no error when correct owner and group for /lib" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
   rm -rf $BASE/lib
@@ -66,7 +67,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -74,7 +75,7 @@ setup() {
 @test "Check logs no error when correct owner and group for file in /lib" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -86,7 +87,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -94,7 +95,7 @@ setup() {
 @test "Check logs no error when correct owner and group for /lib64" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
   rm -rf $BASE/lib64
@@ -106,7 +107,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -114,7 +115,7 @@ setup() {
 @test "Check logs no error when correct owner and group for file in /lib64" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -126,7 +127,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -134,7 +135,7 @@ setup() {
 @test "Check logs no error when correct owner and group for /sbin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
   rm -rf $BASE/usr
@@ -146,7 +147,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -154,7 +155,7 @@ setup() {
 @test "Check logs no error when correct owner and group for file in /sbin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -166,7 +167,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -174,7 +175,7 @@ setup() {
 @test "Check logs no error when correct owner and group for /usr" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
   rm -rf $BASE/usr/bin
@@ -184,7 +185,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -192,7 +193,7 @@ setup() {
 @test "Check logs no error when correct owner and group for file in /usr" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -201,7 +202,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -209,7 +210,7 @@ setup() {
 @test "Check logs no error when correct owner and group for /" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
   rm -rf $BASE/usr
@@ -219,7 +220,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -227,7 +228,7 @@ setup() {
 @test "Check logs no error when owner is whitelisted (daemon) for file in /usr/bin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -236,7 +237,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -244,7 +245,7 @@ setup() {
 @test "Check logs no error when owner is whitelisted (uucp) for file in /usr/bin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -253,7 +254,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -261,7 +262,7 @@ setup() {
 @test "Check logs no error when owner is whitelisted (daemon) for file in /usr/sbin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
   mv $BASE/usr/bin $BASE/usr/sbin
@@ -271,7 +272,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }
@@ -279,7 +280,7 @@ setup() {
 @test "Check logs no error when owner is whitelisted (uucp) for file in /usr/sbin" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
   mv $BASE/usr/bin $BASE/usr/sbin
@@ -289,7 +290,7 @@ setup() {
 
   run check
 
-  [ -z "${lines[0]}" ]
+  refute_output
 
   rm -rf "$BASE"
 }

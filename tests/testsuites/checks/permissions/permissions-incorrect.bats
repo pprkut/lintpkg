@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Check logs warning when incorrect permissions for /etc" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -25,8 +26,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning strange-permission $BASE/etc 750" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning strange-permission $BASE/etc 750"
 
   rm -rf "$BASE"
 }
@@ -34,7 +34,7 @@ setup() {
 @test "Check logs warning when incorrect permissions for /usr" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -44,8 +44,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning strange-permission $BASE/usr 750" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning strange-permission $BASE/usr 750"
 
   rm -rf "$BASE"
 }
@@ -53,7 +52,7 @@ setup() {
 @test "Check logs warning when incorrect permissions for directory under /usr" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -63,8 +62,7 @@ setup() {
 
   run check
 
-  [ "${lines[0]}" == "warning strange-permission $BASE/usr/bin 750" ]
-  [ -z "${lines[1]}" ]
+  assert_output "warning strange-permission $BASE/usr/bin 750"
 
   rm -rf "$BASE"
 }

@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Show explanation for strange-owner-or-group error" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -22,7 +23,7 @@ setup() {
 
   run info "strange-owner-or-group"
 
-  [ "${lines[0]}" == "The owner and/or group of this object is not root:root." ]
+  assert_output "The owner and/or group of this object is not root:root."
 
   rm -rf "$BASE"
 }

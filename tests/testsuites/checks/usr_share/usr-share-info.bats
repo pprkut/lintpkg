@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Show explanation for binary-in-usr-share" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -22,7 +23,7 @@ setup() {
 
   run info "binary-in-usr-share"
 
-  [ "${lines[0]}" == "The /usr/share directory is for architecture-independent data, and should not contain object code such as ELF executables or shared libraries." ]
+  assert_output "The /usr/share directory is for architecture-independent data, and should not contain object code such as ELF executables or shared libraries."
 
   rm -rf "$BASE"
 }

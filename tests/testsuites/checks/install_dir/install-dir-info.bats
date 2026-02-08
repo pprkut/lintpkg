@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 
+load ../../../helpers/assertions
 load ../../../helpers/locations
 load ../../../helpers/main
 load ../../../helpers/makepkg
@@ -14,7 +15,7 @@ setup() {
 @test "Show explanation for no-install-dir error" {
   BASE=$(create_tmp_dir)
 
-  ! [ -z "$BASE" ]
+  refute [ -z "$BASE" ]
 
   create_empty_package $BASE
 
@@ -22,7 +23,7 @@ setup() {
 
   run info "no-install-dir"
 
-  [ "${lines[0]}" == "The file does not contain an install/ directory. It is probably not a Slackware package." ]
+  assert_output "The file does not contain an install/ directory. It is probably not a Slackware package."
 
   rm -rf "$BASE"
 }
