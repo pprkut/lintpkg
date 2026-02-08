@@ -1,2 +1,3 @@
 bats_load_library bats-assert
+bats_load_library bats-file
 bats_load_library bats-support

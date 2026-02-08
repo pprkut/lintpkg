@@ -71,8 +71,8 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
   run lintpkg --extractdir "/tmp/lintpkg_test" "$PKG"
 
-  [ -e "$BASE/install/slack-desc" ]
-  [ -e "$BASE/usr/bin/foo" ]
+  assert_file_exists "$BASE/install/slack-desc"
+  assert_file_exists "$BASE/usr/bin/foo"
 
   rm -f "$PKG"
   rm -rf /tmp/lintpkg_test
