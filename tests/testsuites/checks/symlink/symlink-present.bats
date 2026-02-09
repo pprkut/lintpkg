@@ -34,11 +34,10 @@ setup() {
 
   run check
 
-  EXPECTED=""
-  EXPECTED+="warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo2"$'\n'
-  EXPECTED+="warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo3"
+  expect_output "warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo2"
+  expect_output "warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo3"
 
-  assert_output "$EXPECTED"
+  assert_expected_output
 }
 
 @test "Check logs warning when a single symlink with spaces in its name is present" {
@@ -63,9 +62,8 @@ setup() {
 
   run check
 
-  EXPECTED=""
-  EXPECTED+="warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo 2"$'\n'
-  EXPECTED+="warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo 3"
+  expect_output "warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo 2"
+  expect_output "warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo 3"
 
-  assert_output "$EXPECTED"
+  assert_expected_output
 }

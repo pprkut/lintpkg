@@ -77,11 +77,10 @@ setup() {
 
   run check
 
-  EXPECTED=""
-  EXPECTED+="error incorrect-info-dir /usr/share/info"$'\n'
-  EXPECTED+="warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/share/info/lintpkg.info"
+  expect_output "error incorrect-info-dir /usr/share/info"
+  expect_output "warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/share/info/lintpkg.info"
 
-  assert_output "$EXPECTED"
+  assert_expected_output
 }
 
 @test "Check logs warning when uncompressed info page in /usr/local/info" {
@@ -94,11 +93,10 @@ setup() {
 
   run check
 
-  EXPECTED=""
-  EXPECTED+="error incorrect-info-dir /usr/local/info"$'\n'
-  EXPECTED+="warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/local/info/lintpkg.info"
+  expect_output "error incorrect-info-dir /usr/local/info"
+  expect_output "warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/local/info/lintpkg.info"
 
-  assert_output "$EXPECTED"
+  assert_expected_output
 }
 
 @test "Check logs warning when uncompressed info page in /usr/local/share/info" {
@@ -111,9 +109,8 @@ setup() {
 
   run check
 
-  EXPECTED=""
-  EXPECTED+="error incorrect-info-dir /usr/local/share/info"$'\n'
-  EXPECTED+="warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/local/share/info/lintpkg.info"
+  expect_output "error incorrect-info-dir /usr/local/share/info"
+  expect_output "warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/local/share/info/lintpkg.info"
 
-  assert_output "$EXPECTED"
+  assert_expected_output
 }

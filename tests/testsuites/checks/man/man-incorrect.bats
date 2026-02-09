@@ -77,11 +77,10 @@ setup() {
 
   run check
 
-  EXPECTED=""
-  EXPECTED+="error incorrect-man-dir /usr/share/man"$'\n'
-  EXPECTED+="warning uncompressed-man-page $BATS_TEST_TMPDIR/usr/share/man/man1/lintpkg.1"
+  expect_output "error incorrect-man-dir /usr/share/man"
+  expect_output "warning uncompressed-man-page $BATS_TEST_TMPDIR/usr/share/man/man1/lintpkg.1"
 
-  assert_output "$EXPECTED"
+  assert_expected_output
 }
 
 @test "Check logs warning when uncompressed man page in /usr/local/man" {
@@ -94,11 +93,10 @@ setup() {
 
   run check
 
-  EXPECTED=""
-  EXPECTED+="error incorrect-man-dir /usr/local/man"$'\n'
-  EXPECTED+="warning uncompressed-man-page $BATS_TEST_TMPDIR/usr/local/man/man1/lintpkg.1"
+  expect_output "error incorrect-man-dir /usr/local/man"
+  expect_output "warning uncompressed-man-page $BATS_TEST_TMPDIR/usr/local/man/man1/lintpkg.1"
 
-  assert_output "$EXPECTED"
+  assert_expected_output
 }
 
 @test "Check logs warning when uncompressed man page in /usr/local/share/man" {
@@ -111,9 +109,8 @@ setup() {
 
   run check
 
-  EXPECTED=""
-  EXPECTED+="error incorrect-man-dir /usr/local/share/man"$'\n'
-  EXPECTED+="warning uncompressed-man-page $BATS_TEST_TMPDIR/usr/local/share/man/man1/lintpkg.1"
+  expect_output "error incorrect-man-dir /usr/local/share/man"
+  expect_output "warning uncompressed-man-page $BATS_TEST_TMPDIR/usr/local/share/man/man1/lintpkg.1"
 
-  assert_output "$EXPECTED"
+  assert_expected_output
 }

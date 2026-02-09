@@ -123,15 +123,14 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
   run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_listing_check "$PKG"
 
-  EXPECTED=""
-  EXPECTED+="./"$'\n'
-  EXPECTED+="install/"$'\n'
-  EXPECTED+="install/slack-desc"$'\n'
-  EXPECTED+="usr/"$'\n'
-  EXPECTED+="usr/bin/"$'\n'
-  EXPECTED+="usr/bin/foo"
+  expect_output "./"
+  expect_output "install/"
+  expect_output "install/slack-desc"
+  expect_output "usr/"
+  expect_output "usr/bin/"
+  expect_output "usr/bin/foo"
 
-  assert_output --partial "$EXPECTED"
+  assert_expected_output --partial
 
   rm -f "$PKG"
 }

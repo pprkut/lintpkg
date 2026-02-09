@@ -22,11 +22,10 @@ setup() {
 
   run check
 
-  EXPECTED=""
-  EXPECTED+="error dir-or-file-in-home $BATS_TEST_TMPDIR//home/user"$'\n'
-  EXPECTED+="error dir-or-file-in-home $BATS_TEST_TMPDIR//home/user/foo"
+  expect_output "error dir-or-file-in-home $BATS_TEST_TMPDIR//home/user"
+  expect_output "error dir-or-file-in-home $BATS_TEST_TMPDIR//home/user/foo"
 
-  assert_output "$EXPECTED"
+  assert_expected_output
 }
 
 @test "Check logs error when package contains files under /mnt" {
@@ -39,11 +38,10 @@ setup() {
 
   run check
 
-  EXPECTED=""
-  EXPECTED+="error dir-or-file-in-mnt $BATS_TEST_TMPDIR//mnt/hd"$'\n'
-  EXPECTED+="error dir-or-file-in-mnt $BATS_TEST_TMPDIR//mnt/hd/foo"
+  expect_output "error dir-or-file-in-mnt $BATS_TEST_TMPDIR//mnt/hd"
+  expect_output "error dir-or-file-in-mnt $BATS_TEST_TMPDIR//mnt/hd/foo"
 
-  assert_output "$EXPECTED"
+  assert_expected_output
 }
 
 @test "Check logs error when package contains files under /tmp" {
@@ -56,11 +54,10 @@ setup() {
 
   run check
 
-  EXPECTED=""
-  EXPECTED+="error dir-or-file-in-tmp $BATS_TEST_TMPDIR//tmp/foo"$'\n'
-  EXPECTED+="error dir-or-file-in-tmp $BATS_TEST_TMPDIR//tmp/foo/bar"
+  expect_output "error dir-or-file-in-tmp $BATS_TEST_TMPDIR//tmp/foo"
+  expect_output "error dir-or-file-in-tmp $BATS_TEST_TMPDIR//tmp/foo/bar"
 
-  assert_output "$EXPECTED"
+  assert_expected_output
 }
 
 @test "Check logs error when package contains files under /usr/local" {
@@ -73,11 +70,10 @@ setup() {
 
   run check
 
-  EXPECTED=""
-  EXPECTED+="error dir-or-file-in-usr-local $BATS_TEST_TMPDIR//usr/local/bin"$'\n'
-  EXPECTED+="error dir-or-file-in-usr-local $BATS_TEST_TMPDIR//usr/local/bin/foo"
+  expect_output "error dir-or-file-in-usr-local $BATS_TEST_TMPDIR//usr/local/bin"
+  expect_output "error dir-or-file-in-usr-local $BATS_TEST_TMPDIR//usr/local/bin/foo"
 
-  assert_output "$EXPECTED"
+  assert_expected_output
 }
 
 @test "Check logs error when package contains files under /usr/tmp" {
@@ -90,11 +86,10 @@ setup() {
 
   run check
 
-  EXPECTED=""
-  EXPECTED+="error dir-or-file-in-usr-tmp $BATS_TEST_TMPDIR//usr/tmp/foo"$'\n'
-  EXPECTED+="error dir-or-file-in-usr-tmp $BATS_TEST_TMPDIR//usr/tmp/foo/bar"
+  expect_output "error dir-or-file-in-usr-tmp $BATS_TEST_TMPDIR//usr/tmp/foo"
+  expect_output "error dir-or-file-in-usr-tmp $BATS_TEST_TMPDIR//usr/tmp/foo/bar"
 
-  assert_output "$EXPECTED"
+  assert_expected_output
 }
 
 @test "Check logs error when package contains files under /var/local" {
@@ -107,11 +102,10 @@ setup() {
 
   run check
 
-  EXPECTED=""
-  EXPECTED+="error dir-or-file-in-var-local $BATS_TEST_TMPDIR//var/local/bar"$'\n'
-  EXPECTED+="error dir-or-file-in-var-local $BATS_TEST_TMPDIR//var/local/bar/foo"
+  expect_output "error dir-or-file-in-var-local $BATS_TEST_TMPDIR//var/local/bar"
+  expect_output "error dir-or-file-in-var-local $BATS_TEST_TMPDIR//var/local/bar/foo"
 
-  assert_output "$EXPECTED"
+  assert_expected_output
 }
 
 @test "Check logs error when package contains files under /var/lock" {
@@ -124,11 +118,10 @@ setup() {
 
   run check
 
-  EXPECTED=""
-  EXPECTED+="error dir-or-file-in-var-lock $BATS_TEST_TMPDIR//var/lock/bar"$'\n'
-  EXPECTED+="error dir-or-file-in-var-lock $BATS_TEST_TMPDIR//var/lock/bar/foo"
+  expect_output "error dir-or-file-in-var-lock $BATS_TEST_TMPDIR//var/lock/bar"
+  expect_output "error dir-or-file-in-var-lock $BATS_TEST_TMPDIR//var/lock/bar/foo"
 
-  assert_output "$EXPECTED"
+  assert_expected_output
 }
 
 @test "Check logs error when package contains files under /var/run" {
@@ -141,11 +134,10 @@ setup() {
 
   run check
 
-  EXPECTED=""
-  EXPECTED+="error dir-or-file-in-var-run $BATS_TEST_TMPDIR//var/run/bar"$'\n'
-  EXPECTED+="error dir-or-file-in-var-run $BATS_TEST_TMPDIR//var/run/bar/foo"
+  expect_output "error dir-or-file-in-var-run $BATS_TEST_TMPDIR//var/run/bar"
+  expect_output "error dir-or-file-in-var-run $BATS_TEST_TMPDIR//var/run/bar/foo"
 
-  assert_output "$EXPECTED"
+  assert_expected_output
 }
 
 @test "Check logs error when package contains files under /var/tmp" {
@@ -158,9 +150,8 @@ setup() {
 
   run check
 
-  EXPECTED=""
-  EXPECTED+="error dir-or-file-in-var-tmp $BATS_TEST_TMPDIR//var/tmp/bar"$'\n'
-  EXPECTED+="error dir-or-file-in-var-tmp $BATS_TEST_TMPDIR//var/tmp/bar/foo"
+  expect_output "error dir-or-file-in-var-tmp $BATS_TEST_TMPDIR//var/tmp/bar"
+  expect_output "error dir-or-file-in-var-tmp $BATS_TEST_TMPDIR//var/tmp/bar/foo"
 
-  assert_output "$EXPECTED"
+  assert_expected_output
 }
