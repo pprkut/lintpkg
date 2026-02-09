@@ -13,17 +13,11 @@ setup() {
 }
 
 @test "Check logs no error when there is no disallowed directory present" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }

@@ -13,57 +13,39 @@ setup() {
 }
 
 @test "Check logs no warning when correct permissions for /etc" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/etc
+  chmod 755 $BATS_TEST_TMPDIR/etc
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/etc
-  chmod 755 $BASE/etc
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no warning when correct permissions for /usr" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  chmod 755 $BATS_TEST_TMPDIR/usr
 
-  create_empty_package $BASE
-
-  chmod 755 $BASE/usr
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no warning when correct permissions for directory under /usr" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  chmod 755 $BATS_TEST_TMPDIR/usr/bin
 
-  create_empty_package $BASE
-
-  chmod 755 $BASE/usr/bin
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 

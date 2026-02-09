@@ -13,18 +13,12 @@ setup() {
 }
 
 @test "Check logs error when package was not created with tar-1.13" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
-  PKG_LISTING=$(create_tar_listing $BASE new)
+  WORKING_DIR=$BATS_TEST_TMPDIR
+  PKG_LISTING=$(create_tar_listing $BATS_TEST_TMPDIR new)
 
   run check
 
   assert_output "error package-not-tar-113"
-
-  rm -rf "$BASE"
 }

@@ -13,57 +13,39 @@ setup() {
 }
 
 @test "Check logs warning when incorrect permissions for /etc" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
-
-  mkdir -p $BASE/etc
-  chmod 750 $BASE/etc
+  mkdir -p $BATS_TEST_TMPDIR/etc
+  chmod 750 $BATS_TEST_TMPDIR/etc
 
   run check
 
-  assert_output "warning strange-permission $BASE/etc 750"
-
-  rm -rf "$BASE"
+  assert_output "warning strange-permission $BATS_TEST_TMPDIR/etc 750"
 }
 
 @test "Check logs warning when incorrect permissions for /usr" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
-
-  chmod 750 $BASE/usr
+  chmod 750 $BATS_TEST_TMPDIR/usr
 
   run check
 
-  assert_output "warning strange-permission $BASE/usr 750"
-
-  rm -rf "$BASE"
+  assert_output "warning strange-permission $BATS_TEST_TMPDIR/usr 750"
 }
 
 @test "Check logs warning when incorrect permissions for directory under /usr" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
-
-  chmod 750 $BASE/usr/bin
+  chmod 750 $BATS_TEST_TMPDIR/usr/bin
 
   run check
 
-  assert_output "warning strange-permission $BASE/usr/bin 750"
-
-  rm -rf "$BASE"
+  assert_output "warning strange-permission $BATS_TEST_TMPDIR/usr/bin 750"
 }
 

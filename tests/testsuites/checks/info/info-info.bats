@@ -13,33 +13,21 @@ setup() {
 }
 
 @test "Show explanation for incorrect-info-dir error" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "incorrect-info-dir"
 
   assert_output "Info-pages should be put under /usr/info"
-
-  rm -rf "$BASE"
 }
 
 @test "Show explanation for uncompressed-info-page warning" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "uncompressed-info-page"
 
   assert_output "Info-pages should be gzip-compressed"
-
-  rm -rf "$BASE"
 }

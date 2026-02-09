@@ -13,41 +13,29 @@ setup() {
 }
 
 @test "Check logs no error when correct directory and compressed" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/info
+  makeinfo $DOCS/lintpkg.texi -o $BATS_TEST_TMPDIR/usr/info/
+  gzip -9 $BATS_TEST_TMPDIR/usr/info/lintpkg.info
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/info
-  makeinfo $DOCS/lintpkg.texi -o $BASE/usr/info/
-  gzip -9 $BASE/usr/info/lintpkg.info
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no warning for png in correct directory" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/info
+  touch $BATS_TEST_TMPDIR/usr/info/lintpkg.png
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/info
-  touch $BASE/usr/info/lintpkg.png
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 

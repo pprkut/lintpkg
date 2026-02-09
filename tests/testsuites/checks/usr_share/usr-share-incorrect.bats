@@ -13,58 +13,40 @@ setup() {
 }
 
 @test "Check logs error when binary in /usr/share" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/share/test
+  cp $TEST_STATICS/binaries/hello-x86_64-stripped $BATS_TEST_TMPDIR/usr/share/test/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/share/test
-  cp $TEST_STATICS/binaries/hello-x86_64-stripped $BASE/usr/share/test/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
-  assert_output "error binary-in-usr-share $BASE/usr/share/test/hello-x86_64-stripped"
-
-  rm -rf "$BASE"
+  assert_output "error binary-in-usr-share $BATS_TEST_TMPDIR/usr/share/test/hello-x86_64-stripped"
 }
 
 @test "Check logs error when shared library in /usr/share" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/share/test
+  cp $TEST_STATICS/binaries/libhello-x86_64-stripped.so $BATS_TEST_TMPDIR/usr/share/test/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/share/test
-  cp $TEST_STATICS/binaries/libhello-x86_64-stripped.so $BASE/usr/share/test/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
-  assert_output "error binary-in-usr-share $BASE/usr/share/test/libhello-x86_64-stripped.so"
-
-  rm -rf "$BASE"
+  assert_output "error binary-in-usr-share $BATS_TEST_TMPDIR/usr/share/test/libhello-x86_64-stripped.so"
 }
 
 @test "Check logs error when static library in /usr/share" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/share/test
+  cp $TEST_STATICS/binaries/libhello-x86_64-stripped.a $BATS_TEST_TMPDIR/usr/share/test/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/share/test
-  cp $TEST_STATICS/binaries/libhello-x86_64-stripped.a $BASE/usr/share/test/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
-  assert_output "error binary-in-usr-share $BASE/usr/share/test/libhello-x86_64-stripped.a"
-
-  rm -rf "$BASE"
+  assert_output "error binary-in-usr-share $BATS_TEST_TMPDIR/usr/share/test/libhello-x86_64-stripped.a"
 }

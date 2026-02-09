@@ -60,19 +60,15 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 }
 
 @test "Lintpkg extracts package inside extraction directory" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   mkdir -p /tmp/lintpkg_test
 
   run lintpkg --extractdir "/tmp/lintpkg_test" "$PKG"
 
-  assert_file_exists "$BASE/install/slack-desc"
-  assert_file_exists "$BASE/usr/bin/foo"
+  assert_file_exists "$BATS_TEST_TMPDIR/install/slack-desc"
+  assert_file_exists "$BATS_TEST_TMPDIR/usr/bin/foo"
 
   rm -f "$PKG"
   rm -rf /tmp/lintpkg_test

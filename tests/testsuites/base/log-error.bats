@@ -8,12 +8,8 @@ load ../../helpers/makepkg
 BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 @test "Logging error without info" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/logging" -c log_error_check "$PKG"
 
@@ -21,16 +17,11 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   assert_line -n 1 "1 packages checked; 1 errors and 0 warnings."
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Logging error with info" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/logging" -c log_error_check -i "$PKG"
 
@@ -39,16 +30,11 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   assert_line -n 2 "1 packages checked; 1 errors and 0 warnings."
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Logging error for path with whitespaces without info" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/logging" -c log_whitespace_error_check "$PKG"
 
@@ -56,16 +42,11 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   assert_line -n 1 "1 packages checked; 1 errors and 0 warnings."
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Logging error for path with whitespaces with info" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/logging" -c log_whitespace_error_check -i "$PKG"
 
@@ -74,80 +55,55 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   assert_line -n 2 "1 packages checked; 1 errors and 0 warnings."
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Logging error ignored with -x does not print message" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/logging" -c log_error_check -x simple-error "$PKG"
 
   assert_line -n 0 "1 packages checked; 0 errors and 0 warnings."
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Logging error ignored with --exclude does not print message" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/logging" -c log_error_check --exclude simple-error "$PKG"
 
   assert_line -n 0 "1 packages checked; 0 errors and 0 warnings."
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Logging error ignored with -x does not print info message" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/logging" -c log_error_check -x simple-error -i "$PKG"
 
   assert_line -n 0 "1 packages checked; 0 errors and 0 warnings."
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Logging error ignored with --exclude does not print info message" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/logging" -c log_error_check --exclude simple-error -i "$PKG"
 
   assert_line -n 0 "1 packages checked; 0 errors and 0 warnings."
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Logging error removes working directory prefix from path" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/logging" -c log_workingdir_error_check "$PKG"
 
@@ -155,5 +111,4 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   assert_line -n 1 "1 packages checked; 1 errors and 0 warnings."
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }

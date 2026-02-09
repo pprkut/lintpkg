@@ -13,38 +13,26 @@ setup() {
 }
 
 @test "Check logs error when doinst.sh is missing" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/share/icons/hicolor
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/share/icons/hicolor
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   assert_output "error missing-icon-cache-update hicolor"
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs error when doinst.sh has unconditional update for hicolor icon cache" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/share/icons/hicolor
+  cp $TEST_STATICS/doinst.sh/invalid-hicolor-icon-cache-unconditional $BATS_TEST_TMPDIR/install/doinst.sh
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/share/icons/hicolor
-  cp $TEST_STATICS/doinst.sh/invalid-hicolor-icon-cache-unconditional $BASE/install/doinst.sh
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   assert_output "error missing-icon-cache-update hicolor"
-
-  rm -rf "$BASE"
 }

@@ -1,9 +1,4 @@
 
-create_tmp_dir() {
-  echo $(mktemp -d -t lintpkg_test.XXXXXX)
-  return 0
-}
-
 create_empty_package() {
   BASE="$1"
 

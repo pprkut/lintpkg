@@ -13,17 +13,11 @@ setup() {
 }
 
 @test "Show explanation for strange-owner-or-group error" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "strange-owner-or-group"
 
   assert_output "The owner and/or group of this object is not root:root."
-
-  rm -rf "$BASE"
 }

@@ -13,21 +13,15 @@ setup() {
 }
 
 @test "Check logs no error when correct directory and compressed" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/man/man1
+  cp $DOCS/lintpkg.1 $BATS_TEST_TMPDIR/usr/man/man1/
+  gzip -9 $BATS_TEST_TMPDIR/usr/man/man1/lintpkg.1
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/man/man1
-  cp $DOCS/lintpkg.1 $BASE/usr/man/man1/
-  gzip -9 $BASE/usr/man/man1/lintpkg.1
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }

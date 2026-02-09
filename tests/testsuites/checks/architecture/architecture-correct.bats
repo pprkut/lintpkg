@@ -13,61 +13,43 @@ setup() {
 }
 
 @test "Check logs no error when x86 64-bit library in /usr/lib64" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/lib64
+  cp $TEST_STATICS/binaries/libhello-x86_64-stripped.so $BATS_TEST_TMPDIR/usr/lib64/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/lib64
-  cp $TEST_STATICS/binaries/libhello-x86_64-stripped.so $BASE/usr/lib64/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_ARCH=x86_64
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no error when x86 32-bit library in /usr/lib for i486 package" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/lib
+  cp $TEST_STATICS/binaries/libhello-x86-stripped.so $BATS_TEST_TMPDIR/usr/lib/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/lib
-  cp $TEST_STATICS/binaries/libhello-x86-stripped.so $BASE/usr/lib/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_ARCH=i486
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no error when x86 32-bit library in /usr/lib for i686 package" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/lib
+  cp $TEST_STATICS/binaries/libhello-x86-stripped.so $BATS_TEST_TMPDIR/usr/lib/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/lib
-  cp $TEST_STATICS/binaries/libhello-x86-stripped.so $BASE/usr/lib/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_ARCH=i686
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }

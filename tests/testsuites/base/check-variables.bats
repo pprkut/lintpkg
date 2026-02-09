@@ -8,172 +8,118 @@ load ../../helpers/makepkg
 BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 @test "Checks have proper full package name" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_fullname_check "$PKG"
 
   assert_line -n 0 "empty-1.0-noarch-1"
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Checks have proper simple package name" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_name_check "$PKG"
 
   assert_line -n 0 "empty"
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Checks have proper package name with dash" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE lintpkg-empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR lintpkg-empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_name_check "$PKG"
 
   assert_line -n 0 "lintpkg-empty"
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Checks have proper package name when version has dash" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE lintpkg-empty 1.0-1 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR lintpkg-empty 1.0-1 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_name_check "$PKG"
 
   assert_line -n 0 "lintpkg-empty-1.0"
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Checks have proper simple package version" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_version_check "$PKG"
 
   assert_line -n 0 "1.0"
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Checks have proper package version when name has dash" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE lintpkg-empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR lintpkg-empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_version_check "$PKG"
 
   assert_line -n 0 "1.0"
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Checks have proper package version when version has dash" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE lintpkg-empty 1.0-1 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR lintpkg-empty 1.0-1 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_version_check "$PKG"
 
   assert_line -n 0 "1"
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Checks have proper package architecture" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_arch_check "$PKG"
 
   assert_line -n 0 "noarch"
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Checks have proper package build number" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 2)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 2)
 
   run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_build_check "$PKG"
 
   assert_line -n 0 "2"
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Checks have proper package extension" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_extension_check "$PKG"
 
   assert_line -n 0 "tgz"
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Checks have proper simple package listing" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_listing_check "$PKG"
 
@@ -188,16 +134,11 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   assert_output --partial "$EXPECTED"
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Checks have proper detailed package listing" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   USER=$(id -u -n)
   GROUP=$(id -g -n)
@@ -220,32 +161,22 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   assert_line --index 5 --regexp "$perm_exec $owner${whitespace}0 $date $time usr/bin/foo"
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Checks have default working directory" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_working_dir_check "$PKG"
 
   assert_line -n 0 --regexp '^/tmp/lintpkg\.......$'
 
   rm -f "$PKG"
-  rm -rf "$BASE"
 }
 
 @test "Checks have working directory specified with -E" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   mkdir -p /tmp/lintpkg_test
 
@@ -254,17 +185,12 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   assert_line -n 0 --regexp '^/tmp/lintpkg_test/lintpkg\.......$'
 
   rm -f "$PKG"
-  rm -rf "$BASE"
   rm -rf /tmp/lintpkg_test
 }
 
 @test "Checks have working directory specified with --extractdir" {
-  BASE=$(create_tmp_dir)
-
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-  PKG=$(create_slackware_package $BASE empty 1.0 noarch 1)
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
   mkdir -p /tmp/lintpkg_test
 
@@ -273,6 +199,5 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   assert_line -n 0 --regexp '^/tmp/lintpkg_test/lintpkg\.......$'
 
   rm -f "$PKG"
-  rm -rf "$BASE"
   rm -rf /tmp/lintpkg_test
 }

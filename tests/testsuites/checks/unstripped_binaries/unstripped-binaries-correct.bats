@@ -13,229 +13,157 @@ setup() {
 }
 
 @test "Check logs no warning when stripped x86 64-bit binary in /bin" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/bin
+  cp $TEST_STATICS/binaries/hello-x86_64-stripped $BATS_TEST_TMPDIR/bin/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/bin
-  cp $TEST_STATICS/binaries/hello-x86_64-stripped $BASE/bin/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no warning when stripped x86 64-bit binary in /sbin" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/sbin
+  cp $TEST_STATICS/binaries/hello-x86_64-stripped $BATS_TEST_TMPDIR/sbin/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/sbin
-  cp $TEST_STATICS/binaries/hello-x86_64-stripped $BASE/sbin/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no warning when stripped x86 64-bit library in /lib64" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/lib64
+  cp $TEST_STATICS/binaries/libhello-x86_64-stripped.so $BATS_TEST_TMPDIR/lib64/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/lib64
-  cp $TEST_STATICS/binaries/libhello-x86_64-stripped.so $BASE/lib64/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no warning when stripped x86 64-bit binary in /usr/bin" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/bin
+  cp $TEST_STATICS/binaries/hello-x86_64-stripped $BATS_TEST_TMPDIR/usr/bin/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/bin
-  cp $TEST_STATICS/binaries/hello-x86_64-stripped $BASE/usr/bin/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no warning when stripped x86 64-bit binary in /usr/sbin" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/sbin
+  cp $TEST_STATICS/binaries/hello-x86_64-stripped $BATS_TEST_TMPDIR/usr/sbin/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/sbin
-  cp $TEST_STATICS/binaries/hello-x86_64-stripped $BASE/usr/sbin/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no warning when stripped x86 64-bit library in /usr/lib64" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/lib64
+  cp $TEST_STATICS/binaries/libhello-x86_64-stripped.so $BATS_TEST_TMPDIR/usr/lib64/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/lib64
-  cp $TEST_STATICS/binaries/libhello-x86_64-stripped.so $BASE/usr/lib64/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no warning when stripped x86 32-bit binary in /bin" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/bin
+  cp $TEST_STATICS/binaries/hello-x86-stripped $BATS_TEST_TMPDIR/bin/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/bin
-  cp $TEST_STATICS/binaries/hello-x86-stripped $BASE/bin/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no warning when stripped x86 32-bit binary in /sbin" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/sbin
+  cp $TEST_STATICS/binaries/hello-x86-stripped $BATS_TEST_TMPDIR/sbin/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/sbin
-  cp $TEST_STATICS/binaries/hello-x86-stripped $BASE/sbin/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no warning when stripped x86 32-bit library in /lib" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/lib
+  cp $TEST_STATICS/binaries/libhello-x86-stripped.so $BATS_TEST_TMPDIR/lib/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/lib
-  cp $TEST_STATICS/binaries/libhello-x86-stripped.so $BASE/lib/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no warning when stripped x86 32-bit binary in /usr/bin" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/bin
+  cp $TEST_STATICS/binaries/hello-x86-stripped $BATS_TEST_TMPDIR/usr/bin/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/bin
-  cp $TEST_STATICS/binaries/hello-x86-stripped $BASE/usr/bin/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no warning when stripped x86 32-bit binary in /usr/sbin" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/sbin
+  cp $TEST_STATICS/binaries/hello-x86-stripped $BATS_TEST_TMPDIR/usr/sbin/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/sbin
-  cp $TEST_STATICS/binaries/hello-x86-stripped $BASE/usr/sbin/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no warning when stripped x86 32-bit library in /usr/lib" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/lib
+  cp $TEST_STATICS/binaries/libhello-x86-stripped.so $BATS_TEST_TMPDIR/usr/lib/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/lib
-  cp $TEST_STATICS/binaries/libhello-x86-stripped.so $BASE/usr/lib/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }

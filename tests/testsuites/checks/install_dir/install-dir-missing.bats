@@ -13,20 +13,14 @@ setup() {
 }
 
 @test "Check logs error when install dir is missing" {
-  BASE=$(create_tmp_dir)
+  mkdir -p $BATS_TEST_TMPDIR/usr/bin
+  touch $BATS_TEST_TMPDIR/usr/bin/foo
+  chmod +x $BATS_TEST_TMPDIR/usr/bin/foo
 
-  refute [ -z "$BASE" ]
-
-  mkdir -p $BASE/usr/bin
-  touch $BASE/usr/bin/foo
-  chmod +x $BASE/usr/bin/foo
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   assert_output "error no-install-dir"
-
-  rm -rf "$BASE"
 }
 

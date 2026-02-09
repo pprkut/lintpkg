@@ -13,17 +13,11 @@ setup() {
 }
 
 @test "Show explanation for invalid-libtool-archive error" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "invalid-libtool-archive"
 
   assert_output "An invalid libtool archive (.la) file will likely result in linking errors for applications that try to use it."
-
-  rm -rf "$BASE"
 }

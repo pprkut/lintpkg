@@ -13,33 +13,21 @@ setup() {
 }
 
 @test "Show explanation for incorrect-man-dir error" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "incorrect-man-dir"
 
   assert_output "Man-pages should be put under /usr/man"
-
-  rm -rf "$BASE"
 }
 
 @test "Show explanation for uncompressed-man-page warning" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "uncompressed-man-page"
 
   assert_output "Man-pages should be gzip-compressed"
-
-  rm -rf "$BASE"
 }

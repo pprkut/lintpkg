@@ -13,95 +13,65 @@ setup() {
 }
 
 @test "Check logs no error when slack-desc file is valid" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_NAME=LINTPKG_TEST
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no error when slack-desc file has maximum allowed lines" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  cp $TEST_STATICS/slack-descs/valid-max-lines $BATS_TEST_TMPDIR/install/slack-desc
 
-  create_empty_package $BASE
-
-  cp $TEST_STATICS/slack-descs/valid-max-lines $BASE/install/slack-desc
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_NAME=LINTPKG_TEST
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no error when slack-desc file has minimum allowed lines" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  cp $TEST_STATICS/slack-descs/valid-min-lines $BATS_TEST_TMPDIR/install/slack-desc
 
-  create_empty_package $BASE
-
-  cp $TEST_STATICS/slack-descs/valid-min-lines $BASE/install/slack-desc
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_NAME=LINTPKG_TEST
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no error when slack-desc file has handy-ruler" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  cp $TEST_STATICS/slack-descs/valid-with-handy-ruler $BATS_TEST_TMPDIR/install/slack-desc
 
-  create_empty_package $BASE
-
-  cp $TEST_STATICS/slack-descs/valid-with-handy-ruler $BASE/install/slack-desc
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_NAME=LINTPKG_TEST
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs no error when slack-desc file has handy-ruler and comments" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  cp $TEST_STATICS/slack-descs/valid-with-comments $BATS_TEST_TMPDIR/install/slack-desc
 
-  create_empty_package $BASE
-
-  cp $TEST_STATICS/slack-descs/valid-with-comments $BASE/install/slack-desc
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_NAME=LINTPKG_TEST
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }
 

@@ -13,149 +13,107 @@ setup() {
 }
 
 @test "Check logs error when info page in /usr/share/info" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/share/info
+  makeinfo $DOCS/lintpkg.texi -o $BATS_TEST_TMPDIR/usr/share/info/
+  gzip -9 $BATS_TEST_TMPDIR/usr/share/info/lintpkg.info
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/share/info
-  makeinfo $DOCS/lintpkg.texi -o $BASE/usr/share/info/
-  gzip -9 $BASE/usr/share/info/lintpkg.info
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   assert_output "error incorrect-info-dir /usr/share/info"
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs error when info page in /usr/local/info" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/local/info
+  makeinfo $DOCS/lintpkg.texi -o $BATS_TEST_TMPDIR/usr/local/info/
+  gzip -9 $BATS_TEST_TMPDIR/usr/local/info/lintpkg.info
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/local/info
-  makeinfo $DOCS/lintpkg.texi -o $BASE/usr/local/info/
-  gzip -9 $BASE/usr/local/info/lintpkg.info
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   assert_output "error incorrect-info-dir /usr/local/info"
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs error when info page in /usr/local/share/info" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/local/share/info
+  makeinfo $DOCS/lintpkg.texi -o $BATS_TEST_TMPDIR/usr/local/share/info/
+  gzip -9 $BATS_TEST_TMPDIR/usr/local/share/info/lintpkg.info
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/local/share/info
-  makeinfo $DOCS/lintpkg.texi -o $BASE/usr/local/share/info/
-  gzip -9 $BASE/usr/local/share/info/lintpkg.info
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   assert_output "error incorrect-info-dir /usr/local/share/info"
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs warning when uncompressed info page in /usr/info" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/info
+  makeinfo $DOCS/lintpkg.texi -o $BATS_TEST_TMPDIR/usr/info/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/info
-  makeinfo $DOCS/lintpkg.texi -o $BASE/usr/info/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
-  assert_output "warning uncompressed-info-page $BASE/usr/info/lintpkg.info"
-
-  rm -rf "$BASE"
+  assert_output "warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/info/lintpkg.info"
 }
 
 @test "Check logs warning when uncompressed info page in /usr/share/info" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/share/info
+  makeinfo $DOCS/lintpkg.texi -o $BATS_TEST_TMPDIR/usr/share/info/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/share/info
-  makeinfo $DOCS/lintpkg.texi -o $BASE/usr/share/info/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   EXPECTED=""
   EXPECTED+="error incorrect-info-dir /usr/share/info"$'\n'
-  EXPECTED+="warning uncompressed-info-page $BASE/usr/share/info/lintpkg.info"
+  EXPECTED+="warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/share/info/lintpkg.info"
 
   assert_output "$EXPECTED"
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs warning when uncompressed info page in /usr/local/info" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/local/info
+  makeinfo $DOCS/lintpkg.texi -o $BATS_TEST_TMPDIR/usr/local/info/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/local/info
-  makeinfo $DOCS/lintpkg.texi -o $BASE/usr/local/info/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   EXPECTED=""
   EXPECTED+="error incorrect-info-dir /usr/local/info"$'\n'
-  EXPECTED+="warning uncompressed-info-page $BASE/usr/local/info/lintpkg.info"
+  EXPECTED+="warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/local/info/lintpkg.info"
 
   assert_output "$EXPECTED"
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs warning when uncompressed info page in /usr/local/share/info" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/local/share/info
+  makeinfo $DOCS/lintpkg.texi -o $BATS_TEST_TMPDIR/usr/local/share/info/
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/local/share/info
-  makeinfo $DOCS/lintpkg.texi -o $BASE/usr/local/share/info/
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   EXPECTED=""
   EXPECTED+="error incorrect-info-dir /usr/local/share/info"$'\n'
-  EXPECTED+="warning uncompressed-info-page $BASE/usr/local/share/info/lintpkg.info"
+  EXPECTED+="warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/local/share/info/lintpkg.info"
 
   assert_output "$EXPECTED"
-
-  rm -rf "$BASE"
 }

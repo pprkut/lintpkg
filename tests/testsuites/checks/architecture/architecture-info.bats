@@ -13,17 +13,11 @@ setup() {
 }
 
 @test "Show explanation for binary-in-wrong-architecture-specific-path" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "binary-in-wrong-architecture-specific-path"
 
   assert_output "There is a binary in the wrong architecture specific path. /usr/lib should not contain 64-bit binaries, /usr/lib64 should not contain 32-bit binaries."
-
-  rm -rf "$BASE"
 }

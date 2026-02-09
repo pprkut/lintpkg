@@ -13,113 +13,71 @@ setup() {
 }
 
 @test "Show explanation for slack-desc-not-found error" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "slack-desc-not-found"
 
   assert_output "The package does not contain a slack-desc file in the install/ directory."
-
-  rm -rf "$BASE"
 }
 
 @test "Show explanation for slack-desc-description-wrong-packagename error" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "slack-desc-description-wrong-packagename"
 
   assert_output "The package name in the slack-desc file is not the same as the actual package name."
-
-  rm -rf "$BASE"
 }
 
 @test "Show explanation for slack-desc-invalid-number-of-lines error" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "slack-desc-invalid-number-of-lines"
 
   assert_output "The slack-desc file has the wrong number of lines of description. There should normally be 11 lines."
-
-  rm -rf "$BASE"
 }
 
 @test "Show explanation for slack-desc-description-lines-too-long" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "slack-desc-description-lines-too-long"
 
   assert_output "At least one of the description lines in the slack-desc file is too long. Please use the handy-ruler to determine the correct length."
-
-  rm -rf "$BASE"
 }
 
 @test "Show explanation for slack-desc-handy-ruler-misaligned" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "slack-desc-handy-ruler-misaligned"
 
   assert_output "The handy-ruler in the slack-desc file is misaligned."
-
-  rm -rf "$BASE"
 }
 
 @test "Show explanation for slack-desc-handy-ruler-broken" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "slack-desc-handy-ruler-broken"
 
   assert_output "The handy-ruler in the slack-desc file is broken (e.g., too long or too short)."
-
-  rm -rf "$BASE"
 }
 
 @test "Show explanation for slack-desc-unrecognised-text" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "slack-desc-unrecognised-text"
 
   assert_output "The slack-desc file contains some unrecognisable text."
-
-  rm -rf "$BASE"
 }

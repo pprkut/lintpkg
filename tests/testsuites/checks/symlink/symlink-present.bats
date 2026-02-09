@@ -13,83 +13,59 @@ setup() {
 }
 
 @test "Check logs warning when a single symlink is present" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  ln -s foo $BATS_TEST_TMPDIR/usr/bin/foo2
 
-  create_empty_package $BASE
-
-  ln -s foo $BASE/usr/bin/foo2
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
-  assert_output "warning package-contains-symlink $BASE/usr/bin/foo2"
-
-  rm -rf "$BASE"
+  assert_output "warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo2"
 }
 
 @test "Check logs warning when multiple symlinks are present" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  ln -s foo $BATS_TEST_TMPDIR/usr/bin/foo2
+  ln -s foo $BATS_TEST_TMPDIR/usr/bin/foo3
 
-  create_empty_package $BASE
-
-  ln -s foo $BASE/usr/bin/foo2
-  ln -s foo $BASE/usr/bin/foo3
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   EXPECTED=""
-  EXPECTED+="warning package-contains-symlink $BASE/usr/bin/foo2"$'\n'
-  EXPECTED+="warning package-contains-symlink $BASE/usr/bin/foo3"
+  EXPECTED+="warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo2"$'\n'
+  EXPECTED+="warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo3"
 
   assert_output "$EXPECTED"
-
-  rm -rf "$BASE"
 }
 
 @test "Check logs warning when a single symlink with spaces in its name is present" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  ln -s foo "$BATS_TEST_TMPDIR/usr/bin/foo 2"
 
-  create_empty_package $BASE
-
-  ln -s foo "$BASE/usr/bin/foo 2"
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
-  assert_output "warning package-contains-symlink $BASE/usr/bin/foo 2"
-
-  rm -rf "$BASE"
+  assert_output "warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo 2"
 }
 
 @test "Check logs warning when multiple symlinks with spaces in their name are present" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  ln -s foo "$BATS_TEST_TMPDIR/usr/bin/foo 2"
+  ln -s foo "$BATS_TEST_TMPDIR/usr/bin/foo 3"
 
-  create_empty_package $BASE
-
-  ln -s foo "$BASE/usr/bin/foo 2"
-  ln -s foo "$BASE/usr/bin/foo 3"
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   EXPECTED=""
-  EXPECTED+="warning package-contains-symlink $BASE/usr/bin/foo 2"$'\n'
-  EXPECTED+="warning package-contains-symlink $BASE/usr/bin/foo 3"
+  EXPECTED+="warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo 2"$'\n'
+  EXPECTED+="warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo 3"
 
   assert_output "$EXPECTED"
-
-  rm -rf "$BASE"
 }

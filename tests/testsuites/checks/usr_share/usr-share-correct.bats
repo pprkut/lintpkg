@@ -13,20 +13,14 @@ setup() {
 }
 
 @test "Check logs no error when no binary in /usr/share" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/share/test
+  echo "foo" > $BATS_TEST_TMPDIR/usr/share/test/bar.txt
 
-  create_empty_package $BASE
-
-  mkdir -p $BASE/usr/share/test
-  echo "foo" > $BASE/usr/share/test/bar.txt
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
   refute_output
-
-  rm -rf "$BASE"
 }

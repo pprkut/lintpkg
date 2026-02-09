@@ -13,17 +13,11 @@ setup() {
 }
 
 @test "Show explanation for package-contains-symlink error" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "package-contains-symlink"
 
   assert_output "Symbolic link found. These should normally be removed by makepkg."
-
-  rm -rf "$BASE"
 }

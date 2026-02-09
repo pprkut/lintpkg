@@ -13,21 +13,15 @@ setup() {
 }
 
 @test "Check logs error when libtool archive without header" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
+  mkdir -p $BATS_TEST_TMPDIR/usr/lib/app/private/
 
-  create_empty_package $BASE
+  sed '1,7d' $TEST_STATICS/shared-libraries/foo-ltmain.la > $BATS_TEST_TMPDIR/usr/lib/app/private/foo.la
 
-  mkdir -p $BASE/usr/lib/app/private/
-
-  sed '1,7d' $TEST_STATICS/shared-libraries/foo-ltmain.la > $BASE/usr/lib/app/private/foo.la
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run check
 
-  assert_output "error invalid-libtool-archive $BASE/usr/lib/app/private/foo.la"
-
-  rm -rf "$BASE"
+  assert_output "error invalid-libtool-archive $BATS_TEST_TMPDIR/usr/lib/app/private/foo.la"
 }

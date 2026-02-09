@@ -13,18 +13,12 @@ setup() {
 }
 
 @test "Show explanation for no-install-dir error" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "no-install-dir"
 
   assert_output "The file does not contain an install/ directory. It is probably not a Slackware package."
-
-  rm -rf "$BASE"
 }
 

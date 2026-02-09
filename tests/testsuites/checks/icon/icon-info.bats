@@ -13,17 +13,11 @@ setup() {
 }
 
 @test "Show explanation for missing-icon-cache-update error" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "missing-icon-cache-update"
 
   assert_output "Icon theme contents are cached in an mmap()-able cache file. Whenever installing new icons, this cache file should be updated in doinst.sh."
-
-  rm -rf "$BASE"
 }

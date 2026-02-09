@@ -13,17 +13,11 @@ setup() {
 }
 
 @test "Show explanation for strange-permission warning" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "strange-permission"
 
   assert_output "A file that you listed to include in your package has strange permissions. Usually, a file should have 0644 permissions and directories should have 0755 permissions."
-
-  rm -rf "$BASE"
 }

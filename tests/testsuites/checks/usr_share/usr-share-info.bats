@@ -13,17 +13,11 @@ setup() {
 }
 
 @test "Show explanation for binary-in-usr-share" {
-  BASE=$(create_tmp_dir)
+  create_empty_package $BATS_TEST_TMPDIR
 
-  refute [ -z "$BASE" ]
-
-  create_empty_package $BASE
-
-  WORKING_DIR=$BASE
+  WORKING_DIR=$BATS_TEST_TMPDIR
 
   run info "binary-in-usr-share"
 
   assert_output "The /usr/share directory is for architecture-independent data, and should not contain object code such as ELF executables or shared libraries."
-
-  rm -rf "$BASE"
 }
