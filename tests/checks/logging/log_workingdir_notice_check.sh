@@ -1,4 +1,6 @@
 #!/bin/sh
+# SPDX-FileCopyrightText: Copyright 2014  Heinz Wiesinger, Amsterdam, The Netherlands
+# SPDX-License-Identifier: BSD-1-Clause
 
 check() {
   log_notice "working-dir-notice" "$WORKING_DIR/usr/bin/foo"

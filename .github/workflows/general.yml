@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright 2026  Heinz Wiesinger, Amsterdam, The Netherlands
+# SPDX-License-Identifier: CC0-1.0
+
 name: General Tests
 on: [push, pull_request, workflow_dispatch]
 

@@ -1,4 +1,6 @@
 #!/usr/bin/env bats
+# SPDX-FileCopyrightText: Copyright 2014 Heinz Wiesinger, Amsterdam, The Netherlands
+# SPDX-License-Identifier: BSD-1-Clause
 
 load ../../helpers/assertions
 load ../../helpers/main

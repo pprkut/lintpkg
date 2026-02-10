@@ -1,4 +1,7 @@
 #!/usr/bin/bash
+# SPDX-FileCopyrightText: Copyright 2014  Heinz Wiesinger, Amsterdam, The Netherlands
+# SPDX-License-Identifier: BSD-1-Clause
+
 set -e
 
 exec bats ${CI:+--tap} -r $(dirname ${BASH_SOURCE[0]})/testsuites/

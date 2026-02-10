@@ -1,3 +1,7 @@
+#!/bin/bash
+# SPDX-FileCopyrightText: Copyright 2026  Heinz Wiesinger, Amsterdam, The Netherlands
+# SPDX-License-Identifier: BSD-1-Clause
+
 bats_load_library bats-assert
 bats_load_library bats-file
 bats_load_library bats-support
