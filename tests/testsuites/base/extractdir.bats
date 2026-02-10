@@ -7,22 +7,22 @@ load ../../helpers/makepkg
 
 BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
-@test "Setting extraction directory to non-existant path exits with 0" {
-  run lintpkg -E "$TEST_CHECKS/non_existant"
+@test "Setting extraction directory to non-existent path exits with 0" {
+  run lintpkg -E "$TEST_CHECKS/non_existent"
 
   assert_success
 }
 
-@test "-E with non-existant directory prints error" {
-  run lintpkg -E "$TEST_CHECKS/non_existant"
+@test "-E with non-existent directory prints error" {
+  run lintpkg -E "$TEST_CHECKS/non_existent"
 
-  assert_line "Directory does not exist: $TEST_CHECKS/non_existant"
+  assert_line "Directory does not exist: $TEST_CHECKS/non_existent"
 }
 
-@test "--extractdir with non-existant directory prints error" {
-  run lintpkg --extractdir "$TEST_CHECKS/non_existant"
+@test "--extractdir with non-existent directory prints error" {
+  run lintpkg --extractdir "$TEST_CHECKS/non_existent"
 
-  assert_line "Directory does not exist: $TEST_CHECKS/non_existant"
+  assert_line "Directory does not exist: $TEST_CHECKS/non_existent"
 }
 
 @test "Setting extraction directory to non-writeable path exits with 1" {

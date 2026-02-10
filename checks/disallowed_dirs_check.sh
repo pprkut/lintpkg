@@ -54,7 +54,7 @@ info() {
     echo "within a package."
     echo
   elif [ "$1" = "dir-or-file-in-usr-tmp" ]; then
-    echo -n "/usr/tmp is intended for more persistant temporary files than /tmp. You "
+    echo -n "/usr/tmp is intended for more persistent temporary files than /tmp. You "
     echo "should not ship files under /usr/tmp within a package."
     echo
   elif [ "$1" = "dir-or-file-in-var-local" ]; then
@@ -70,7 +70,7 @@ info() {
     echo "under /var/run within a package."
     echo
   elif [ "$1" = "dir-or-file-in-var-tmp" ]; then
-    echo -n "/var/tmp is intended for more persistant temporary files than /tmp. You "
+    echo -n "/var/tmp is intended for more persistent temporary files than /tmp. You "
     echo "should not ship files under /var/tmp within a package."
     echo
   fi

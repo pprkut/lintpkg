@@ -39,7 +39,7 @@ setup() {
 @test "Show explanation for dir-or-file-in-usr-tmp error" {
   run info "dir-or-file-in-usr-tmp"
 
-  assert_output "/usr/tmp is intended for more persistant temporary files than /tmp. You should not ship files under /usr/tmp within a package."
+  assert_output "/usr/tmp is intended for more persistent temporary files than /tmp. You should not ship files under /usr/tmp within a package."
 }
 
 @test "Show explanation for dir-or-file-in-var-local error" {
@@ -63,5 +63,5 @@ setup() {
 @test "Show explanation for dir-or-file-in-var-tmp error" {
   run info "dir-or-file-in-var-tmp"
 
-  assert_output "/var/tmp is intended for more persistant temporary files than /tmp. You should not ship files under /var/tmp within a package."
+  assert_output "/var/tmp is intended for more persistent temporary files than /tmp. You should not ship files under /var/tmp within a package."
 }
