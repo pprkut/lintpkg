@@ -21,7 +21,7 @@ setup() {
   mkdir -p $BATS_TEST_TMPDIR/bin
 
   WORKING_DIR=$BATS_TEST_TMPDIR
-  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$USER/$(id -gn)|root/root|g" | sed "/bin/s|root/root|slacker/root|")
+  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/bin/s|root/root|slacker/root|")
 
   run check
 
@@ -35,7 +35,7 @@ setup() {
   touch $BATS_TEST_TMPDIR/bin/baz
 
   WORKING_DIR=$BATS_TEST_TMPDIR
-  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$USER/$(id -gn)|root/root|g" | sed "/bin\/baz/s|root/root|slacker/root|")
+  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/bin\/baz/s|root/root|slacker/root|")
 
   run check
 
@@ -49,7 +49,7 @@ setup() {
   mkdir -p $BATS_TEST_TMPDIR/lib
 
   WORKING_DIR=$BATS_TEST_TMPDIR
-  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$USER/$(id -gn)|root/root|g" | sed "/lib/s|root/root|slacker/root|")
+  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/lib/s|root/root|slacker/root|")
 
   run check
 
@@ -63,7 +63,7 @@ setup() {
   touch $BATS_TEST_TMPDIR/lib/baz
 
   WORKING_DIR=$BATS_TEST_TMPDIR
-  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$USER/$(id -gn)|root/root|g" | sed "/lib\/baz/s|root/root|slacker/root|")
+  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/lib\/baz/s|root/root|slacker/root|")
 
   run check
 
@@ -77,7 +77,7 @@ setup() {
   mkdir -p $BATS_TEST_TMPDIR/lib64
 
   WORKING_DIR=$BATS_TEST_TMPDIR
-  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$USER/$(id -gn)|root/root|g" | sed "/lib64/s|root/root|slacker/root|")
+  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/lib64/s|root/root|slacker/root|")
 
   run check
 
@@ -91,7 +91,7 @@ setup() {
   touch $BATS_TEST_TMPDIR/lib64/baz
 
   WORKING_DIR=$BATS_TEST_TMPDIR
-  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$USER/$(id -gn)|root/root|g" | sed "/lib64\/baz/s|root/root|slacker/root|")
+  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/lib64\/baz/s|root/root|slacker/root|")
 
   run check
 
@@ -105,7 +105,7 @@ setup() {
   mkdir -p $BATS_TEST_TMPDIR/sbin
 
   WORKING_DIR=$BATS_TEST_TMPDIR
-  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$USER/$(id -gn)|root/root|g" | sed "/sbin/s|root/root|slacker/root|")
+  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/sbin/s|root/root|slacker/root|")
 
   run check
 
@@ -119,7 +119,7 @@ setup() {
   touch $BATS_TEST_TMPDIR/sbin/baz
 
   WORKING_DIR=$BATS_TEST_TMPDIR
-  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$USER/$(id -gn)|root/root|g" | sed "/sbin\/baz/s|root/root|slacker/root|")
+  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/sbin\/baz/s|root/root|slacker/root|")
 
   run check
 
@@ -131,7 +131,7 @@ setup() {
   rm -rf $BATS_TEST_TMPDIR/usr/bin
 
   WORKING_DIR=$BATS_TEST_TMPDIR
-  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$USER/$(id -gn)|root/root|g" | sed "/usr/s|root/root|slacker/root|")
+  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/usr/s|root/root|slacker/root|")
 
   run check
 
@@ -142,7 +142,7 @@ setup() {
   create_empty_package $BATS_TEST_TMPDIR
 
   WORKING_DIR=$BATS_TEST_TMPDIR
-  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$USER/$(id -gn)|root/root|g" | sed "/usr\/bin\/foo/s|root/root|slacker/root|")
+  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/usr\/bin\/foo/s|root/root|slacker/root|")
 
   run check
 
@@ -154,7 +154,7 @@ setup() {
   rm -rf $BATS_TEST_TMPDIR/usr
 
   WORKING_DIR=$BATS_TEST_TMPDIR
-  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$USER/$(id -gn)|root/root|g" | sed "/\.\//s|root/root|slacker/root|")
+  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/\.\//s|root/root|slacker/root|")
 
   run check
 
