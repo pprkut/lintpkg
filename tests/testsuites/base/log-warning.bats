@@ -13,7 +13,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/logging" -c log_warning_check "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/logging" -c log_warning_check "$PKG"
 
   assert_line -n 0 "empty-1.0-noarch-1: W: simple-warning /path/to/file"
   assert_line -n 1 "1 packages checked; 0 errors and 1 warnings."
@@ -25,7 +25,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/logging" -c log_warning_check -i "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/logging" -c log_warning_check -i "$PKG"
 
   assert_line -n 0 "empty-1.0-noarch-1: W: simple-warning /path/to/file"
   assert_line -n 1 "A warning for a simple path"
@@ -38,7 +38,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/logging" -c log_whitespace_warning_check "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/logging" -c log_whitespace_warning_check "$PKG"
 
   assert_line -n 0 "empty-1.0-noarch-1: W: whitespace-warning /path/t o/a file"
   assert_line -n 1 "1 packages checked; 0 errors and 1 warnings."
@@ -50,7 +50,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/logging" -c log_whitespace_warning_check -i "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/logging" -c log_whitespace_warning_check -i "$PKG"
 
   assert_line -n 0 "empty-1.0-noarch-1: W: whitespace-warning /path/t o/a file"
   assert_line -n 1 "A warning for a path containing whitespaces"
@@ -63,7 +63,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/logging" -c log_warning_check -x simple-warning "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/logging" -c log_warning_check -x simple-warning "$PKG"
 
   assert_line -n 0 "1 packages checked; 0 errors and 0 warnings."
 
@@ -74,7 +74,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/logging" -c log_warning_check --exclude simple-warning "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/logging" -c log_warning_check --exclude simple-warning "$PKG"
 
   assert_line -n 0 "1 packages checked; 0 errors and 0 warnings."
 
@@ -85,7 +85,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/logging" -c log_warning_check -x simple-warning -i "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/logging" -c log_warning_check -x simple-warning -i "$PKG"
 
   assert_line -n 0 "1 packages checked; 0 errors and 0 warnings."
 
@@ -96,7 +96,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/logging" -c log_warning_check --exclude simple-warning -i "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/logging" -c log_warning_check --exclude simple-warning -i "$PKG"
 
   assert_line -n 0 "1 packages checked; 0 errors and 0 warnings."
 
@@ -107,7 +107,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/logging" -c log_workingdir_warning_check "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/logging" -c log_workingdir_warning_check "$PKG"
 
   assert_line -n 0 "empty-1.0-noarch-1: W: working-dir-warning /usr/bin/foo"
   assert_line -n 1 "1 packages checked; 0 errors and 1 warnings."

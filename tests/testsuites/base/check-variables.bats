@@ -13,7 +13,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_fullname_check "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_fullname_check "$PKG"
 
   assert_line -n 0 "empty-1.0-noarch-1"
 
@@ -24,7 +24,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_name_check "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_name_check "$PKG"
 
   assert_line -n 0 "empty"
 
@@ -35,7 +35,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR lintpkg-empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_name_check "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_name_check "$PKG"
 
   assert_line -n 0 "lintpkg-empty"
 
@@ -46,7 +46,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR lintpkg-empty 1.0-1 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_name_check "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_name_check "$PKG"
 
   assert_line -n 0 "lintpkg-empty-1.0"
 
@@ -57,7 +57,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_version_check "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_version_check "$PKG"
 
   assert_line -n 0 "1.0"
 
@@ -68,7 +68,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR lintpkg-empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_version_check "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_version_check "$PKG"
 
   assert_line -n 0 "1.0"
 
@@ -79,7 +79,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR lintpkg-empty 1.0-1 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_version_check "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_version_check "$PKG"
 
   assert_line -n 0 "1"
 
@@ -90,7 +90,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_arch_check "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_arch_check "$PKG"
 
   assert_line -n 0 "noarch"
 
@@ -101,7 +101,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 2)
 
-  run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_build_check "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_build_check "$PKG"
 
   assert_line -n 0 "2"
 
@@ -112,7 +112,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_extension_check "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_extension_check "$PKG"
 
   assert_line -n 0 "tgz"
 
@@ -123,7 +123,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_listing_check "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_listing_check "$PKG"
 
   expect_output "./"
   expect_output "install/"
@@ -144,7 +144,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   USER=$(id -u -n)
   GROUP=$(id -g -n)
 
-  run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_detailed_listing_check "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_detailed_listing_check "$PKG"
 
   perm_dir='drwxr-xr-x'
   perm_file='-rw-r--r--'
@@ -168,7 +168,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
-  run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_working_dir_check "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_working_dir_check "$PKG"
 
   assert_line -n 0 --regexp '^/tmp/lintpkg\.......$'
 
@@ -181,7 +181,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
   mkdir -p /tmp/lintpkg_test
 
-  run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_working_dir_check -E "/tmp/lintpkg_test" "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_working_dir_check -E "/tmp/lintpkg_test" "$PKG"
 
   assert_line -n 0 --regexp '^/tmp/lintpkg_test/lintpkg\.......$'
 
@@ -195,7 +195,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
   mkdir -p /tmp/lintpkg_test
 
-  run lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_working_dir_check --extractdir "/tmp/lintpkg_test" "$PKG"
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_working_dir_check --extractdir "/tmp/lintpkg_test" "$PKG"
 
   assert_line -n 0 --regexp '^/tmp/lintpkg_test/lintpkg\.......$'
 

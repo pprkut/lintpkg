@@ -15,7 +15,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   PKG=$(basename $PKG)
 
   cd /tmp
-    run lintpkg -C "$TEST_CHECKS/logging" "$PKG"
+    run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/logging" "$PKG"
   cd -
 
   assert_line "1 packages checked; 3 errors and 3 warnings."

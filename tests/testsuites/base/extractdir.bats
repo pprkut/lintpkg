@@ -10,19 +10,19 @@ load ../../helpers/makepkg
 BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 @test "Setting extraction directory to non-existent path exits with 0" {
-  run lintpkg -E "$TEST_CHECKS/non_existent"
+  run ${REPO_ROOT}/lintpkg -E "$TEST_CHECKS/non_existent"
 
   assert_success
 }
 
 @test "-E with non-existent directory prints error" {
-  run lintpkg -E "$TEST_CHECKS/non_existent"
+  run ${REPO_ROOT}/lintpkg -E "$TEST_CHECKS/non_existent"
 
   assert_line "Directory does not exist: $TEST_CHECKS/non_existent"
 }
 
 @test "--extractdir with non-existent directory prints error" {
-  run lintpkg --extractdir "$TEST_CHECKS/non_existent"
+  run ${REPO_ROOT}/lintpkg --extractdir "$TEST_CHECKS/non_existent"
 
   assert_line "Directory does not exist: $TEST_CHECKS/non_existent"
 }
@@ -31,7 +31,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   mkdir -p /tmp/lintpkg_test_not_writeable
   chmod -w /tmp/lintpkg_test_not_writeable
 
-  run lintpkg -E "/tmp/lintpkg_test_not_writeable"
+  run ${REPO_ROOT}/lintpkg -E "/tmp/lintpkg_test_not_writeable"
 
   assert_failure
   assert [ $status -eq 1 ]
@@ -43,7 +43,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   mkdir -p /tmp/lintpkg_test_not_writeable
   chmod -w /tmp/lintpkg_test_not_writeable
 
-  run lintpkg -E "/tmp/lintpkg_test_not_writeable"
+  run ${REPO_ROOT}/lintpkg -E "/tmp/lintpkg_test_not_writeable"
 
   assert_line "Couldn't create temporary directory"
 
@@ -54,7 +54,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   mkdir -p /tmp/lintpkg_test_not_writeable
   chmod -w /tmp/lintpkg_test_not_writeable
 
-  run lintpkg --extractdir "/tmp/lintpkg_test_not_writeable"
+  run ${REPO_ROOT}/lintpkg --extractdir "/tmp/lintpkg_test_not_writeable"
 
   assert_line "Couldn't create temporary directory"
 
@@ -67,7 +67,7 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
   mkdir -p /tmp/lintpkg_test
 
-  run lintpkg --extractdir "/tmp/lintpkg_test" "$PKG"
+  run ${REPO_ROOT}/lintpkg --extractdir "/tmp/lintpkg_test" "$PKG"
 
   assert_file_exists "$BATS_TEST_TMPDIR/install/slack-desc"
   assert_file_exists "$BATS_TEST_TMPDIR/usr/bin/foo"
