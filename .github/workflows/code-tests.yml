@@ -1,0 +1,51 @@
+# SPDX-FileCopyrightText: Copyright 2026  Heinz Wiesinger, Amsterdam, The Netherlands
+# SPDX-License-Identifier: CC0-1.0
+
+name: Code Tests
+on:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 5 * * 1-5'
+  push:
+
+jobs:
+  bats:
+    if: ${{ ( github.event_name == 'schedule' && github.event.repository.fork == false ) || github.event_name != 'schedule' }}
+    runs-on: ubuntu-latest
+    container:
+      image: aclemons/slackware:current
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Initialize slackpkg
+        run: |
+          sed -i "s|WGETFLAGS=\"--passive-ftp\"|WGETFLAGS=\"--passive-ftp --quiet\"|" /etc/slackpkg/slackpkg.conf
+          echo "YES" | slackpkg update gpg
+          slackpkg update
+
+      - name: Set up global certificates
+        run: |
+          slackpkg install dcron ca-certificates perl
+          update-ca-certificates
+          cd /etc/ssl/certs && c_rehash .
+
+      - name: Install test dependencies
+        run: |
+          slackpkg install texinfo
+
+      - name: Install bats
+        run: |
+          wget --quiet https://repo.liwjatan.org/pprkut/current/x86_64/PACKAGES.TXT
+          wget --quiet https://repo.liwjatan.org/pprkut/current/x86_64/bats-core/$(grep "PACKAGE NAME:  bats-core" PACKAGES.TXT | cut -d " " -f 4)
+          wget --quiet https://repo.liwjatan.org/pprkut/current/x86_64/bats-support/$(grep "PACKAGE NAME:  bats-support" PACKAGES.TXT | cut -d " " -f 4)
+          wget --quiet https://repo.liwjatan.org/pprkut/current/x86_64/bats-assert/$(grep "PACKAGE NAME:  bats-assert" PACKAGES.TXT | cut -d " " -f 4)
+          wget --quiet https://repo.liwjatan.org/pprkut/current/x86_64/bats-file/$(grep "PACKAGE NAME:  bats-file" PACKAGES.TXT | cut -d " " -f 4)
+          installpkg --terse *.txz
+
+      - name: Create lintpkg user
+        run: useradd -m lintpkg
+
+      - name: Run bats
+        run: su lintpkg -c ./tests/run
