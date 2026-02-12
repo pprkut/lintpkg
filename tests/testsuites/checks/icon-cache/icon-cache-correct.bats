@@ -11,7 +11,7 @@ load ../../../helpers/mock-loggers
 BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
 setup() {
-  . "$LIVE_CHECKS/icon_check.sh"
+  . "$LIVE_CHECKS/icon_cache_check.sh"
 }
 
 @test "Check logs no error when doinst.sh has conditional update for hicolor icon cache" {
