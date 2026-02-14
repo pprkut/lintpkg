@@ -13,8 +13,11 @@ jobs:
   bats:
     if: ${{ ( github.event_name == 'schedule' && github.event.repository.fork == false ) || github.event_name != 'schedule' }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        slackware-version: ['15.0', 'current']
     container:
-      image: aclemons/slackware:current
+      image: aclemons/slackware:${{ matrix.slackware-version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -37,11 +40,11 @@ jobs:
 
       - name: Install bats
         run: |
-          wget --quiet https://repo.liwjatan.org/pprkut/current/x86_64/PACKAGES.TXT
-          wget --quiet https://repo.liwjatan.org/pprkut/current/x86_64/bats-core/$(grep "PACKAGE NAME:  bats-core" PACKAGES.TXT | cut -d " " -f 4)
-          wget --quiet https://repo.liwjatan.org/pprkut/current/x86_64/bats-support/$(grep "PACKAGE NAME:  bats-support" PACKAGES.TXT | cut -d " " -f 4)
-          wget --quiet https://repo.liwjatan.org/pprkut/current/x86_64/bats-assert/$(grep "PACKAGE NAME:  bats-assert" PACKAGES.TXT | cut -d " " -f 4)
-          wget --quiet https://repo.liwjatan.org/pprkut/current/x86_64/bats-file/$(grep "PACKAGE NAME:  bats-file" PACKAGES.TXT | cut -d " " -f 4)
+          wget --quiet https://repo.liwjatan.org/pprkut/${{ matrix.slackware-version }}/x86_64/PACKAGES.TXT
+          wget --quiet https://repo.liwjatan.org/pprkut/${{ matrix.slackware-version }}/x86_64/bats-core/$(grep "PACKAGE NAME:  bats-core" PACKAGES.TXT | cut -d " " -f 4)
+          wget --quiet https://repo.liwjatan.org/pprkut/${{ matrix.slackware-version }}/x86_64/bats-support/$(grep "PACKAGE NAME:  bats-support" PACKAGES.TXT | cut -d " " -f 4)
+          wget --quiet https://repo.liwjatan.org/pprkut/${{ matrix.slackware-version }}/x86_64/bats-assert/$(grep "PACKAGE NAME:  bats-assert" PACKAGES.TXT | cut -d " " -f 4)
+          wget --quiet https://repo.liwjatan.org/pprkut/${{ matrix.slackware-version }}/x86_64/bats-file/$(grep "PACKAGE NAME:  bats-file" PACKAGES.TXT | cut -d " " -f 4)
           installpkg --terse *.txz
 
       - name: Create lintpkg user
