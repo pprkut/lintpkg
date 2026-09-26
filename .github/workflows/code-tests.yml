@@ -43,18 +43,27 @@ jobs:
       - name: Install test dependencies
         run: |
           slackpkg install texinfo lzip
+          # Runtime dependencies of kcov that aren't part of the base image.
+          # nghttp3 and ngtcp2 only exist in -current, slackpkg skips them on 15.0
+          slackpkg install elfutils brotli cyrus-sasl nghttp2 nghttp3 ngtcp2
 
-      - name: Install bats
+      - name: Install bats and kcov
         run: |
           wget --quiet https://repo.liwjatan.org/pprkut/${{ matrix.slackware-version }}/x86_64/PACKAGES.TXT
           wget --quiet https://repo.liwjatan.org/pprkut/${{ matrix.slackware-version }}/x86_64/bats-core/$(grep "PACKAGE NAME:  bats-core" PACKAGES.TXT | cut -d " " -f 4)
           wget --quiet https://repo.liwjatan.org/pprkut/${{ matrix.slackware-version }}/x86_64/bats-support/$(grep "PACKAGE NAME:  bats-support" PACKAGES.TXT | cut -d " " -f 4)
           wget --quiet https://repo.liwjatan.org/pprkut/${{ matrix.slackware-version }}/x86_64/bats-assert/$(grep "PACKAGE NAME:  bats-assert" PACKAGES.TXT | cut -d " " -f 4)
           wget --quiet https://repo.liwjatan.org/pprkut/${{ matrix.slackware-version }}/x86_64/bats-file/$(grep "PACKAGE NAME:  bats-file" PACKAGES.TXT | cut -d " " -f 4)
+          wget --quiet https://repo.liwjatan.org/pprkut/${{ matrix.slackware-version }}/x86_64/kcov/$(grep "PACKAGE NAME:  kcov" PACKAGES.TXT | cut -d " " -f 4)
           installpkg --terse *.txz
 
       - name: Create lintpkg user
         run: useradd -m lintpkg
 
+      - name: Create build directory
+        run: |
+          mkdir build
+          chown lintpkg build
+
       - name: Run bats
-        run: su lintpkg -c ./tests/run
+        run: su lintpkg -c './tests/run --coverage'
