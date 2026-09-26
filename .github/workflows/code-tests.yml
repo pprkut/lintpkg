@@ -20,7 +20,7 @@ jobs:
       image: aclemons/slackware:${{ matrix.slackware-version }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Initialize slackpkg
         run: |
