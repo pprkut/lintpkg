@@ -18,7 +18,7 @@ SPDX-License-Identifier = "BSD-1-Clause"
 
 [[annotations]]
 path = [
-    "tests/statics/binaries/*-stripped*", 
+    "tests/statics/binaries/*-stripped*",
     "tests/statics/binaries/*-unstripped*",
 ]
 SPDX-FileCopyrightText = "Copyright 2022  Heinz Wiesinger, Amsterdam, The Netherlands"

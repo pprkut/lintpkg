@@ -171,7 +171,7 @@ provides() {
 }
 
 usage() {
- cat << EOF
+  cat << EOF
 Usage: lintpkg [options] <package_filename>
 
 Lintpkg is used to verify a .t{gz,bz,lz,xz} package against a set of common

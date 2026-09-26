@@ -5,5 +5,5 @@
 #include "hello-lib.h"
 
 void hello() {
-   printf("Hello, World!");
+    printf("Hello, World!");
 }
