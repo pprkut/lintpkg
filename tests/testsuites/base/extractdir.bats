@@ -27,38 +27,38 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   assert_line "Directory does not exist: $TEST_CHECKS/non_existent"
 }
 
-@test "Setting extraction directory to non-writeable path exits with 1" {
-  mkdir -p /tmp/lintpkg_test_not_writeable
-  chmod -w /tmp/lintpkg_test_not_writeable
+@test "Setting extraction directory to non-writable path exits with 1" {
+  mkdir -p /tmp/lintpkg_test_not_writable
+  chmod -w /tmp/lintpkg_test_not_writable
 
-  run ${REPO_ROOT}/lintpkg -E "/tmp/lintpkg_test_not_writeable"
+  run ${REPO_ROOT}/lintpkg -E "/tmp/lintpkg_test_not_writable"
 
   assert_failure
   assert [ $status -eq 1 ]
 
-  rmdir /tmp/lintpkg_test_not_writeable
+  rmdir /tmp/lintpkg_test_not_writable
 }
 
-@test "-E with non-writeable directory prints error" {
-  mkdir -p /tmp/lintpkg_test_not_writeable
-  chmod -w /tmp/lintpkg_test_not_writeable
+@test "-E with non-writable directory prints error" {
+  mkdir -p /tmp/lintpkg_test_not_writable
+  chmod -w /tmp/lintpkg_test_not_writable
 
-  run ${REPO_ROOT}/lintpkg -E "/tmp/lintpkg_test_not_writeable"
+  run ${REPO_ROOT}/lintpkg -E "/tmp/lintpkg_test_not_writable"
 
   assert_line "Couldn't create temporary directory"
 
-  rmdir /tmp/lintpkg_test_not_writeable
+  rmdir /tmp/lintpkg_test_not_writable
 }
 
-@test "--extractdir with non-writeable directory prints error" {
-  mkdir -p /tmp/lintpkg_test_not_writeable
-  chmod -w /tmp/lintpkg_test_not_writeable
+@test "--extractdir with non-writable directory prints error" {
+  mkdir -p /tmp/lintpkg_test_not_writable
+  chmod -w /tmp/lintpkg_test_not_writable
 
-  run ${REPO_ROOT}/lintpkg --extractdir "/tmp/lintpkg_test_not_writeable"
+  run ${REPO_ROOT}/lintpkg --extractdir "/tmp/lintpkg_test_not_writable"
 
   assert_line "Couldn't create temporary directory"
 
-  rmdir /tmp/lintpkg_test_not_writeable
+  rmdir /tmp/lintpkg_test_not_writable
 }
 
 @test "Lintpkg extracts package inside extraction directory" {
