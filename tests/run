@@ -4,4 +4,41 @@
 
 set -e
 
-exec bats ${CI:+--tap} -r $(dirname ${BASH_SOURCE[0]})/testsuites/
+TESTS_DIR="$(dirname ${BASH_SOURCE[0]})"
+COVERAGE=""
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --coverage)
+      COVERAGE="yes"
+      ;;
+    *)
+      echo "Usage: $0 [--coverage]" >&2
+      exit 1
+      ;;
+  esac
+  shift
+done
+
+if [ -z "$COVERAGE" ]; then
+  exec bats ${CI:+--tap} -r $TESTS_DIR/testsuites/
+fi
+
+if ! command -v kcov > /dev/null; then
+  echo "kcov is required to collect code coverage" >&2
+  exit 1
+fi
+
+REPO_ROOT="$(realpath $TESTS_DIR/..)"
+
+mkdir -p "$REPO_ROOT/build"
+
+# Only report on lintpkg itself and its checks, but include checks that are
+# never run.
+exec kcov \
+  --clean \
+  --bash-dont-parse-binary-dir \
+  --bash-parse-files-in-dir="$REPO_ROOT/checks" \
+  --include-path="$REPO_ROOT/lintpkg,$REPO_ROOT/checks" \
+  "$REPO_ROOT/build/coverage" \
+  bats ${CI:+--tap} -r $TESTS_DIR/testsuites/
