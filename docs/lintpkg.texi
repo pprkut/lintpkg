@@ -1,4 +1,6 @@
 \input texinfo   @c -*-texinfo-*-
+@c SPDX-FileCopyrightText: Copyright 2023  Heinz Wiesinger, Amsterdam, The Netherlands
+@c SPDX-License-Identifier: BSD-1-Clause
 @c %**start of header
 @setfilename lintpkg.info
 @settitle lintpkg

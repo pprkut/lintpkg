@@ -1,2 +1,5 @@
+# SPDX-FileCopyrightText: Copyright 2026  Heinz Wiesinger, Amsterdam, The Netherlands
+# SPDX-License-Identifier: CC0-1.0
+
 [default.extend-identifiers]
 1filll = "1filll"

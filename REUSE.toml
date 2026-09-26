@@ -1,0 +1,35 @@
+# SPDX-FileCopyrightText: Copyright 2026  Heinz Wiesinger, Amsterdam, The Netherlands
+# SPDX-License-Identifier: CC0-1.0
+
+version = 1
+
+[[annotations]]
+path = "README.md"
+SPDX-FileCopyrightText = "Copyright 2014  Heinz Wiesinger, Amsterdam, The Netherlands"
+SPDX-License-Identifier = "BSD-1-Clause"
+
+# Test fixtures whose content is checked by the test suite and therefore
+# can't carry inline license headers.
+
+[[annotations]]
+path = "tests/statics/slack-desc"
+SPDX-FileCopyrightText = "Copyright 2014  Heinz Wiesinger, Amsterdam, The Netherlands"
+SPDX-License-Identifier = "BSD-1-Clause"
+
+[[annotations]]
+path = [
+    "tests/statics/binaries/*-stripped*", 
+    "tests/statics/binaries/*-unstripped*",
+]
+SPDX-FileCopyrightText = "Copyright 2022  Heinz Wiesinger, Amsterdam, The Netherlands"
+SPDX-License-Identifier = "BSD-1-Clause"
+
+[[annotations]]
+path = "tests/statics/slack-descs/**"
+SPDX-FileCopyrightText = "Copyright 2022  Heinz Wiesinger, Amsterdam, The Netherlands"
+SPDX-License-Identifier = "BSD-1-Clause"
+
+[[annotations]]
+path = "tests/statics/shared-libraries/**"
+SPDX-FileCopyrightText = "Copyright 2023  Heinz Wiesinger, Amsterdam, The Netherlands"
+SPDX-License-Identifier = "BSD-1-Clause"
