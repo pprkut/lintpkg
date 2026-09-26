@@ -9,10 +9,14 @@ on:
     - cron: '30 5 * * 1-5'
   push:
 
+permissions: {}
+
 jobs:
   bats:
     if: ${{ ( github.event_name == 'schedule' && github.event.repository.fork == false ) || github.event_name != 'schedule' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       matrix:
         slackware-version: ['15.0', 'current']
@@ -20,7 +24,9 @@ jobs:
       image: aclemons/slackware:${{ matrix.slackware-version }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Initialize slackpkg
         run: |

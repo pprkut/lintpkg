@@ -4,28 +4,34 @@
 name: General Tests
 on: [push, pull_request, workflow_dispatch]
 
+permissions: {}
+
 jobs:
   typos:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     continue-on-error: false
     name: "Spellcheck (typos)"
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: typos-action
-        uses: crate-ci/typos@v1.50.3
+        uses: crate-ci/typos@00f422f3b19c57bc6338715ebfe3316d38768461 # v1.50.3
 
   reuse:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     name: "REUSE compliance"
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: REUSE Compliance Check
-        uses: fsfe/reuse-action@v6
+        uses: fsfe/reuse-action@676e2d560c9a403aa252096d99fcab3e1132b0f5 # v6.0.0
