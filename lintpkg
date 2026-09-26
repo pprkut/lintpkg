@@ -175,26 +175,25 @@ usage() {
 Usage: lintpkg [options] <package_filename>
 
 Lintpkg is used to verify a .t{gz,bz,lz,xz} package against a set of common
-   rules and guidelines for Slackware packaging.
+rules and guidelines for Slackware packaging.
 
-   lintpkg slackware-package-1.0.0-i486-1.tgz (or .tbz, .tlz, .txz)
+  lintpkg slackware-package-1.0.0-i486-1.tgz (or .tbz, .tlz, .txz)
 
-options:      -i --info (Display explanations for reported messages.)
-              -I --explain <messageid> (Display explanations for the specified
-                                       message identifiers and exit. Multiple
-                                       identifiers can be specified by separating
-                                       them with commas.)
-              -c --check <name> (Run only the specified check. This option may be
-                                given multiple times to specify multiple checks
-                                to run.)
-              -C --checkdir <path> (Specify path to load checks from.)
-              -h --help (Display summary of command line options and exit.)
-              -E --extractdir <path> (Base directory for extracted temporary files.)
-              -V --version (Display version information and exit.)
-              -x --exclude <messageid> (Don't show/count errors for the specified
-                                       message identifiers. Multiple identifiers
-                                       can be specified by separating them with
-                                       commas.)
+Options:
+  -i, --info                Display explanations for reported messages.
+  -I, --explain <messageid> Display explanations for the specified message
+                            identifiers and exit. Multiple identifiers can be
+                            specified by separating them with commas.
+  -c, --check <name>        Run only the specified check. This option may be
+                            given multiple times to specify multiple checks to
+                            run.
+  -C, --checkdir <path>     Specify path to load checks from.
+  -h, --help                Display summary of command line options and exit.
+  -E, --extractdir <path>   Base directory for extracted temporary files.
+  -V, --version             Display version information and exit.
+  -x, --exclude <messageid> Don't show/count errors for the specified message
+                            identifiers. Multiple identifiers can be specified
+                            by separating them with commas.
 EOF
 }
 
