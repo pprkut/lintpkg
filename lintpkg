@@ -177,7 +177,7 @@ Usage: lintpkg [options] <package_filename>
 Lintpkg is used to verify a .t{gz,bz,lz,xz} package against a set of common
 rules and guidelines for Slackware packaging.
 
-  lintpkg slackware-package-1.0.0-i486-1.tgz (or .tbz, .tlz, .txz)
+  lintpkg slackware-package-1.0.0-x86_64-1.txz (or .tgz, .tbz, .tlz)
 
 Options:
   -i, --info                Display explanations for reported messages.
