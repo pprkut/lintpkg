@@ -383,19 +383,28 @@ for PACKAGE in $*; do
 
   PACKAGES=$(expr $PACKAGES + 1)
 
-  # Determine compressor utility:
+  # Determine compressor utility, preferring ones that use multiple
+  # decompression threads:
   case $PKG_EXTENSION in
     'tgz' )
       packagecompression=gzip
       ;;
     'tbz' )
-      packagecompression=bzip2
+      if command -v lbzip2 1> /dev/null 2> /dev/null ; then
+        packagecompression=lbzip2
+      else
+        packagecompression=bzip2
+      fi
       ;;
     'tlz' )
-      packagecompression=lzip
+      if command -v plzip 1> /dev/null 2> /dev/null ; then
+        packagecompression=plzip
+      else
+        packagecompression=lzip
+      fi
       ;;
     'txz' )
-      packagecompression=xz
+      packagecompression="xz --threads=0"
       ;;
   esac
 
