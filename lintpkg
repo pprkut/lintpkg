@@ -385,8 +385,6 @@ for PACKAGE in $*; do
   PKG_EXTENSION=$(echo $PACKAGE | rev | cut -f 1 -d . | rev)
   PKG_FULLNAME=$(pkgbase $PACKAGE)
 
-  PACKAGES=$(expr $PACKAGES + 1)
-
   # Determine compressor utility, preferring ones that use multiple
   # decompression threads:
   case $PKG_EXTENSION in
@@ -429,6 +427,8 @@ for PACKAGE in $*; do
     ( umask 000 ; tar --acls --xattrs --xattrs-include='*' -xf $PKG_TARBALL 2> /dev/null )
 
     perform "$LIST"
+
+    PACKAGES=$(expr $PACKAGES + 1)
 
   cd $CWD
 
