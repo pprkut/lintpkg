@@ -69,6 +69,24 @@ assert_package_extracted() {
   rm -f "$PKG"
 }
 
+@test "Lists lzip compressed packages" {
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1 tlz)
+
+  assert_package_listing "$PKG"
+
+  rm -f "$PKG"
+}
+
+@test "Extracts lzip compressed packages" {
+  create_empty_package $BATS_TEST_TMPDIR
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1 tlz)
+
+  assert_package_extracted "$PKG"
+
+  rm -f "$PKG"
+}
+
 @test "Lists xz compressed packages" {
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1 txz)

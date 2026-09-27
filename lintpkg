@@ -392,7 +392,7 @@ for PACKAGE in $*; do
       packagecompression=bzip2
       ;;
     'tlz' )
-      packagecompression=lzma
+      packagecompression=lzip
       ;;
     'txz' )
       packagecompression=xz
