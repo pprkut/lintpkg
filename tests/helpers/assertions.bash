@@ -19,3 +19,20 @@ expect_output() {
 assert_expected_output() {
   assert_output "$@" "$EXPECTED_OUTPUT"
 }
+
+# Fail if the directory doesn't exist or isn't empty, and list its content.
+assert_dir_empty() {
+  local -r dir="$1"
+
+  if ! [ -d "$dir" ]; then
+    batslib_print_kv_single 4 'path' "$dir" \
+      | batslib_decorate 'directory does not exist' \
+      | fail
+  elif [ -n "$(ls -A "$dir")" ]; then
+    batslib_print_kv_single_or_multi 7 \
+        'path' "$dir" \
+        'content' "$(ls -A "$dir")" \
+      | batslib_decorate 'directory is not empty' \
+      | fail
+  fi
+}
