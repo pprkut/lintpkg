@@ -417,7 +417,15 @@ for PACKAGE in $*; do
     continue
   fi
 
-  $packagecompression -dc < $PACKAGE > $PKG_TARBALL
+  # Like rpmlint, report packages that can't be read without a message
+  # identifier, but still count them as errors:
+  if ! READ_ERROR=$($packagecompression -dc < $PACKAGE 2>&1 > $PKG_TARBALL) ||
+    ! READ_ERROR=$(tar tf $PKG_TARBALL 2>&1 > /dev/null); then
+    PKG_FULLNAME="(none)"
+    log_error "error while reading $(realpath $PACKAGE): $(echo "$READ_ERROR" | head -n 1)"
+    ERRORS=$(expr $ERRORS + 1)
+    continue
+  fi
 
   PKG_LISTING=$(tar tsf $PKG_TARBALL)
   PKG_DETAILED_LISTING=$(tar tvsf $PKG_TARBALL)
