@@ -42,7 +42,7 @@ jobs:
 
       - name: Install test dependencies
         run: |
-          slackpkg install texinfo
+          slackpkg install texinfo lzip
 
       - name: Install bats
         run: |
