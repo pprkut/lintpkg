@@ -75,3 +75,16 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   rm -f "$PKG"
   rm -rf /tmp/lintpkg_test
 }
+
+@test "Lintpkg removes temporary files from extraction directory" {
+  create_empty_package $BATS_TEST_TMPDIR/package
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR/package empty 1.0 noarch 1)
+
+  mkdir -p $BATS_TEST_TMPDIR/extract
+
+  run ${REPO_ROOT}/lintpkg --extractdir "$BATS_TEST_TMPDIR/extract" "$PKG"
+
+  assert_dir_empty "$BATS_TEST_TMPDIR/extract"
+
+  rm -f "$PKG"
+}

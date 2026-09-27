@@ -355,6 +355,16 @@ if [ -z "$CHECKS" -o -z "$(ls -1 $CHECKS)" ]; then
   exit 1
 fi
 
+# Uncompressed package contents, so that packages only need to be
+# decompressed once:
+PKG_TARBALL=$(mktemp -p "$(dirname "$WORKING_DIR")" lintpkg.XXXXXX.tar 2> /dev/null)
+
+if [ -z "$PKG_TARBALL" ]; then
+  echo "Couldn't create temporary file"
+  rm -rf $WORKING_DIR
+  exit 1
+fi
+
 ERRORS=0
 WARNINGS=0
 PACKAGES=0
@@ -409,16 +419,14 @@ for PACKAGE in $*; do
     continue
   fi
 
-  PKG_LISTING=$(cat $PACKAGE | $packagecompression -dc | tar ts)
-  PKG_DETAILED_LISTING=$(cat $PACKAGE | $packagecompression -dc | tar tvs)
+  $packagecompression -dc < $PACKAGE > $PKG_TARBALL
+
+  PKG_LISTING=$(tar tsf $PKG_TARBALL)
+  PKG_DETAILED_LISTING=$(tar tvsf $PKG_TARBALL)
 
   cd $WORKING_DIR
 
-    if ! [ -e "$PACKAGE" ]; then
-      PACKAGE="$CWD/$PACKAGE"
-    fi
-
-    ( umask 000 ; cat $PACKAGE | $packagecompression -dc | tar --acls --xattrs --xattrs-include='*' -xf - 2> /dev/null )
+    ( umask 000 ; tar --acls --xattrs --xattrs-include='*' -xf $PKG_TARBALL 2> /dev/null )
 
     perform "$LIST"
 
@@ -430,6 +438,7 @@ done
 echo "$PACKAGES packages checked; $ERRORS errors and $WARNINGS warnings."
 
 rm -rf $WORKING_DIR
+rm -f $PKG_TARBALL
 
 if [ $ERRORS -gt 0 -o $WARNINGS -gt 0 ]; then
   exit 64
