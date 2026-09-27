@@ -24,6 +24,7 @@ create_slackware_package() {
   VERSION="$3"
   ARCH="$4"
   BUILD="$5"
+  EXTENSION="${6:-tgz}"
 
   if [ -z "$BASE" -o -z "$NAME" -o -z "$VERSION" -o -z "$ARCH" -o -z "$BUILD" ]; then
     return 1
@@ -32,10 +33,10 @@ create_slackware_package() {
   sed -i "s|LINTPKG_TEST|$NAME|g" $BASE/install/slack-desc
 
   cd $BASE
-    /sbin/makepkg -l y -c n "/tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz" > /dev/null
+    /sbin/makepkg -l y -c n "/tmp/$NAME-$VERSION-$ARCH-$BUILD.$EXTENSION" > /dev/null
   cd - > /dev/null
 
-  echo "/tmp/$NAME-$VERSION-$ARCH-$BUILD.tgz"
+  echo "/tmp/$NAME-$VERSION-$ARCH-$BUILD.$EXTENSION"
   return 0
 }
 
