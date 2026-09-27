@@ -400,8 +400,9 @@ for PACKAGE in $*; do
   esac
 
   # Test presence of external compression utility:
-  if ! $packagecompression --help 1> /dev/null 2> /dev/null ; then
-    log_notice "external-compression-utility-missing" "$packagecompression"
+  compressor=$(echo $packagecompression | cut -f 1 -d ' ')
+  if ! $compressor --help 1> /dev/null 2> /dev/null ; then
+    log_notice "external-compression-utility-missing" "$compressor"
     continue
   fi
 
