@@ -33,7 +33,7 @@ create_slackware_package() {
   sed -i "s|LINTPKG_TEST|$NAME|g" $BASE/install/slack-desc
 
   cd $BASE
-    /sbin/makepkg -l y -c n "/tmp/$NAME-$VERSION-$ARCH-$BUILD.$EXTENSION" > /dev/null
+    /sbin/makepkg $MAKEPKG_OPTIONS -l y -c n "/tmp/$NAME-$VERSION-$ARCH-$BUILD.$EXTENSION" > /dev/null
   cd - > /dev/null
 
   echo "/tmp/$NAME-$VERSION-$ARCH-$BUILD.$EXTENSION"
