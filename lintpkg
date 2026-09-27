@@ -418,7 +418,7 @@ for PACKAGE in $*; do
       PACKAGE="$CWD/$PACKAGE"
     fi
 
-    ( umask 000 ; cat $PACKAGE | $packagecompression -dc | tar xf - 2> /dev/null )
+    ( umask 000 ; cat $PACKAGE | $packagecompression -dc | tar --acls --xattrs --xattrs-include='*' -xf - 2> /dev/null )
 
     perform "$LIST"
 
