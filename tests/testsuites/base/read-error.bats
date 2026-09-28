@@ -68,3 +68,28 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
   rm -f "$PKG"
 }
+
+@test "Logs error for package with unknown extension" {
+  touch "$BATS_TEST_TMPDIR/empty-1.0-noarch-1.tar"
+
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_fullname_check "$BATS_TEST_TMPDIR/empty-1.0-noarch-1.tar"
+
+  assert_failure 64
+  assert_line -n 0 "(none): E: error while reading $BATS_TEST_TMPDIR/empty-1.0-noarch-1.tar: file does not end in .tgz, .tbz, .tlz, or .txz"
+  assert_line -n 1 "0 packages checked; 1 errors and 0 warnings."
+}
+
+@test "Logs error for package with unknown extension after another package" {
+  create_empty_package $BATS_TEST_TMPDIR/package
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR/package empty 1.0 noarch 1 txz)
+
+  touch "$BATS_TEST_TMPDIR/other-1.0-noarch-1.tar"
+
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_fullname_check "$PKG" "$BATS_TEST_TMPDIR/other-1.0-noarch-1.tar"
+
+  assert_line -n 0 "empty-1.0-noarch-1"
+  assert_line -n 1 "(none): E: error while reading $BATS_TEST_TMPDIR/other-1.0-noarch-1.tar: file does not end in .tgz, .tbz, .tlz, or .txz"
+  assert_line -n 2 "1 packages checked; 1 errors and 0 warnings."
+
+  rm -f "$PKG"
+}

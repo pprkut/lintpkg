@@ -149,6 +149,14 @@ log_notice() {
   fi
 }
 
+# Like rpmlint, report packages that can't be read without a message
+# identifier, but still count them as errors:
+log_read_error() {
+  PKG_FULLNAME="(none)"
+  log_error "error while reading $(realpath "$1"): $2"
+  ERRORS=$(expr $ERRORS + 1)
+}
+
 info() {
   local_info $*
 }
@@ -408,6 +416,10 @@ for PACKAGE in $*; do
     'txz' )
       packagecompression="xz --threads=0"
       ;;
+    * )
+      log_read_error "$PACKAGE" "file does not end in .tgz, .tbz, .tlz, or .txz"
+      continue
+      ;;
   esac
 
   # Test presence of external compression utility:
@@ -417,13 +429,9 @@ for PACKAGE in $*; do
     continue
   fi
 
-  # Like rpmlint, report packages that can't be read without a message
-  # identifier, but still count them as errors:
   if ! READ_ERROR=$($packagecompression -dc < $PACKAGE 2>&1 > $PKG_TARBALL) ||
     ! READ_ERROR=$(tar tf $PKG_TARBALL 2>&1 > /dev/null); then
-    PKG_FULLNAME="(none)"
-    log_error "error while reading $(realpath $PACKAGE): $(echo "$READ_ERROR" | head -n 1)"
-    ERRORS=$(expr $ERRORS + 1)
+    log_read_error "$PACKAGE" "$(echo "$READ_ERROR" | head -n 1)"
     continue
   fi
 
