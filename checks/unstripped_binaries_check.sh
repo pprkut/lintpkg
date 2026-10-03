@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # SPDX-FileCopyrightText: Copyright 2014  B. Watson, Earth, The Milky Way Galaxy
 # SPDX-License-Identifier: BSD-1-Clause
 
