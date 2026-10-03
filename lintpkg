@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # SPDX-FileCopyrightText: Copyright 1994, 1998, 2000  Patrick Volkerding, Concord, CA, USA
 # SPDX-FileCopyrightText: Copyright 2001, 2003  Slackware Linux, Inc., Concord, CA, USA
 # SPDX-FileCopyrightText: Copyright 2007, 2009, 2011  Patrick Volkerding, Sebeka, MN, USA
