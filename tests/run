@@ -5,31 +5,41 @@
 set -e
 
 TESTS_DIR="$(dirname ${BASH_SOURCE[0]})"
+REPO_ROOT="$(realpath $TESTS_DIR/..)"
 COVERAGE=""
+JUNIT=""
 
 while [ $# -gt 0 ]; do
   case "$1" in
     --coverage)
       COVERAGE="yes"
       ;;
+    --junit)
+      JUNIT="yes"
+      ;;
     *)
-      echo "Usage: $0 [--coverage]" >&2
+      echo "Usage: $0 [--coverage] [--junit]" >&2
       exit 1
       ;;
   esac
   shift
 done
 
+BATS=(bats ${CI:+--tap} -r)
+
+if [ -n "$JUNIT" ]; then
+  mkdir -p "$REPO_ROOT/build/junit"
+  BATS+=(--report-formatter junit --output "$REPO_ROOT/build/junit")
+fi
+
 if [ -z "$COVERAGE" ]; then
-  exec bats ${CI:+--tap} -r $TESTS_DIR/testsuites/
+  exec "${BATS[@]}" $TESTS_DIR/testsuites/
 fi
 
 if ! command -v kcov > /dev/null; then
   echo "kcov is required to collect code coverage" >&2
   exit 1
 fi
-
-REPO_ROOT="$(realpath $TESTS_DIR/..)"
 
 mkdir -p "$REPO_ROOT/build"
 
@@ -41,4 +51,4 @@ exec kcov \
   --bash-parse-files-in-dir="$REPO_ROOT/checks" \
   --include-path="$REPO_ROOT/lintpkg,$REPO_ROOT/checks" \
   "$REPO_ROOT/build/coverage" \
-  bats ${CI:+--tap} -r $TESTS_DIR/testsuites/
+  "${BATS[@]}" $TESTS_DIR/testsuites/
