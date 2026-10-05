@@ -352,7 +352,7 @@ ERRORS=0
 WARNINGS=0
 PACKAGES=0
 
-for PACKAGE in $*; do
+for PACKAGE in "$@"; do
 
   PKG_FULLNAME="(none)"
 
@@ -361,12 +361,12 @@ for PACKAGE in $*; do
     continue
   fi
 
-  PKG_NAME=$(package_element $PACKAGE name)
-  PKG_VERSION=$(package_element $PACKAGE version)
-  PKG_ARCH=$(package_element $PACKAGE arch)
-  PKG_BUILD=$(package_element $PACKAGE build)
+  PKG_NAME=$(package_element "$PACKAGE" name)
+  PKG_VERSION=$(package_element "$PACKAGE" version)
+  PKG_ARCH=$(package_element "$PACKAGE" arch)
+  PKG_BUILD=$(package_element "$PACKAGE" build)
   PKG_EXTENSION=${PACKAGE##*.}
-  PKG_FULLNAME=$(pkgbase $PACKAGE)
+  PKG_FULLNAME=$(pkgbase "$PACKAGE")
 
   # Determine compressor utility, preferring ones that use multiple
   # decompression threads:
@@ -404,7 +404,7 @@ for PACKAGE in $*; do
     continue
   fi
 
-  if ! READ_ERROR=$($packagecompression -dc < $PACKAGE 2>&1 > $PKG_TARBALL) ||
+  if ! READ_ERROR=$($packagecompression -dc < "$PACKAGE" 2>&1 > $PKG_TARBALL) ||
     ! READ_ERROR=$(tar tf $PKG_TARBALL 2>&1 > /dev/null); then
     log_read_error "$PACKAGE" "$(echo "$READ_ERROR" | head -n 1)"
     continue
