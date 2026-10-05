@@ -70,7 +70,7 @@ log_error() {
   done
 
   if ! [ "$PKG_FULLNAME" = "(none)" ]; then
-    ERRORS=$(expr $ERRORS + 1)
+    ERRORS=$((ERRORS + 1))
   fi
 
   echo -n "$PKG_FULLNAME: E:"
@@ -92,7 +92,7 @@ log_warning() {
   done
 
   if ! [ "$PKG_FULLNAME" = "(none)" ]; then
-    WARNINGS=$(expr $WARNINGS + 1)
+    WARNINGS=$((WARNINGS + 1))
   fi
 
   echo -n "$PKG_FULLNAME: W:"
@@ -129,7 +129,7 @@ log_notice() {
 log_read_error() {
   PKG_FULLNAME="(none)"
   log_error "error while reading $(realpath "$1"): $2"
-  ERRORS=$(expr $ERRORS + 1)
+  ERRORS=$((ERRORS + 1))
 }
 
 info() {
@@ -419,7 +419,7 @@ for PACKAGE in "$@"; do
 
     perform "$LIST"
 
-    PACKAGES=$(expr $PACKAGES + 1)
+    PACKAGES=$((PACKAGES + 1))
 
   cd $CWD
 
