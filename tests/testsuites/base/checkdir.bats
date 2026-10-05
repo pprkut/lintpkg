@@ -5,6 +5,7 @@
 load ../../helpers/assertions
 load ../../helpers/locations
 load ../../helpers/main
+load ../../helpers/makepkg
 
 BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
@@ -49,3 +50,19 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 }
 
 
+
+@test "Uses checks next to the lintpkg script by default" {
+  mkdir -p "$BATS_TEST_TMPDIR/app/checks"
+  cp ${REPO_ROOT}/lintpkg "$BATS_TEST_TMPDIR/app/"
+  cp "$TEST_CHECKS/pkg_variables/pkg_name_check.sh" "$BATS_TEST_TMPDIR/app/checks/"
+
+  create_empty_package $BATS_TEST_TMPDIR/pkg
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR/pkg empty 1.0 noarch 1)
+
+  run "$BATS_TEST_TMPDIR/app/lintpkg" "$PKG"
+
+  assert_line -n 0 "empty"
+  assert_line -n 1 "1 packages checked; 0 errors and 0 warnings."
+
+  rm -f "$PKG"
+}

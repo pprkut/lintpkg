@@ -18,8 +18,11 @@ to keep close to the other pkgtools of slackware.
 At this point there is no install script provided as it's not really necessary.
 lintpkg will look for checks by default in one of two locations:
 
-- /usr/share/lintpkg as a global location
 - a "checks" directory within the same directory as the "lintpkg" script
+- /usr/share/lintpkg/checks as a global location
+
+The first one takes precedence, so running lintpkg from a git checkout always
+uses the checks from that checkout.
 
 Alternatively you can tell lintpkg to use checks from a different location using
 

@@ -100,10 +100,10 @@ to run.
 @opindex @option{--checkdir}
 @cindex Check directory, setting
 Specify path to load checks from. By default, @command{lintpkg} will look for
-checks in one of two locations:
+checks in one of two locations, preferring the first one:
 @itemize @bullet
-@item /usr/share/lintpkg as global location
 @item a 'checks' directory within the same directory as the @command{lintpkg} script
+@item /usr/share/lintpkg/checks as global location
 @end itemize
 
 @item -E @var{extract_dir}

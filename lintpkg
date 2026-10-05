@@ -250,10 +250,16 @@ CHECKS=""
 LIST=""
 IGNORE=""
 
-if [ -e "/usr/share/lintpkg" ]; then
-  CHECKS="/usr/share/lintpkg"
-elif [ -e "$APPLICATION_DIR/checks" ]; then
-  CHECKS="$APPLICATION_DIR/checks"
+# Prefer the files next to the lintpkg script, so that running it from a git
+# checkout uses the checkout's checks even if lintpkg is installed:
+if [ -d "$APPLICATION_DIR/checks" ]; then
+  DATA_DIR="$APPLICATION_DIR"
+else
+  DATA_DIR="/usr/share/lintpkg"
+fi
+
+if [ -e "$DATA_DIR/checks" ]; then
+  CHECKS="$DATA_DIR/checks"
 fi
 
 while [ 0 ]; do
