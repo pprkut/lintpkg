@@ -160,3 +160,40 @@ setup() {
 
   assert_output "error strange-owner-or-group ./ slacker/root"
 }
+
+@test "Check logs error with link target when incorrect owner for symlink in /usr/bin" {
+  create_empty_package $BATS_TEST_TMPDIR
+  ln -s foo $BATS_TEST_TMPDIR/usr/bin/bar
+
+  WORKING_DIR=$BATS_TEST_TMPDIR
+  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/usr\/bin\/bar/s|root/root|slacker/root|")
+
+  run check
+
+  assert_output "error strange-owner-or-group usr/bin/bar -> foo slacker/root"
+}
+
+@test "Check logs error with link target when incorrect owner for symlink in /usr" {
+  create_empty_package $BATS_TEST_TMPDIR
+  mkdir -p $BATS_TEST_TMPDIR/usr/lib
+  ln -s ../bin/foo $BATS_TEST_TMPDIR/usr/lib/bar
+
+  WORKING_DIR=$BATS_TEST_TMPDIR
+  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/usr\/lib\/bar/s|root/root|slacker/root|")
+
+  run check
+
+  assert_output "error strange-owner-or-group usr/lib/bar -> ../bin/foo slacker/root"
+}
+
+@test "Package listing shows link target for symlink with incorrect owner" {
+  create_empty_package $BATS_TEST_TMPDIR
+  ln -s foo $BATS_TEST_TMPDIR/usr/bin/bar
+  PKG=$(MAKEPKG_OPTIONS="-l n" create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
+
+  run ${REPO_ROOT}/lintpkg -c ownership_check "$PKG"
+
+  assert_line "empty-1.0-noarch-1: E: strange-owner-or-group usr/bin/bar -> foo $(whoami)/$(id -gn)"
+
+  rm -f "$PKG"
+}
