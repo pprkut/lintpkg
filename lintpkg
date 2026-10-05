@@ -10,70 +10,45 @@ VERSION="0.9.0"
 # Return a package name that has been stripped of the dirname portion
 # and any of the valid extensions (only):
 pkgbase() {
-  PKGEXT=$(echo $1 | rev | cut -f 1 -d . | rev)
-  case $PKGEXT in
-  'tgz' )
-    PKGRETURN=$(basename $1 .tgz)
-    ;;
-  'tbz' )
-    PKGRETURN=$(basename $1 .tbz)
-    ;;
-  'tlz' )
-    PKGRETURN=$(basename $1 .tlz)
-    ;;
-  'txz' )
-    PKGRETURN=$(basename $1 .txz)
-    ;;
-  *)
-    PKGRETURN=$(basename $1)
-    ;;
+  PKGRETURN=${1##*/}
+  case "$PKGRETURN" in *.t[gblx]z)
+    PKGRETURN=${PKGRETURN%.*}
   esac
-  echo $PKGRETURN
+  echo "$PKGRETURN"
 }
 
 package_element() {
-  STRING=$(pkgbase $1)
+  STRING=$(pkgbase "$1")
   ELEMENT=$2
-  # Check for old style package name with one segment:
-  if [ "$(echo $STRING | cut -f 1 -d -)" = "$(echo $STRING | cut -f 2 -d -)" ]; then
+  case "$STRING" in
+  *-*-*-*)
+    # At least four segments, so we'll consider this a new-style name:
+    case "$ELEMENT" in
+    'name' )
+      echo "${STRING%-*-*-*}"
+      ;;
+    'version' )
+      STRING=${STRING%-*-*}
+      echo "${STRING##*-}"
+      ;;
+    'arch' )
+      STRING=${STRING%-*}
+      echo "${STRING##*-}"
+      ;;
+    * )
+      echo "${STRING##*-}"
+      ;;
+    esac
+    ;;
+  *)
+    # Old style package name with one segment or we don't have four
+    # segments: return the old-style (or out of spec) package name.
     if [ "$ELEMENT" = "name" ]; then
-      echo $STRING
+      echo "$STRING"
     else
       echo ""
     fi
-  else # has more than one dash delimited segment
-    # Count number of segments:
-    INDEX=1
-    while [ ! "$(echo $STRING | cut -f $INDEX -d -)" = "" ]; do
-      INDEX=$(expr $INDEX + 1)
-    done
-    INDEX=$(expr $INDEX - 1) # don't include the null value
-    # If we don't have four segments, return the old-style (or out of spec) package name:
-    if [ "$INDEX" = "2" -o "$INDEX" = "3" ]; then
-      if [ "$ELEMENT" = "name" ]; then
-        echo $STRING
-      else
-        echo ""
-      fi
-    else # we have four or more segments, so we'll consider this a new-style name:
-      if [ "$ELEMENT" = "name" ]; then
-        NAME=$(expr $INDEX - 3)
-        NAME="$(echo $STRING | cut -f 1-$NAME -d -)"
-        echo $NAME
-      elif [ "$ELEMENT" = "version" ]; then
-        VER=$(expr $INDEX - 2)
-        VER="$(echo $STRING | cut -f $VER -d -)"
-        echo $VER
-      elif [ "$ELEMENT" = "arch" ]; then
-        ARCH=$(expr $INDEX - 1)
-        ARCH="$(echo $STRING | cut -f $ARCH -d -)"
-        echo $ARCH
-      else
-        BUILD="$(echo $STRING | cut -f $INDEX -d -)"
-        echo $BUILD
-      fi
-    fi
-  fi
+  esac
 }
 
 clean_filename() {
@@ -390,7 +365,7 @@ for PACKAGE in $*; do
   PKG_VERSION=$(package_element $PACKAGE version)
   PKG_ARCH=$(package_element $PACKAGE arch)
   PKG_BUILD=$(package_element $PACKAGE build)
-  PKG_EXTENSION=$(echo $PACKAGE | rev | cut -f 1 -d . | rev)
+  PKG_EXTENSION=${PACKAGE##*.}
   PKG_FULLNAME=$(pkgbase $PACKAGE)
 
   # Determine compressor utility, preferring ones that use multiple
