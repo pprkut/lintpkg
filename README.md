@@ -49,6 +49,46 @@ Currently lintpkg ships with a small set of checks:
 
 More checks and comments on existing ones welcome :)
 
+## Overrides
+
+Not every rule applies to every package. Overrides make an exception to a rule
+for a package. Overridden rules are not reported and don't count as errors or
+warnings, but the summary lists how many errors, warnings and notices were
+overridden. Use --show-overrides to report them anyway, together with where the
+override came from and the reason for it.
+
+lintpkg reads the overrides for a package from
+usr/share/lintpkg/overrides/<package name> within the package itself. If the
+package doesn't ship that file, lintpkg uses its own overrides for the package,
+from an "overrides" directory next to the checks (/usr/share/lintpkg/overrides
+when installed), or from the directory given with --overridedir. The two are
+never combined.
+
+Each line of an overrides file names a rule by its message identifier and, for
+rules about a file or directory, the path to override it for, as it will be
+installed:
+
+```
+# Binary needs to retain debugging info to be useful
+unstripped-binary /usr/bin/foo
+unstripped-binary /usr/lib64/libfoo.so.1
+
+# The icons are only used by the application itself
+missing-icon-cache-update hicolor
+```
+
+For rules that aren't about a path, the argument is optional. Without it, the
+rule is overridden for the whole package. With it, the rule is only overridden
+for that argument, like the icon theme above.
+
+A comment directly above an override gives the reason for it, and also applies
+to the overrides directly following it, until the next empty line or comment.
+
+Overrides for rules the package doesn't violate are reported as unused-override
+errors, so they can be removed once they are no longer needed. If an override
+is given more than once, only the first one is used. Use
+--ignore-unused-overrides to not report unused overrides.
+
 ## Return codes
 
 Depending on the result of the checks lintpkg will return with different
@@ -56,7 +96,8 @@ exit codes:
 
 - 0:  No errors
 - 1:  Unspecified error
-- 64: One or more error/warning messages are printed
+- 64: One or more error/warning messages are printed (overridden messages
+      don't count)
 
 ## Writing checks
 

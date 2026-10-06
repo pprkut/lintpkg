@@ -57,6 +57,24 @@ identifiers can be specified by separating
 them with commas.
 
 .HP
+\fB\-\-ignore\-unused\-overrides\fR
+.IP
+Don't report overrides that didn't match any
+message.
+
+.HP
+\fB\-\-overridedir\fR=override_dir
+.IP
+Specify path to load overrides from, if the
+package doesn't ship its own. See OVERRIDES.
+
+.HP
+\fB\-\-show\-overrides\fR
+.IP
+Show overridden messages, together with where
+the override came from and the reason for it.
+
+.HP
 \fB\-x\fR messageid, \fB\-\-exclude\fR=messageid
 .IP
 Don't show/count errors for the specified
@@ -78,6 +96,45 @@ Print out the version of
 .B lintpkg
 that is being run, then exit.
 .PP
+
+.SH OVERRIDES
+Not every rule applies to every package. Overrides make an exception to a
+rule for a package. Overridden rules are not reported and don't count as
+errors or warnings, but the summary lists how many errors, warnings and
+notices were overridden.
+
+The overrides for a package are read from
+.I usr/share/lintpkg/overrides/<package name>
+within the package itself. If the package doesn't ship that file, the
+overrides shipped with
+.B lintpkg
+for the package are used instead, from
+.I /usr/share/lintpkg/overrides
+or the directory given with \fB\-\-overridedir\fR. The two are never combined.
+
+Each line of an overrides file names a rule by its message identifier and,
+for rules about a file or directory, the path to override it for, as it will
+be installed:
+.PP
+.nf
+.RS
+# Binary needs to retain debugging info to be useful
+unstripped-binary /usr/bin/foo
+.RE
+.fi
+.PP
+For rules that aren't about a path, the argument is optional. Without it, the
+rule is overridden for the whole package. With it, the rule is only overridden
+for that argument.
+
+A comment directly above an override gives the reason for it, and also
+applies to the overrides directly following it, until the next empty line or
+comment.
+
+Overrides for rules the package doesn't violate are reported as
+.B unused-override
+errors. If an override is given more than once, only the first one is used.
+
 
 .SH "SEE ALSO"
 The full documentation for
