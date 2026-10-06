@@ -257,3 +257,118 @@ CHECK
   assert_output "Directory does not exist: $BATS_TEST_TMPDIR/non_existent"
   assert [ $status -eq 1 ]
 }
+
+@test "--show-overrides shows overridden message with reason" {
+  package_overrides "# Needed for debugging\npath-error /usr/bin/foo\n"
+
+  run_lintpkg --show-overrides
+
+  assert_line -n 0 "empty-1.0-noarch-1: O: path-error /usr/bin/foo"
+  assert_line -n 1 "  Overridden by package: Needed for debugging"
+  assert_line "1 packages checked; 1 errors and 2 warnings; 1 errors, 0 warnings and 0 notices overridden."
+}
+
+@test "--show-overrides shows overridden message with additional information" {
+  package_overrides "path-warning /usr/bin/foo\n"
+
+  run_lintpkg --show-overrides
+
+  assert_line -n 1 "empty-1.0-noarch-1: O: path-warning /usr/bin/foo slacker/root"
+}
+
+@test "--show-overrides shows overridden message without reason" {
+  package_overrides "path-error /usr/bin/foo\n"
+
+  run_lintpkg --show-overrides
+
+  assert_line -n 0 "empty-1.0-noarch-1: O: path-error /usr/bin/foo"
+  assert_line -n 1 "  Overridden by package"
+}
+
+@test "--show-overrides shows each overridden message with its own reason" {
+  package_overrides "# Needed for debugging\npath-error /usr/bin/foo\npath-notice /usr/bin/foo\n\n# Known issue\nsubject-error hicolor\n\nsingle-warning\n"
+
+  run_lintpkg --show-overrides
+
+  expect_output "empty-1.0-noarch-1: O: path-error /usr/bin/foo"
+  expect_output "  Overridden by package: Needed for debugging"
+  expect_output "empty-1.0-noarch-1: W: path-warning /usr/bin/foo slacker/root"
+  expect_output "empty-1.0-noarch-1: O: path-notice /usr/bin/foo"
+  expect_output "  Overridden by package: Needed for debugging"
+  expect_output "empty-1.0-noarch-1: O: subject-error hicolor"
+  expect_output "  Overridden by package: Known issue"
+  expect_output "empty-1.0-noarch-1: O: single-warning 12"
+  expect_output "  Overridden by package"
+  expect_output "1 packages checked; 0 errors and 1 warnings; 2 errors, 1 warnings and 1 notices overridden."
+
+  assert_expected_output
+}
+
+@test "--show-overrides shows overrides from lintpkg" {
+  system_overrides "# Known issue\npath-error /usr/bin/foo\n"
+
+  run_lintpkg --show-overrides
+
+  assert_line -n 1 "  Overridden by lintpkg: Known issue"
+}
+
+@test "--show-overrides still exits with 0 if all errors and warnings are overridden" {
+  package_overrides "path-error /usr/bin/foo\npath-warning /usr/bin/foo\nsubject-error hicolor\nsingle-warning\n"
+
+  run_lintpkg --show-overrides
+
+  assert_success
+}
+
+@test "--show-overrides with info shows explanation after reason" {
+  package_overrides "# Needed for debugging\npath-error /usr/bin/foo\n"
+
+  run_lintpkg --show-overrides -i
+
+  assert_line -n 0 "empty-1.0-noarch-1: O: path-error /usr/bin/foo"
+  assert_line -n 1 "  Overridden by package: Needed for debugging"
+  assert_line -n 2 "An error for a path within the package"
+}
+
+@test "Reason spanning multiple comment lines is joined" {
+  package_overrides "# Needed for\n# debugging\npath-error /usr/bin/foo\n"
+
+  run_lintpkg --show-overrides
+
+  assert_line -n 1 "  Overridden by package: Needed for debugging"
+}
+
+@test "Reason is shown as written" {
+  package_overrides "# Needed for debugging:\npath-error /usr/bin/foo\n"
+
+  run_lintpkg --show-overrides
+
+  assert_line -n 1 "  Overridden by package: Needed for debugging:"
+}
+
+@test "Reason applies to all directly following overrides" {
+  package_overrides "# Known issue\nsubject-error hicolor\npath-error /usr/bin/foo\n"
+
+  run_lintpkg --show-overrides
+
+  assert_line -n 0 "empty-1.0-noarch-1: O: path-error /usr/bin/foo"
+  assert_line -n 1 "  Overridden by package: Known issue"
+}
+
+@test "Empty line ends scope of reason" {
+  package_overrides "# Known issue\nsubject-error hicolor\n\npath-error /usr/bin/foo\n"
+
+  run_lintpkg --show-overrides
+
+  assert_line -n 0 "empty-1.0-noarch-1: O: path-error /usr/bin/foo"
+  assert_line -n 1 "  Overridden by package"
+}
+
+@test "New comment after overrides starts new reason" {
+  package_overrides "# Known issue\nsubject-error hicolor\n# Needed for debugging\npath-error /usr/bin/foo\n"
+
+  run_lintpkg --show-overrides
+
+  assert_line -n 0 "empty-1.0-noarch-1: O: path-error /usr/bin/foo"
+  assert_line -n 1 "  Overridden by package: Needed for debugging"
+}

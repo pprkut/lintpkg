@@ -188,7 +188,6 @@ message_overridden() {
 log_message() {
   local level="$1"
   local kind="$2"
-  local arg
   local overridden="no"
   shift 2
 
@@ -209,6 +208,20 @@ log_message() {
       OVERRIDDEN_NOTICES=$((OVERRIDDEN_NOTICES + 1))
     fi
 
+    if [ "$SHOW_OVERRIDES" = "yes" ]; then
+      print_message "O" "$@"
+
+      if [ -n "${OVERRIDE_REASONS[$OVERRIDE_MATCH]}" ]; then
+        echo "  Overridden by $OVERRIDE_SOURCE: ${OVERRIDE_REASONS[$OVERRIDE_MATCH]}"
+      else
+        echo "  Overridden by $OVERRIDE_SOURCE"
+      fi
+
+      if [ "$INFO" = "yes" ]; then
+        explain "$1"
+      fi
+    fi
+
     return
   fi
 
@@ -220,15 +233,25 @@ log_message() {
     fi
   fi
 
+  print_message "$level" "$@"
+
+  if [ "$INFO" = "yes" ]; then
+    explain "$1"
+  fi
+}
+
+# Print a message with the given level, followed by the message identifier
+# and any additional information:
+print_message() {
+  local level="$1"
+  local arg
+  shift
+
   echo -n "$PKG_FULLNAME: $level:"
   for arg in "$@"; do
     echo -n " $(clean_filename "$arg")"
   done
   echo ""
-
-  if [ "$INFO" = "yes" ]; then
-    explain "$1"
-  fi
 }
 
 log_error() {
@@ -314,6 +337,8 @@ Options:
   -E, --extractdir <path>   Base directory for extracted temporary files.
       --overridedir <path>  Specify path to load overrides from, if the
                             package doesn't ship its own.
+      --show-overrides      Show overridden messages, and why they were
+                            overridden.
   -V, --version             Display version information and exit.
   -x, --exclude <messageid> Don't show/count errors for the specified message
                             identifiers. Multiple identifiers can be specified
@@ -386,6 +411,7 @@ WORKING_DIR=""
 CWD=$(pwd)
 
 INFO="no"
+SHOW_OVERRIDES="no"
 CHECKS=""
 LIST=""
 IGNORE=""
@@ -443,6 +469,9 @@ while [ 0 ]; do
     fi
 
     shift 2
+  elif [ "$1" = "--show-overrides" ]; then
+    SHOW_OVERRIDES="yes"
+    shift 1
   elif [ "$1" = "--overridedir" ]; then
     if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
       usage
