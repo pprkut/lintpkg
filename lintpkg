@@ -89,14 +89,126 @@ message_excluded() {
   return 1
 }
 
-# Log a message with the given level (E, W or I), followed by the message
+# Load the overrides for the current package. If the package ships its own
+# overrides file, only that is used, otherwise the one shipped with lintpkg:
+load_overrides() {
+  local file line id arg
+  local reason=""
+  local previous=""
+
+  OVERRIDE_IDS=()
+  OVERRIDE_ARGS=()
+  OVERRIDE_PATHS=()
+  OVERRIDE_REASONS=()
+  OVERRIDE_USED=()
+  OVERRIDE_SOURCE=""
+
+  file="$WORKING_DIR/usr/share/lintpkg/overrides/$PKG_NAME"
+
+  if [ -f "$file" ] && ! [ -L "$file" ]; then
+    OVERRIDE_SOURCE="package"
+  elif [ -n "$OVERRIDES" ] && [ -f "$OVERRIDES/$PKG_NAME" ]; then
+    file="$OVERRIDES/$PKG_NAME"
+    OVERRIDE_SOURCE="lintpkg"
+  else
+    return
+  fi
+
+  while IFS= read -r line || [ -n "$line" ]; do
+    # Strip leading and trailing whitespace:
+    line="${line#"${line%%[![:space:]]*}"}"
+    line="${line%"${line##*[![:space:]]}"}"
+
+    if [ -z "$line" ]; then
+      # An empty line ends the scope of a comment:
+      reason=""
+      previous=""
+    elif [ "${line:0:1}" = "#" ]; then
+      # A comment explains the overrides directly following it:
+      if [ "$previous" = "override" ]; then
+        reason=""
+      fi
+
+      while [ "${line:0:1}" = "#" ]; do
+        line="${line:1}"
+      done
+      line="${line#"${line%%[![:space:]]*}"}"
+
+      reason="${reason:+$reason }$line"
+      previous="comment"
+    else
+      id="${line%%[[:space:]]*}"
+      arg="${line#"$id"}"
+      arg="${arg#"${arg%%[![:space:]]*}"}"
+
+      OVERRIDE_IDS+=("$id")
+      OVERRIDE_ARGS+=("$arg")
+      OVERRIDE_PATHS+=("$(package_path "$arg")")
+      OVERRIDE_REASONS+=("$reason")
+      OVERRIDE_USED+=("no")
+      previous="override"
+    fi
+  done < "$file"
+}
+
+# Return whether a message is overridden for the current package, and remember
+# the override that matched. Messages about a path are only matched by
+# overrides for that path. Other messages are matched by overrides without an
+# argument, or with the same first argument:
+message_overridden() {
+  local kind="$1"
+  local id="$2"
+  local arg="$3"
+  local n
+
+  for n in "${!OVERRIDE_IDS[@]}"; do
+    if ! [ "${OVERRIDE_IDS[$n]}" = "$id" ]; then
+      continue
+    fi
+
+    if [ "$kind" = "path" ]; then
+      if [ -z "${OVERRIDE_ARGS[$n]}" ] || ! [ "${OVERRIDE_PATHS[$n]}" = "$arg" ]; then
+        continue
+      fi
+    elif [ -n "${OVERRIDE_ARGS[$n]}" ] && ! [ "${OVERRIDE_ARGS[$n]}" = "$arg" ]; then
+      continue
+    fi
+
+    OVERRIDE_USED[$n]="yes"
+    OVERRIDE_MATCH=$n
+    return 0
+  done
+
+  return 1
+}
+
+# Log a message with the given level (E, W or I) and kind ("path" for messages
+# about a path within the package, empty otherwise), followed by the message
 # identifier and any additional information:
 log_message() {
   local level="$1"
+  local kind="$2"
   local arg
-  shift
+  local overridden="no"
+  shift 2
+
+  if message_overridden "$kind" "$1" "$2"; then
+    overridden="yes"
+  fi
 
   if message_excluded "$1"; then
+    return
+  fi
+
+  if [ "$overridden" = "yes" ]; then
+    if [ "$level" = "E" ]; then
+      OVERRIDDEN_ERRORS=$((OVERRIDDEN_ERRORS + 1))
+    elif [ "$level" = "W" ]; then
+      OVERRIDDEN_WARNINGS=$((OVERRIDDEN_WARNINGS + 1))
+    else
+      OVERRIDDEN_NOTICES=$((OVERRIDDEN_NOTICES + 1))
+    fi
+
     return
   fi
 
@@ -120,29 +232,29 @@ log_message() {
 }
 
 log_error() {
-  log_message "E" "$@"
+  log_message "E" "" "$@"
 }
 
 log_warning() {
-  log_message "W" "$@"
+  log_message "W" "" "$@"
 }
 
 log_notice() {
-  log_message "I" "$@"
+  log_message "I" "" "$@"
 }
 
 # Log a message about a file or directory within the package. The path is
 # passed as the first argument after the message identifier:
 log_path_error() {
-  log_error "$1" "$(package_path "$2")" "${@:3}"
+  log_message "E" "path" "$1" "$(package_path "$2")" "${@:3}"
 }
 
 log_path_warning() {
-  log_warning "$1" "$(package_path "$2")" "${@:3}"
+  log_message "W" "path" "$1" "$(package_path "$2")" "${@:3}"
 }
 
 log_path_notice() {
-  log_notice "$1" "$(package_path "$2")" "${@:3}"
+  log_message "I" "path" "$1" "$(package_path "$2")" "${@:3}"
 }
 
 # Like rpmlint, report packages that can't be read without a message
@@ -200,6 +312,8 @@ Options:
   -C, --checkdir <path>     Specify path to load checks from.
   -h, --help                Display summary of command line options and exit.
   -E, --extractdir <path>   Base directory for extracted temporary files.
+      --overridedir <path>  Specify path to load overrides from, if the
+                            package doesn't ship its own.
   -V, --version             Display version information and exit.
   -x, --exclude <messageid> Don't show/count errors for the specified message
                             identifiers. Multiple identifiers can be specified
@@ -288,6 +402,8 @@ if [ -e "$DATA_DIR/checks" ]; then
   CHECKS="$DATA_DIR/checks"
 fi
 
+OVERRIDES="$DATA_DIR/overrides"
+
 while [ 0 ]; do
   if [ "$1" = "-I" -o "$1" = "--explain" ]; then
     if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
@@ -326,6 +442,19 @@ while [ 0 ]; do
       CHECKS="$(realpath "$2")"
     fi
 
+    shift 2
+  elif [ "$1" = "--overridedir" ]; then
+    if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
+      usage
+      exit
+    fi
+
+    if ! [ -e "$2" ]; then
+      echo "Directory does not exist: $2"
+      exit 1
+    fi
+
+    OVERRIDES="$(realpath "$2")"
     shift 2
   elif [ "$1" = "-E" -o "$1" = "--extractdir" ]; then
     if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
@@ -383,10 +512,14 @@ fi
 ERRORS=0
 WARNINGS=0
 PACKAGES=0
+OVERRIDDEN_ERRORS=0
+OVERRIDDEN_WARNINGS=0
+OVERRIDDEN_NOTICES=0
 
 for PACKAGE in "$@"; do
 
   PKG_FULLNAME="(none)"
+  OVERRIDE_IDS=()
 
   if ! [ -e "$PACKAGE" ]; then
     log_error "No package found with name $PACKAGE"
@@ -449,6 +582,8 @@ for PACKAGE in "$@"; do
 
     ( umask 000 ; tar --acls --xattrs --xattrs-include='*' -xf $PKG_TARBALL 2> /dev/null )
 
+    load_overrides
+
     perform "$LIST"
 
     PACKAGES=$((PACKAGES + 1))
@@ -458,7 +593,14 @@ for PACKAGE in "$@"; do
   rm -rf "$WORKING_DIR/"*
 done
 
-echo "$PACKAGES packages checked; $ERRORS errors and $WARNINGS warnings."
+SUMMARY="$PACKAGES packages checked; $ERRORS errors and $WARNINGS warnings"
+
+if [ $((OVERRIDDEN_ERRORS + OVERRIDDEN_WARNINGS + OVERRIDDEN_NOTICES)) -gt 0 ]; then
+  SUMMARY="$SUMMARY; $OVERRIDDEN_ERRORS errors, $OVERRIDDEN_WARNINGS warnings"
+  SUMMARY="$SUMMARY and $OVERRIDDEN_NOTICES notices overridden"
+fi
+
+echo "$SUMMARY."
 
 rm -rf $WORKING_DIR
 rm -f $PKG_TARBALL
