@@ -6,9 +6,9 @@
 # Verify that there are no symlinks in the package.
 
 check() {
-  find "$WORKING_DIR" -type l | sort | while read symlink; do
+  while read symlink && ! [ -z "$symlink" ]; do
     log_path_warning "package-contains-symlink" "$symlink"
-  done
+  done <<< "$(find "$WORKING_DIR" -type l | sort)"
 }
 
 info() {
