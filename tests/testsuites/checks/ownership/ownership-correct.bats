@@ -206,3 +206,15 @@ setup() {
 
   refute_output
 }
+
+@test "Check logs no error when owner is whitelisted (daemon) for symlink with path as target in /usr/bin" {
+  create_empty_package $BATS_TEST_TMPDIR
+  ln -s ../lib/foo $BATS_TEST_TMPDIR/usr/bin/bar
+
+  WORKING_DIR=$BATS_TEST_TMPDIR
+  PKG_DETAILED_LISTING=$(create_detailed_tar_listing $BATS_TEST_TMPDIR | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/usr\/bin\/bar/s|root/root|daemon/daemon|g")
+
+  run check
+
+  refute_output
+}

@@ -10,6 +10,14 @@ check() {
 
   while read tperms owngrp size date time objname && ! [ -z "$tperms" ]; do
     OWNER=$(echo "$owngrp" | cut -d "/" -f 1)
+
+    # The package listing shows symlinks with their target:
+    LINK=()
+    if [[ $objname == *" -> "* ]]; then
+      LINK=("-> ${objname#* -> }")
+      objname=${objname%% -> *}
+    fi
+
     DIRECTORY=$(dirname "$objname")
     if [ "$DIRECTORY" = "usr/bin" -o "$DIRECTORY" = "usr/sbin" ]; then
       INCORRECT="yes"
@@ -20,11 +28,11 @@ check() {
       done
 
       if [ "$INCORRECT" = "yes" ]; then
-        log_error "strange-owner-or-group" "$objname" "$owngrp"
+        log_error "strange-owner-or-group" "$objname" "${LINK[@]}" "$owngrp"
       fi
 
     elif ! [ "$OWNER" = "root" ]; then
-      log_error "strange-owner-or-group" "$objname" "$owngrp"
+      log_error "strange-owner-or-group" "$objname" "${LINK[@]}" "$owngrp"
     fi
   done <<< "$(echo "$PKG_DETAILED_LISTING" | \
                 awk '$6~/^(bin\/|lib\/|lib64\/|sbin\/|usr\/|\.\/$)/' | \
