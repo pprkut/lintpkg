@@ -75,66 +75,60 @@ package_path() {
   echo "/${PKGPATH#/}"
 }
 
-log_error() {
-  for i in $IGNORE; do
-    if [ -n "$1" -a "$i" = "$1" ]; then
-      return
+# Return whether messages with the given identifier are excluded from the
+# output:
+message_excluded() {
+  local id
+
+  for id in $IGNORE; do
+    if [ -n "$1" -a "$id" = "$1" ]; then
+      return 0
     fi
   done
 
-  if ! [ "$PKG_FULLNAME" = "(none)" ]; then
-    ERRORS=$((ERRORS + 1))
+  return 1
+}
+
+# Log a message with the given level (E, W or I), followed by the message
+# identifier and any additional information:
+log_message() {
+  local level="$1"
+  local arg
+  shift
+
+  if message_excluded "$1"; then
+    return
   fi
 
-  echo -n "$PKG_FULLNAME: E:"
-  for i in "$@"; do
-    echo -n " $(clean_filename "$i")"
+  if ! [ "$PKG_FULLNAME" = "(none)" ]; then
+    if [ "$level" = "E" ]; then
+      ERRORS=$((ERRORS + 1))
+    elif [ "$level" = "W" ]; then
+      WARNINGS=$((WARNINGS + 1))
+    fi
+  fi
+
+  echo -n "$PKG_FULLNAME: $level:"
+  for arg in "$@"; do
+    echo -n " $(clean_filename "$arg")"
   done
   echo ""
 
   if [ "$INFO" = "yes" ]; then
     info "$1"
   fi
+}
+
+log_error() {
+  log_message "E" "$@"
 }
 
 log_warning() {
-  for i in $IGNORE; do
-    if [ -n "$1" -a "$i" = "$1" ]; then
-      return
-    fi
-  done
-
-  if ! [ "$PKG_FULLNAME" = "(none)" ]; then
-    WARNINGS=$((WARNINGS + 1))
-  fi
-
-  echo -n "$PKG_FULLNAME: W:"
-  for i in "$@"; do
-    echo -n " $(clean_filename "$i")"
-  done
-  echo ""
-
-  if [ "$INFO" = "yes" ]; then
-    info "$1"
-  fi
+  log_message "W" "$@"
 }
 
 log_notice() {
-  for i in $IGNORE; do
-    if [ -n "$1" -a "$i" = "$1" ]; then
-      return
-    fi
-  done
-
-  echo -n "$PKG_FULLNAME: I:"
-  for i in "$@"; do
-    echo -n " $(clean_filename "$i")"
-  done
-  echo ""
-
-  if [ "$INFO" = "yes" ]; then
-    info "$1"
-  fi
+  log_message "I" "$@"
 }
 
 # Log a message about a file or directory within the package. The path is
