@@ -24,7 +24,7 @@ setup() {
 
   run check
 
-  assert_output "warning unstripped-binary $BATS_TEST_TMPDIR/bin/hello-x86_64-unstripped"
+  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/bin/hello-x86_64-unstripped"
 }
 
 @test "Check logs warning when unstripped x86 64-bit binary in /sbin" {
@@ -37,7 +37,7 @@ setup() {
 
   run check
 
-  assert_output "warning unstripped-binary $BATS_TEST_TMPDIR/sbin/hello-x86_64-unstripped"
+  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/sbin/hello-x86_64-unstripped"
 }
 
 @test "Check logs warning when unstripped x86 64-bit library in /lib64" {
@@ -50,7 +50,7 @@ setup() {
 
   run check
 
-  assert_output "warning unstripped-binary $BATS_TEST_TMPDIR/lib64/libhello-x86_64-unstripped.so"
+  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/lib64/libhello-x86_64-unstripped.so"
 }
 
 @test "Check logs warning when unstripped x86 64-bit binary in /usr/bin" {
@@ -63,7 +63,7 @@ setup() {
 
   run check
 
-  assert_output "warning unstripped-binary $BATS_TEST_TMPDIR/usr/bin/hello-x86_64-unstripped"
+  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/usr/bin/hello-x86_64-unstripped"
 }
 
 @test "Check logs warning when unstripped x86 64-bit binary in /usr/sbin" {
@@ -76,7 +76,7 @@ setup() {
 
   run check
 
-  assert_output "warning unstripped-binary $BATS_TEST_TMPDIR/usr/sbin/hello-x86_64-unstripped"
+  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/usr/sbin/hello-x86_64-unstripped"
 }
 
 @test "Check logs warning when unstripped x86 64-bit library in /usr/lib64" {
@@ -89,7 +89,7 @@ setup() {
 
   run check
 
-  assert_output "warning unstripped-binary $BATS_TEST_TMPDIR/usr/lib64/libhello-x86_64-unstripped.so"
+  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/usr/lib64/libhello-x86_64-unstripped.so"
 }
 
 @test "Check logs warning when unstripped x86 32-bit binary in /bin" {
@@ -102,7 +102,7 @@ setup() {
 
   run check
 
-  assert_output "warning unstripped-binary $BATS_TEST_TMPDIR/bin/hello-x86-unstripped"
+  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/bin/hello-x86-unstripped"
 }
 
 @test "Check logs warning when unstripped x86 32-bit binary in /sbin" {
@@ -115,7 +115,7 @@ setup() {
 
   run check
 
-  assert_output "warning unstripped-binary $BATS_TEST_TMPDIR/sbin/hello-x86-unstripped"
+  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/sbin/hello-x86-unstripped"
 }
 
 @test "Check logs warning when unstripped x86 32-bit library in /lib" {
@@ -128,7 +128,7 @@ setup() {
 
   run check
 
-  assert_output "warning unstripped-binary $BATS_TEST_TMPDIR/lib/libhello-x86-unstripped.so"
+  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/lib/libhello-x86-unstripped.so"
 }
 
 @test "Check logs warning when unstripped x86 32-bit binary in /usr/bin" {
@@ -141,7 +141,7 @@ setup() {
 
   run check
 
-  assert_output "warning unstripped-binary $BATS_TEST_TMPDIR/usr/bin/hello-x86-unstripped"
+  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/usr/bin/hello-x86-unstripped"
 }
 
 @test "Check logs warning when unstripped x86 32-bit binary in /usr/sbin" {
@@ -154,7 +154,7 @@ setup() {
 
   run check
 
-  assert_output "warning unstripped-binary $BATS_TEST_TMPDIR/usr/sbin/hello-x86-unstripped"
+  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/usr/sbin/hello-x86-unstripped"
 }
 
 @test "Check logs warning when unstripped x86 32-bit library in /usr/lib" {
@@ -167,5 +167,5 @@ setup() {
 
   run check
 
-  assert_output "warning unstripped-binary $BATS_TEST_TMPDIR/usr/lib/libhello-x86-unstripped.so"
+  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/usr/lib/libhello-x86-unstripped.so"
 }

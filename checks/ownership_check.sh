@@ -28,11 +28,11 @@ check() {
       done
 
       if [ "$INCORRECT" = "yes" ]; then
-        log_error "strange-owner-or-group" "$objname" "${LINK[@]}" "$owngrp"
+        log_path_error "strange-owner-or-group" "$objname" "${LINK[@]}" "$owngrp"
       fi
 
     elif ! [ "$OWNER" = "root" ]; then
-      log_error "strange-owner-or-group" "$objname" "${LINK[@]}" "$owngrp"
+      log_path_error "strange-owner-or-group" "$objname" "${LINK[@]}" "$owngrp"
     fi
   done <<< "$(echo "$PKG_DETAILED_LISTING" | \
                 awk '$6~/^(bin\/|lib\/|lib64\/|sbin\/|usr\/|\.\/$)/' | \

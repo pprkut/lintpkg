@@ -225,14 +225,22 @@ information
 
 Additionally there are several functions one can use for reporting issues. All of
 these take variable arguments, where the first is the messageid of the issue, and
-any further argument is additional optional information. Most commonly the first
-additional argument (so the second argument over all) would be the name of the
-offending file.
+any further argument is additional optional information.
+
+Issues about a file or directory within the package should be reported with the
+log_path_* functions instead. They take the path of the offending file or
+directory as second argument, followed by any additional optional information.
+The path can be given relative to $WORKING_DIR, as listed in the package, or
+as it will be installed, and is always reported as it will be installed
+(e.g. /usr/bin/foo).
 
 @itemize @bullet
 @item log_error() logs an issue as an error.
 @item log_warning() logs an issue as a warning.
 @item log_notice() logs an issue as a notice.
+@item log_path_error() logs an issue about a path as an error.
+@item log_path_warning() logs an issue about a path as a warning.
+@item log_path_notice() logs an issue about a path as a notice.
 @end itemize
 
 @item info()

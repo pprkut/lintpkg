@@ -25,5 +25,5 @@ setup() {
 
   run check
 
-  assert_output "error invalid-libtool-archive $BATS_TEST_TMPDIR/usr/lib/app/private/foo.la"
+  assert_output "path-error invalid-libtool-archive $BATS_TEST_TMPDIR/usr/lib/app/private/foo.la"
 }

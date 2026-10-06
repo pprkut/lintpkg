@@ -24,8 +24,8 @@ setup() {
 
   run check
 
-  expect_output "error dir-or-file-in-home $BATS_TEST_TMPDIR//home/user"
-  expect_output "error dir-or-file-in-home $BATS_TEST_TMPDIR//home/user/foo"
+  expect_output "path-error dir-or-file-in-home $BATS_TEST_TMPDIR//home/user"
+  expect_output "path-error dir-or-file-in-home $BATS_TEST_TMPDIR//home/user/foo"
 
   assert_expected_output
 }
@@ -40,8 +40,8 @@ setup() {
 
   run check
 
-  expect_output "error dir-or-file-in-mnt $BATS_TEST_TMPDIR//mnt/hd"
-  expect_output "error dir-or-file-in-mnt $BATS_TEST_TMPDIR//mnt/hd/foo"
+  expect_output "path-error dir-or-file-in-mnt $BATS_TEST_TMPDIR//mnt/hd"
+  expect_output "path-error dir-or-file-in-mnt $BATS_TEST_TMPDIR//mnt/hd/foo"
 
   assert_expected_output
 }
@@ -56,8 +56,8 @@ setup() {
 
   run check
 
-  expect_output "error dir-or-file-in-tmp $BATS_TEST_TMPDIR//tmp/foo"
-  expect_output "error dir-or-file-in-tmp $BATS_TEST_TMPDIR//tmp/foo/bar"
+  expect_output "path-error dir-or-file-in-tmp $BATS_TEST_TMPDIR//tmp/foo"
+  expect_output "path-error dir-or-file-in-tmp $BATS_TEST_TMPDIR//tmp/foo/bar"
 
   assert_expected_output
 }
@@ -72,8 +72,8 @@ setup() {
 
   run check
 
-  expect_output "error dir-or-file-in-usr-local $BATS_TEST_TMPDIR//usr/local/bin"
-  expect_output "error dir-or-file-in-usr-local $BATS_TEST_TMPDIR//usr/local/bin/foo"
+  expect_output "path-error dir-or-file-in-usr-local $BATS_TEST_TMPDIR//usr/local/bin"
+  expect_output "path-error dir-or-file-in-usr-local $BATS_TEST_TMPDIR//usr/local/bin/foo"
 
   assert_expected_output
 }
@@ -88,8 +88,8 @@ setup() {
 
   run check
 
-  expect_output "error dir-or-file-in-usr-tmp $BATS_TEST_TMPDIR//usr/tmp/foo"
-  expect_output "error dir-or-file-in-usr-tmp $BATS_TEST_TMPDIR//usr/tmp/foo/bar"
+  expect_output "path-error dir-or-file-in-usr-tmp $BATS_TEST_TMPDIR//usr/tmp/foo"
+  expect_output "path-error dir-or-file-in-usr-tmp $BATS_TEST_TMPDIR//usr/tmp/foo/bar"
 
   assert_expected_output
 }
@@ -104,8 +104,8 @@ setup() {
 
   run check
 
-  expect_output "error dir-or-file-in-var-local $BATS_TEST_TMPDIR//var/local/bar"
-  expect_output "error dir-or-file-in-var-local $BATS_TEST_TMPDIR//var/local/bar/foo"
+  expect_output "path-error dir-or-file-in-var-local $BATS_TEST_TMPDIR//var/local/bar"
+  expect_output "path-error dir-or-file-in-var-local $BATS_TEST_TMPDIR//var/local/bar/foo"
 
   assert_expected_output
 }
@@ -120,8 +120,8 @@ setup() {
 
   run check
 
-  expect_output "error dir-or-file-in-var-lock $BATS_TEST_TMPDIR//var/lock/bar"
-  expect_output "error dir-or-file-in-var-lock $BATS_TEST_TMPDIR//var/lock/bar/foo"
+  expect_output "path-error dir-or-file-in-var-lock $BATS_TEST_TMPDIR//var/lock/bar"
+  expect_output "path-error dir-or-file-in-var-lock $BATS_TEST_TMPDIR//var/lock/bar/foo"
 
   assert_expected_output
 }
@@ -136,8 +136,8 @@ setup() {
 
   run check
 
-  expect_output "error dir-or-file-in-var-run $BATS_TEST_TMPDIR//var/run/bar"
-  expect_output "error dir-or-file-in-var-run $BATS_TEST_TMPDIR//var/run/bar/foo"
+  expect_output "path-error dir-or-file-in-var-run $BATS_TEST_TMPDIR//var/run/bar"
+  expect_output "path-error dir-or-file-in-var-run $BATS_TEST_TMPDIR//var/run/bar/foo"
 
   assert_expected_output
 }
@@ -152,8 +152,8 @@ setup() {
 
   run check
 
-  expect_output "error dir-or-file-in-var-tmp $BATS_TEST_TMPDIR//var/tmp/bar"
-  expect_output "error dir-or-file-in-var-tmp $BATS_TEST_TMPDIR//var/tmp/bar/foo"
+  expect_output "path-error dir-or-file-in-var-tmp $BATS_TEST_TMPDIR//var/tmp/bar"
+  expect_output "path-error dir-or-file-in-var-tmp $BATS_TEST_TMPDIR//var/tmp/bar/foo"
 
   assert_expected_output
 }

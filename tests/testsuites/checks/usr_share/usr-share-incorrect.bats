@@ -24,7 +24,7 @@ setup() {
 
   run check
 
-  assert_output "error binary-in-usr-share $BATS_TEST_TMPDIR/usr/share/test/hello-x86_64-stripped"
+  assert_output "path-error binary-in-usr-share $BATS_TEST_TMPDIR/usr/share/test/hello-x86_64-stripped"
 }
 
 @test "Check logs error when shared library in /usr/share" {
@@ -37,7 +37,7 @@ setup() {
 
   run check
 
-  assert_output "error binary-in-usr-share $BATS_TEST_TMPDIR/usr/share/test/libhello-x86_64-stripped.so"
+  assert_output "path-error binary-in-usr-share $BATS_TEST_TMPDIR/usr/share/test/libhello-x86_64-stripped.so"
 }
 
 @test "Check logs error when static library in /usr/share" {
@@ -50,5 +50,5 @@ setup() {
 
   run check
 
-  assert_output "error binary-in-usr-share $BATS_TEST_TMPDIR/usr/share/test/libhello-x86_64-stripped.a"
+  assert_output "path-error binary-in-usr-share $BATS_TEST_TMPDIR/usr/share/test/libhello-x86_64-stripped.a"
 }

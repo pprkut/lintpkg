@@ -10,13 +10,13 @@ check() {
 
   for i in $DIRECTORIES; do
     if [ -e "$WORKING_DIR/$i" ]; then
-      log_error "incorrect-info-dir" "$i"
+      log_path_error "incorrect-info-dir" "$i"
     fi
   done
 
   while read i && ! [ -z "$i" ]; do
     while read infopage && ! [ -z "$infopage" ]; do
-      log_warning "uncompressed-info-page" "$infopage"
+      log_path_warning "uncompressed-info-page" "$infopage"
     done <<< "$(find "$i" -type f ! -name "*.gz" ! -name "*.png")"
   done <<< "$(find "$WORKING_DIR" -type d -name "info")"
 }

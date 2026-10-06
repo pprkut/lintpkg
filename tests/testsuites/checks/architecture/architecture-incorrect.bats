@@ -25,7 +25,7 @@ setup() {
 
   run check
 
-  assert_output "error binary-in-wrong-architecture-specific-path $BATS_TEST_TMPDIR/usr/lib/libhello-x86_64-stripped.so"
+  assert_output "path-error binary-in-wrong-architecture-specific-path $BATS_TEST_TMPDIR/usr/lib/libhello-x86_64-stripped.so"
 }
 
 @test "Check logs error when x86 32-bit library in /usr/lib64 for i486 package" {
@@ -39,7 +39,7 @@ setup() {
 
   run check
 
-  assert_output "error binary-in-wrong-architecture-specific-path $BATS_TEST_TMPDIR/usr/lib64/libhello-x86-stripped.so"
+  assert_output "path-error binary-in-wrong-architecture-specific-path $BATS_TEST_TMPDIR/usr/lib64/libhello-x86-stripped.so"
 }
 
 @test "Check logs error when x86 32-bit library in /usr/lib64 for i686 package" {
@@ -53,5 +53,5 @@ setup() {
 
   run check
 
-  assert_output "error binary-in-wrong-architecture-specific-path $BATS_TEST_TMPDIR/usr/lib64/libhello-x86-stripped.so"
+  assert_output "path-error binary-in-wrong-architecture-specific-path $BATS_TEST_TMPDIR/usr/lib64/libhello-x86-stripped.so"
 }

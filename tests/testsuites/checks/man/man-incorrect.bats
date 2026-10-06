@@ -25,7 +25,7 @@ setup() {
 
   run check
 
-  assert_output "error incorrect-man-dir /usr/share/man"
+  assert_output "path-error incorrect-man-dir /usr/share/man"
 }
 
 @test "Check logs error when man page in /usr/local/man" {
@@ -39,7 +39,7 @@ setup() {
 
   run check
 
-  assert_output "error incorrect-man-dir /usr/local/man"
+  assert_output "path-error incorrect-man-dir /usr/local/man"
 }
 
 @test "Check logs error when man page in /usr/local/share/man" {
@@ -53,7 +53,7 @@ setup() {
 
   run check
 
-  assert_output "error incorrect-man-dir /usr/local/share/man"
+  assert_output "path-error incorrect-man-dir /usr/local/share/man"
 }
 
 @test "Check logs warning when uncompressed man page in /usr/man" {
@@ -66,7 +66,7 @@ setup() {
 
   run check
 
-  assert_output "warning uncompressed-man-page $BATS_TEST_TMPDIR/usr/man/man1/lintpkg.1"
+  assert_output "path-warning uncompressed-man-page $BATS_TEST_TMPDIR/usr/man/man1/lintpkg.1"
 }
 
 @test "Check logs warning when uncompressed man page in /usr/share/man" {
@@ -79,8 +79,8 @@ setup() {
 
   run check
 
-  expect_output "error incorrect-man-dir /usr/share/man"
-  expect_output "warning uncompressed-man-page $BATS_TEST_TMPDIR/usr/share/man/man1/lintpkg.1"
+  expect_output "path-error incorrect-man-dir /usr/share/man"
+  expect_output "path-warning uncompressed-man-page $BATS_TEST_TMPDIR/usr/share/man/man1/lintpkg.1"
 
   assert_expected_output
 }
@@ -95,8 +95,8 @@ setup() {
 
   run check
 
-  expect_output "error incorrect-man-dir /usr/local/man"
-  expect_output "warning uncompressed-man-page $BATS_TEST_TMPDIR/usr/local/man/man1/lintpkg.1"
+  expect_output "path-error incorrect-man-dir /usr/local/man"
+  expect_output "path-warning uncompressed-man-page $BATS_TEST_TMPDIR/usr/local/man/man1/lintpkg.1"
 
   assert_expected_output
 }
@@ -111,8 +111,8 @@ setup() {
 
   run check
 
-  expect_output "error incorrect-man-dir /usr/local/share/man"
-  expect_output "warning uncompressed-man-page $BATS_TEST_TMPDIR/usr/local/share/man/man1/lintpkg.1"
+  expect_output "path-error incorrect-man-dir /usr/local/share/man"
+  expect_output "path-warning uncompressed-man-page $BATS_TEST_TMPDIR/usr/local/share/man/man1/lintpkg.1"
 
   assert_expected_output
 }

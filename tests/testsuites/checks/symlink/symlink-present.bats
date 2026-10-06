@@ -23,7 +23,7 @@ setup() {
 
   run check
 
-  assert_output "warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo2"
+  assert_output "path-warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo2"
 }
 
 @test "Check logs warning when multiple symlinks are present" {
@@ -36,8 +36,8 @@ setup() {
 
   run check
 
-  expect_output "warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo2"
-  expect_output "warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo3"
+  expect_output "path-warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo2"
+  expect_output "path-warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo3"
 
   assert_expected_output
 }
@@ -51,7 +51,7 @@ setup() {
 
   run check
 
-  assert_output "warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo 2"
+  assert_output "path-warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo 2"
 }
 
 @test "Check logs warning when multiple symlinks with spaces in their name are present" {
@@ -64,8 +64,8 @@ setup() {
 
   run check
 
-  expect_output "warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo 2"
-  expect_output "warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo 3"
+  expect_output "path-warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo 2"
+  expect_output "path-warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo 3"
 
   assert_expected_output
 }

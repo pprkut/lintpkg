@@ -13,3 +13,15 @@ log_warning() {
 log_notice() {
   echo "notice" $@
 }
+
+log_path_error() {
+  echo "path-error" $@
+}
+
+log_path_warning() {
+  echo "path-warning" $@
+}
+
+log_path_notice() {
+  echo "path-notice" $@
+}

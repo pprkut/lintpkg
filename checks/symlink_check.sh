@@ -7,7 +7,7 @@
 
 check() {
   find "$WORKING_DIR" -type l | sort | while read symlink; do
-    log_warning "package-contains-symlink" "$symlink"
+    log_path_warning "package-contains-symlink" "$symlink"
   done
 }
 

@@ -25,7 +25,7 @@ setup() {
 
   run check
 
-  assert_output "error incorrect-info-dir /usr/share/info"
+  assert_output "path-error incorrect-info-dir /usr/share/info"
 }
 
 @test "Check logs error when info page in /usr/local/info" {
@@ -39,7 +39,7 @@ setup() {
 
   run check
 
-  assert_output "error incorrect-info-dir /usr/local/info"
+  assert_output "path-error incorrect-info-dir /usr/local/info"
 }
 
 @test "Check logs error when info page in /usr/local/share/info" {
@@ -53,7 +53,7 @@ setup() {
 
   run check
 
-  assert_output "error incorrect-info-dir /usr/local/share/info"
+  assert_output "path-error incorrect-info-dir /usr/local/share/info"
 }
 
 @test "Check logs warning when uncompressed info page in /usr/info" {
@@ -66,7 +66,7 @@ setup() {
 
   run check
 
-  assert_output "warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/info/lintpkg.info"
+  assert_output "path-warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/info/lintpkg.info"
 }
 
 @test "Check logs warning when uncompressed info page in /usr/share/info" {
@@ -79,8 +79,8 @@ setup() {
 
   run check
 
-  expect_output "error incorrect-info-dir /usr/share/info"
-  expect_output "warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/share/info/lintpkg.info"
+  expect_output "path-error incorrect-info-dir /usr/share/info"
+  expect_output "path-warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/share/info/lintpkg.info"
 
   assert_expected_output
 }
@@ -95,8 +95,8 @@ setup() {
 
   run check
 
-  expect_output "error incorrect-info-dir /usr/local/info"
-  expect_output "warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/local/info/lintpkg.info"
+  expect_output "path-error incorrect-info-dir /usr/local/info"
+  expect_output "path-warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/local/info/lintpkg.info"
 
   assert_expected_output
 }
@@ -111,8 +111,8 @@ setup() {
 
   run check
 
-  expect_output "error incorrect-info-dir /usr/local/share/info"
-  expect_output "warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/local/share/info/lintpkg.info"
+  expect_output "path-error incorrect-info-dir /usr/local/share/info"
+  expect_output "path-warning uncompressed-info-page $BATS_TEST_TMPDIR/usr/local/share/info/lintpkg.info"
 
   assert_expected_output
 }

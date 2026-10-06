@@ -10,7 +10,7 @@ check() {
       while read file && ! [ -z "$file" ]; do
         type=$(file "$file" | grep "ELF 64-bit")
         if ! [ -z "$type" ]; then
-          log_error "binary-in-wrong-architecture-specific-path" "$file"
+          log_path_error "binary-in-wrong-architecture-specific-path" "$file"
         fi
       done <<< "$(find "$WORKING_DIR/usr/lib" ! -type d)"
     fi
@@ -21,7 +21,7 @@ check() {
       while read file && ! [ -z "$file" ]; do
         type=$(file "$file" | grep "ELF 32-bit")
         if ! [ -z "$type" ]; then
-          log_error "binary-in-wrong-architecture-specific-path" "$file"
+          log_path_error "binary-in-wrong-architecture-specific-path" "$file"
         fi
       done <<< "$(find "$WORKING_DIR/usr/lib64" ! -type d)"
     fi

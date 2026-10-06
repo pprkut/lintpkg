@@ -24,7 +24,7 @@ setup() {
 
   run check
 
-  assert_output "warning strange-permission $BATS_TEST_TMPDIR/etc 750"
+  assert_output "path-warning strange-permission $BATS_TEST_TMPDIR/etc 750"
 }
 
 @test "Check logs warning when incorrect permissions for /usr" {
@@ -36,7 +36,7 @@ setup() {
 
   run check
 
-  assert_output "warning strange-permission $BATS_TEST_TMPDIR/usr 750"
+  assert_output "path-warning strange-permission $BATS_TEST_TMPDIR/usr 750"
 }
 
 @test "Check logs warning when incorrect permissions for directory under /usr" {
@@ -48,6 +48,6 @@ setup() {
 
   run check
 
-  assert_output "warning strange-permission $BATS_TEST_TMPDIR/usr/bin 750"
+  assert_output "path-warning strange-permission $BATS_TEST_TMPDIR/usr/bin 750"
 }
 

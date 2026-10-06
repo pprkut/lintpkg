@@ -62,6 +62,19 @@ clean_filename() {
   echo $EXTRAINFO
 }
 
+# Return a path within the package as it will be installed, no matter if it
+# was given relative to the working directory, the package root or as listed
+# in the package:
+package_path() {
+  PKGPATH=${1#"$WORKING_DIR"}
+  while [[ $PKGPATH == *//* ]]; do
+    PKGPATH=${PKGPATH//\/\//\/}
+  done
+  PKGPATH=${PKGPATH#./}
+  PKGPATH=${PKGPATH%/}
+  echo "/${PKGPATH#/}"
+}
+
 log_error() {
   for i in $IGNORE; do
     if [ -n "$1" -a "$i" = "$1" ]; then
@@ -122,6 +135,20 @@ log_notice() {
   if [ "$INFO" = "yes" ]; then
     info "$1"
   fi
+}
+
+# Log a message about a file or directory within the package. The path is
+# passed as the first argument after the message identifier:
+log_path_error() {
+  log_error "$1" "$(package_path "$2")" "${@:3}"
+}
+
+log_path_warning() {
+  log_warning "$1" "$(package_path "$2")" "${@:3}"
+}
+
+log_path_notice() {
+  log_notice "$1" "$(package_path "$2")" "${@:3}"
 }
 
 # Like rpmlint, report packages that can't be read without a message

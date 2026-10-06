@@ -25,7 +25,7 @@ setup() {
 
   run check
 
-  assert_output "error strange-owner-or-group bin/ slacker/root"
+  assert_output "path-error strange-owner-or-group bin/ slacker/root"
 }
 
 @test "Check logs error when incorrect owner for file in /bin" {
@@ -39,7 +39,7 @@ setup() {
 
   run check
 
-  assert_output "error strange-owner-or-group bin/baz slacker/root"
+  assert_output "path-error strange-owner-or-group bin/baz slacker/root"
 }
 
 @test "Check logs error when incorrect owner for /lib" {
@@ -53,7 +53,7 @@ setup() {
 
   run check
 
-  assert_output "error strange-owner-or-group lib/ slacker/root"
+  assert_output "path-error strange-owner-or-group lib/ slacker/root"
 }
 
 @test "Check logs error when incorrect owner for file in /lib" {
@@ -67,7 +67,7 @@ setup() {
 
   run check
 
-  assert_output "error strange-owner-or-group lib/baz slacker/root"
+  assert_output "path-error strange-owner-or-group lib/baz slacker/root"
 }
 
 @test "Check logs error when incorrect owner for /lib64" {
@@ -81,7 +81,7 @@ setup() {
 
   run check
 
-  assert_output "error strange-owner-or-group lib64/ slacker/root"
+  assert_output "path-error strange-owner-or-group lib64/ slacker/root"
 }
 
 @test "Check logs error when incorrect owner for file in /lib64" {
@@ -95,7 +95,7 @@ setup() {
 
   run check
 
-  assert_output "error strange-owner-or-group lib64/baz slacker/root"
+  assert_output "path-error strange-owner-or-group lib64/baz slacker/root"
 }
 
 @test "Check logs error when incorrect owner for /sbin" {
@@ -109,7 +109,7 @@ setup() {
 
   run check
 
-  assert_output "error strange-owner-or-group sbin/ slacker/root"
+  assert_output "path-error strange-owner-or-group sbin/ slacker/root"
 }
 
 @test "Check logs error when incorrect owner for file in /sbin" {
@@ -123,7 +123,7 @@ setup() {
 
   run check
 
-  assert_output "error strange-owner-or-group sbin/baz slacker/root"
+  assert_output "path-error strange-owner-or-group sbin/baz slacker/root"
 }
 
 @test "Check logs error when incorrect owner for /usr" {
@@ -135,7 +135,7 @@ setup() {
 
   run check
 
-  assert_output "error strange-owner-or-group usr/ slacker/root"
+  assert_output "path-error strange-owner-or-group usr/ slacker/root"
 }
 
 @test "Check logs error when incorrect owner for file in /usr" {
@@ -146,7 +146,7 @@ setup() {
 
   run check
 
-  assert_output "error strange-owner-or-group usr/bin/foo slacker/root"
+  assert_output "path-error strange-owner-or-group usr/bin/foo slacker/root"
 }
 
 @test "Check logs error when incorrect owner for /" {
@@ -158,7 +158,7 @@ setup() {
 
   run check
 
-  assert_output "error strange-owner-or-group ./ slacker/root"
+  assert_output "path-error strange-owner-or-group ./ slacker/root"
 }
 
 @test "Check logs error with link target when incorrect owner for symlink in /usr/bin" {
@@ -170,7 +170,7 @@ setup() {
 
   run check
 
-  assert_output "error strange-owner-or-group usr/bin/bar -> foo slacker/root"
+  assert_output "path-error strange-owner-or-group usr/bin/bar -> foo slacker/root"
 }
 
 @test "Check logs error with link target when incorrect owner for symlink in /usr" {
@@ -183,7 +183,7 @@ setup() {
 
   run check
 
-  assert_output "error strange-owner-or-group usr/lib/bar -> ../bin/foo slacker/root"
+  assert_output "path-error strange-owner-or-group usr/lib/bar -> ../bin/foo slacker/root"
 }
 
 @test "Package listing shows link target for symlink with incorrect owner" {
@@ -193,7 +193,7 @@ setup() {
 
   run ${REPO_ROOT}/lintpkg -c ownership_check "$PKG"
 
-  assert_line "empty-1.0-noarch-1: E: strange-owner-or-group usr/bin/bar -> foo $(whoami)/$(id -gn)"
+  assert_line "empty-1.0-noarch-1: E: strange-owner-or-group /usr/bin/bar -> foo $(whoami)/$(id -gn)"
 
   rm -f "$PKG"
 }
