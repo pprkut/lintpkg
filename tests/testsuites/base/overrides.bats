@@ -87,7 +87,8 @@ run_lintpkg() {
   run_lintpkg
 
   assert_line "empty-1.0-noarch-1: E: path-error /usr/bin/foo"
-  assert_line "1 packages checked; 2 errors and 2 warnings."
+  assert_line "empty-1.0-noarch-1: E: unused-override path-error"
+  assert_line "1 packages checked; 3 errors and 2 warnings."
 }
 
 @test "Override for other message identifier does not match" {
@@ -371,4 +372,91 @@ CHECK
 
   assert_line -n 0 "empty-1.0-noarch-1: O: path-error /usr/bin/foo"
   assert_line -n 1 "  Overridden by package: Needed for debugging"
+}
+
+@test "Unused override is reported as error" {
+  package_overrides "path-error /usr/bin/foo\npath-error /usr/bin/bar\nsingle-warning\nsubject-error gnome\n"
+
+  run_lintpkg
+
+  assert_line "empty-1.0-noarch-1: E: unused-override path-error /usr/bin/bar"
+  assert_line "empty-1.0-noarch-1: E: unused-override subject-error gnome"
+  refute_line --partial "unused-override single-warning"
+  assert_line "1 packages checked; 3 errors and 1 warnings; 1 errors, 1 warnings and 0 notices overridden."
+  assert [ $status -eq 64 ]
+}
+
+@test "Unused override is reported after the messages of the checks" {
+  package_overrides "path-error /usr/bin/bar\n"
+
+  run_lintpkg
+
+  assert_line -n 5 "empty-1.0-noarch-1: E: unused-override path-error /usr/bin/bar"
+}
+
+@test "Unused override from lintpkg is reported" {
+  system_overrides "path-error /usr/bin/bar\n"
+
+  run_lintpkg
+
+  assert_line "empty-1.0-noarch-1: E: unused-override path-error /usr/bin/bar"
+}
+
+@test "Second of duplicate overrides is reported as unused" {
+  package_overrides "# First\npath-error /usr/bin/foo\n\n# Second\npath-error /usr/bin/foo\n"
+
+  run_lintpkg --show-overrides
+
+  assert_line -n 1 "  Overridden by package: First"
+  assert_line "empty-1.0-noarch-1: E: unused-override path-error /usr/bin/foo"
+}
+
+@test "Override for excluded message is not reported as unused" {
+  package_overrides "path-error /usr/bin/foo\n"
+
+  run_lintpkg -x path-error
+
+  refute_line --partial "unused-override"
+}
+
+@test "Unused override can't be excluded" {
+  package_overrides "path-error /usr/bin/bar\n"
+
+  run_lintpkg -x unused-override
+
+  assert_line "empty-1.0-noarch-1: E: unused-override path-error /usr/bin/bar"
+}
+
+@test "Unused override can't be overridden" {
+  package_overrides "path-error /usr/bin/bar\nunused-override path-error\n"
+
+  run_lintpkg
+
+  assert_line "empty-1.0-noarch-1: E: unused-override path-error /usr/bin/bar"
+  assert_line "empty-1.0-noarch-1: E: unused-override unused-override path-error"
+}
+
+@test "--ignore-unused-overrides does not report unused overrides" {
+  package_overrides "path-error /usr/bin/bar\n"
+
+  run_lintpkg --ignore-unused-overrides
+
+  refute_line --partial "unused-override"
+  assert_line "1 packages checked; 2 errors and 2 warnings."
+}
+
+@test "Unused override with info shows explanation" {
+  package_overrides "path-error /usr/bin/bar\n"
+
+  run_lintpkg -i
+
+  assert_line "empty-1.0-noarch-1: E: unused-override path-error /usr/bin/bar"
+  assert_line --partial "The package has an override that didn't match any message."
+}
+
+@test "Explain unused-override" {
+  run ${REPO_ROOT}/lintpkg -I unused-override
+
+  assert_line -n 0 "unused-override:"
+  assert_line -n 1 --partial "The package has an override that didn't match any message."
 }

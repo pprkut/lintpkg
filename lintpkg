@@ -182,6 +182,35 @@ message_overridden() {
   return 1
 }
 
+# Report overrides that didn't match any message, so that they can be removed
+# once they're no longer needed. Like rpmlint's unused filters, this can't be
+# excluded or overridden:
+report_unused_overrides() {
+  local n
+
+  if [ "$IGNORE_UNUSED_OVERRIDES" = "yes" ]; then
+    return
+  fi
+
+  for n in "${!OVERRIDE_IDS[@]}"; do
+    if [ "${OVERRIDE_USED[$n]}" = "yes" ]; then
+      continue
+    fi
+
+    ERRORS=$((ERRORS + 1))
+
+    if [ -n "${OVERRIDE_ARGS[$n]}" ]; then
+      print_message "E" "unused-override" "${OVERRIDE_IDS[$n]}" "${OVERRIDE_ARGS[$n]}"
+    else
+      print_message "E" "unused-override" "${OVERRIDE_IDS[$n]}"
+    fi
+
+    if [ "$INFO" = "yes" ]; then
+      local_info "unused-override"
+    fi
+  done
+}
+
 # Log a message with the given level (E, W or I) and kind ("path" for messages
 # about a path within the package, empty otherwise), followed by the message
 # identifier and any additional information:
@@ -304,6 +333,11 @@ local_info() {
   if [ "$1" = "external-compression-utility-missing" ]; then
     echo "The necessary compression utility for uncompressing the package is missing."
     echo
+  elif [ "$1" = "unused-override" ]; then
+    echo -n "The package has an override that didn't match any message. If it's "
+    echo -n "no longer needed, it should be removed. This can be ignored with "
+    echo "--ignore-unused-overrides."
+    echo
   fi
 }
 
@@ -339,6 +373,9 @@ Options:
                             package doesn't ship its own.
       --show-overrides      Show overridden messages, and why they were
                             overridden.
+      --ignore-unused-overrides
+                            Don't report overrides that didn't match any
+                            message.
   -V, --version             Display version information and exit.
   -x, --exclude <messageid> Don't show/count errors for the specified message
                             identifiers. Multiple identifiers can be specified
@@ -412,6 +449,7 @@ CWD=$(pwd)
 
 INFO="no"
 SHOW_OVERRIDES="no"
+IGNORE_UNUSED_OVERRIDES="no"
 CHECKS=""
 LIST=""
 IGNORE=""
@@ -469,6 +507,9 @@ while [ 0 ]; do
     fi
 
     shift 2
+  elif [ "$1" = "--ignore-unused-overrides" ]; then
+    IGNORE_UNUSED_OVERRIDES="yes"
+    shift 1
   elif [ "$1" = "--show-overrides" ]; then
     SHOW_OVERRIDES="yes"
     shift 1
@@ -614,6 +655,8 @@ for PACKAGE in "$@"; do
     load_overrides
 
     perform "$LIST"
+
+    report_unused_overrides
 
     PACKAGES=$((PACKAGES + 1))
 
