@@ -51,17 +51,6 @@ package_element() {
   esac
 }
 
-clean_filename() {
-  if [ -e "$1" -o -L "$1" ]; then
-    EXTRAINFO=$(echo $1 | sed "s|^$WORKING_DIR||")
-    EXTRAINFO=$(echo $EXTRAINFO | sed "s|\/\/|\/|g")
-  else
-    EXTRAINFO="$1"
-  fi
-
-  echo $EXTRAINFO
-}
-
 # Return a path within the package as it will be installed, no matter if it
 # was given relative to the working directory, the package root or as listed
 # in the package:
@@ -270,7 +259,9 @@ log_message() {
 }
 
 # Print a message with the given level, followed by the message identifier
-# and any additional information:
+# and any additional information. Arguments are printed as given, except for
+# the working directory, for checks that pass paths within the package to
+# log_error(), log_warning() or log_notice():
 print_message() {
   local level="$1"
   local arg
@@ -278,7 +269,7 @@ print_message() {
 
   echo -n "$PKG_FULLNAME: $level:"
   for arg in "$@"; do
-    echo -n " $(clean_filename "$arg")"
+    printf ' %s' "${arg#"$WORKING_DIR"}"
   done
   echo ""
 }
