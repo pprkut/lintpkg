@@ -463,7 +463,7 @@ while [ 0 ]; do
   if [ "$1" = "-I" -o "$1" = "--explain" ]; then
     if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
       usage
-      exit
+      exit 1
     fi
     show_info $2
     exit 0
@@ -479,7 +479,7 @@ while [ 0 ]; do
   elif [ "$1" = "-c" -o "$1" = "--check" ]; then
     if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
       usage
-      exit
+      exit 1
     fi
 
     LIST="$LIST $2";
@@ -487,7 +487,7 @@ while [ 0 ]; do
   elif [ "$1" = "-C" -o "$1" = "--checkdir" ]; then
     if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
       usage
-      exit
+      exit 1
     fi
 
     if ! [ -e "$2" ]; then
@@ -507,7 +507,7 @@ while [ 0 ]; do
   elif [ "$1" = "--overridedir" ]; then
     if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
       usage
-      exit
+      exit 1
     fi
 
     if ! [ -e "$2" ]; then
@@ -520,7 +520,7 @@ while [ 0 ]; do
   elif [ "$1" = "-E" -o "$1" = "--extractdir" ]; then
     if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
       usage
-      exit
+      exit 1
     fi
 
     if [ -e "$2" ]; then
@@ -534,7 +534,7 @@ while [ 0 ]; do
   elif [ "$1" = "-x" -o "$1" = "--exclude" ]; then
     if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
       usage
-      exit
+      exit 1
     fi
 
     IGNORE=$(echo $2 | tr , '\n')
