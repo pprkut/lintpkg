@@ -115,7 +115,7 @@ log_message() {
   echo ""
 
   if [ "$INFO" = "yes" ]; then
-    info "$1"
+    explain "$1"
   fi
 }
 
@@ -153,8 +153,16 @@ log_read_error() {
   ERRORS=$((ERRORS + 1))
 }
 
-info() {
-  local_info $*
+# Print the explanation for a message identifier. Checks provide explanations
+# for their messages with an info() function, which is only defined while the
+# check is loaded. Explanations for lintpkg's own messages come from
+# local_info():
+explain() {
+  if declare -F info > /dev/null; then
+    info "$1"
+  fi
+
+  local_info "$1"
 }
 
 local_info() {
@@ -165,9 +173,7 @@ local_info() {
 }
 
 provides() {
-  if ! [ -z "$(info $1)" ]; then
-    echo "yes"
-  elif ! [ -z "$(local_info $1)" ]; then
+  if ! [ -z "$(explain "$1")" ]; then
     echo "yes"
   else
     echo "no"
@@ -215,8 +221,7 @@ show_info() {
 
       if [ "$(provides $id)" = "yes" ]; then
         echo "$id:"
-        info $id
-        local_info $id;
+        explain "$id"
       else
         left="$id"
       fi

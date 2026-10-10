@@ -34,3 +34,9 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   assert_line -n 0 "external-compression-utility-missing:"
   assert_line -n 1 "The necessary compression utility for uncompressing the package is missing."
 }
+
+@test "-I with checks without explanations shows only the message identifier" {
+  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -I unknown-identifier
+
+  assert_output "unknown-identifier:"
+}
