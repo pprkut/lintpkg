@@ -527,7 +527,7 @@ while [ 0 ]; do
       WORKING_DIR="$(realpath "$2")"
     else
       echo "Directory does not exist: $2"
-      exit
+      exit 1
     fi
 
     shift 2
