@@ -163,7 +163,7 @@ message_overridden() {
       continue
     fi
 
-    OVERRIDE_USED[$n]="yes"
+    record_event "used" "$n"
     OVERRIDE_MATCH=$n
     return 0
   done
@@ -200,6 +200,43 @@ report_unused_overrides() {
   done
 }
 
+# Checks run in a subshell, so that they can't affect each other or lintpkg.
+# Changes to lintpkg's state are therefore recorded as events in a file, and
+# applied by lintpkg after the check finished. This also works when logging
+# from a pipeline or other subshell within a check:
+record_event() {
+  echo "$*" >> "$EVENTS"
+}
+
+apply_events() {
+  local event n
+
+  while read -r event n; do
+    case "$event" in
+    'E' )
+      ERRORS=$((ERRORS + 1))
+      ;;
+    'W' )
+      WARNINGS=$((WARNINGS + 1))
+      ;;
+    'overridden-E' )
+      OVERRIDDEN_ERRORS=$((OVERRIDDEN_ERRORS + 1))
+      ;;
+    'overridden-W' )
+      OVERRIDDEN_WARNINGS=$((OVERRIDDEN_WARNINGS + 1))
+      ;;
+    'overridden-I' )
+      OVERRIDDEN_NOTICES=$((OVERRIDDEN_NOTICES + 1))
+      ;;
+    'used' )
+      OVERRIDE_USED[$n]="yes"
+      ;;
+    esac
+  done < "$EVENTS"
+
+  : > "$EVENTS"
+}
+
 # Log a message with the given level (E, W or I) and kind ("path" for messages
 # about a path within the package, empty otherwise), followed by the message
 # identifier and any additional information:
@@ -218,13 +255,7 @@ log_message() {
   fi
 
   if [ "$overridden" = "yes" ]; then
-    if [ "$level" = "E" ]; then
-      OVERRIDDEN_ERRORS=$((OVERRIDDEN_ERRORS + 1))
-    elif [ "$level" = "W" ]; then
-      OVERRIDDEN_WARNINGS=$((OVERRIDDEN_WARNINGS + 1))
-    else
-      OVERRIDDEN_NOTICES=$((OVERRIDDEN_NOTICES + 1))
-    fi
+    record_event "overridden-$level"
 
     if [ "$SHOW_OVERRIDES" = "yes" ]; then
       print_message "O" "$@"
@@ -244,11 +275,7 @@ log_message() {
   fi
 
   if ! [ "$PKG_FULLNAME" = "(none)" ]; then
-    if [ "$level" = "E" ]; then
-      ERRORS=$((ERRORS + 1))
-    elif [ "$level" = "W" ]; then
-      WARNINGS=$((WARNINGS + 1))
-    fi
+    record_event "$level"
   fi
 
   print_message "$level" "$@"
@@ -309,8 +336,8 @@ log_read_error() {
 }
 
 # Print the explanation for a message identifier. Checks provide explanations
-# for their messages with an info() function, which is only defined while the
-# check is loaded. Explanations for lintpkg's own messages come from
+# for their messages with an info() function, which is only defined within the
+# subshell running the check. Explanations for lintpkg's own messages come from
 # local_info():
 explain() {
   if declare -F info > /dev/null; then
@@ -382,21 +409,20 @@ show_info() {
   stack=$(echo $1 | tr , '\n' | sort)
 
   for id in $stack; do
-    for check in $(ls $CHECKS); do
-      source "$CHECKS/$check"
-      left=""
+    left="$id"
 
-      if [ "$(provides $id)" = "yes" ]; then
+    for check in $(ls $CHECKS); do
+      if (
+        source "$CHECKS/$check"
+
+        if ! [ "$(provides $id)" = "yes" ]; then
+          exit 1
+        fi
+
         echo "$id:"
         explain "$id"
-      else
-        left="$id"
-      fi
-
-      unset -f check
-      unset -f info
-
-      if [ -z "$left" ]; then
+      ); then
+        left=""
         break
       fi
     done
@@ -419,13 +445,13 @@ perform() {
       check="$check.sh"
     fi
 
-    source "$CHECKS/$check"
-    check
+    (
+      source "$CHECKS/$check"
+      check
+    )
 
-    unset -f check
-    unset -f info
+    apply_events
   done
-
 }
 
 # usage(), exit if called with no arguments:
@@ -570,6 +596,16 @@ if [ -z "$PKG_TARBALL" ]; then
   exit 1
 fi
 
+# Events recorded by checks, see record_event():
+EVENTS=$(mktemp -p "$(dirname "$WORKING_DIR")" lintpkg.XXXXXX.events 2> /dev/null)
+
+if [ -z "$EVENTS" ]; then
+  echo "Couldn't create temporary file"
+  rm -rf $WORKING_DIR
+  rm -f $PKG_TARBALL
+  exit 1
+fi
+
 ERRORS=0
 WARNINGS=0
 PACKAGES=0
@@ -656,6 +692,8 @@ for PACKAGE in "$@"; do
   rm -rf "$WORKING_DIR/"*
 done
 
+apply_events
+
 SUMMARY="$PACKAGES packages checked; $ERRORS errors and $WARNINGS warnings"
 
 if [ $((OVERRIDDEN_ERRORS + OVERRIDDEN_WARNINGS + OVERRIDDEN_NOTICES)) -gt 0 ]; then
@@ -667,6 +705,7 @@ echo "$SUMMARY."
 
 rm -rf $WORKING_DIR
 rm -f $PKG_TARBALL
+rm -f "$EVENTS"
 
 if [ $ERRORS -gt 0 -o $WARNINGS -gt 0 ]; then
   exit 64

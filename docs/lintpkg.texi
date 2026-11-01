@@ -253,8 +253,12 @@ is given more than once, only the first one is used. Use
 @chapter Writing checks
 @cindex Writing checks
 
-Writing checks is intentionally kept rather simple. A check needs to provide
-two functions:
+Writing checks is intentionally kept rather simple. Each check is run in its
+own subshell, so variables and functions it defines, or changes to lintpkg's
+variables, don't affect other checks or lintpkg itself. The log functions can
+be called from anywhere within a check, including pipelines.
+
+A check needs to provide two functions:
 
 @table @asis
 @item check()
