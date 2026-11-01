@@ -9,7 +9,7 @@
 # Verify that the package is tar-1.13 compatible.
 
 check() {
-  if [ "$(echo "$PKG_LISTING" | grep '^\./' | wc -l | tr -d ' ')" != "1" ]; then
+  if [ "$(echo "$PKG_LISTING" | grep -c '^\./')" != "1" ]; then
     # <quote> Some dumb bunny built a package with something other than makepkg.  Bad! </quote>
     log_error "package-not-tar-113"
   fi

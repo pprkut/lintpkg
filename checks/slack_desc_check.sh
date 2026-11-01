@@ -19,7 +19,7 @@ check() {
     fi
 
     # Check the number of lines of description
-    desclinecount=$(grep "^${descprefix}:" "$slackdescpath" | wc -l)
+    desclinecount=$(grep -c "^${descprefix}:" "$slackdescpath")
     # The traditional number is exactly 11, but recent installpkg allows <= 13
     desclinecountmin=3
     desclinecountmax=13

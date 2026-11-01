@@ -231,7 +231,7 @@ apply_events() {
       OVERRIDDEN_NOTICES=$((OVERRIDDEN_NOTICES + 1))
       ;;
     'used')
-      OVERRIDE_USED[$n]="yes"
+      OVERRIDE_USED[n]="yes"
       ;;
     esac
   done < "$EVENTS"
@@ -494,7 +494,7 @@ fi
 
 OVERRIDES="$DATA_DIR/overrides"
 
-while [ 0 ]; do
+while true; do
   if [ "$1" = "-I" -o "$1" = "--explain" ]; then
     if [ -z "$2" -o "$(echo "$2" | head -c 1)" = "-" ]; then
       usage
@@ -703,7 +703,7 @@ for PACKAGE in "$@"; do
 
   cd "$CWD" || exit 1
 
-  rm -rf "$WORKING_DIR/"*
+  rm -rf "${WORKING_DIR:?}/"*
 done
 
 apply_events
