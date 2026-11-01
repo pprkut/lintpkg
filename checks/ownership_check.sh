@@ -37,9 +37,9 @@ check() {
     elif ! [ "$OWNER" = "root" ]; then
       log_path_error "strange-owner-or-group" "$objname" "${LINK[@]}" "$owngrp"
     fi
-  done <<< "$(echo "$PKG_DETAILED_LISTING" | \
-                awk '$6~/^(bin\/|lib\/|lib64\/|sbin\/|usr\/|\.\/$)/' | \
-                grep -v ' root/root ')"
+  done <<< "$(echo "$PKG_DETAILED_LISTING" |
+    awk '$6~/^(bin\/|lib\/|lib64\/|sbin\/|usr\/|\.\/$)/' |
+    grep -v ' root/root ')"
 }
 
 info() {

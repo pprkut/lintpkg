@@ -23,7 +23,7 @@ check() {
     # The traditional number is exactly 11, but recent installpkg allows <= 13
     desclinecountmin=3
     desclinecountmax=13
-    if [ "$desclinecount" -lt $desclinecountmin ] || \
+    if [ "$desclinecount" -lt $desclinecountmin ] ||
       [ "$desclinecount" -gt $desclinecountmax ]; then
       log_error "slack-desc-invalid-number-of-lines" "$desclinecount"
     fi
@@ -36,16 +36,16 @@ check() {
 
     # Check the handy ruler. If not present, that's ok.
     hr='|-----handy-ruler------------------------------------------------------|'
-    if [ $(grep "^ *${hr}\$" "$slackdescpath" | sed "s/|.*|//" | wc -c) -eq $(( ${#descprefix} + 1 )) ]; then
+    if [ $(grep "^ *${hr}\$" "$slackdescpath" | sed "s/|.*|//" | wc -c) -eq $((${#descprefix} + 1)) ]; then
       : # it's perfect!
-    elif grep -q "^ *${hr}\$" "$slackdescpath" ; then
+    elif grep -q "^ *${hr}\$" "$slackdescpath"; then
       log_warning "slack-desc-handy-ruler-misaligned"
-    elif grep -q "|-.*-|" "$slackdescpath" ; then
-        log_warning "slack-desc-handy-ruler-broken"
+    elif grep -q "|-.*-|" "$slackdescpath"; then
+      log_warning "slack-desc-handy-ruler-broken"
     fi
 
     # check there's no other junk
-    if grep -q -v -e '^ *#' -e "^${descprefix}:" -e '^ *$' -e '|-.*-|' "$slackdescpath" ; then
+    if grep -q -v -e '^ *#' -e "^${descprefix}:" -e '^ *$' -e '|-.*-|' "$slackdescpath"; then
       log_error "slack-desc-unrecognised-text"
     fi
 

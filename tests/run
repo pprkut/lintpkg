@@ -11,16 +11,16 @@ JUNIT=""
 
 while [ $# -gt 0 ]; do
   case "$1" in
-    --coverage)
-      COVERAGE="yes"
-      ;;
-    --junit)
-      JUNIT="yes"
-      ;;
-    *)
-      echo "Usage: $0 [--coverage] [--junit]" >&2
-      exit 1
-      ;;
+  --coverage)
+    COVERAGE="yes"
+    ;;
+  --junit)
+    JUNIT="yes"
+    ;;
+  *)
+    echo "Usage: $0 [--coverage] [--junit]" >&2
+    exit 1
+    ;;
   esac
   shift
 done

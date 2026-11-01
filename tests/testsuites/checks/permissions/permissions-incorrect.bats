@@ -8,7 +8,7 @@ load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
 
-BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
+BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 
 setup() {
   . "$LIVE_CHECKS/permissions_check.sh"
@@ -50,4 +50,3 @@ setup() {
 
   assert_output "path-warning strange-permission $BATS_TEST_TMPDIR/usr/bin 750"
 }
-

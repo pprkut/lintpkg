@@ -25,14 +25,14 @@ assert_dir_empty() {
   local -r dir="$1"
 
   if ! [ -d "$dir" ]; then
-    batslib_print_kv_single 4 'path' "$dir" \
-      | batslib_decorate 'directory does not exist' \
-      | fail
+    batslib_print_kv_single 4 'path' "$dir" |
+      batslib_decorate 'directory does not exist' |
+      fail
   elif [ -n "$(ls -A "$dir")" ]; then
     batslib_print_kv_single_or_multi 7 \
-        'path' "$dir" \
-        'content' "$(ls -A "$dir")" \
-      | batslib_decorate 'directory is not empty' \
-      | fail
+      'path' "$dir" \
+      'content' "$(ls -A "$dir")" |
+      batslib_decorate 'directory is not empty' |
+      fail
   fi
 }

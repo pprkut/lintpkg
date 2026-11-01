@@ -6,7 +6,7 @@ load ../../helpers/assertions
 load ../../helpers/locations
 load ../../helpers/main
 
-BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
+BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 
 @test "Showing explanation for message identifiers exits with 0" {
   run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/logging" -I simple-notice

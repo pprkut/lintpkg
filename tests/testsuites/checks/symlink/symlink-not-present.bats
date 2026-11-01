@@ -8,7 +8,7 @@ load ../../../helpers/main
 load ../../../helpers/makepkg
 load ../../../helpers/mock-loggers
 
-BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
+BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 
 setup() {
   . "$LIVE_CHECKS/symlink_check.sh"
@@ -23,4 +23,3 @@ setup() {
 
   refute_output
 }
-
