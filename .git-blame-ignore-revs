@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: Copyright 2026  Heinz Wiesinger, Amsterdam, The Netherlands
+# SPDX-License-Identifier: CC0-1.0
+
+# Commits that only change formatting, which git blame should skip. GitHub
+# uses this file automatically, for git blame locally run:
+#   git config blame.ignoreRevsFile .git-blame-ignore-revs
+
+# Format shell scripts with shfmt
+eeeac2d0dbc38f3089b3c4c0599b06fa14a10de7
