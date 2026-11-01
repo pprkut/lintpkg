@@ -53,3 +53,41 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
   rm -f "$PKG"
 }
+
+@test "Checks only use local variables" {
+  load ../../helpers/mock-loggers
+
+  create_empty_package $BATS_TEST_TMPDIR
+  mkdir -p $BATS_TEST_TMPDIR/tmp/foo $BATS_TEST_TMPDIR/etc
+  mkdir -p $BATS_TEST_TMPDIR/usr/info $BATS_TEST_TMPDIR/usr/man/man1
+  mkdir -p $BATS_TEST_TMPDIR/usr/lib $BATS_TEST_TMPDIR/usr/share/icons/hicolor
+  touch $BATS_TEST_TMPDIR/usr/info/foo.info $BATS_TEST_TMPDIR/usr/man/man1/foo.1
+  touch $BATS_TEST_TMPDIR/usr/lib/libfoo.la
+  ln -s foo $BATS_TEST_TMPDIR/usr/bin/bar
+
+  WORKING_DIR=$BATS_TEST_TMPDIR
+  PKG_NAME="empty"
+  PKG_ARCH="x86_64"
+  PKG_LISTING="./"
+  PKG_DETAILED_LISTING="-rwxr-xr-x slacker/users 0 2026-01-01 00:00 usr/bin/foo"
+
+  # Run each check like lintpkg does, and list the variables it leaves behind.
+  # before is defined up front, so that it isn't listed itself:
+  leaked=""
+  before=""
+
+  for check in "$LIVE_CHECKS"/*_check.sh; do
+    output=$(
+      source "$check"
+      before=$(compgen -v | sort)
+      check > /dev/null 2>&1
+      comm -13 <(echo "$before") <(compgen -v | sort) | sed "s|^|${check##*/}: |"
+    )
+
+    if [ -n "$output" ]; then
+      leaked+="$output"$'\n'
+    fi
+  done
+
+  assert_equal "$leaked" ""
+}

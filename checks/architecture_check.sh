@@ -5,6 +5,8 @@
 # Verify that the package content is correct in relation to its architecture.
 
 check() {
+  local file type
+
   if [ "$PKG_ARCH" = "x86_64" ]; then
     if [ -d "$WORKING_DIR/usr/lib" ]; then
       while read file && ! [ -z "$file" ]; do

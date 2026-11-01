@@ -5,6 +5,8 @@
 # Verify that directory/file permissions within a package are sane.
 
 check() {
+  local file permission
+
   # Check permissions under /usr
   if [ -d "$WORKING_DIR/usr" ]; then
     while read file && ! [ -z "$file" ]; do

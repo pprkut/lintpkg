@@ -5,6 +5,8 @@
 # Verify that installed libtool archives are valid.
 
 check() {
+  local lib BLOCK
+
   while read lib && ! [ -z "$lib" ]; do
     BLOCK=$(sed -n '0,/^[^#]/p' "$lib" | sed \$d)
 

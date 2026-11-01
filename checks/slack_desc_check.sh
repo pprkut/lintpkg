@@ -6,6 +6,8 @@
 # Verify that the slack-desc file exists and is correctly formatted.
 
 check() {
+  local slackdescpath descprefix hr
+  local desclinecount desclinecountmin desclinecountmax desclinelengthmax
 
   slackdescpath="$WORKING_DIR/install/slack-desc"
   if [ -f "$slackdescpath" ]; then

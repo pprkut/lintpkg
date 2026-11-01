@@ -5,6 +5,8 @@
 # Complain if binaries are installed in /usr/share.
 
 check() {
+  local file
+
   [ -d $WORKING_DIR/usr/share ] && \
   while read file && ! [ -z "$file" ]; do
     if file "$file" | egrep -q '(ELF|current ar archive)'; then
