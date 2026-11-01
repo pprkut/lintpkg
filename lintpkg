@@ -426,8 +426,8 @@ show_info() {
   for id in $stack; do
     left="$id"
 
-    for check in $(ls "$CHECKS"); do
-      if (explain_from_check "$check" "$id"); then
+    for check in "$CHECKS"/*; do
+      if [ -e "$check" ] && (explain_from_check "${check##*/}" "$id"); then
         left=""
         break
       fi
@@ -439,14 +439,17 @@ show_info() {
   done
 }
 
+# Run the given checks, or all of them if none are given:
 perform() {
-  if [ -z "$1" ]; then
-    LIST="$(ls "$CHECKS")"
-  else
-    LIST="$1"
+  local checks=("$@")
+  local check
+
+  if [ ${#checks[@]} -eq 0 ]; then
+    checks=("$CHECKS"/*)
+    checks=("${checks[@]##*/}")
   fi
 
-  for check in $LIST; do
+  for check in "${checks[@]}"; do
     if [ -e "$CHECKS/$check.sh" ]; then
       check="$check.sh"
     fi
@@ -474,7 +477,7 @@ INFO="no"
 SHOW_OVERRIDES="no"
 IGNORE_UNUSED_OVERRIDES="no"
 CHECKS=""
-LIST=""
+LIST=()
 IGNORE=""
 
 # Prefer the files next to the lintpkg script, so that running it from a git
@@ -514,7 +517,7 @@ while [ 0 ]; do
       exit 1
     fi
 
-    LIST="$LIST $2"
+    LIST+=("$2")
     shift 2
   elif [ "$1" = "-C" -o "$1" = "--checkdir" ]; then
     if [ -z "$2" -o "$(echo "$2" | head -c 1)" = "-" ]; then
@@ -692,7 +695,7 @@ for PACKAGE in "$@"; do
 
   load_overrides
 
-  perform "$LIST"
+  perform "${LIST[@]}"
 
   report_unused_overrides
 
