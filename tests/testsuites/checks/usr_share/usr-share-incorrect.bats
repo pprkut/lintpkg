@@ -18,11 +18,11 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/share/test"
   cp "$TEST_STATICS/binaries/hello-x86_64-stripped" "$BATS_TEST_TMPDIR/usr/share/test/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
-  assert_output "path-error binary-in-usr-share $BATS_TEST_TMPDIR/usr/share/test/hello-x86_64-stripped"
+  assert_output "path-error binary-in-usr-share usr/share/test/hello-x86_64-stripped"
 }
 
 @test "Check logs error when shared library in /usr/share" {
@@ -31,11 +31,11 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/share/test"
   cp "$TEST_STATICS/binaries/libhello-x86_64-stripped.so" "$BATS_TEST_TMPDIR/usr/share/test/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
-  assert_output "path-error binary-in-usr-share $BATS_TEST_TMPDIR/usr/share/test/libhello-x86_64-stripped.so"
+  assert_output "path-error binary-in-usr-share usr/share/test/libhello-x86_64-stripped.so"
 }
 
 @test "Check logs error when static library in /usr/share" {
@@ -44,9 +44,9 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/share/test"
   cp "$TEST_STATICS/binaries/libhello-x86_64-stripped.a" "$BATS_TEST_TMPDIR/usr/share/test/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
-  assert_output "path-error binary-in-usr-share $BATS_TEST_TMPDIR/usr/share/test/libhello-x86_64-stripped.a"
+  assert_output "path-error binary-in-usr-share usr/share/test/libhello-x86_64-stripped.a"
 }

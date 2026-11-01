@@ -5,29 +5,23 @@
 # Verify that the package content is correct in relation to its architecture.
 
 check() {
-  local file type
+  local n dir elf
 
   if [ "$PKG_ARCH" = "x86_64" ]; then
-    if [ -d "$WORKING_DIR/usr/lib" ]; then
-      while IFS= read -r file && ! [ -z "$file" ]; do
-        type=$(file "$file" | grep "ELF 64-bit")
-        if ! [ -z "$type" ]; then
-          log_path_error "binary-in-wrong-architecture-specific-path" "$file"
-        fi
-      done <<< "$(find "$WORKING_DIR/usr/lib" ! -type d)"
-    fi
+    dir="usr/lib"
+    elf="ELF 64-bit"
+  elif [ "$PKG_ARCH" = "i486" -o "$PKG_ARCH" = "i686" ]; then
+    dir="usr/lib64"
+    elf="ELF 32-bit"
+  else
+    return
   fi
 
-  if [ "$PKG_ARCH" = "i486" -o "$PKG_ARCH" = "i686" ]; then
-    if [ -d "$WORKING_DIR/usr/lib64" ]; then
-      while IFS= read -r file && ! [ -z "$file" ]; do
-        type=$(file "$file" | grep "ELF 32-bit")
-        if ! [ -z "$type" ]; then
-          log_path_error "binary-in-wrong-architecture-specific-path" "$file"
-        fi
-      done <<< "$(find "$WORKING_DIR/usr/lib64" ! -type d)"
+  for n in "${!PKG_FILES[@]}"; do
+    if [[ ${PKG_FILES[n]} == "$dir"/* && ${PKG_FILE_TYPES[n]} == *"$elf"* ]]; then
+      log_path_error "binary-in-wrong-architecture-specific-path" "${PKG_FILES[n]}"
     fi
-  fi
+  done
 }
 
 info() {

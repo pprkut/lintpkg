@@ -18,7 +18,20 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/share/test"
   echo "foo" > "$BATS_TEST_TMPDIR/usr/share/test/bar.txt"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
+
+  run check
+
+  refute_output
+}
+
+@test "Check logs no error when file name in /usr/share mentions ELF" {
+  create_empty_package "$BATS_TEST_TMPDIR"
+
+  mkdir -p "$BATS_TEST_TMPDIR/usr/share/doc/foo"
+  echo "notes" > "$BATS_TEST_TMPDIR/usr/share/doc/foo/ELF-format.txt"
+
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 

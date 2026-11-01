@@ -5,14 +5,15 @@
 # Complain if binaries are installed in /usr/share.
 
 check() {
-  local file
+  local n type
 
-  [ -d "$WORKING_DIR/usr/share" ] &&
-    while IFS= read -r file && ! [ -z "$file" ]; do
-      if file "$file" | grep -E -q '(ELF|current ar archive)'; then
-        log_path_error "binary-in-usr-share" "$file"
-      fi
-    done <<< "$(find "$WORKING_DIR/usr/share" -type f)"
+  for n in "${!PKG_FILES[@]}"; do
+    type=${PKG_FILE_TYPES[n]}
+
+    if [[ ${PKG_FILES[n]} == usr/share/* && ($type == *ELF* || $type == *"current ar archive"*) ]]; then
+      log_path_error "binary-in-usr-share" "${PKG_FILES[n]}"
+    fi
+  done
 }
 
 info() {

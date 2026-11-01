@@ -15,8 +15,6 @@ setup() {
 @test "Show explanation for unstripped-binary" {
   create_empty_package "$BATS_TEST_TMPDIR"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
-
   run info "unstripped-binary"
 
   assert_output "ELF binaries and shared libraries are normally stripped, on Slackware."

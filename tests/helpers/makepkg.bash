@@ -93,3 +93,19 @@ create_detailed_tar_listing() {
   ) || return 1
   return 0
 }
+
+# Set PKG_FILES and PKG_FILE_TYPES for the files below the given directory,
+# like lintpkg does for the files of a package:
+create_file_types() {
+  local path type
+
+  PKG_FILES=()
+  PKG_FILE_TYPES=()
+
+  while IFS= read -r -d '' path && IFS= read -r type; do
+    # shellcheck disable=SC2034 # Used by the checks
+    PKG_FILES+=("${path#./}")
+    # shellcheck disable=SC2034 # Used by the checks
+    PKG_FILE_TYPES+=("${type#: }")
+  done < <(cd "$1" && find . -type f | LC_ALL=C sort | file -r -N -0 -f -)
+}
