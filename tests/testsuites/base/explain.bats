@@ -33,6 +33,15 @@ load ../../helpers/main
   assert_line -n 1 "The necessary compression utility for uncompressing the package is missing."
 }
 
+@test "Show explanation for messages of lintpkg without any checks" {
+  run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/empty" -I external-compression-utility-missing,unused-override
+
+  assert_line -n 0 "external-compression-utility-missing:"
+  assert_line -n 1 "The necessary compression utility for uncompressing the package is missing."
+  assert_line -n 2 "unused-override:"
+  assert_line -n 3 --partial "The package has an override that didn't match any message."
+}
+
 @test "-I with checks without explanations shows only the message identifier" {
   run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/pkg_variables" -I unknown-identifier
 
