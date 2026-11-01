@@ -581,6 +581,18 @@ if [ -z "$WORKING_DIR" ]; then
   exit 1
 fi
 
+PKG_TARBALL=""
+EVENTS=""
+
+# Remove the temporary files however lintpkg exits, including when it's
+# interrupted:
+cleanup() {
+  rm -rf "$WORKING_DIR"
+  rm -f "$PKG_TARBALL" "$EVENTS"
+}
+
+trap cleanup EXIT
+
 if [ -z "$CHECKS" -o -z "$(ls -1 $CHECKS)" ]; then
   echo "No lint checks found!"
   exit 1
@@ -592,7 +604,6 @@ PKG_TARBALL=$(mktemp -p "$(dirname "$WORKING_DIR")" lintpkg.XXXXXX.tar 2> /dev/n
 
 if [ -z "$PKG_TARBALL" ]; then
   echo "Couldn't create temporary file"
-  rm -rf $WORKING_DIR
   exit 1
 fi
 
@@ -601,8 +612,6 @@ EVENTS=$(mktemp -p "$(dirname "$WORKING_DIR")" lintpkg.XXXXXX.events 2> /dev/nul
 
 if [ -z "$EVENTS" ]; then
   echo "Couldn't create temporary file"
-  rm -rf $WORKING_DIR
-  rm -f $PKG_TARBALL
   exit 1
 fi
 
@@ -702,10 +711,6 @@ if [ $((OVERRIDDEN_ERRORS + OVERRIDDEN_WARNINGS + OVERRIDDEN_NOTICES)) -gt 0 ]; 
 fi
 
 echo "$SUMMARY."
-
-rm -rf $WORKING_DIR
-rm -f $PKG_TARBALL
-rm -f "$EVENTS"
 
 if [ $ERRORS -gt 0 -o $WARNINGS -gt 0 ]; then
   exit 64
