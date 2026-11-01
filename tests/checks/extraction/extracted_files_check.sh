@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: BSD-1-Clause
 
 check() {
-  cd "$WORKING_DIR"
+  cd "$WORKING_DIR" || return 1
   find . | LC_ALL=C sort
-  cd - > /dev/null
 }

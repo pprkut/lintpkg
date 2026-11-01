@@ -12,9 +12,8 @@ load ../../helpers/makepkg
   PKG=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1)
   PKG=$(basename "$PKG")
 
-  cd /tmp
+  cd /tmp || return 1
   run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/logging" "$PKG"
-  cd -
 
   assert_line "1 packages checked; 3 errors and 3 warnings."
 
