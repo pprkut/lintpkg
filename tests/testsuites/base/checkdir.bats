@@ -81,3 +81,32 @@ load ../../helpers/makepkg
 
   rm -f "$PKG"
 }
+
+@test "Uses checks with spaces in their file name" {
+  mkdir -p "$BATS_TEST_TMPDIR/checks"
+  cp "$TEST_CHECKS/pkg_variables/pkg_name_check.sh" "$BATS_TEST_TMPDIR/checks/pkg name check.sh"
+  cp "$TEST_CHECKS/logging/log_error_check.sh" "$BATS_TEST_TMPDIR/checks/log error check.sh"
+
+  create_empty_package "$BATS_TEST_TMPDIR/pkg"
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR/pkg" empty 1.0 noarch 1)
+
+  run "${REPO_ROOT}/lintpkg" -C "$BATS_TEST_TMPDIR/checks" "$PKG"
+
+  expect_output "empty-1.0-noarch-1: E: simple-error /path/to/file"
+  expect_output "empty"
+  expect_output "1 packages checked; 1 errors and 0 warnings."
+
+  assert_expected_output
+
+  run "${REPO_ROOT}/lintpkg" -C "$BATS_TEST_TMPDIR/checks" -c "pkg name check" "$PKG"
+
+  assert_output "empty
+1 packages checked; 0 errors and 0 warnings."
+
+  run "${REPO_ROOT}/lintpkg" -C "$BATS_TEST_TMPDIR/checks" -I "simple-error"
+
+  assert_output "simple-error:
+A error for a simple path"
+
+  rm -f "$PKG"
+}
