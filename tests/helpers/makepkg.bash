@@ -32,11 +32,12 @@ create_slackware_package() {
 
   sed -i "s|LINTPKG_TEST|$NAME|g" "$BASE/install/slack-desc"
 
-  cd "$BASE"
-  # MAKEPKG_OPTIONS can contain multiple options:
-  # shellcheck disable=SC2086
-  /sbin/makepkg -l y -c n $MAKEPKG_OPTIONS "/tmp/$NAME-$VERSION-$ARCH-$BUILD.$EXTENSION" > /dev/null
-  cd - > /dev/null
+  (
+    cd "$BASE" || exit 1
+    # MAKEPKG_OPTIONS can contain multiple options:
+    # shellcheck disable=SC2086
+    /sbin/makepkg -l y -c n $MAKEPKG_OPTIONS "/tmp/$NAME-$VERSION-$ARCH-$BUILD.$EXTENSION" > /dev/null
+  ) || return 1
 
   echo "/tmp/$NAME-$VERSION-$ARCH-$BUILD.$EXTENSION"
   return 0
@@ -46,21 +47,22 @@ create_tar_listing() {
   BASE="$1"
   NEW="$2"
 
-  cd "$BASE"
-  while IFS= read -r line && ! [ -z "$line" ]; do
+  (
+    cd "$BASE" || exit 1
 
-    if [ -z "$NEW" -a "$(echo "$line" | wc -L)" -gt 2 ]; then
-      line=$(echo "$line" | sed 's|./||')
-    fi
+    while IFS= read -r line && ! [ -z "$line" ]; do
 
-    if ! [ -z "$NEW" ] && [ "$line" = "./" ]; then
-      continue
-    fi
+      if [ -z "$NEW" -a "$(echo "$line" | wc -L)" -gt 2 ]; then
+        line=$(echo "$line" | sed 's|./||')
+      fi
 
-    echo "$line"
-  done <<< "$(find . -exec ls -dp {} \;)"
+      if ! [ -z "$NEW" ] && [ "$line" = "./" ]; then
+        continue
+      fi
 
-  cd - &> /dev/null
+      echo "$line"
+    done <<< "$(find . -exec ls -dp {} \;)"
+  ) || return 1
   return 0
 }
 
@@ -68,25 +70,26 @@ create_detailed_tar_listing() {
   BASE="$1"
   NEW="$2"
 
-  cd "$BASE"
-  while read -r PERMS _ OWNER GROUP SIZE DATE TIME FILE && ! [ -z "$PERMS" ]; do
-    TYPE=${PERMS:0:1}
+  (
+    cd "$BASE" || exit 1
 
-    if [ -z "$NEW" -a "$(echo "$FILE" | wc -L)" -gt 2 ]; then
-      FILE=$(echo "$FILE" | sed 's|./||')
-    fi
+    while read -r PERMS _ OWNER GROUP SIZE DATE TIME FILE && ! [ -z "$PERMS" ]; do
+      TYPE=${PERMS:0:1}
 
-    if ! [ -z "$NEW" ] && [ "$FILE" = "./" ]; then
-      continue
-    fi
+      if [ -z "$NEW" -a "$(echo "$FILE" | wc -L)" -gt 2 ]; then
+        FILE=$(echo "$FILE" | sed 's|./||')
+      fi
 
-    if [ "$TYPE" = "d" -o "$TYPE" = "l" ]; then
-      SIZE=0
-    fi
+      if ! [ -z "$NEW" ] && [ "$FILE" = "./" ]; then
+        continue
+      fi
 
-    echo "$PERMS $OWNER/$GROUP $SIZE $DATE $TIME $FILE"
-  done <<< "$(find . -exec ls -dlp --time-style=long-iso {} \;)"
+      if [ "$TYPE" = "d" -o "$TYPE" = "l" ]; then
+        SIZE=0
+      fi
 
-  cd - &> /dev/null
+      echo "$PERMS $OWNER/$GROUP $SIZE $DATE $TIME $FILE"
+    done <<< "$(find . -exec ls -dlp --time-style=long-iso {} \;)"
+  ) || return 1
   return 0
 }

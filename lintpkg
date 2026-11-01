@@ -686,7 +686,7 @@ for PACKAGE in "$@"; do
   PKG_LISTING=$(tar tsf "$PKG_TARBALL")
   PKG_DETAILED_LISTING=$(tar tvsf "$PKG_TARBALL")
 
-  cd "$WORKING_DIR"
+  cd "$WORKING_DIR" || exit 1
 
   (
     umask 000
@@ -701,7 +701,7 @@ for PACKAGE in "$@"; do
 
   PACKAGES=$((PACKAGES + 1))
 
-  cd "$CWD"
+  cd "$CWD" || exit 1
 
   rm -rf "$WORKING_DIR/"*
 done
