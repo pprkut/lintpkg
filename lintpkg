@@ -431,6 +431,13 @@ show_info() {
   for id in $stack; do
     left="$id"
 
+    # Messages of lintpkg itself are explained even without any checks:
+    if [ -n "$(local_info "$id")" ]; then
+      echo "$id:"
+      local_info "$id"
+      continue
+    fi
+
     for check in "$CHECKS"/*; do
       if [ -e "$check" ] && (explain_from_check "${check##*/}" "$id"); then
         left=""
