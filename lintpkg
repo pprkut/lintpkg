@@ -307,6 +307,7 @@ log_error() {
   log_message "E" "" "$@"
 }
 
+# shellcheck disable=SC2329 # Called by the checks
 log_warning() {
   log_message "W" "" "$@"
 }
@@ -317,14 +318,17 @@ log_notice() {
 
 # Log a message about a file or directory within the package. The path is
 # passed as the first argument after the message identifier:
+# shellcheck disable=SC2329 # Called by the checks
 log_path_error() {
   log_message "E" "path" "$1" "$(package_path "$2")" "${@:3}"
 }
 
+# shellcheck disable=SC2329 # Called by the checks
 log_path_warning() {
   log_message "W" "path" "$1" "$(package_path "$2")" "${@:3}"
 }
 
+# shellcheck disable=SC2329 # Called by the checks
 log_path_notice() {
   log_message "I" "path" "$1" "$(package_path "$2")" "${@:3}"
 }
@@ -410,6 +414,7 @@ version() {
 # Print the explanation for a message identifier, if the given check provides
 # one. Meant to be run in a subshell, like the check itself:
 explain_from_check() {
+  # shellcheck disable=SC1090 # Checks are only known at runtime
   source "$CHECKS/$1"
 
   if ! [ "$(provides "$2")" = "yes" ]; then
@@ -455,6 +460,7 @@ perform() {
     fi
 
     (
+      # shellcheck disable=SC1090 # Checks are only known at runtime
       source "$CHECKS/$check"
       check
     )
@@ -595,6 +601,7 @@ EVENTS=""
 
 # Remove the temporary files however lintpkg exits, including when it's
 # interrupted:
+# shellcheck disable=SC2329 # Called by the trap
 cleanup() {
   rm -rf "$WORKING_DIR"
   rm -f "$PKG_TARBALL" "$EVENTS"
@@ -635,8 +642,11 @@ for PACKAGE in "$@"; do
   fi
 
   PKG_NAME=$(package_element "$PACKAGE" name)
+  # shellcheck disable=SC2034 # Used by the checks
   PKG_VERSION=$(package_element "$PACKAGE" version)
+  # shellcheck disable=SC2034 # Used by the checks
   PKG_ARCH=$(package_element "$PACKAGE" arch)
+  # shellcheck disable=SC2034 # Used by the checks
   PKG_BUILD=$(package_element "$PACKAGE" build)
   PKG_EXTENSION=${PACKAGE##*.}
   PKG_FULLNAME=$(pkgbase "$PACKAGE")
@@ -683,7 +693,9 @@ for PACKAGE in "$@"; do
     continue
   fi
 
+  # shellcheck disable=SC2034 # Used by the checks
   PKG_LISTING=$(tar tsf "$PKG_TARBALL")
+  # shellcheck disable=SC2034 # Used by the checks
   PKG_DETAILED_LISTING=$(tar tvsf "$PKG_TARBALL")
 
   cd "$WORKING_DIR" || exit 1

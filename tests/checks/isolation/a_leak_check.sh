@@ -8,6 +8,7 @@ leak_helper() {
   echo "leaked"
 }
 
+# shellcheck disable=SC2034 # Leaving them behind is the point
 check() {
   LEAKED_VARIABLE="leaked"
   PKG_FULLNAME="clobbered"

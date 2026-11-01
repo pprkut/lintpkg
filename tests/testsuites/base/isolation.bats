@@ -52,6 +52,7 @@ load ../../helpers/makepkg
   rm -f "$PKG"
 }
 
+# shellcheck disable=SC1090,SC2034 # Runs the checks, with what they use
 @test "Checks only use local variables" {
   load ../../helpers/mock-loggers
 

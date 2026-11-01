@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: Copyright 2026  Heinz Wiesinger, Amsterdam, The Netherlands
+# SPDX-License-Identifier: CC0-1.0
+
+# Follow the checks the test suites of tests/testsuites/checks/ source, so
+# that variables set for them are known to be used:
+external-sources=true
+source-path=SCRIPTDIR/../../../../checks
+
+# [ p -o q ] and [ p -a q ] are well defined in bash, and used throughout:
+disable=SC2166
