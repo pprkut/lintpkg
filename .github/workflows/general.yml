@@ -68,3 +68,23 @@ jobs:
 
       - name: Check files
         run: git ls-files --exclude-standard -z | xargs -0 editorconfig-checker
+
+  shfmt:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    name: "Shell formatting (shfmt)"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install shfmt
+        uses: taiki-e/install-action@1e29709c0ec63babbe8f266397a465f29a825f91 # v2.87.31
+        with:
+          tool: shfmt@3.14.1
+          fallback: none
+
+      - name: Check formatting
+        run: shfmt --diff .
