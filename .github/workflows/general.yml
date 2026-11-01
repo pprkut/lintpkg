@@ -88,3 +88,25 @@ jobs:
 
       - name: Check formatting
         run: shfmt --diff .
+
+  shellcheck:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    name: "Shell analysis (shellcheck)"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install shellcheck and shfmt
+        uses: taiki-e/install-action@1e29709c0ec63babbe8f266397a465f29a825f91 # v2.87.31
+        with:
+          tool: shellcheck@0.11.0,shfmt@3.14.1
+          fallback: none
+
+      # shfmt lists the shell scripts, leaving out the files .editorconfig
+      # excludes from formatting:
+      - name: Check shell scripts
+        run: shfmt -f . | xargs -d '\n' shellcheck
