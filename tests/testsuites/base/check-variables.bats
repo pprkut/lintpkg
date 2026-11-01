@@ -243,9 +243,35 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
   create_empty_package $BATS_TEST_TMPDIR
   PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
 
-  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_working_dir_check "$PKG"
+  run env -u TMPDIR ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_working_dir_check "$PKG"
 
   assert_line -n 0 --regexp '^/tmp/lintpkg\.......$'
+
+  rm -f "$PKG"
+}
+
+@test "Checks have working directory in TMPDIR" {
+  create_empty_package $BATS_TEST_TMPDIR/package
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR/package empty 1.0 noarch 1)
+
+  mkdir -p $BATS_TEST_TMPDIR/tmp
+
+  TMPDIR="$BATS_TEST_TMPDIR/tmp" run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_working_dir_check "$PKG"
+
+  assert_line -n 0 --regexp "^$BATS_TEST_TMPDIR/tmp/lintpkg\.......\$"
+
+  rm -f "$PKG"
+}
+
+@test "Checks have working directory specified with -E when TMPDIR is set" {
+  create_empty_package $BATS_TEST_TMPDIR/package
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR/package empty 1.0 noarch 1)
+
+  mkdir -p $BATS_TEST_TMPDIR/tmp $BATS_TEST_TMPDIR/extract
+
+  TMPDIR="$BATS_TEST_TMPDIR/tmp" run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_working_dir_check -E "$BATS_TEST_TMPDIR/extract" "$PKG"
+
+  assert_line -n 0 --regexp "^$BATS_TEST_TMPDIR/extract/lintpkg\.......\$"
 
   rm -f "$PKG"
 }
