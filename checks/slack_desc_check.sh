@@ -24,7 +24,7 @@ check() {
     desclinecountmin=3
     desclinecountmax=13
     if [ "$desclinecount" -lt $desclinecountmin ] || \
-       [ "$desclinecount" -gt $desclinecountmax ]; then
+      [ "$desclinecount" -gt $desclinecountmax ]; then
       log_error "slack-desc-invalid-number-of-lines" "$desclinecount"
     fi
 

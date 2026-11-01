@@ -12,7 +12,13 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 charset = utf-8
 
-[{*.sh,*.bash,*.bats,lintpkg,tests/run,*.yml,*.yaml}]
+# Globs containing a path only match relative to this file, so tests/run
+# can't be part of the glob for files in any directory:
+[{*.sh,*.bash,*.bats,lintpkg,*.yml,*.yaml}]
+indent_style = space
+indent_size = 2
+
+[tests/run]
 indent_style = space
 indent_size = 2
 
