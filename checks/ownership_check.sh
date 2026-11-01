@@ -6,6 +6,9 @@
 # Verify that object owners and groups within a package are sane.
 
 check() {
+  local USER_WHITELIST OWNER LINK DIRECTORY INCORRECT user
+  local tperms owngrp size date time objname
+
   USER_WHITELIST="root daemon uucp"
 
   while read tperms owngrp size date time objname && ! [ -z "$tperms" ]; do

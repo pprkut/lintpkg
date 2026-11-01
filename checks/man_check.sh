@@ -6,6 +6,8 @@
 # are compressed.
 
 check() {
+  local DIRECTORIES i manpage
+
   DIRECTORIES="/usr/share/man /usr/local/man /usr/local/share/man"
 
   for i in $DIRECTORIES; do

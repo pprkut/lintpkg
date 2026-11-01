@@ -5,6 +5,8 @@
 # Verify that the package doesn't contain files in disallowed directories.
 
 check() {
+  local DIRECTORIES i normalized item
+
   DIRECTORIES="/home /mnt /tmp /usr/local /usr/tmp /var/local /var/lock /var/run /var/tmp"
 
   for i in $DIRECTORIES; do

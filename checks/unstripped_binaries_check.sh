@@ -5,6 +5,8 @@
 # Complain if binaries/libraries are unstripped.
 
 check() {
+  local file
+
   while read file && ! [ -z "$file" ]; do
     if file "$file" | grep -e "executable" -e "shared object" | egrep -q 'ELF.*not stripped'; then
       log_path_warning "unstripped-binary" "$file"

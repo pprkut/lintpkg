@@ -6,6 +6,8 @@
 # are compressed.
 
 check() {
+  local DIRECTORIES i infopage
+
   DIRECTORIES="/usr/share/info /usr/local/info /usr/local/share/info"
 
   for i in $DIRECTORIES; do
