@@ -16,8 +16,8 @@ check() {
     fi
   done
 
-  while read i && ! [ -z "$i" ]; do
-    while read infopage && ! [ -z "$infopage" ]; do
+  while IFS= read -r i && ! [ -z "$i" ]; do
+    while IFS= read -r infopage && ! [ -z "$infopage" ]; do
       log_path_warning "uncompressed-info-page" "$infopage"
     done <<< "$(find "$i" -type f ! -name "*.gz" ! -name "*.png")"
   done <<< "$(find "$WORKING_DIR" -type d -name "info")"

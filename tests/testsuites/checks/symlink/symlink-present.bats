@@ -81,3 +81,15 @@ setup() {
 
   rm -f "$PKG"
 }
+
+@test "Check logs warning when a symlink with a backslash in its name is present" {
+  create_empty_package "$BATS_TEST_TMPDIR"
+
+  ln -s foo "$BATS_TEST_TMPDIR/usr/bin/foo\\2"
+
+  WORKING_DIR=$BATS_TEST_TMPDIR
+
+  run check
+
+  assert_output "path-warning package-contains-symlink $BATS_TEST_TMPDIR/usr/bin/foo\\2"
+}

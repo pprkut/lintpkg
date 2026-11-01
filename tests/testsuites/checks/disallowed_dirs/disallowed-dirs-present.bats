@@ -155,3 +155,29 @@ setup() {
 
   assert_expected_output
 }
+
+@test "Check logs error when package contains file with a backslash in its name" {
+  create_empty_package "$BATS_TEST_TMPDIR"
+
+  mkdir -p "$BATS_TEST_TMPDIR/tmp"
+  touch "$BATS_TEST_TMPDIR/tmp/foo\\bar"
+
+  WORKING_DIR=$BATS_TEST_TMPDIR
+
+  run check
+
+  assert_output "path-error dir-or-file-in-tmp $BATS_TEST_TMPDIR//tmp/foo\\bar"
+}
+
+@test "Check logs error when package contains file with surrounding whitespace in its name" {
+  create_empty_package "$BATS_TEST_TMPDIR"
+
+  mkdir -p "$BATS_TEST_TMPDIR/tmp"
+  touch "$BATS_TEST_TMPDIR/tmp/ foo "
+
+  WORKING_DIR=$BATS_TEST_TMPDIR
+
+  run check
+
+  assert_output "path-error dir-or-file-in-tmp $BATS_TEST_TMPDIR//tmp/ foo "
+}
