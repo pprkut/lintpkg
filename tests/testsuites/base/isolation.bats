@@ -10,10 +10,10 @@ load ../../helpers/makepkg
 BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 
 @test "Checks don't affect later checks or lintpkg" {
-  create_empty_package $BATS_TEST_TMPDIR
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
+  create_empty_package "$BATS_TEST_TMPDIR"
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1)
 
-  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/isolation" "$PKG"
+  run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/isolation" "$PKG"
 
   assert_output "empty-1.0-noarch-1: W: isolated-warning
 1 packages checked; 0 errors and 1 warnings."
@@ -23,10 +23,10 @@ BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 }
 
 @test "Messages logged from a pipeline are counted" {
-  create_empty_package $BATS_TEST_TMPDIR
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
+  create_empty_package "$BATS_TEST_TMPDIR"
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1)
 
-  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pipeline" "$PKG"
+  run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/pipeline" "$PKG"
 
   expect_output "empty-1.0-noarch-1: E: pipeline-error /path/to/file"
   expect_output "empty-1.0-noarch-1: E: pipeline-error /path/to/other file"
@@ -40,12 +40,12 @@ BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 }
 
 @test "Overrides for messages logged from a pipeline are used" {
-  create_empty_package $BATS_TEST_TMPDIR
-  mkdir -p $BATS_TEST_TMPDIR/usr/share/lintpkg/overrides
-  printf "pipeline-warning /path/to/file\n" > $BATS_TEST_TMPDIR/usr/share/lintpkg/overrides/empty
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
+  create_empty_package "$BATS_TEST_TMPDIR"
+  mkdir -p "$BATS_TEST_TMPDIR/usr/share/lintpkg/overrides"
+  printf "pipeline-warning /path/to/file\n" > "$BATS_TEST_TMPDIR/usr/share/lintpkg/overrides/empty"
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1)
 
-  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pipeline" "$PKG"
+  run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/pipeline" "$PKG"
 
   refute_line --partial "pipeline-warning"
   refute_line --partial "unused-override"
@@ -57,13 +57,13 @@ BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 @test "Checks only use local variables" {
   load ../../helpers/mock-loggers
 
-  create_empty_package $BATS_TEST_TMPDIR
-  mkdir -p $BATS_TEST_TMPDIR/tmp/foo $BATS_TEST_TMPDIR/etc
-  mkdir -p $BATS_TEST_TMPDIR/usr/info $BATS_TEST_TMPDIR/usr/man/man1
-  mkdir -p $BATS_TEST_TMPDIR/usr/lib $BATS_TEST_TMPDIR/usr/share/icons/hicolor
-  touch $BATS_TEST_TMPDIR/usr/info/foo.info $BATS_TEST_TMPDIR/usr/man/man1/foo.1
-  touch $BATS_TEST_TMPDIR/usr/lib/libfoo.la
-  ln -s foo $BATS_TEST_TMPDIR/usr/bin/bar
+  create_empty_package "$BATS_TEST_TMPDIR"
+  mkdir -p "$BATS_TEST_TMPDIR/tmp/foo" "$BATS_TEST_TMPDIR/etc"
+  mkdir -p "$BATS_TEST_TMPDIR/usr/info" "$BATS_TEST_TMPDIR/usr/man/man1"
+  mkdir -p "$BATS_TEST_TMPDIR/usr/lib" "$BATS_TEST_TMPDIR/usr/share/icons/hicolor"
+  touch "$BATS_TEST_TMPDIR/usr/info/foo.info" "$BATS_TEST_TMPDIR/usr/man/man1/foo.1"
+  touch "$BATS_TEST_TMPDIR/usr/lib/libfoo.la"
+  ln -s foo "$BATS_TEST_TMPDIR/usr/bin/bar"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_NAME="empty"

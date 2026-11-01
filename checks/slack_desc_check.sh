@@ -30,13 +30,13 @@ check() {
 
     # Check the description lines are not too long
     desclinelengthmax=71
-    if [ $(grep "^${descprefix}:" "$slackdescpath" | sed "s/^${descprefix}://" | wc -L) -gt $desclinelengthmax ]; then
+    if [ "$(grep "^${descprefix}:" "$slackdescpath" | sed "s/^${descprefix}://" | wc -L)" -gt $desclinelengthmax ]; then
       log_error "slack-desc-description-lines-too-long"
     fi
 
     # Check the handy ruler. If not present, that's ok.
     hr='|-----handy-ruler------------------------------------------------------|'
-    if [ $(grep "^ *${hr}\$" "$slackdescpath" | sed "s/|.*|//" | wc -c) -eq $((${#descprefix} + 1)) ]; then
+    if [ "$(grep "^ *${hr}\$" "$slackdescpath" | sed "s/|.*|//" | wc -c)" -eq $((${#descprefix} + 1)) ]; then
       : # it's perfect!
     elif grep -q "^ *${hr}\$" "$slackdescpath"; then
       log_warning "slack-desc-handy-ruler-misaligned"

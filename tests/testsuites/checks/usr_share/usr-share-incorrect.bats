@@ -15,10 +15,10 @@ setup() {
 }
 
 @test "Check logs error when binary in /usr/share" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/share/test
-  cp $TEST_STATICS/binaries/hello-x86_64-stripped $BATS_TEST_TMPDIR/usr/share/test/
+  mkdir -p "$BATS_TEST_TMPDIR/usr/share/test"
+  cp "$TEST_STATICS/binaries/hello-x86_64-stripped" "$BATS_TEST_TMPDIR/usr/share/test/"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -28,10 +28,10 @@ setup() {
 }
 
 @test "Check logs error when shared library in /usr/share" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/share/test
-  cp $TEST_STATICS/binaries/libhello-x86_64-stripped.so $BATS_TEST_TMPDIR/usr/share/test/
+  mkdir -p "$BATS_TEST_TMPDIR/usr/share/test"
+  cp "$TEST_STATICS/binaries/libhello-x86_64-stripped.so" "$BATS_TEST_TMPDIR/usr/share/test/"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -41,10 +41,10 @@ setup() {
 }
 
 @test "Check logs error when static library in /usr/share" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/share/test
-  cp $TEST_STATICS/binaries/libhello-x86_64-stripped.a $BATS_TEST_TMPDIR/usr/share/test/
+  mkdir -p "$BATS_TEST_TMPDIR/usr/share/test"
+  cp "$TEST_STATICS/binaries/libhello-x86_64-stripped.a" "$BATS_TEST_TMPDIR/usr/share/test/"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 

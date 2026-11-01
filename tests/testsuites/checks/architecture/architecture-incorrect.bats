@@ -15,10 +15,10 @@ setup() {
 }
 
 @test "Check logs error when x86 64-bit library in /usr/lib" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/lib
-  cp $TEST_STATICS/binaries/libhello-x86_64-stripped.so $BATS_TEST_TMPDIR/usr/lib/
+  mkdir -p "$BATS_TEST_TMPDIR/usr/lib"
+  cp "$TEST_STATICS/binaries/libhello-x86_64-stripped.so" "$BATS_TEST_TMPDIR/usr/lib/"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_ARCH=x86_64
@@ -29,10 +29,10 @@ setup() {
 }
 
 @test "Check logs error when x86 32-bit library in /usr/lib64 for i486 package" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/lib64
-  cp $TEST_STATICS/binaries/libhello-x86-stripped.so $BATS_TEST_TMPDIR/usr/lib64/
+  mkdir -p "$BATS_TEST_TMPDIR/usr/lib64"
+  cp "$TEST_STATICS/binaries/libhello-x86-stripped.so" "$BATS_TEST_TMPDIR/usr/lib64/"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_ARCH=i486
@@ -43,10 +43,10 @@ setup() {
 }
 
 @test "Check logs error when x86 32-bit library in /usr/lib64 for i686 package" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/lib64
-  cp $TEST_STATICS/binaries/libhello-x86-stripped.so $BATS_TEST_TMPDIR/usr/lib64/
+  mkdir -p "$BATS_TEST_TMPDIR/usr/lib64"
+  cp "$TEST_STATICS/binaries/libhello-x86-stripped.so" "$BATS_TEST_TMPDIR/usr/lib64/"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_ARCH=i686

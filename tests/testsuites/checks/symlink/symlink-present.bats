@@ -15,9 +15,9 @@ setup() {
 }
 
 @test "Check logs warning when a single symlink is present" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  ln -s foo $BATS_TEST_TMPDIR/usr/bin/foo2
+  ln -s foo "$BATS_TEST_TMPDIR/usr/bin/foo2"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -27,10 +27,10 @@ setup() {
 }
 
 @test "Check logs warning when multiple symlinks are present" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  ln -s foo $BATS_TEST_TMPDIR/usr/bin/foo2
-  ln -s foo $BATS_TEST_TMPDIR/usr/bin/foo3
+  ln -s foo "$BATS_TEST_TMPDIR/usr/bin/foo2"
+  ln -s foo "$BATS_TEST_TMPDIR/usr/bin/foo3"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -43,7 +43,7 @@ setup() {
 }
 
 @test "Check logs warning when a single symlink with spaces in its name is present" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
   ln -s foo "$BATS_TEST_TMPDIR/usr/bin/foo 2"
 
@@ -55,7 +55,7 @@ setup() {
 }
 
 @test "Check logs warning when multiple symlinks with spaces in their name are present" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
   ln -s foo "$BATS_TEST_TMPDIR/usr/bin/foo 2"
   ln -s foo "$BATS_TEST_TMPDIR/usr/bin/foo 3"
@@ -71,11 +71,11 @@ setup() {
 }
 
 @test "Symlink warning is counted" {
-  create_empty_package $BATS_TEST_TMPDIR
-  ln -s foo $BATS_TEST_TMPDIR/usr/bin/bar
-  PKG=$(MAKEPKG_OPTIONS="-l n" create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
+  create_empty_package "$BATS_TEST_TMPDIR"
+  ln -s foo "$BATS_TEST_TMPDIR/usr/bin/bar"
+  PKG=$(MAKEPKG_OPTIONS="-l n" create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1)
 
-  run ${REPO_ROOT}/lintpkg -c symlink_check "$PKG"
+  run "${REPO_ROOT}/lintpkg" -c symlink_check "$PKG"
 
   assert_line -n 0 "empty-1.0-noarch-1: W: package-contains-symlink /usr/bin/bar"
   assert_line -n 1 "1 packages checked; 0 errors and 1 warnings."

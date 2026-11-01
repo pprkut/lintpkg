@@ -9,11 +9,11 @@ create_empty_package() {
     return 1
   fi
 
-  mkdir -p $BASE/install $BASE/usr/bin
-  cp $TEST_STATICS/slack-desc $BASE/install/
-  touch $BASE/usr/bin/foo
+  mkdir -p "$BASE/install" "$BASE/usr/bin"
+  cp "$TEST_STATICS/slack-desc" "$BASE/install/"
+  touch "$BASE/usr/bin/foo"
 
-  chmod +x $BASE/usr/bin/foo
+  chmod +x "$BASE/usr/bin/foo"
 
   return 0
 }
@@ -30,9 +30,11 @@ create_slackware_package() {
     return 1
   fi
 
-  sed -i "s|LINTPKG_TEST|$NAME|g" $BASE/install/slack-desc
+  sed -i "s|LINTPKG_TEST|$NAME|g" "$BASE/install/slack-desc"
 
-  cd $BASE
+  cd "$BASE"
+  # MAKEPKG_OPTIONS can contain multiple options:
+  # shellcheck disable=SC2086
   /sbin/makepkg -l y -c n $MAKEPKG_OPTIONS "/tmp/$NAME-$VERSION-$ARCH-$BUILD.$EXTENSION" > /dev/null
   cd - > /dev/null
 
@@ -44,10 +46,10 @@ create_tar_listing() {
   BASE="$1"
   NEW="$2"
 
-  cd $BASE
+  cd "$BASE"
   while read line && ! [ -z "$line" ]; do
 
-    if [ -z "$NEW" -a "$(echo $line | wc -L)" -gt 2 ]; then
+    if [ -z "$NEW" -a "$(echo "$line" | wc -L)" -gt 2 ]; then
       line=$(echo "$line" | sed 's|./||')
     fi
 
@@ -66,11 +68,11 @@ create_detailed_tar_listing() {
   BASE="$1"
   NEW="$2"
 
-  cd $BASE
+  cd "$BASE"
   while read -r PERMS _ OWNER GROUP SIZE DATE TIME FILE && ! [ -z "$PERMS" ]; do
     TYPE=${PERMS:0:1}
 
-    if [ -z "$NEW" -a "$(echo $FILE | wc -L)" -gt 2 ]; then
+    if [ -z "$NEW" -a "$(echo "$FILE" | wc -L)" -gt 2 ]; then
       FILE=$(echo "$FILE" | sed 's|./||')
     fi
 

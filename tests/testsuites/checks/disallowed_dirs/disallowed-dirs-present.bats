@@ -15,10 +15,10 @@ setup() {
 }
 
 @test "Check logs error when package contains files under /home" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/home/user
-  touch $BATS_TEST_TMPDIR/home/user/foo
+  mkdir -p "$BATS_TEST_TMPDIR/home/user"
+  touch "$BATS_TEST_TMPDIR/home/user/foo"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -31,10 +31,10 @@ setup() {
 }
 
 @test "Check logs error when package contains files under /mnt" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/mnt/hd
-  touch $BATS_TEST_TMPDIR/mnt/hd/foo
+  mkdir -p "$BATS_TEST_TMPDIR/mnt/hd"
+  touch "$BATS_TEST_TMPDIR/mnt/hd/foo"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -47,10 +47,10 @@ setup() {
 }
 
 @test "Check logs error when package contains files under /tmp" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/tmp/foo
-  touch $BATS_TEST_TMPDIR/tmp/foo/bar
+  mkdir -p "$BATS_TEST_TMPDIR/tmp/foo"
+  touch "$BATS_TEST_TMPDIR/tmp/foo/bar"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -63,10 +63,10 @@ setup() {
 }
 
 @test "Check logs error when package contains files under /usr/local" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/local/bin
-  touch $BATS_TEST_TMPDIR/usr/local/bin/foo
+  mkdir -p "$BATS_TEST_TMPDIR/usr/local/bin"
+  touch "$BATS_TEST_TMPDIR/usr/local/bin/foo"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -79,10 +79,10 @@ setup() {
 }
 
 @test "Check logs error when package contains files under /usr/tmp" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/tmp/foo
-  touch $BATS_TEST_TMPDIR/usr/tmp/foo/bar
+  mkdir -p "$BATS_TEST_TMPDIR/usr/tmp/foo"
+  touch "$BATS_TEST_TMPDIR/usr/tmp/foo/bar"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -95,10 +95,10 @@ setup() {
 }
 
 @test "Check logs error when package contains files under /var/local" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/var/local/bar
-  touch $BATS_TEST_TMPDIR/var/local/bar/foo
+  mkdir -p "$BATS_TEST_TMPDIR/var/local/bar"
+  touch "$BATS_TEST_TMPDIR/var/local/bar/foo"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -111,10 +111,10 @@ setup() {
 }
 
 @test "Check logs error when package contains files under /var/lock" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/var/lock/bar
-  touch $BATS_TEST_TMPDIR/var/lock/bar/foo
+  mkdir -p "$BATS_TEST_TMPDIR/var/lock/bar"
+  touch "$BATS_TEST_TMPDIR/var/lock/bar/foo"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -127,10 +127,10 @@ setup() {
 }
 
 @test "Check logs error when package contains files under /var/run" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/var/run/bar
-  touch $BATS_TEST_TMPDIR/var/run/bar/foo
+  mkdir -p "$BATS_TEST_TMPDIR/var/run/bar"
+  touch "$BATS_TEST_TMPDIR/var/run/bar/foo"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -143,10 +143,10 @@ setup() {
 }
 
 @test "Check logs error when package contains files under /var/tmp" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/var/tmp/bar
-  touch $BATS_TEST_TMPDIR/var/tmp/bar/foo
+  mkdir -p "$BATS_TEST_TMPDIR/var/tmp/bar"
+  touch "$BATS_TEST_TMPDIR/var/tmp/bar/foo"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 

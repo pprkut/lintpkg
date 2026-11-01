@@ -15,10 +15,10 @@ setup() {
 }
 
 @test "Check logs no error when doinst.sh has conditional update for hicolor icon cache" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/share/icons/hicolor
-  cp $TEST_STATICS/doinst.sh/valid-hicolor-icon-cache $BATS_TEST_TMPDIR/install/doinst.sh
+  mkdir -p "$BATS_TEST_TMPDIR/usr/share/icons/hicolor"
+  cp "$TEST_STATICS/doinst.sh/valid-hicolor-icon-cache" "$BATS_TEST_TMPDIR/install/doinst.sh"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 

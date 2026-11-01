@@ -10,25 +10,25 @@ load ../../helpers/makepkg
 BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 
 setup() {
-  create_empty_package $BATS_TEST_TMPDIR/pkg
-  mkdir -p $BATS_TEST_TMPDIR/system
+  create_empty_package "$BATS_TEST_TMPDIR/pkg"
+  mkdir -p "$BATS_TEST_TMPDIR/system"
 }
 
 # Ship the given overrides with the test package
 package_overrides() {
-  mkdir -p $BATS_TEST_TMPDIR/pkg/usr/share/lintpkg/overrides
-  printf "$1" > $BATS_TEST_TMPDIR/pkg/usr/share/lintpkg/overrides/empty
+  mkdir -p "$BATS_TEST_TMPDIR/pkg/usr/share/lintpkg/overrides"
+  printf "$1" > "$BATS_TEST_TMPDIR/pkg/usr/share/lintpkg/overrides/empty"
 }
 
 # Provide the given overrides for the test package with lintpkg
 system_overrides() {
-  printf "$1" > $BATS_TEST_TMPDIR/system/empty
+  printf "$1" > "$BATS_TEST_TMPDIR/system/empty"
 }
 
 run_lintpkg() {
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR/pkg empty 1.0 noarch 1)
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR/pkg" empty 1.0 noarch 1)
 
-  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/overrides" --overridedir "$BATS_TEST_TMPDIR/system" "$@" "$PKG"
+  run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/overrides" --overridedir "$BATS_TEST_TMPDIR/system" "$@" "$PKG"
 
   rm -f "$PKG"
 }
@@ -170,9 +170,9 @@ check() {
 }
 CHECK
   mkdir -p "$BATS_TEST_TMPDIR/checks" && mv "$BATS_TEST_TMPDIR/check.sh" "$BATS_TEST_TMPDIR/checks/"
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR/pkg empty 1.0 noarch 1)
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR/pkg" empty 1.0 noarch 1)
 
-  run ${REPO_ROOT}/lintpkg -C "$BATS_TEST_TMPDIR/checks" "$PKG"
+  run "${REPO_ROOT}/lintpkg" -C "$BATS_TEST_TMPDIR/checks" "$PKG"
 
   assert_output "1 packages checked; 0 errors and 0 warnings; 1 errors, 0 warnings and 0 notices overridden."
 
@@ -207,7 +207,7 @@ CHECK
 }
 
 @test "Overrides from lintpkg are looked up by package name" {
-  printf "path-error /usr/bin/foo\n" > $BATS_TEST_TMPDIR/system/other
+  printf "path-error /usr/bin/foo\n" > "$BATS_TEST_TMPDIR/system/other"
 
   run_lintpkg
 
@@ -216,11 +216,11 @@ CHECK
 
 @test "Overrides are only applied to their package" {
   package_overrides "path-error /usr/bin/foo\n"
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR/pkg empty 1.0 noarch 1)
-  create_empty_package $BATS_TEST_TMPDIR/other
-  OTHER=$(create_slackware_package $BATS_TEST_TMPDIR/other other 1.0 noarch 1)
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR/pkg" empty 1.0 noarch 1)
+  create_empty_package "$BATS_TEST_TMPDIR/other"
+  OTHER=$(create_slackware_package "$BATS_TEST_TMPDIR/other" other 1.0 noarch 1)
 
-  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/overrides" --overridedir "$BATS_TEST_TMPDIR/system" "$PKG" "$OTHER"
+  run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/overrides" --overridedir "$BATS_TEST_TMPDIR/system" "$PKG" "$OTHER"
 
   refute_line "empty-1.0-noarch-1: E: path-error /usr/bin/foo"
   assert_line "other-1.0-noarch-1: E: path-error /usr/bin/foo"
@@ -240,10 +240,10 @@ CHECK
 
 @test "Overrides are loaded from the default location next to lintpkg" {
   mkdir -p "$BATS_TEST_TMPDIR/app/checks" "$BATS_TEST_TMPDIR/app/overrides"
-  cp ${REPO_ROOT}/lintpkg "$BATS_TEST_TMPDIR/app/"
+  cp "${REPO_ROOT}/lintpkg" "$BATS_TEST_TMPDIR/app/"
   cp "$TEST_CHECKS/overrides/override_check.sh" "$BATS_TEST_TMPDIR/app/checks/"
   printf "path-error /usr/bin/foo\n" > "$BATS_TEST_TMPDIR/app/overrides/empty"
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR/pkg empty 1.0 noarch 1)
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR/pkg" empty 1.0 noarch 1)
 
   run "$BATS_TEST_TMPDIR/app/lintpkg" "$PKG"
 
@@ -253,7 +253,7 @@ CHECK
 }
 
 @test "--overridedir with non-existent directory prints error and exits with 1" {
-  run ${REPO_ROOT}/lintpkg --overridedir "$BATS_TEST_TMPDIR/non_existent"
+  run "${REPO_ROOT}/lintpkg" --overridedir "$BATS_TEST_TMPDIR/non_existent"
 
   assert_output "Directory does not exist: $BATS_TEST_TMPDIR/non_existent"
   assert [ $status -eq 1 ]
@@ -455,7 +455,7 @@ CHECK
 }
 
 @test "Explain unused-override" {
-  run ${REPO_ROOT}/lintpkg -I unused-override
+  run "${REPO_ROOT}/lintpkg" -I unused-override
 
   assert_line -n 0 "unused-override:"
   assert_line -n 1 --partial "The package has an override that didn't match any message."

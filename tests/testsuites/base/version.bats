@@ -9,19 +9,19 @@ load ../../helpers/main
 BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 
 @test "Printing version returns success" {
-  run ${REPO_ROOT}/lintpkg -V
+  run "${REPO_ROOT}/lintpkg" -V
 
   assert_success
 }
 
 @test "-V prints version" {
-  run ${REPO_ROOT}/lintpkg -V
+  run "${REPO_ROOT}/lintpkg" -V
 
   assert_output "lintpkg version 0.9.0"
 }
 
 @test "--version prints version" {
-  run ${REPO_ROOT}/lintpkg --version
+  run "${REPO_ROOT}/lintpkg" --version
 
   assert_output "lintpkg version 0.9.0"
 }

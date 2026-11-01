@@ -3,5 +3,5 @@
 # SPDX-License-Identifier: BSD-1-Clause
 
 check() {
-  echo $WORKING_DIR
+  echo "$WORKING_DIR"
 }

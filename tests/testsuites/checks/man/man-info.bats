@@ -15,7 +15,7 @@ setup() {
 }
 
 @test "Show explanation for incorrect-man-dir error" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -25,7 +25,7 @@ setup() {
 }
 
 @test "Show explanation for uncompressed-man-page warning" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 

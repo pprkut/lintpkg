@@ -3,5 +3,5 @@
 # SPDX-License-Identifier: BSD-1-Clause
 
 check() {
-  echo $PKG_ARCH
+  echo "$PKG_ARCH"
 }

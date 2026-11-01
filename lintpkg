@@ -412,7 +412,7 @@ version() {
 explain_from_check() {
   source "$CHECKS/$1"
 
-  if ! [ "$(provides $2)" = "yes" ]; then
+  if ! [ "$(provides "$2")" = "yes" ]; then
     return 1
   fi
 
@@ -421,12 +421,12 @@ explain_from_check() {
 }
 
 show_info() {
-  stack=$(echo $1 | tr , '\n' | sort)
+  stack=$(echo "$1" | tr , '\n' | sort)
 
   for id in $stack; do
     left="$id"
 
-    for check in $(ls $CHECKS); do
+    for check in $(ls "$CHECKS"); do
       if (explain_from_check "$check" "$id"); then
         left=""
         break
@@ -441,7 +441,7 @@ show_info() {
 
 perform() {
   if [ -z "$1" ]; then
-    LIST="$(ls $CHECKS)"
+    LIST="$(ls "$CHECKS")"
   else
     LIST="$1"
   fi
@@ -466,7 +466,7 @@ if [ $# = 0 ]; then
   exit
 fi
 
-APPLICATION_DIR=$(dirname $(realpath $0))
+APPLICATION_DIR=$(dirname "$(realpath "$0")")
 WORKING_DIR=""
 CWD=$(pwd)
 
@@ -493,11 +493,11 @@ OVERRIDES="$DATA_DIR/overrides"
 
 while [ 0 ]; do
   if [ "$1" = "-I" -o "$1" = "--explain" ]; then
-    if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
+    if [ -z "$2" -o "$(echo "$2" | head -c 1)" = "-" ]; then
       usage
       exit 1
     fi
-    show_info $2
+    show_info "$2"
     exit 0
   elif [ "$1" = "-i" -o "$1" = "--info" ]; then
     INFO="yes"
@@ -509,7 +509,7 @@ while [ 0 ]; do
     version
     exit
   elif [ "$1" = "-c" -o "$1" = "--check" ]; then
-    if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
+    if [ -z "$2" -o "$(echo "$2" | head -c 1)" = "-" ]; then
       usage
       exit 1
     fi
@@ -517,7 +517,7 @@ while [ 0 ]; do
     LIST="$LIST $2"
     shift 2
   elif [ "$1" = "-C" -o "$1" = "--checkdir" ]; then
-    if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
+    if [ -z "$2" -o "$(echo "$2" | head -c 1)" = "-" ]; then
       usage
       exit 1
     fi
@@ -537,7 +537,7 @@ while [ 0 ]; do
     SHOW_OVERRIDES="yes"
     shift 1
   elif [ "$1" = "--overridedir" ]; then
-    if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
+    if [ -z "$2" -o "$(echo "$2" | head -c 1)" = "-" ]; then
       usage
       exit 1
     fi
@@ -550,7 +550,7 @@ while [ 0 ]; do
     OVERRIDES="$(realpath "$2")"
     shift 2
   elif [ "$1" = "-E" -o "$1" = "--extractdir" ]; then
-    if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
+    if [ -z "$2" -o "$(echo "$2" | head -c 1)" = "-" ]; then
       usage
       exit 1
     fi
@@ -564,12 +564,12 @@ while [ 0 ]; do
 
     shift 2
   elif [ "$1" = "-x" -o "$1" = "--exclude" ]; then
-    if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
+    if [ -z "$2" -o "$(echo "$2" | head -c 1)" = "-" ]; then
       usage
       exit 1
     fi
 
-    IGNORE=$(echo $2 | tr , '\n')
+    IGNORE=$(echo "$2" | tr , '\n')
     shift 2
   else
     break
@@ -599,7 +599,7 @@ cleanup() {
 
 trap cleanup EXIT
 
-if [ -z "$CHECKS" -o -z "$(ls -1 $CHECKS)" ]; then
+if [ -z "$CHECKS" -o -z "$(ls -1 "$CHECKS")" ]; then
   echo "No lint checks found!"
   exit 1
 fi
@@ -668,26 +668,26 @@ for PACKAGE in "$@"; do
   esac
 
   # Test presence of external compression utility:
-  compressor=$(echo $packagecompression | cut -f 1 -d ' ')
+  compressor=$(echo "$packagecompression" | cut -f 1 -d ' ')
   if ! $compressor --help 1> /dev/null 2> /dev/null; then
     log_notice "external-compression-utility-missing" "$compressor"
     continue
   fi
 
-  if ! READ_ERROR=$($packagecompression -dc < "$PACKAGE" 2>&1 > $PKG_TARBALL) ||
-    ! READ_ERROR=$(tar tf $PKG_TARBALL 2>&1 > /dev/null); then
+  if ! READ_ERROR=$($packagecompression -dc < "$PACKAGE" 2>&1 > "$PKG_TARBALL") ||
+    ! READ_ERROR=$(tar tf "$PKG_TARBALL" 2>&1 > /dev/null); then
     log_read_error "$PACKAGE" "$(echo "$READ_ERROR" | head -n 1)"
     continue
   fi
 
-  PKG_LISTING=$(tar tsf $PKG_TARBALL)
-  PKG_DETAILED_LISTING=$(tar tvsf $PKG_TARBALL)
+  PKG_LISTING=$(tar tsf "$PKG_TARBALL")
+  PKG_DETAILED_LISTING=$(tar tvsf "$PKG_TARBALL")
 
-  cd $WORKING_DIR
+  cd "$WORKING_DIR"
 
   (
     umask 000
-    tar --acls --xattrs --xattrs-include='*' -xf $PKG_TARBALL 2> /dev/null
+    tar --acls --xattrs --xattrs-include='*' -xf "$PKG_TARBALL" 2> /dev/null
   )
 
   load_overrides
@@ -698,7 +698,7 @@ for PACKAGE in "$@"; do
 
   PACKAGES=$((PACKAGES + 1))
 
-  cd $CWD
+  cd "$CWD"
 
   rm -rf "$WORKING_DIR/"*
 done

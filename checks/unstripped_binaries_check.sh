@@ -11,7 +11,7 @@ check() {
     if file "$file" | grep -e "executable" -e "shared object" | egrep -q 'ELF.*not stripped'; then
       log_path_warning "unstripped-binary" "$file"
     fi
-  done <<< "$(find $WORKING_DIR -type f)"
+  done <<< "$(find "$WORKING_DIR" -type f)"
 }
 
 info() {

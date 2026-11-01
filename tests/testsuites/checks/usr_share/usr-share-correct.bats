@@ -15,10 +15,10 @@ setup() {
 }
 
 @test "Check logs no error when no binary in /usr/share" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/share/test
-  echo "foo" > $BATS_TEST_TMPDIR/usr/share/test/bar.txt
+  mkdir -p "$BATS_TEST_TMPDIR/usr/share/test"
+  echo "foo" > "$BATS_TEST_TMPDIR/usr/share/test/bar.txt"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 

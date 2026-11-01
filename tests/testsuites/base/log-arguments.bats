@@ -10,10 +10,10 @@ load ../../helpers/makepkg
 BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 
 @test "Logging prints additional information as given" {
-  create_empty_package $BATS_TEST_TMPDIR
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
+  create_empty_package "$BATS_TEST_TMPDIR"
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1)
 
-  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/arguments" "$PKG"
+  run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/arguments" "$PKG"
 
   expect_output "empty-1.0-noarch-1: E: glob-error *"
   expect_output "empty-1.0-noarch-1: E: whitespace-error a   b"
