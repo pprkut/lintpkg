@@ -89,3 +89,26 @@ BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
 
   rm -f "$PKG"
 }
+
+@test "Lintpkg removes temporary files from extraction directory without checks" {
+  mkdir -p $BATS_TEST_TMPDIR/extract
+
+  run ${REPO_ROOT}/lintpkg --extractdir "$BATS_TEST_TMPDIR/extract" -C "$TEST_CHECKS/empty"
+
+  assert_line "No lint checks found!"
+  assert_dir_empty "$BATS_TEST_TMPDIR/extract"
+}
+
+@test "Lintpkg removes temporary files from extraction directory when terminated" {
+  create_empty_package $BATS_TEST_TMPDIR/package
+  PKG=$(create_slackware_package $BATS_TEST_TMPDIR/package empty 1.0 noarch 1)
+
+  mkdir -p $BATS_TEST_TMPDIR/extract
+
+  run ${REPO_ROOT}/lintpkg --extractdir "$BATS_TEST_TMPDIR/extract" -C "$TEST_CHECKS/interrupt" "$PKG"
+
+  assert [ $status -eq 143 ]
+  assert_dir_empty "$BATS_TEST_TMPDIR/extract"
+
+  rm -f "$PKG"
+}
