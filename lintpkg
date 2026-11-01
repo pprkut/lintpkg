@@ -603,18 +603,11 @@ if [ -z "$CHECKS" -o -z "$(ls -1 $CHECKS)" ]; then
 fi
 
 # Uncompressed package contents, so that packages only need to be
-# decompressed once:
+# decompressed once, and events recorded by checks, see record_event():
 PKG_TARBALL=$(mktemp -p "$(dirname "$WORKING_DIR")" lintpkg.XXXXXX.tar 2> /dev/null)
-
-if [ -z "$PKG_TARBALL" ]; then
-  echo "Couldn't create temporary file"
-  exit 1
-fi
-
-# Events recorded by checks, see record_event():
 EVENTS=$(mktemp -p "$(dirname "$WORKING_DIR")" lintpkg.XXXXXX.events 2> /dev/null)
 
-if [ -z "$EVENTS" ]; then
+if [ -z "$PKG_TARBALL" -o -z "$EVENTS" ]; then
   echo "Couldn't create temporary file"
   exit 1
 fi
