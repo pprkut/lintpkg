@@ -67,14 +67,8 @@ create_detailed_tar_listing() {
   NEW="$2"
 
   cd $BASE
-  while read line && ! [ -z "$line" ]; do
-    TYPE=$(echo $line | head -c 1)
-    PERMS=$(echo $line | cut -d " " -f 1)
-    OWNER=$(echo $line | cut -d " " -f 3)
-    GROUP=$(echo $line | cut -d " " -f 4)
-    DATE=$(echo $line | cut -d " " -f 6)
-    TIME=$(echo $line | cut -d " " -f 7)
-    FILE=$(echo $line | cut -d " " -f 8-)
+  while read -r PERMS _ OWNER GROUP SIZE DATE TIME FILE && ! [ -z "$PERMS" ]; do
+    TYPE=${PERMS:0:1}
 
     if [ -z "$NEW" -a "$(echo $FILE | wc -L)" -gt 2 ]; then
       FILE=$(echo "$FILE" | sed 's|./||')
@@ -86,8 +80,6 @@ create_detailed_tar_listing() {
 
     if [ "$TYPE" = "d" -o "$TYPE" = "l" ]; then
       SIZE=0
-    else
-      SIZE=$(echo $line | cut -d " " -f 5)
     fi
 
     echo "$PERMS $OWNER/$GROUP $SIZE $DATE $TIME $FILE"
