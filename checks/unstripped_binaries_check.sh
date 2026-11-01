@@ -5,13 +5,15 @@
 # Complain if binaries/libraries are unstripped.
 
 check() {
-  local file
+  local n type
 
-  while IFS= read -r file && ! [ -z "$file" ]; do
-    if file "$file" | grep -e "executable" -e "shared object" | grep -E -q 'ELF.*not stripped'; then
-      log_path_warning "unstripped-binary" "$file"
+  for n in "${!PKG_FILES[@]}"; do
+    type=${PKG_FILE_TYPES[n]}
+
+    if [[ ($type == *executable* || $type == *"shared object"*) && $type == *ELF*"not stripped"* ]]; then
+      log_path_warning "unstripped-binary" "${PKG_FILES[n]}"
     fi
-  done <<< "$(find "$WORKING_DIR" -type f)"
+  done
 }
 
 info() {

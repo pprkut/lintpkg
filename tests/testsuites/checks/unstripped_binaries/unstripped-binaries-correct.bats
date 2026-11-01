@@ -18,7 +18,7 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/bin"
   cp "$TEST_STATICS/binaries/hello-x86_64-stripped" "$BATS_TEST_TMPDIR/bin/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
@@ -31,7 +31,7 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/sbin"
   cp "$TEST_STATICS/binaries/hello-x86_64-stripped" "$BATS_TEST_TMPDIR/sbin/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
@@ -44,7 +44,7 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/lib64"
   cp "$TEST_STATICS/binaries/libhello-x86_64-stripped.so" "$BATS_TEST_TMPDIR/lib64/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
@@ -57,7 +57,7 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/bin"
   cp "$TEST_STATICS/binaries/hello-x86_64-stripped" "$BATS_TEST_TMPDIR/usr/bin/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
@@ -70,7 +70,7 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/sbin"
   cp "$TEST_STATICS/binaries/hello-x86_64-stripped" "$BATS_TEST_TMPDIR/usr/sbin/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
@@ -83,7 +83,7 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/lib64"
   cp "$TEST_STATICS/binaries/libhello-x86_64-stripped.so" "$BATS_TEST_TMPDIR/usr/lib64/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
@@ -96,7 +96,7 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/bin"
   cp "$TEST_STATICS/binaries/hello-x86-stripped" "$BATS_TEST_TMPDIR/bin/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
@@ -109,7 +109,7 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/sbin"
   cp "$TEST_STATICS/binaries/hello-x86-stripped" "$BATS_TEST_TMPDIR/sbin/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
@@ -122,7 +122,7 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/lib"
   cp "$TEST_STATICS/binaries/libhello-x86-stripped.so" "$BATS_TEST_TMPDIR/lib/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
@@ -135,7 +135,7 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/bin"
   cp "$TEST_STATICS/binaries/hello-x86-stripped" "$BATS_TEST_TMPDIR/usr/bin/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
@@ -148,7 +148,7 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/sbin"
   cp "$TEST_STATICS/binaries/hello-x86-stripped" "$BATS_TEST_TMPDIR/usr/sbin/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
@@ -161,7 +161,7 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/lib"
   cp "$TEST_STATICS/binaries/libhello-x86-stripped.so" "$BATS_TEST_TMPDIR/usr/lib/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 

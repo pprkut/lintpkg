@@ -18,11 +18,11 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/bin"
   cp "$TEST_STATICS/binaries/hello-x86_64-unstripped" "$BATS_TEST_TMPDIR/bin/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
-  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/bin/hello-x86_64-unstripped"
+  assert_output "path-warning unstripped-binary bin/hello-x86_64-unstripped"
 }
 
 @test "Check logs warning when unstripped x86 64-bit binary in /sbin" {
@@ -31,11 +31,11 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/sbin"
   cp "$TEST_STATICS/binaries/hello-x86_64-unstripped" "$BATS_TEST_TMPDIR/sbin/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
-  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/sbin/hello-x86_64-unstripped"
+  assert_output "path-warning unstripped-binary sbin/hello-x86_64-unstripped"
 }
 
 @test "Check logs warning when unstripped x86 64-bit library in /lib64" {
@@ -44,11 +44,11 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/lib64"
   cp "$TEST_STATICS/binaries/libhello-x86_64-unstripped.so" "$BATS_TEST_TMPDIR/lib64/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
-  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/lib64/libhello-x86_64-unstripped.so"
+  assert_output "path-warning unstripped-binary lib64/libhello-x86_64-unstripped.so"
 }
 
 @test "Check logs warning when unstripped x86 64-bit binary in /usr/bin" {
@@ -57,11 +57,11 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/bin"
   cp "$TEST_STATICS/binaries/hello-x86_64-unstripped" "$BATS_TEST_TMPDIR/usr/bin/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
-  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/usr/bin/hello-x86_64-unstripped"
+  assert_output "path-warning unstripped-binary usr/bin/hello-x86_64-unstripped"
 }
 
 @test "Check logs warning when unstripped x86 64-bit binary in /usr/sbin" {
@@ -70,11 +70,11 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/sbin"
   cp "$TEST_STATICS/binaries/hello-x86_64-unstripped" "$BATS_TEST_TMPDIR/usr/sbin/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
-  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/usr/sbin/hello-x86_64-unstripped"
+  assert_output "path-warning unstripped-binary usr/sbin/hello-x86_64-unstripped"
 }
 
 @test "Check logs warning when unstripped x86 64-bit library in /usr/lib64" {
@@ -83,11 +83,11 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/lib64"
   cp "$TEST_STATICS/binaries/libhello-x86_64-unstripped.so" "$BATS_TEST_TMPDIR/usr/lib64/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
-  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/usr/lib64/libhello-x86_64-unstripped.so"
+  assert_output "path-warning unstripped-binary usr/lib64/libhello-x86_64-unstripped.so"
 }
 
 @test "Check logs warning when unstripped x86 32-bit binary in /bin" {
@@ -96,11 +96,11 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/bin"
   cp "$TEST_STATICS/binaries/hello-x86-unstripped" "$BATS_TEST_TMPDIR/bin/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
-  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/bin/hello-x86-unstripped"
+  assert_output "path-warning unstripped-binary bin/hello-x86-unstripped"
 }
 
 @test "Check logs warning when unstripped x86 32-bit binary in /sbin" {
@@ -109,11 +109,11 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/sbin"
   cp "$TEST_STATICS/binaries/hello-x86-unstripped" "$BATS_TEST_TMPDIR/sbin/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
-  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/sbin/hello-x86-unstripped"
+  assert_output "path-warning unstripped-binary sbin/hello-x86-unstripped"
 }
 
 @test "Check logs warning when unstripped x86 32-bit library in /lib" {
@@ -122,11 +122,11 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/lib"
   cp "$TEST_STATICS/binaries/libhello-x86-unstripped.so" "$BATS_TEST_TMPDIR/lib/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
-  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/lib/libhello-x86-unstripped.so"
+  assert_output "path-warning unstripped-binary lib/libhello-x86-unstripped.so"
 }
 
 @test "Check logs warning when unstripped x86 32-bit binary in /usr/bin" {
@@ -135,11 +135,11 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/bin"
   cp "$TEST_STATICS/binaries/hello-x86-unstripped" "$BATS_TEST_TMPDIR/usr/bin/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
-  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/usr/bin/hello-x86-unstripped"
+  assert_output "path-warning unstripped-binary usr/bin/hello-x86-unstripped"
 }
 
 @test "Check logs warning when unstripped x86 32-bit binary in /usr/sbin" {
@@ -148,11 +148,11 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/sbin"
   cp "$TEST_STATICS/binaries/hello-x86-unstripped" "$BATS_TEST_TMPDIR/usr/sbin/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
-  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/usr/sbin/hello-x86-unstripped"
+  assert_output "path-warning unstripped-binary usr/sbin/hello-x86-unstripped"
 }
 
 @test "Check logs warning when unstripped x86 32-bit library in /usr/lib" {
@@ -161,9 +161,9 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/lib"
   cp "$TEST_STATICS/binaries/libhello-x86-unstripped.so" "$BATS_TEST_TMPDIR/usr/lib/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
 
   run check
 
-  assert_output "path-warning unstripped-binary $BATS_TEST_TMPDIR/usr/lib/libhello-x86-unstripped.so"
+  assert_output "path-warning unstripped-binary usr/lib/libhello-x86-unstripped.so"
 }

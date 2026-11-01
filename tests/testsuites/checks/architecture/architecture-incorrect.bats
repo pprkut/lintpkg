@@ -18,12 +18,12 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/lib"
   cp "$TEST_STATICS/binaries/libhello-x86_64-stripped.so" "$BATS_TEST_TMPDIR/usr/lib/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
   PKG_ARCH=x86_64
 
   run check
 
-  assert_output "path-error binary-in-wrong-architecture-specific-path $BATS_TEST_TMPDIR/usr/lib/libhello-x86_64-stripped.so"
+  assert_output "path-error binary-in-wrong-architecture-specific-path usr/lib/libhello-x86_64-stripped.so"
 }
 
 @test "Check logs error when x86 32-bit library in /usr/lib64 for i486 package" {
@@ -32,12 +32,12 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/lib64"
   cp "$TEST_STATICS/binaries/libhello-x86-stripped.so" "$BATS_TEST_TMPDIR/usr/lib64/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
   PKG_ARCH=i486
 
   run check
 
-  assert_output "path-error binary-in-wrong-architecture-specific-path $BATS_TEST_TMPDIR/usr/lib64/libhello-x86-stripped.so"
+  assert_output "path-error binary-in-wrong-architecture-specific-path usr/lib64/libhello-x86-stripped.so"
 }
 
 @test "Check logs error when x86 32-bit library in /usr/lib64 for i686 package" {
@@ -46,10 +46,10 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/lib64"
   cp "$TEST_STATICS/binaries/libhello-x86-stripped.so" "$BATS_TEST_TMPDIR/usr/lib64/"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
+  create_file_types "$BATS_TEST_TMPDIR"
   PKG_ARCH=i686
 
   run check
 
-  assert_output "path-error binary-in-wrong-architecture-specific-path $BATS_TEST_TMPDIR/usr/lib64/libhello-x86-stripped.so"
+  assert_output "path-error binary-in-wrong-architecture-specific-path usr/lib64/libhello-x86-stripped.so"
 }
