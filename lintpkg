@@ -405,6 +405,19 @@ version() {
   echo "lintpkg version $VERSION"
 }
 
+# Print the explanation for a message identifier, if the given check provides
+# one. Meant to be run in a subshell, like the check itself:
+explain_from_check() {
+  source "$CHECKS/$1"
+
+  if ! [ "$(provides $2)" = "yes" ]; then
+    return 1
+  fi
+
+  echo "$2:"
+  explain "$2"
+}
+
 show_info() {
   stack=$(echo $1 | tr , '\n' | sort)
 
@@ -412,16 +425,7 @@ show_info() {
     left="$id"
 
     for check in $(ls $CHECKS); do
-      if (
-        source "$CHECKS/$check"
-
-        if ! [ "$(provides $id)" = "yes" ]; then
-          exit 1
-        fi
-
-        echo "$id:"
-        explain "$id"
-      ); then
+      if ( explain_from_check "$check" "$id" ); then
         left=""
         break
       fi
