@@ -7,8 +7,6 @@ load ../../helpers/locations
 load ../../helpers/main
 load ../../helpers/makepkg
 
-BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
-
 assert_package_listing() {
   run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/pkg_variables" -c pkg_listing_check "$1"
 

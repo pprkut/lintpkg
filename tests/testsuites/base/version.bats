@@ -6,8 +6,6 @@ load ../../helpers/assertions
 load ../../helpers/locations
 load ../../helpers/main
 
-BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
-
 @test "Printing version returns success" {
   run "${REPO_ROOT}/lintpkg" -V
 

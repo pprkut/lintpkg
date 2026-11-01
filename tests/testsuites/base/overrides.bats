@@ -7,8 +7,6 @@ load ../../helpers/locations
 load ../../helpers/main
 load ../../helpers/makepkg
 
-BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
-
 setup() {
   create_empty_package "$BATS_TEST_TMPDIR/pkg"
   mkdir -p "$BATS_TEST_TMPDIR/system"

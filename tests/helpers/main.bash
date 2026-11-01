@@ -7,3 +7,7 @@ test_suite_name() {
 
   printf "${suite_name}"
 }
+
+# Prefix the names of all tests with their suite. Read by bats:
+# shellcheck disable=SC2034
+BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "

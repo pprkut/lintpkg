@@ -7,8 +7,6 @@ load ../../helpers/locations
 load ../../helpers/main
 load ../../helpers/makepkg
 
-BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
-
 @test "Setting directory containing checks to non-existent directory exits with 1" {
   run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/non_existent"
 
