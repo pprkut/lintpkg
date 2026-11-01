@@ -125,6 +125,11 @@ the package. All necessary information is available in global variables:
 - $PKG_DETAILED_LISTING - This contains a list of all files and folders contained
                           in the package, including ownership and permission
                           information
+- $PKG_FILES     - This is an array of all regular files in the package, as
+                   listed in the package (e.g. usr/bin/foo)
+- $PKG_FILE_TYPES - This is an array of the type of each file in $PKG_FILES,
+                    at the same index, as given by file (e.g. ELF 64-bit LSB
+                    executable, ...)
 
 Additionally there are several functions one can use for reporting issues. All of
 these take variable arguments, where the first is the messageid of the issue, and

@@ -712,6 +712,18 @@ for PACKAGE in "$@"; do
     tar --acls --xattrs --xattrs-include='*' -xf "$PKG_TARBALL" 2> /dev/null
   )
 
+  # The type of each regular file in the package, as given by file. Running
+  # file once for all of them is a lot faster than once per file:
+  PKG_FILES=()
+  PKG_FILE_TYPES=()
+
+  while IFS= read -r -d '' path && IFS= read -r type; do
+    # shellcheck disable=SC2034 # Used by the checks
+    PKG_FILES+=("${path#./}")
+    # shellcheck disable=SC2034 # Used by the checks
+    PKG_FILE_TYPES+=("${type#: }")
+  done < <(find . -type f | LC_ALL=C sort | file -r -N -0 -f -)
+
   load_overrides
 
   perform "${LIST[@]}"

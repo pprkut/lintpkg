@@ -237,6 +237,29 @@ load ../../helpers/makepkg
   rm -f "$PKG"
 }
 
+@test "Checks have the types of the files in the package" {
+  create_empty_package "$BATS_TEST_TMPDIR"
+  cp "$TEST_STATICS/binaries/hello-x86_64-stripped" "$BATS_TEST_TMPDIR/usr/bin/"
+  ln -s foo "$BATS_TEST_TMPDIR/usr/bin/bar"
+  mkdir -p "$BATS_TEST_TMPDIR/usr/share/foo"
+  echo "text" > "$BATS_TEST_TMPDIR/usr/share/foo/ leading space"
+  echo "text" > "$BATS_TEST_TMPDIR/usr/share/foo/-dash"
+  echo "text" > "$BATS_TEST_TMPDIR/usr/share/foo/back\\slash"
+  PKG=$(MAKEPKG_OPTIONS="-l n" create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1)
+
+  run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/pkg_variables" -c pkg_file_types_check "$PKG"
+
+  assert_line --index 0 "install/slack-desc|ASCII text"
+  assert_line --index 1 "usr/bin/foo|empty"
+  assert_line --index 2 --regexp '^usr/bin/hello-x86_64-stripped\|ELF 64-bit LSB .*, stripped$'
+  assert_line --index 3 "usr/share/foo/ leading space|ASCII text"
+  assert_line --index 4 "usr/share/foo/-dash|ASCII text"
+  assert_line --index 5 "usr/share/foo/back\\slash|ASCII text"
+  assert_line --index 6 "1 packages checked; 0 errors and 0 warnings."
+
+  rm -f "$PKG"
+}
+
 @test "Checks have default working directory" {
   create_empty_package "$BATS_TEST_TMPDIR"
   PKG=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1)
