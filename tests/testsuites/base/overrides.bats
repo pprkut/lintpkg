@@ -15,12 +15,12 @@ setup() {
 # Ship the given overrides with the test package
 package_overrides() {
   mkdir -p "$BATS_TEST_TMPDIR/pkg/usr/share/lintpkg/overrides"
-  printf "$1" > "$BATS_TEST_TMPDIR/pkg/usr/share/lintpkg/overrides/empty"
+  printf '%b' "$1" > "$BATS_TEST_TMPDIR/pkg/usr/share/lintpkg/overrides/empty"
 }
 
 # Provide the given overrides for the test package with lintpkg
 system_overrides() {
-  printf "$1" > "$BATS_TEST_TMPDIR/system/empty"
+  printf '%b' "$1" > "$BATS_TEST_TMPDIR/system/empty"
 }
 
 run_lintpkg() {
