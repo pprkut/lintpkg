@@ -15,10 +15,10 @@ setup() {
 }
 
 @test "Check logs no warning when correct permissions for /etc" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/etc
-  chmod 755 $BATS_TEST_TMPDIR/etc
+  mkdir -p "$BATS_TEST_TMPDIR/etc"
+  chmod 755 "$BATS_TEST_TMPDIR/etc"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -28,9 +28,9 @@ setup() {
 }
 
 @test "Check logs no warning when correct permissions for /usr" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  chmod 755 $BATS_TEST_TMPDIR/usr
+  chmod 755 "$BATS_TEST_TMPDIR/usr"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -40,9 +40,9 @@ setup() {
 }
 
 @test "Check logs no warning when correct permissions for directory under /usr" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  chmod 755 $BATS_TEST_TMPDIR/usr/bin
+  chmod 755 "$BATS_TEST_TMPDIR/usr/bin"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 

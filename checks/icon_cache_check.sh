@@ -5,9 +5,9 @@
 # Verify that icons are handled correctly.
 
 check() {
-  if [ -e $WORKING_DIR/usr/share/icons/hicolor ]; then
-    if [ -e $WORKING_DIR/install/doinst.sh ]; then
-      if ! [ $(grep hicolor $WORKING_DIR/install/doinst.sh | wc -l) -ge "2" ]; then
+  if [ -e "$WORKING_DIR/usr/share/icons/hicolor" ]; then
+    if [ -e "$WORKING_DIR/install/doinst.sh" ]; then
+      if ! [ "$(grep hicolor "$WORKING_DIR/install/doinst.sh" | wc -l)" -ge "2" ]; then
         log_error "missing-icon-cache-update" "hicolor"
       fi
     else

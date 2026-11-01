@@ -15,11 +15,11 @@ setup() {
 }
 
 @test "Check logs error when info page in /usr/share/info" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/share/info
-  makeinfo $DOCS/lintpkg.texi -o $BATS_TEST_TMPDIR/usr/share/info/
-  gzip -9 $BATS_TEST_TMPDIR/usr/share/info/lintpkg.info
+  mkdir -p "$BATS_TEST_TMPDIR/usr/share/info"
+  makeinfo "$DOCS/lintpkg.texi" -o "$BATS_TEST_TMPDIR/usr/share/info/"
+  gzip -9 "$BATS_TEST_TMPDIR/usr/share/info/lintpkg.info"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -29,11 +29,11 @@ setup() {
 }
 
 @test "Check logs error when info page in /usr/local/info" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/local/info
-  makeinfo $DOCS/lintpkg.texi -o $BATS_TEST_TMPDIR/usr/local/info/
-  gzip -9 $BATS_TEST_TMPDIR/usr/local/info/lintpkg.info
+  mkdir -p "$BATS_TEST_TMPDIR/usr/local/info"
+  makeinfo "$DOCS/lintpkg.texi" -o "$BATS_TEST_TMPDIR/usr/local/info/"
+  gzip -9 "$BATS_TEST_TMPDIR/usr/local/info/lintpkg.info"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -43,11 +43,11 @@ setup() {
 }
 
 @test "Check logs error when info page in /usr/local/share/info" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/local/share/info
-  makeinfo $DOCS/lintpkg.texi -o $BATS_TEST_TMPDIR/usr/local/share/info/
-  gzip -9 $BATS_TEST_TMPDIR/usr/local/share/info/lintpkg.info
+  mkdir -p "$BATS_TEST_TMPDIR/usr/local/share/info"
+  makeinfo "$DOCS/lintpkg.texi" -o "$BATS_TEST_TMPDIR/usr/local/share/info/"
+  gzip -9 "$BATS_TEST_TMPDIR/usr/local/share/info/lintpkg.info"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -57,10 +57,10 @@ setup() {
 }
 
 @test "Check logs warning when uncompressed info page in /usr/info" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/info
-  makeinfo $DOCS/lintpkg.texi -o $BATS_TEST_TMPDIR/usr/info/
+  mkdir -p "$BATS_TEST_TMPDIR/usr/info"
+  makeinfo "$DOCS/lintpkg.texi" -o "$BATS_TEST_TMPDIR/usr/info/"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -70,10 +70,10 @@ setup() {
 }
 
 @test "Check logs warning when uncompressed info page in /usr/share/info" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/share/info
-  makeinfo $DOCS/lintpkg.texi -o $BATS_TEST_TMPDIR/usr/share/info/
+  mkdir -p "$BATS_TEST_TMPDIR/usr/share/info"
+  makeinfo "$DOCS/lintpkg.texi" -o "$BATS_TEST_TMPDIR/usr/share/info/"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -86,10 +86,10 @@ setup() {
 }
 
 @test "Check logs warning when uncompressed info page in /usr/local/info" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/local/info
-  makeinfo $DOCS/lintpkg.texi -o $BATS_TEST_TMPDIR/usr/local/info/
+  mkdir -p "$BATS_TEST_TMPDIR/usr/local/info"
+  makeinfo "$DOCS/lintpkg.texi" -o "$BATS_TEST_TMPDIR/usr/local/info/"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -102,10 +102,10 @@ setup() {
 }
 
 @test "Check logs warning when uncompressed info page in /usr/local/share/info" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/local/share/info
-  makeinfo $DOCS/lintpkg.texi -o $BATS_TEST_TMPDIR/usr/local/share/info/
+  mkdir -p "$BATS_TEST_TMPDIR/usr/local/share/info"
+  makeinfo "$DOCS/lintpkg.texi" -o "$BATS_TEST_TMPDIR/usr/local/share/info/"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 

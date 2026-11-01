@@ -15,7 +15,7 @@ setup() {
 }
 
 @test "Show explanation for slack-desc-not-found error" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -25,7 +25,7 @@ setup() {
 }
 
 @test "Show explanation for slack-desc-description-wrong-packagename error" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -35,7 +35,7 @@ setup() {
 }
 
 @test "Show explanation for slack-desc-invalid-number-of-lines error" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -45,7 +45,7 @@ setup() {
 }
 
 @test "Show explanation for slack-desc-description-lines-too-long" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -55,7 +55,7 @@ setup() {
 }
 
 @test "Show explanation for slack-desc-handy-ruler-misaligned" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -65,7 +65,7 @@ setup() {
 }
 
 @test "Show explanation for slack-desc-handy-ruler-broken" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -75,7 +75,7 @@ setup() {
 }
 
 @test "Show explanation for slack-desc-unrecognised-text" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 

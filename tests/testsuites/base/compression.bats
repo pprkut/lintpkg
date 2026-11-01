@@ -10,7 +10,7 @@ load ../../helpers/makepkg
 BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 
 assert_package_listing() {
-  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/pkg_variables" -c pkg_listing_check "$1"
+  run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/pkg_variables" -c pkg_listing_check "$1"
 
   expect_output "./"
   expect_output "install/"
@@ -23,7 +23,7 @@ assert_package_listing() {
 }
 
 assert_package_extracted() {
-  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/extraction" -c extracted_files_check "$1"
+  run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/extraction" -c extracted_files_check "$1"
 
   assert_line -n 0 "."
   assert_line -n 1 "./install"
@@ -34,8 +34,8 @@ assert_package_extracted() {
 }
 
 @test "Lists gzip compressed packages" {
-  create_empty_package $BATS_TEST_TMPDIR
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1 tgz)
+  create_empty_package "$BATS_TEST_TMPDIR"
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1 tgz)
 
   assert_package_listing "$PKG"
 
@@ -43,8 +43,8 @@ assert_package_extracted() {
 }
 
 @test "Extracts gzip compressed packages" {
-  create_empty_package $BATS_TEST_TMPDIR
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1 tgz)
+  create_empty_package "$BATS_TEST_TMPDIR"
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1 tgz)
 
   assert_package_extracted "$PKG"
 
@@ -52,8 +52,8 @@ assert_package_extracted() {
 }
 
 @test "Lists bzip2 compressed packages" {
-  create_empty_package $BATS_TEST_TMPDIR
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1 tbz)
+  create_empty_package "$BATS_TEST_TMPDIR"
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1 tbz)
 
   assert_package_listing "$PKG"
 
@@ -61,8 +61,8 @@ assert_package_extracted() {
 }
 
 @test "Extracts bzip2 compressed packages" {
-  create_empty_package $BATS_TEST_TMPDIR
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1 tbz)
+  create_empty_package "$BATS_TEST_TMPDIR"
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1 tbz)
 
   assert_package_extracted "$PKG"
 
@@ -70,8 +70,8 @@ assert_package_extracted() {
 }
 
 @test "Lists lzip compressed packages" {
-  create_empty_package $BATS_TEST_TMPDIR
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1 tlz)
+  create_empty_package "$BATS_TEST_TMPDIR"
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1 tlz)
 
   assert_package_listing "$PKG"
 
@@ -79,8 +79,8 @@ assert_package_extracted() {
 }
 
 @test "Extracts lzip compressed packages" {
-  create_empty_package $BATS_TEST_TMPDIR
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1 tlz)
+  create_empty_package "$BATS_TEST_TMPDIR"
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1 tlz)
 
   assert_package_extracted "$PKG"
 
@@ -88,8 +88,8 @@ assert_package_extracted() {
 }
 
 @test "Lists xz compressed packages" {
-  create_empty_package $BATS_TEST_TMPDIR
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1 txz)
+  create_empty_package "$BATS_TEST_TMPDIR"
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1 txz)
 
   assert_package_listing "$PKG"
 
@@ -97,8 +97,8 @@ assert_package_extracted() {
 }
 
 @test "Extracts xz compressed packages" {
-  create_empty_package $BATS_TEST_TMPDIR
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1 txz)
+  create_empty_package "$BATS_TEST_TMPDIR"
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1 txz)
 
   assert_package_extracted "$PKG"
 

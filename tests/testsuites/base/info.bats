@@ -10,10 +10,10 @@ load ../../helpers/makepkg
 BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 
 @test "-i for message of check without explanations shows no explanation" {
-  create_empty_package $BATS_TEST_TMPDIR
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
+  create_empty_package "$BATS_TEST_TMPDIR"
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1)
 
-  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/no_info" -i "$PKG"
+  run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/no_info" -i "$PKG"
 
   expect_output "empty-1.0-noarch-1: E: explained-error /path/to/file"
   expect_output "An error with an explanation"
@@ -27,10 +27,10 @@ BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 }
 
 @test "-i for message of lintpkg after running checks shows no unrelated explanation" {
-  create_empty_package $BATS_TEST_TMPDIR
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
+  create_empty_package "$BATS_TEST_TMPDIR"
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1)
 
-  run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/logging" -c log_error_check -i "$PKG" "$PKG-foo"
+  run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/logging" -c log_error_check -i "$PKG" "$PKG-foo"
 
   expect_output "empty-1.0-noarch-1: E: simple-error /path/to/file"
   expect_output "A error for a simple path"
@@ -44,9 +44,9 @@ BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 }
 
 @test "-i explains missing compression utility after running checks" {
-  create_empty_package $BATS_TEST_TMPDIR
-  PKG=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 1)
-  TBZ=$(create_slackware_package $BATS_TEST_TMPDIR empty 1.0 noarch 2 tbz)
+  create_empty_package "$BATS_TEST_TMPDIR"
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 1)
+  TBZ=$(create_slackware_package "$BATS_TEST_TMPDIR" empty 1.0 noarch 2 tbz)
 
   # Make bzip2 and lbzip2 unusable
   mkdir -p "$BATS_TEST_TMPDIR/bin"
@@ -54,7 +54,7 @@ BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
   chmod +x "$BATS_TEST_TMPDIR/bin/bzip2"
   cp "$BATS_TEST_TMPDIR/bin/bzip2" "$BATS_TEST_TMPDIR/bin/lbzip2"
 
-  PATH="$BATS_TEST_TMPDIR/bin:$PATH" run ${REPO_ROOT}/lintpkg -C "$TEST_CHECKS/logging" -c log_error_check -i "$PKG" "$TBZ"
+  PATH="$BATS_TEST_TMPDIR/bin:$PATH" run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/logging" -c log_error_check -i "$PKG" "$TBZ"
 
   expect_output "empty-1.0-noarch-1: E: simple-error /path/to/file"
   expect_output "A error for a simple path"

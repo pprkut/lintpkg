@@ -7,12 +7,12 @@
 check() {
   local file
 
-  [ -d $WORKING_DIR/usr/share ] &&
+  [ -d "$WORKING_DIR/usr/share" ] &&
     while read file && ! [ -z "$file" ]; do
       if file "$file" | egrep -q '(ELF|current ar archive)'; then
         log_path_error "binary-in-usr-share" "$file"
       fi
-    done <<< "$(find $WORKING_DIR/usr/share -type f)"
+    done <<< "$(find "$WORKING_DIR/usr/share" -type f)"
 }
 
 info() {

@@ -15,9 +15,9 @@ setup() {
 }
 
 @test "Check logs error when install dir is missing" {
-  mkdir -p $BATS_TEST_TMPDIR/usr/bin
-  touch $BATS_TEST_TMPDIR/usr/bin/foo
-  chmod +x $BATS_TEST_TMPDIR/usr/bin/foo
+  mkdir -p "$BATS_TEST_TMPDIR/usr/bin"
+  touch "$BATS_TEST_TMPDIR/usr/bin/foo"
+  chmod +x "$BATS_TEST_TMPDIR/usr/bin/foo"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 

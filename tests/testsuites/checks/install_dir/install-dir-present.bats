@@ -15,7 +15,7 @@ setup() {
 }
 
 @test "Check logs no error when install dir is present" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 

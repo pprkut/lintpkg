@@ -15,11 +15,11 @@ setup() {
 }
 
 @test "Check logs error when man page in /usr/share/man" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/share/man/man1
-  cp $DOCS/lintpkg.1 $BATS_TEST_TMPDIR/usr/share/man/man1/
-  gzip -9 $BATS_TEST_TMPDIR/usr/share/man/man1/lintpkg.1
+  mkdir -p "$BATS_TEST_TMPDIR/usr/share/man/man1"
+  cp "$DOCS/lintpkg.1" "$BATS_TEST_TMPDIR/usr/share/man/man1/"
+  gzip -9 "$BATS_TEST_TMPDIR/usr/share/man/man1/lintpkg.1"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -29,11 +29,11 @@ setup() {
 }
 
 @test "Check logs error when man page in /usr/local/man" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/local/man/man1
-  cp $DOCS/lintpkg.1 $BATS_TEST_TMPDIR/usr/local/man/man1/
-  gzip -9 $BATS_TEST_TMPDIR/usr/local/man/man1/lintpkg.1
+  mkdir -p "$BATS_TEST_TMPDIR/usr/local/man/man1"
+  cp "$DOCS/lintpkg.1" "$BATS_TEST_TMPDIR/usr/local/man/man1/"
+  gzip -9 "$BATS_TEST_TMPDIR/usr/local/man/man1/lintpkg.1"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -43,11 +43,11 @@ setup() {
 }
 
 @test "Check logs error when man page in /usr/local/share/man" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/local/share/man/man1
-  cp $DOCS/lintpkg.1 $BATS_TEST_TMPDIR/usr/local/share/man/man1
-  gzip -9 $BATS_TEST_TMPDIR/usr/local/share/man/man1/lintpkg.1
+  mkdir -p "$BATS_TEST_TMPDIR/usr/local/share/man/man1"
+  cp "$DOCS/lintpkg.1" "$BATS_TEST_TMPDIR/usr/local/share/man/man1"
+  gzip -9 "$BATS_TEST_TMPDIR/usr/local/share/man/man1/lintpkg.1"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -57,10 +57,10 @@ setup() {
 }
 
 @test "Check logs warning when uncompressed man page in /usr/man" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/man/man1
-  cp $DOCS/lintpkg.1 $BATS_TEST_TMPDIR/usr/man/man1/
+  mkdir -p "$BATS_TEST_TMPDIR/usr/man/man1"
+  cp "$DOCS/lintpkg.1" "$BATS_TEST_TMPDIR/usr/man/man1/"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -70,10 +70,10 @@ setup() {
 }
 
 @test "Check logs warning when uncompressed man page in /usr/share/man" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/share/man/man1
-  cp $DOCS/lintpkg.1 $BATS_TEST_TMPDIR/usr/share/man/man1/
+  mkdir -p "$BATS_TEST_TMPDIR/usr/share/man/man1"
+  cp "$DOCS/lintpkg.1" "$BATS_TEST_TMPDIR/usr/share/man/man1/"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -86,10 +86,10 @@ setup() {
 }
 
 @test "Check logs warning when uncompressed man page in /usr/local/man" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/local/man/man1
-  cp $DOCS/lintpkg.1 $BATS_TEST_TMPDIR/usr/local/man/man1/
+  mkdir -p "$BATS_TEST_TMPDIR/usr/local/man/man1"
+  cp "$DOCS/lintpkg.1" "$BATS_TEST_TMPDIR/usr/local/man/man1/"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
@@ -102,10 +102,10 @@ setup() {
 }
 
 @test "Check logs warning when uncompressed man page in /usr/local/share/man" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  mkdir -p $BATS_TEST_TMPDIR/usr/local/share/man/man1
-  cp $DOCS/lintpkg.1 $BATS_TEST_TMPDIR/usr/local/share/man/man1/
+  mkdir -p "$BATS_TEST_TMPDIR/usr/local/share/man/man1"
+  cp "$DOCS/lintpkg.1" "$BATS_TEST_TMPDIR/usr/local/share/man/man1/"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 

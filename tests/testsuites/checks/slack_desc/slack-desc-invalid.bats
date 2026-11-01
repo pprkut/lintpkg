@@ -15,9 +15,9 @@ setup() {
 }
 
 @test "Check logs error when slack-desc file is missing" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  rm -f $BATS_TEST_TMPDIR/install/slack-desc
+  rm -f "$BATS_TEST_TMPDIR/install/slack-desc"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_NAME=LINTPKG_TEST
@@ -28,7 +28,7 @@ setup() {
 }
 
 @test "Check logs error when slack-desc has wrong package name" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_NAME=LINTPKG_TES
@@ -39,9 +39,9 @@ setup() {
 }
 
 @test "Check logs error when slack-desc does not have enough lines" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  cp $TEST_STATICS/slack-descs/invalid-not-enough-lines $BATS_TEST_TMPDIR/install/slack-desc
+  cp "$TEST_STATICS/slack-descs/invalid-not-enough-lines" "$BATS_TEST_TMPDIR/install/slack-desc"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_NAME=LINTPKG_TEST
@@ -52,9 +52,9 @@ setup() {
 }
 
 @test "Check logs error when slack-desc has too many lines" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  cp $TEST_STATICS/slack-descs/invalid-too-many-lines $BATS_TEST_TMPDIR/install/slack-desc
+  cp "$TEST_STATICS/slack-descs/invalid-too-many-lines" "$BATS_TEST_TMPDIR/install/slack-desc"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_NAME=LINTPKG_TEST
@@ -65,9 +65,9 @@ setup() {
 }
 
 @test "Check logs error when slack-desc has description lines that are too long" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  cp $TEST_STATICS/slack-descs/invalid-description-line-too-long $BATS_TEST_TMPDIR/install/slack-desc
+  cp "$TEST_STATICS/slack-descs/invalid-description-line-too-long" "$BATS_TEST_TMPDIR/install/slack-desc"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_NAME=LINTPKG_TEST
@@ -78,9 +78,9 @@ setup() {
 }
 
 @test "Check logs warning when slack-desc has a misaligned handy-ruler" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  cp $TEST_STATICS/slack-descs/invalid-handy-ruler-misaligned $BATS_TEST_TMPDIR/install/slack-desc
+  cp "$TEST_STATICS/slack-descs/invalid-handy-ruler-misaligned" "$BATS_TEST_TMPDIR/install/slack-desc"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_NAME=LINTPKG_TEST
@@ -91,9 +91,9 @@ setup() {
 }
 
 @test "Check logs warning when handy-ruler in slack-desc is too short" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  cp $TEST_STATICS/slack-descs/invalid-handy-ruler-too-short $BATS_TEST_TMPDIR/install/slack-desc
+  cp "$TEST_STATICS/slack-descs/invalid-handy-ruler-too-short" "$BATS_TEST_TMPDIR/install/slack-desc"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_NAME=LINTPKG_TEST
@@ -104,9 +104,9 @@ setup() {
 }
 
 @test "Check logs warning when handy-ruler in slack-desc is too long" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  cp $TEST_STATICS/slack-descs/invalid-handy-ruler-too-long $BATS_TEST_TMPDIR/install/slack-desc
+  cp "$TEST_STATICS/slack-descs/invalid-handy-ruler-too-long" "$BATS_TEST_TMPDIR/install/slack-desc"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_NAME=LINTPKG_TEST
@@ -117,9 +117,9 @@ setup() {
 }
 
 @test "Check logs error when slack-desc contains unrecognized text" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
-  cp $TEST_STATICS/slack-descs/invalid-unrecognized-text $BATS_TEST_TMPDIR/install/slack-desc
+  cp "$TEST_STATICS/slack-descs/invalid-unrecognized-text" "$BATS_TEST_TMPDIR/install/slack-desc"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_NAME=LINTPKG_TEST

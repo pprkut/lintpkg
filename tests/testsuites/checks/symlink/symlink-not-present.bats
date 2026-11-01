@@ -15,7 +15,7 @@ setup() {
 }
 
 @test "Check logs no warning when there is no symlink present" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 

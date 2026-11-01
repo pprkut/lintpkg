@@ -4,8 +4,8 @@
 
 set -e
 
-TESTS_DIR="$(dirname ${BASH_SOURCE[0]})"
-REPO_ROOT="$(realpath $TESTS_DIR/..)"
+TESTS_DIR="$(dirname "${BASH_SOURCE[0]}")"
+REPO_ROOT="$(realpath "$TESTS_DIR/..")"
 COVERAGE=""
 JUNIT=""
 
@@ -33,7 +33,7 @@ if [ -n "$JUNIT" ]; then
 fi
 
 if [ -z "$COVERAGE" ]; then
-  exec "${BATS[@]}" $TESTS_DIR/testsuites/
+  exec "${BATS[@]}" "$TESTS_DIR/testsuites/"
 fi
 
 if ! command -v kcov > /dev/null; then
@@ -51,4 +51,4 @@ exec kcov \
   --bash-parse-files-in-dir="$REPO_ROOT/checks" \
   --include-path="$REPO_ROOT/lintpkg,$REPO_ROOT/checks" \
   "$REPO_ROOT/build/coverage" \
-  "${BATS[@]}" $TESTS_DIR/testsuites/
+  "${BATS[@]}" "$TESTS_DIR/testsuites/"

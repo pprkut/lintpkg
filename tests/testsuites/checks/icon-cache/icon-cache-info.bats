@@ -15,7 +15,7 @@ setup() {
 }
 
 @test "Show explanation for missing-icon-cache-update error" {
-  create_empty_package $BATS_TEST_TMPDIR
+  create_empty_package "$BATS_TEST_TMPDIR"
 
   WORKING_DIR=$BATS_TEST_TMPDIR
 
