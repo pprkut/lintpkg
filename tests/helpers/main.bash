@@ -3,9 +3,10 @@
 # SPDX-License-Identifier: BSD-1-Clause
 
 test_suite_name() {
-  local suite_name=$(basename "${BATS_TEST_DIRNAME}")
+  local suite_name
+  suite_name=$(basename "${BATS_TEST_DIRNAME}")
 
-  printf "${suite_name}"
+  printf '%s' "${suite_name}"
 }
 
 # Prefix the names of all tests with their suite. Read by bats:

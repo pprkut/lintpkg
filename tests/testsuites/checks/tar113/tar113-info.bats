@@ -15,8 +15,6 @@ setup() {
 @test "Show explanation for package-not-tar-113 error" {
   create_empty_package "$BATS_TEST_TMPDIR"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
-
   run info "package-not-tar-113"
 
   assert_output "The package does not have tar-1.13 format member names. It was not created with makepkg."

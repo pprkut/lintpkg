@@ -14,11 +14,10 @@ setup() {
 
 @test "Check logs no error when correct owner and group for /bin" {
   create_empty_package "$BATS_TEST_TMPDIR"
-  rm -rf "$BATS_TEST_TMPDIR/usr"
+  rm -rf "${BATS_TEST_TMPDIR:?}/usr"
 
   mkdir -p "$BATS_TEST_TMPDIR/bin"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g")
 
   run check
@@ -32,7 +31,6 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/bin"
   touch "$BATS_TEST_TMPDIR/bin/foo"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g")
 
   run check
@@ -42,11 +40,10 @@ setup() {
 
 @test "Check logs no error when correct owner and group for /lib" {
   create_empty_package "$BATS_TEST_TMPDIR"
-  rm -rf "$BATS_TEST_TMPDIR/lib"
+  rm -rf "${BATS_TEST_TMPDIR:?}/lib"
 
   mkdir -p "$BATS_TEST_TMPDIR/lib"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g")
 
   run check
@@ -60,7 +57,6 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/lib"
   touch "$BATS_TEST_TMPDIR/lib/baz"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g")
 
   run check
@@ -70,11 +66,10 @@ setup() {
 
 @test "Check logs no error when correct owner and group for /lib64" {
   create_empty_package "$BATS_TEST_TMPDIR"
-  rm -rf "$BATS_TEST_TMPDIR/lib64"
+  rm -rf "${BATS_TEST_TMPDIR:?}/lib64"
 
   mkdir -p "$BATS_TEST_TMPDIR/lib64"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g")
 
   run check
@@ -88,7 +83,6 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/lib64"
   touch "$BATS_TEST_TMPDIR/lib64/baz"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g")
 
   run check
@@ -98,11 +92,10 @@ setup() {
 
 @test "Check logs no error when correct owner and group for /sbin" {
   create_empty_package "$BATS_TEST_TMPDIR"
-  rm -rf "$BATS_TEST_TMPDIR/usr"
+  rm -rf "${BATS_TEST_TMPDIR:?}/usr"
 
   mkdir -p "$BATS_TEST_TMPDIR/sbin"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g")
 
   run check
@@ -116,7 +109,6 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/sbin"
   touch "$BATS_TEST_TMPDIR/sbin/baz"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g")
 
   run check
@@ -126,9 +118,8 @@ setup() {
 
 @test "Check logs no error when correct owner and group for /usr" {
   create_empty_package "$BATS_TEST_TMPDIR"
-  rm -rf "$BATS_TEST_TMPDIR/usr/bin"
+  rm -rf "${BATS_TEST_TMPDIR:?}/usr/bin"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g")
 
   run check
@@ -139,7 +130,6 @@ setup() {
 @test "Check logs no error when correct owner and group for file in /usr" {
   create_empty_package "$BATS_TEST_TMPDIR"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g")
 
   run check
@@ -149,9 +139,8 @@ setup() {
 
 @test "Check logs no error when correct owner and group for /" {
   create_empty_package "$BATS_TEST_TMPDIR"
-  rm -rf "$BATS_TEST_TMPDIR/usr"
+  rm -rf "${BATS_TEST_TMPDIR:?}/usr"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g")
 
   run check
@@ -162,7 +151,6 @@ setup() {
 @test "Check logs no error when owner is whitelisted (daemon) for file in /usr/bin" {
   create_empty_package "$BATS_TEST_TMPDIR"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/usr\/bin\/foo/s|root/root|daemon/daemon|g")
 
   run check
@@ -173,7 +161,6 @@ setup() {
 @test "Check logs no error when owner is whitelisted (uucp) for file in /usr/bin" {
   create_empty_package "$BATS_TEST_TMPDIR"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/usr\/bin\/foo/s|root/root|uucp/uucp|g")
 
   run check
@@ -185,7 +172,6 @@ setup() {
   create_empty_package "$BATS_TEST_TMPDIR"
   mv "$BATS_TEST_TMPDIR/usr/bin" "$BATS_TEST_TMPDIR/usr/sbin"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/usr\/sbin\/foo/s|root/root|daemon/daemon|g")
 
   run check
@@ -197,7 +183,6 @@ setup() {
   create_empty_package "$BATS_TEST_TMPDIR"
   mv "$BATS_TEST_TMPDIR/usr/bin" "$BATS_TEST_TMPDIR/usr/sbin"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/usr\/sbin\/foo/s|root/root|uucp/uucp|g")
 
   run check
@@ -209,7 +194,6 @@ setup() {
   create_empty_package "$BATS_TEST_TMPDIR"
   ln -s ../lib/foo "$BATS_TEST_TMPDIR/usr/bin/bar"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/usr\/bin\/bar/s|root/root|daemon/daemon|g")
 
   run check

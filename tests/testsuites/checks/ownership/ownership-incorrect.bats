@@ -14,11 +14,10 @@ setup() {
 
 @test "Check logs error when incorrect owner for /bin" {
   create_empty_package "$BATS_TEST_TMPDIR"
-  rm -rf "$BATS_TEST_TMPDIR/usr"
+  rm -rf "${BATS_TEST_TMPDIR:?}/usr"
 
   mkdir -p "$BATS_TEST_TMPDIR/bin"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/bin/s|root/root|slacker/root|")
 
   run check
@@ -32,7 +31,6 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/bin"
   touch "$BATS_TEST_TMPDIR/bin/baz"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/bin\/baz/s|root/root|slacker/root|")
 
   run check
@@ -42,11 +40,10 @@ setup() {
 
 @test "Check logs error when incorrect owner for /lib" {
   create_empty_package "$BATS_TEST_TMPDIR"
-  rm -rf "$BATS_TEST_TMPDIR/lib"
+  rm -rf "${BATS_TEST_TMPDIR:?}/lib"
 
   mkdir -p "$BATS_TEST_TMPDIR/lib"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/lib/s|root/root|slacker/root|")
 
   run check
@@ -60,7 +57,6 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/lib"
   touch "$BATS_TEST_TMPDIR/lib/baz"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/lib\/baz/s|root/root|slacker/root|")
 
   run check
@@ -70,11 +66,10 @@ setup() {
 
 @test "Check logs error when incorrect owner for /lib64" {
   create_empty_package "$BATS_TEST_TMPDIR"
-  rm -rf "$BATS_TEST_TMPDIR/lib64"
+  rm -rf "${BATS_TEST_TMPDIR:?}/lib64"
 
   mkdir -p "$BATS_TEST_TMPDIR/lib64"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/lib64/s|root/root|slacker/root|")
 
   run check
@@ -88,7 +83,6 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/lib64"
   touch "$BATS_TEST_TMPDIR/lib64/baz"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/lib64\/baz/s|root/root|slacker/root|")
 
   run check
@@ -98,11 +92,10 @@ setup() {
 
 @test "Check logs error when incorrect owner for /sbin" {
   create_empty_package "$BATS_TEST_TMPDIR"
-  rm -rf "$BATS_TEST_TMPDIR/usr"
+  rm -rf "${BATS_TEST_TMPDIR:?}/usr"
 
   mkdir -p "$BATS_TEST_TMPDIR/sbin"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/sbin/s|root/root|slacker/root|")
 
   run check
@@ -116,7 +109,6 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/sbin"
   touch "$BATS_TEST_TMPDIR/sbin/baz"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/sbin\/baz/s|root/root|slacker/root|")
 
   run check
@@ -126,9 +118,8 @@ setup() {
 
 @test "Check logs error when incorrect owner for /usr" {
   create_empty_package "$BATS_TEST_TMPDIR"
-  rm -rf "$BATS_TEST_TMPDIR/usr/bin"
+  rm -rf "${BATS_TEST_TMPDIR:?}/usr/bin"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/usr/s|root/root|slacker/root|")
 
   run check
@@ -139,7 +130,6 @@ setup() {
 @test "Check logs error when incorrect owner for file in /usr" {
   create_empty_package "$BATS_TEST_TMPDIR"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/usr\/bin\/foo/s|root/root|slacker/root|")
 
   run check
@@ -149,9 +139,8 @@ setup() {
 
 @test "Check logs error when incorrect owner for /" {
   create_empty_package "$BATS_TEST_TMPDIR"
-  rm -rf "$BATS_TEST_TMPDIR/usr"
+  rm -rf "${BATS_TEST_TMPDIR:?}/usr"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/\.\//s|root/root|slacker/root|")
 
   run check
@@ -163,7 +152,6 @@ setup() {
   create_empty_package "$BATS_TEST_TMPDIR"
   ln -s foo "$BATS_TEST_TMPDIR/usr/bin/bar"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/usr\/bin\/bar/s|root/root|slacker/root|")
 
   run check
@@ -176,7 +164,6 @@ setup() {
   mkdir -p "$BATS_TEST_TMPDIR/usr/lib"
   ln -s ../bin/foo "$BATS_TEST_TMPDIR/usr/lib/bar"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_DETAILED_LISTING=$(create_detailed_tar_listing "$BATS_TEST_TMPDIR" | sed "s|$(whoami)/$(id -gn)|root/root|g" | sed "/usr\/lib\/bar/s|root/root|slacker/root|")
 
   run check

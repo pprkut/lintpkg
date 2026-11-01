@@ -15,7 +15,6 @@ setup() {
 @test "Check logs no error when package was created with tar-1.13" {
   create_empty_package "$BATS_TEST_TMPDIR"
 
-  WORKING_DIR=$BATS_TEST_TMPDIR
   PKG_LISTING=$(create_tar_listing "$BATS_TEST_TMPDIR")
 
   run check

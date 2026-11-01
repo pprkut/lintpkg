@@ -53,7 +53,7 @@ create_tar_listing() {
     while IFS= read -r line && ! [ -z "$line" ]; do
 
       if [ -z "$NEW" -a "$(echo "$line" | wc -L)" -gt 2 ]; then
-        line=$(echo "$line" | sed 's|./||')
+        line=${line#./}
       fi
 
       if ! [ -z "$NEW" ] && [ "$line" = "./" ]; then
@@ -77,7 +77,7 @@ create_detailed_tar_listing() {
       TYPE=${PERMS:0:1}
 
       if [ -z "$NEW" -a "$(echo "$FILE" | wc -L)" -gt 2 ]; then
-        FILE=$(echo "$FILE" | sed 's|./||')
+        FILE=${FILE#./}
       fi
 
       if ! [ -z "$NEW" ] && [ "$FILE" = "./" ]; then
