@@ -47,7 +47,7 @@ create_tar_listing() {
   NEW="$2"
 
   cd "$BASE"
-  while read line && ! [ -z "$line" ]; do
+  while IFS= read -r line && ! [ -z "$line" ]; do
 
     if [ -z "$NEW" -a "$(echo "$line" | wc -L)" -gt 2 ]; then
       line=$(echo "$line" | sed 's|./||')

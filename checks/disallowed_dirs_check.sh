@@ -12,7 +12,7 @@ check() {
   for i in $DIRECTORIES; do
     if [ -e "$WORKING_DIR/$i" ]; then
       normalized=$(echo "$i" | tr / -)
-      while read item && ! [ -z "$item" ]; do
+      while IFS= read -r item && ! [ -z "$item" ]; do
         log_path_error "dir-or-file-in$normalized" "$item"
       done <<< "$(find "$WORKING_DIR/$i" -mindepth 1)"
     fi

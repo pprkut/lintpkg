@@ -9,7 +9,7 @@ check() {
 
   # Check permissions under /usr
   if [ -d "$WORKING_DIR/usr" ]; then
-    while read file && ! [ -z "$file" ]; do
+    while IFS= read -r file && ! [ -z "$file" ]; do
       if [ -d "$file" ]; then
         permission=$(stat -c "%a" "$file")
 

@@ -11,7 +11,7 @@ check() {
 
   USER_WHITELIST="root daemon uucp"
 
-  while read tperms owngrp size date time objname && ! [ -z "$tperms" ]; do
+  while read -r tperms owngrp size date time objname && ! [ -z "$tperms" ]; do
     OWNER=$(echo "$owngrp" | cut -d "/" -f 1)
 
     # The package listing shows symlinks with their target:
