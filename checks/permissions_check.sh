@@ -14,7 +14,7 @@ check() {
         permission=$(stat -c "%a" "$file")
 
         if ! [ "$permission" = "755" ]; then
-            log_path_warning "strange-permission" "$file" "$permission"
+          log_path_warning "strange-permission" "$file" "$permission"
         fi
       fi
     done <<< "$(find "$WORKING_DIR/usr")"

@@ -13,6 +13,7 @@ pkgbase() {
   PKGRETURN=${1##*/}
   case "$PKGRETURN" in *.t[gblx]z)
     PKGRETURN=${PKGRETURN%.*}
+    ;;
   esac
   echo "$PKGRETURN"
 }
@@ -24,18 +25,18 @@ package_element() {
   *-*-*-*)
     # At least four segments, so we'll consider this a new-style name:
     case "$ELEMENT" in
-    'name' )
+    'name')
       echo "${STRING%-*-*-*}"
       ;;
-    'version' )
+    'version')
       STRING=${STRING%-*-*}
       echo "${STRING##*-}"
       ;;
-    'arch' )
+    'arch')
       STRING=${STRING%-*}
       echo "${STRING##*-}"
       ;;
-    * )
+    *)
       echo "${STRING##*-}"
       ;;
     esac
@@ -48,6 +49,7 @@ package_element() {
     else
       echo ""
     fi
+    ;;
   esac
 }
 
@@ -213,22 +215,22 @@ apply_events() {
 
   while read -r event n; do
     case "$event" in
-    'E' )
+    'E')
       ERRORS=$((ERRORS + 1))
       ;;
-    'W' )
+    'W')
       WARNINGS=$((WARNINGS + 1))
       ;;
-    'overridden-E' )
+    'overridden-E')
       OVERRIDDEN_ERRORS=$((OVERRIDDEN_ERRORS + 1))
       ;;
-    'overridden-W' )
+    'overridden-W')
       OVERRIDDEN_WARNINGS=$((OVERRIDDEN_WARNINGS + 1))
       ;;
-    'overridden-I' )
+    'overridden-I')
       OVERRIDDEN_NOTICES=$((OVERRIDDEN_NOTICES + 1))
       ;;
-    'used' )
+    'used')
       OVERRIDE_USED[$n]="yes"
       ;;
     esac
@@ -425,7 +427,7 @@ show_info() {
     left="$id"
 
     for check in $(ls $CHECKS); do
-      if ( explain_from_check "$check" "$id" ); then
+      if (explain_from_check "$check" "$id"); then
         left=""
         break
       fi
@@ -460,7 +462,7 @@ perform() {
 
 # usage(), exit if called with no arguments:
 if [ $# = 0 ]; then
-  usage;
+  usage
   exit
 fi
 
@@ -512,7 +514,7 @@ while [ 0 ]; do
       exit 1
     fi
 
-    LIST="$LIST $2";
+    LIST="$LIST $2"
     shift 2
   elif [ "$1" = "-C" -o "$1" = "--checkdir" ]; then
     if [ -z "$2" -o "$(echo $2 | head -c 1)" = "-" ]; then
@@ -639,35 +641,35 @@ for PACKAGE in "$@"; do
   # Determine compressor utility, preferring ones that use multiple
   # decompression threads:
   case $PKG_EXTENSION in
-    'tgz' )
-      packagecompression=gzip
-      ;;
-    'tbz' )
-      if command -v lbzip2 1> /dev/null 2> /dev/null ; then
-        packagecompression=lbzip2
-      else
-        packagecompression=bzip2
-      fi
-      ;;
-    'tlz' )
-      if command -v plzip 1> /dev/null 2> /dev/null ; then
-        packagecompression=plzip
-      else
-        packagecompression=lzip
-      fi
-      ;;
-    'txz' )
-      packagecompression="xz --threads=0"
-      ;;
-    * )
-      log_read_error "$PACKAGE" "file does not end in .tgz, .tbz, .tlz, or .txz"
-      continue
-      ;;
+  'tgz')
+    packagecompression=gzip
+    ;;
+  'tbz')
+    if command -v lbzip2 1> /dev/null 2> /dev/null; then
+      packagecompression=lbzip2
+    else
+      packagecompression=bzip2
+    fi
+    ;;
+  'tlz')
+    if command -v plzip 1> /dev/null 2> /dev/null; then
+      packagecompression=plzip
+    else
+      packagecompression=lzip
+    fi
+    ;;
+  'txz')
+    packagecompression="xz --threads=0"
+    ;;
+  *)
+    log_read_error "$PACKAGE" "file does not end in .tgz, .tbz, .tlz, or .txz"
+    continue
+    ;;
   esac
 
   # Test presence of external compression utility:
   compressor=$(echo $packagecompression | cut -f 1 -d ' ')
-  if ! $compressor --help 1> /dev/null 2> /dev/null ; then
+  if ! $compressor --help 1> /dev/null 2> /dev/null; then
     log_notice "external-compression-utility-missing" "$compressor"
     continue
   fi
@@ -683,15 +685,18 @@ for PACKAGE in "$@"; do
 
   cd $WORKING_DIR
 
-    ( umask 000 ; tar --acls --xattrs --xattrs-include='*' -xf $PKG_TARBALL 2> /dev/null )
+  (
+    umask 000
+    tar --acls --xattrs --xattrs-include='*' -xf $PKG_TARBALL 2> /dev/null
+  )
 
-    load_overrides
+  load_overrides
 
-    perform "$LIST"
+  perform "$LIST"
 
-    report_unused_overrides
+  report_unused_overrides
 
-    PACKAGES=$((PACKAGES + 1))
+  PACKAGES=$((PACKAGES + 1))
 
   cd $CWD
 

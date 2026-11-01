@@ -18,9 +18,26 @@ charset = utf-8
 indent_style = space
 indent_size = 2
 
+# Formatting options for shfmt. Checks are sourced by lintpkg, so they're
+# always bash, whatever their shebang says:
+[{*.sh,*.bash,lintpkg}]
+shell_variant = bash
+space_redirects = true
+
+[*.bats]
+shell_variant = bats
+space_redirects = true
+
 [tests/run]
 indent_style = space
 indent_size = 2
+shell_variant = bash
+space_redirects = true
+
+# Test fixtures whose content is checked by the test suite, and generated
+# files, are not formatted by shfmt:
+[{tests/statics/**,build/**}]
+ignore = true
 
 [{*.c,*.h}]
 indent_style = space

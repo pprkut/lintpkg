@@ -4,6 +4,6 @@
 
 check() {
   cd "$WORKING_DIR"
-    find . | LC_ALL=C sort
+  find . | LC_ALL=C sort
   cd - > /dev/null
 }

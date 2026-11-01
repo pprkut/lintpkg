@@ -7,7 +7,7 @@ load ../../helpers/locations
 load ../../helpers/main
 load ../../helpers/makepkg
 
-BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
+BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 
 setup() {
   create_empty_package $BATS_TEST_TMPDIR/pkg
@@ -164,7 +164,7 @@ run_lintpkg() {
 @test "Override for path with whitespace" {
   mkdir -p "$BATS_TEST_TMPDIR/pkg/usr/t o"
   package_overrides "path-error /usr/t o/a file\n"
-  cat > "$BATS_TEST_TMPDIR/check.sh" <<'CHECK'
+  cat > "$BATS_TEST_TMPDIR/check.sh" << 'CHECK'
 check() {
   log_path_error "path-error" "usr/t o/a file"
 }

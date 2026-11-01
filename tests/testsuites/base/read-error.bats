@@ -7,7 +7,7 @@ load ../../helpers/locations
 load ../../helpers/main
 load ../../helpers/makepkg
 
-BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
+BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 
 @test "Logs error for package with corrupt compression" {
   create_empty_package $BATS_TEST_TMPDIR

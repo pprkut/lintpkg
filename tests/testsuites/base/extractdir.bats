@@ -7,7 +7,7 @@ load ../../helpers/locations
 load ../../helpers/main
 load ../../helpers/makepkg
 
-BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
+BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 
 @test "Setting extraction directory to non-existent path exits with 1" {
   run ${REPO_ROOT}/lintpkg -E "$TEST_CHECKS/non_existent"

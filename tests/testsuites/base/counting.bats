@@ -7,7 +7,7 @@ load ../../helpers/locations
 load ../../helpers/main
 load ../../helpers/makepkg
 
-BATS_TEST_NAME_PREFIX="[$( test_suite_name )] "
+BATS_TEST_NAME_PREFIX="[$(test_suite_name)] "
 
 @test "Counting errors/warnings properly for single package" {
   create_empty_package $BATS_TEST_TMPDIR
