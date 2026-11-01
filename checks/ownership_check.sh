@@ -7,11 +7,11 @@
 
 check() {
   local USER_WHITELIST OWNER LINK DIRECTORY INCORRECT user
-  local tperms owngrp size date time objname
+  local tperms owngrp objname
 
   USER_WHITELIST="root daemon uucp"
 
-  while read -r tperms owngrp size date time objname && ! [ -z "$tperms" ]; do
+  while read -r tperms owngrp _ _ _ objname && ! [ -z "$tperms" ]; do
     OWNER=$(echo "$owngrp" | cut -d "/" -f 1)
 
     # The package listing shows symlinks with their target:
