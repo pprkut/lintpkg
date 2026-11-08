@@ -32,6 +32,24 @@ run_lintpkg() {
   rm -f "$PKG"
 }
 
+# Run lintpkg with a check logging a path-error for each of the given paths
+run_lintpkg_for_paths() {
+  local path
+
+  mkdir -p "$BATS_TEST_TMPDIR/checks"
+  echo "check() {" > "$BATS_TEST_TMPDIR/checks/paths_check.sh"
+  for path in "$@"; do
+    printf '  log_path_error "path-error" %q\n' "$path" >> "$BATS_TEST_TMPDIR/checks/paths_check.sh"
+  done
+  echo "}" >> "$BATS_TEST_TMPDIR/checks/paths_check.sh"
+
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR/pkg" empty 1.0 noarch 1)
+
+  run "${REPO_ROOT}/lintpkg" -C "$BATS_TEST_TMPDIR/checks" --show-overrides "$PKG"
+
+  rm -f "$PKG"
+}
+
 @test "Without overrides all messages are reported" {
   run_lintpkg
 
@@ -383,6 +401,130 @@ CHECK
   run_lintpkg --show-overrides
 
   assert_line -n 1 "  Overridden by package: Needed for debugging"
+}
+
+@test "Wildcard in override for path matches any string" {
+  package_overrides "path-error /usr/*/f*\n"
+
+  run_lintpkg_for_paths "/usr/bin/foo" "/usr/lib/f" "/usr/lib/bar"
+
+  assert_line "empty-1.0-noarch-1: O: path-error /usr/bin/foo"
+  assert_line "empty-1.0-noarch-1: O: path-error /usr/lib/f"
+  assert_line "empty-1.0-noarch-1: E: path-error /usr/lib/bar"
+}
+
+@test "Wildcard in override for path matches across directories" {
+  package_overrides "path-error /usr/share/*\n"
+
+  run_lintpkg_for_paths "/usr/share/foo/bar/baz" "/usr/lib/foo"
+
+  assert_line "empty-1.0-noarch-1: O: path-error /usr/share/foo/bar/baz"
+  assert_line "empty-1.0-noarch-1: E: path-error /usr/lib/foo"
+}
+
+@test "Override for path with wildcard must match the whole path" {
+  package_overrides "path-error /usr/b*\n"
+
+  run_lintpkg_for_paths "/opt/usr/bin/foo"
+
+  assert_line "empty-1.0-noarch-1: E: path-error /opt/usr/bin/foo"
+}
+
+@test "Question mark in override for path matches a single character" {
+  package_overrides "path-error /usr/lib/libfo?.so\n"
+
+  run_lintpkg_for_paths "/usr/lib/libfoo.so" "/usr/lib/libfooo.so" "/usr/lib/libfo.so"
+
+  assert_line "empty-1.0-noarch-1: O: path-error /usr/lib/libfoo.so"
+  assert_line "empty-1.0-noarch-1: E: path-error /usr/lib/libfooo.so"
+  assert_line "empty-1.0-noarch-1: E: path-error /usr/lib/libfo.so"
+}
+
+@test "Override for path with wildcard matches normalized path" {
+  package_overrides "path-error usr//bin/*/\n"
+
+  run_lintpkg
+
+  refute_line --partial "path-error"
+}
+
+@test "Wildcard in override with argument matches first argument" {
+  package_overrides "subject-error hi*\n"
+
+  run_lintpkg
+
+  refute_line --partial "subject-error"
+}
+
+@test "Wildcard in override with argument does not match other first argument" {
+  package_overrides "subject-error gn?me*\n"
+
+  run_lintpkg
+
+  assert_line "empty-1.0-noarch-1: E: subject-error hicolor"
+}
+
+@test "Escaped wildcards in override match themselves" {
+  package_overrides 'path-error /usr/bin/f\\*o\npath-error /usr/bin/b\\?r\npath-error /usr/bin/back\\\\slash\n'
+
+  run_lintpkg_for_paths "/usr/bin/f*o" "/usr/bin/fxo" "/usr/bin/b?r" "/usr/bin/bar" '/usr/bin/back\slash'
+
+  assert_line "empty-1.0-noarch-1: O: path-error /usr/bin/f*o"
+  assert_line "empty-1.0-noarch-1: E: path-error /usr/bin/fxo"
+  assert_line "empty-1.0-noarch-1: O: path-error /usr/bin/b?r"
+  assert_line "empty-1.0-noarch-1: E: path-error /usr/bin/bar"
+  assert_line 'empty-1.0-noarch-1: O: path-error /usr/bin/back\slash'
+}
+
+@test "Backslash in override not followed by wildcard or backslash matches itself" {
+  package_overrides 'path-error /usr/bin/\\foo\npath-error /usr/bin/bar\\\n'
+
+  run_lintpkg_for_paths '/usr/bin/\foo' "/usr/bin/foo" "/usr/bin/bar\\"
+
+  assert_line 'empty-1.0-noarch-1: O: path-error /usr/bin/\foo'
+  assert_line "empty-1.0-noarch-1: E: path-error /usr/bin/foo"
+  assert_line "empty-1.0-noarch-1: O: path-error /usr/bin/bar\\"
+}
+
+@test "Other special characters of bash patterns in override match themselves" {
+  package_overrides "path-error /usr/bin/[f]oo\npath-error /usr/bin/@(a|b)\n"
+
+  run_lintpkg_for_paths "/usr/bin/[f]oo" "/usr/bin/foo" "/usr/bin/@(a|b)" "/usr/bin/a"
+
+  assert_line "empty-1.0-noarch-1: O: path-error /usr/bin/[f]oo"
+  assert_line "empty-1.0-noarch-1: E: path-error /usr/bin/foo"
+  assert_line "empty-1.0-noarch-1: O: path-error /usr/bin/@(a|b)"
+  assert_line "empty-1.0-noarch-1: E: path-error /usr/bin/a"
+}
+
+@test "First of several matching overrides is used" {
+  package_overrides "# Specific\npath-error /usr/bin/foo\n\n# General\npath-error /usr/*\n"
+
+  run_lintpkg_for_paths "/usr/bin/foo" "/usr/bin/bar"
+
+  assert_line -n 0 "empty-1.0-noarch-1: O: path-error /usr/bin/foo"
+  assert_line -n 1 "  Overridden by package: Specific"
+  assert_line -n 2 "empty-1.0-noarch-1: O: path-error /usr/bin/bar"
+  assert_line -n 3 "  Overridden by package: General"
+  refute_line --partial "unused-override"
+}
+
+@test "Override shadowed by earlier matching override is reported as unused" {
+  package_overrides "# General\npath-error /usr/*\n\n# Specific\npath-error /usr/bin/foo\n"
+
+  run_lintpkg_for_paths "/usr/bin/foo" "/usr/bin/bar"
+
+  assert_line -n 1 "  Overridden by package: General"
+  assert_line -n 3 "  Overridden by package: General"
+  assert_line "empty-1.0-noarch-1: E: unused-override path-error /usr/bin/foo"
+}
+
+@test "Unused override with wildcard is reported as written" {
+  package_overrides "path-error usr/share/*\n"
+
+  run_lintpkg
+
+  assert_line "empty-1.0-noarch-1: E: unused-override path-error usr/share/*"
 }
 
 @test "--overridedir with non-existent directory prints error and exits with 1" {

@@ -127,6 +127,11 @@ For rules that aren't about a path, the argument is optional. Without it, the
 rule is overridden for the whole package. With it, the rule is only overridden
 for that argument.
 
+In the path or argument, \fB*\fR matches any string, including \fB/\fR, and
+\fB?\fR matches any single character. A backslash makes them, or another
+backslash, match themselves instead. All other characters only match
+themselves.
+
 An override can be limited to packages for some architectures by putting a
 list of them in front of it, followed by a colon. An architecture prefixed
 with \fB!\fR excludes packages for it instead. Overrides that don't apply to
@@ -145,7 +150,8 @@ comment.
 
 Overrides for rules the package doesn't violate are reported as
 .B unused-override
-errors. If an override is given more than once, only the first one is used.
+errors. If several overrides match a message, only the first one is used, and
+the others are reported as unused if they don't match any other message.
 
 
 .SH "SEE ALSO"

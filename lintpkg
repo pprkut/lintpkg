@@ -89,7 +89,8 @@ load_overrides() {
 
   OVERRIDE_IDS=()
   OVERRIDE_ARGS=()
-  OVERRIDE_PATHS=()
+  OVERRIDE_PATTERNS=()
+  OVERRIDE_PATH_PATTERNS=()
   OVERRIDE_REASONS=()
   OVERRIDE_USED=()
   OVERRIDE_SOURCE=""
@@ -147,11 +148,38 @@ load_overrides() {
 
       OVERRIDE_IDS+=("$id")
       OVERRIDE_ARGS+=("$arg")
-      OVERRIDE_PATHS+=("$(package_path "$arg")")
+      OVERRIDE_PATTERNS+=("$(override_pattern "$arg")")
+      OVERRIDE_PATH_PATTERNS+=("$(override_pattern "$(package_path "$arg")")")
       OVERRIDE_REASONS+=("$reason")
       OVERRIDE_USED+=("no")
     fi
   done < "$file"
+}
+
+# Turn the argument of an override into a pattern for bash's pattern matching.
+# Like lintian, only "*" (any string, including "/") and "?" (any single
+# character) are wildcards, and can be escaped with a backslash. Everything
+# else, including other characters with a special meaning in bash's patterns,
+# matches itself:
+override_pattern() {
+  local value="$1"
+  local pattern=""
+  local char i
+
+  for ((i = 0; i < ${#value}; i++)); do
+    char="${value:i:1}"
+
+    if [ "$char" = "\\" ] && [[ "${value:i+1:1}" == [\\*?] ]]; then
+      i=$((i + 1))
+      pattern+="\\${value:i:1}"
+    elif [ "$char" = "*" ] || [ "$char" = "?" ]; then
+      pattern+="$char"
+    else
+      pattern+="\\$char"
+    fi
+  done
+
+  printf '%s' "$pattern"
 }
 
 # Return whether the architecture of the current package is included in the
@@ -186,7 +214,8 @@ architecture_listed() {
 # Return whether a message is overridden for the current package, and remember
 # the override that matched. Messages about a path are only matched by
 # overrides for that path. Other messages are matched by overrides without an
-# argument, or with the same first argument:
+# argument, or with an argument matching the first argument. If several
+# overrides match, the first one is used:
 message_overridden() {
   local kind="$1"
   local id="$2"
@@ -198,11 +227,12 @@ message_overridden() {
       continue
     fi
 
+    # shellcheck disable=SC2053 # The override is a pattern
     if [ "$kind" = "path" ]; then
-      if [ -z "${OVERRIDE_ARGS[$n]}" ] || ! [ "${OVERRIDE_PATHS[$n]}" = "$arg" ]; then
+      if [ -z "${OVERRIDE_ARGS[$n]}" ] || ! [[ $arg == ${OVERRIDE_PATH_PATTERNS[$n]} ]]; then
         continue
       fi
-    elif [ -n "${OVERRIDE_ARGS[$n]}" ] && ! [ "${OVERRIDE_ARGS[$n]}" = "$arg" ]; then
+    elif [ -n "${OVERRIDE_ARGS[$n]}" ] && ! [[ $arg == ${OVERRIDE_PATTERNS[$n]} ]]; then
       continue
     fi
 

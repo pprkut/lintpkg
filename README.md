@@ -81,6 +81,15 @@ For rules that aren't about a path, the argument is optional. Without it, the
 rule is overridden for the whole package. With it, the rule is only overridden
 for that argument, like the icon theme above.
 
+In the path or argument, "*" matches any string, including "/", and "?" matches
+any single character. A backslash makes them, or another backslash, match
+themselves instead. All other characters only match themselves:
+
+```
+# Plugins are loaded by name, not linked against
+unstripped-binary /usr/lib64/foo/plugins/*.so
+```
+
 Like in lintian, an override can be limited to packages for some architectures
 by putting a list of them in front of it, followed by a colon. An architecture
 prefixed with "!" excludes packages for it instead. Overrides that don't apply
@@ -97,8 +106,9 @@ A comment directly above an override gives the reason for it, and also applies
 to the overrides directly following it, until the next empty line or comment.
 
 Overrides for rules the package doesn't violate are reported as unused-override
-errors, so they can be removed once they are no longer needed. If an override
-is given more than once, only the first one is used. Use
+errors, so they can be removed once they are no longer needed. If several
+overrides match a message, only the first one is used, and the others are
+reported as unused if they don't match any other message. Use
 --ignore-unused-overrides to not report unused overrides.
 
 ## Return codes
