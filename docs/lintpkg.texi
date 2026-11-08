@@ -240,6 +240,19 @@ For rules that aren't about a path, the argument is optional. Without it, the
 rule is overridden for the whole package. With it, the rule is only overridden
 for that argument, like the icon theme above.
 
+Like in lintian, an override can be limited to packages for some architectures
+by putting a list of them in front of it, followed by a colon. An architecture
+prefixed with @samp{!} excludes packages for it instead. Overrides that don't
+apply to the architecture of the package are ignored, and never reported as
+unused:
+
+@example
+# Only 64-bit builds ship the compatibility library
+[x86_64 aarch64]: unstripped-binary /usr/lib64/libfoo-compat.so.1
+
+[!i586]: missing-icon-cache-update hicolor
+@end example
+
 A comment directly above an override gives the reason for it, and also applies
 to the overrides directly following it, until the next empty line or comment.
 

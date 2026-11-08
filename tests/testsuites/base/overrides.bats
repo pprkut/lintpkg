@@ -10,6 +10,7 @@ load ../../helpers/makepkg
 setup() {
   create_empty_package "$BATS_TEST_TMPDIR/pkg"
   mkdir -p "$BATS_TEST_TMPDIR/system"
+  TEST_ARCH="noarch"
 }
 
 # Ship the given overrides with the test package
@@ -24,7 +25,7 @@ system_overrides() {
 }
 
 run_lintpkg() {
-  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR/pkg" empty 1.0 noarch 1)
+  PKG=$(create_slackware_package "$BATS_TEST_TMPDIR/pkg" empty 1.0 "$TEST_ARCH" 1)
 
   run "${REPO_ROOT}/lintpkg" -C "$TEST_CHECKS/overrides" --overridedir "$BATS_TEST_TMPDIR/system" "$@" "$PKG"
 
@@ -248,6 +249,140 @@ CHECK
   refute_line --partial "path-error"
 
   rm -f "$PKG"
+}
+
+@test "Override for architecture of package is used" {
+  TEST_ARCH="x86_64"
+  package_overrides "[x86_64]: path-error /usr/bin/foo\n"
+
+  run_lintpkg
+
+  refute_line --partial "path-error"
+  assert_line "1 packages checked; 1 errors and 2 warnings; 1 errors, 0 warnings and 0 notices overridden."
+}
+
+@test "Override for list of architectures including package is used" {
+  TEST_ARCH="x86_64"
+  package_overrides "[i586 x86_64]: path-error /usr/bin/foo\n"
+
+  run_lintpkg
+
+  refute_line --partial "path-error"
+}
+
+@test "Override for other architecture is not used and not reported as unused" {
+  TEST_ARCH="x86_64"
+  package_overrides "[i586 aarch64]: path-error /usr/bin/foo\n"
+
+  run_lintpkg
+
+  assert_line "empty-1.0-x86_64-1: E: path-error /usr/bin/foo"
+  refute_line --partial "unused-override"
+  assert_line "1 packages checked; 2 errors and 2 warnings."
+}
+
+@test "Override for architecture does not apply to noarch package" {
+  package_overrides "[x86_64]: path-error /usr/bin/foo\n"
+
+  run_lintpkg
+
+  assert_line "empty-1.0-noarch-1: E: path-error /usr/bin/foo"
+  refute_line --partial "unused-override"
+}
+
+@test "Override excluding other architecture is used" {
+  TEST_ARCH="x86_64"
+  package_overrides "[!i586]: path-error /usr/bin/foo\n"
+
+  run_lintpkg
+
+  refute_line --partial "path-error"
+}
+
+@test "Override excluding architecture of package is not used and not reported as unused" {
+  TEST_ARCH="x86_64"
+  package_overrides "[!i586 !x86_64]: path-error /usr/bin/foo\n"
+
+  run_lintpkg
+
+  assert_line "empty-1.0-x86_64-1: E: path-error /usr/bin/foo"
+  refute_line --partial "unused-override"
+}
+
+@test "Excluded architecture takes precedence over included architecture" {
+  TEST_ARCH="x86_64"
+  package_overrides "[x86_64 !x86_64]: path-error /usr/bin/foo\n"
+
+  run_lintpkg
+
+  assert_line "empty-1.0-x86_64-1: E: path-error /usr/bin/foo"
+}
+
+@test "Override with empty list of architectures is used for any architecture" {
+  TEST_ARCH="x86_64"
+  package_overrides "[]: path-error /usr/bin/foo\n"
+
+  run_lintpkg
+
+  refute_line --partial "path-error"
+}
+
+@test "Whitespace in and around list of architectures is ignored" {
+  TEST_ARCH="x86_64"
+  package_overrides "[ i586\t x86_64 ] :\tpath-error /usr/bin/foo\n[x86_64]:single-warning\n"
+
+  run_lintpkg
+
+  refute_line --partial "path-error"
+  refute_line --partial "single-warning"
+}
+
+@test "List of architectures without colon is not an architecture list" {
+  TEST_ARCH="x86_64"
+  package_overrides "[x86_64] path-error /usr/bin/foo\n"
+
+  run_lintpkg
+
+  assert_line "empty-1.0-x86_64-1: E: path-error /usr/bin/foo"
+  assert_line "empty-1.0-x86_64-1: E: unused-override [x86_64] path-error /usr/bin/foo"
+}
+
+@test "Unused override for architecture of package is reported without the list" {
+  TEST_ARCH="x86_64"
+  package_overrides "[x86_64]: path-error /usr/bin/bar\n"
+
+  run_lintpkg
+
+  assert_line "empty-1.0-x86_64-1: E: unused-override path-error /usr/bin/bar"
+}
+
+@test "Override for architecture from lintpkg is used" {
+  TEST_ARCH="x86_64"
+  system_overrides "[x86_64]: path-error /usr/bin/foo\n[i586]: path-error /usr/lib/foo\n"
+
+  run_lintpkg
+
+  refute_line --partial "path-error"
+  refute_line --partial "unused-override"
+}
+
+@test "Reason applies to overrides following an override for other architecture" {
+  TEST_ARCH="x86_64"
+  package_overrides "# Known issue\n[i586]: path-error /usr/bin/foo\n[x86_64]: path-error /usr/bin/foo\n"
+
+  run_lintpkg --show-overrides
+
+  assert_line -n 0 "empty-1.0-x86_64-1: O: path-error /usr/bin/foo"
+  assert_line -n 1 "  Overridden by package: Known issue"
+}
+
+@test "New comment after override for other architecture starts new reason" {
+  TEST_ARCH="x86_64"
+  package_overrides "# Known issue\n[i586]: path-error /usr/bin/foo\n# Needed for debugging\npath-error /usr/bin/foo\n"
+
+  run_lintpkg --show-overrides
+
+  assert_line -n 1 "  Overridden by package: Needed for debugging"
 }
 
 @test "--overridedir with non-existent directory prints error and exits with 1" {

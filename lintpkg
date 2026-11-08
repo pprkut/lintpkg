@@ -128,6 +128,19 @@ load_overrides() {
       reason="${reason:+$reason }$line"
       previous="comment"
     else
+      previous="override"
+
+      # Like lintian, an override can be limited to some architectures with a
+      # list in front of it, followed by a colon. Overrides for other
+      # architectures are skipped, so they're never reported as unused:
+      if [[ $line =~ ^\[([^]]*)\][[:space:]]*:[[:space:]]*(.+)$ ]]; then
+        line="${BASH_REMATCH[2]}"
+
+        if ! architecture_listed "${BASH_REMATCH[1]}"; then
+          continue
+        fi
+      fi
+
       id="${line%%[[:space:]]*}"
       arg="${line#"$id"}"
       arg="${arg#"${arg%%[![:space:]]*}"}"
@@ -137,9 +150,37 @@ load_overrides() {
       OVERRIDE_PATHS+=("$(package_path "$arg")")
       OVERRIDE_REASONS+=("$reason")
       OVERRIDE_USED+=("no")
-      previous="override"
     fi
   done < "$file"
+}
+
+# Return whether the architecture of the current package is included in the
+# given list of architectures of an override. Architectures prefixed with "!"
+# are excluded instead. A list with only excluded architectures includes all
+# others:
+architecture_listed() {
+  local -a architectures
+  local arch
+  local restricted="no"
+  local included="no"
+
+  read -r -a architectures <<< "$1"
+
+  for arch in "${architectures[@]}"; do
+    if [ "${arch:0:1}" = "!" ]; then
+      if [ "${arch:1}" = "$PKG_ARCH" ]; then
+        return 1
+      fi
+    else
+      restricted="yes"
+
+      if [ "$arch" = "$PKG_ARCH" ]; then
+        included="yes"
+      fi
+    fi
+  done
+
+  [ "$restricted" = "no" ] || [ "$included" = "yes" ]
 }
 
 # Return whether a message is overridden for the current package, and remember
